@@ -1,0 +1,25 @@
+# Вспомогательные скрипты
+rename_files.py
+rename_files.ps1
+update_refs.py
+
+# System files
+.BridgeSort
+IMAGES/.BridgeSort
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Agents internal (не нужен в репо)
+.agents/
+
+# Skills (не нужны в репо)
+skills/
+
+# CSV данные (рабочие файлы)
+*.csv

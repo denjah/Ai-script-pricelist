@@ -1,10 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ИИ-помощники для бизнеса | Прейскурант 2026</title>
+  <link rel="stylesheet" href="carousel.css">
+  <link rel="stylesheet" href="hero-carousel.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
 
@@ -14,7 +16,9 @@
       box-sizing: border-box;
     }
 
+    /* === ТОКЕНЫ (DESIGN TOKENS) === */
     :root {
+      /* Цвета */
       --bg: #F0E6DA;
       --bg-alt: #EDE0D4;
       --accent: #8B2E2E;
@@ -23,9 +27,12 @@
       --text-mid: #5C4D40;
       --text-light: #8A7B6E;
       --line: rgba(139, 46, 46, 0.12);
+      
+      /* Анимации */
       --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
+    /* === ГЛОБАЛЬНЫЕ СТИЛИ === */
     body {
       font-family: 'Montserrat', sans-serif;
       background: #1A1715;
@@ -33,15 +40,15 @@
       overflow-x: hidden;
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      padding: 20px;
+      gap: 24px; /* 20px -> 24px (8px grid) */
+      padding: 24px; /* 20px -> 24px (8px grid) */
     }
 
+    /* === БАЗОВЫЙ КЛАСС СЛАЙДА === */
     .slide {
       position: relative;
       width: 100%;
-      height: 100vh;
-      min-height: 800px;
+      min-height: 100vh;
       background-color: var(--bg);
       display: flex;
       flex-direction: column;
@@ -49,18 +56,37 @@
       flex-shrink: 0;
     }
 
-    /* ─── Инженерная сетка (фоновый паттерн) ─── */
-    .bg-grid {
+    /* === ДЕКОРАТИВНЫЕ ЭЛЕМЕНТЫ === */
+    /* Векторные фигуры на фоне */
+    .bg-figures {
       position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(139, 46, 46, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(139, 46, 46, 0.04) 1px, transparent 1px);
-      background-size: 48px 48px;
+      top: 50%;
+      left: 50%;
+      width: 150vmax;
+      height: 150vmax;
       pointer-events: none;
+      z-index: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      will-change: transform;
     }
 
-    /* ─── Декоративные уголки (L-shapes) ─── */
+    .figure-layer {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 4s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .figure-layer.active-layer {
+      opacity: 1;
+    }
+
+    /* Декоративные уголки (L-shapes) */
     .corner {
       position: absolute;
       width: 40px;
@@ -82,7 +108,28 @@
       border-width: 0 1.5px 1.5px 0;
     }
 
-    /* ─── Слайд 1: Заголовок ─── */
+    /* Номер слайда */
+    .slide-number {
+      position: absolute;
+      top: 48px;
+      right: 96px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-light);
+      letter-spacing: 2px;
+    }
+
+    /* Полоса сверху на слайдах услуг */
+    .slide-header-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: var(--accent);
+    }
+
+    /* === СЛАЙД 01: ЗАГОЛОВОК === */
     .slide-title {
       padding: 96px;
       justify-content: center;
@@ -110,13 +157,13 @@
     }
 
     .title-main {
-      font-size: 62px;
+      font-size: 52px;
       font-weight: 900;
       text-transform: uppercase;
       color: var(--text);
       line-height: 1.05;
       letter-spacing: -1px;
-      max-width: 820px;
+      max-width: 48%; /* Чтобы не заходило за свою половину */
       margin-bottom: 32px;
     }
 
@@ -130,7 +177,7 @@
       color: var(--text-mid);
       max-width: 680px;
       line-height: 1.5;
-      margin-bottom: 52px;
+      margin-bottom: 56px; /* 52px -> 56px */
     }
 
     .title-footer {
@@ -148,8 +195,8 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--text-light);
-      padding-right: 28px;
-      margin-right: 28px;
+      padding-right: 32px; /* 28px -> 32px */
+      margin-right: 32px;  /* 28px -> 32px */
       border-right: 1px solid var(--line);
     }
 
@@ -157,7 +204,6 @@
       border-right: none;
     }
 
-    /* Gear SVG */
     .title-gear {
       position: absolute;
       right: 96px;
@@ -166,34 +212,25 @@
       opacity: 0.07;
     }
 
-    /* ─── Слайды 2-6: Услуги (2 по горизонтали) ─── */
+    /* === СЛАЙДЫ 02-07: УСЛУГИ === */
     .slide-services {
       flex-direction: row;
     }
 
-    .slide-header-bar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background: var(--accent);
-    }
-
     .service-col {
       flex: 1;
-      padding: 52px 56px 44px 56px;
+      padding: 56px; /* 52px 56px 44px 56px -> 56px (8px grid) */
       display: flex;
       flex-direction: column;
       position: relative;
     }
 
-    .service-col+.service-col::before {
+    .service-col + .service-col::before {
       content: '';
       position: absolute;
       left: 0;
-      top: 52px;
-      bottom: 44px;
+      top: 56px;
+      bottom: 56px;
       width: 1px;
       background: var(--line);
     }
@@ -205,7 +242,7 @@
       opacity: 0.12;
       line-height: 1;
       position: absolute;
-      top: 36px;
+      top: 40px; /* 36px -> 40px */
       right: 48px;
       letter-spacing: -4px;
     }
@@ -216,7 +253,7 @@
       letter-spacing: 4px;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 10px;
+      margin-bottom: 8px; /* 10px -> 8px */
       display: flex;
       align-items: center;
       gap: 8px;
@@ -237,7 +274,7 @@
       color: var(--text);
       line-height: 1.1;
       letter-spacing: -0.5px;
-      margin-bottom: 12px;
+      margin-bottom: 16px; /* 12px -> 16px */
       max-width: 460px;
     }
 
@@ -262,8 +299,7 @@
       font-weight: 400;
       color: var(--text-mid);
       line-height: 1.7;
-      margin-bottom: 14px;
-      flex: 1;
+      margin-bottom: 16px; /* 14px -> 16px */
     }
 
     .service-result {
@@ -271,7 +307,7 @@
       font-weight: 600;
       color: var(--text);
       line-height: 1.5;
-      margin-bottom: 10px;
+      margin-bottom: 16px; /* 10px -> 16px */
       padding-left: 12px;
       border-left: 3px solid var(--accent);
     }
@@ -280,7 +316,7 @@
       font-size: 11.5px;
       color: var(--text-light);
       line-height: 1.5;
-      margin-bottom: 18px;
+      margin-bottom: 24px; /* 18px -> 24px */
     }
 
     .service-branches strong {
@@ -292,7 +328,7 @@
       display: flex;
       align-items: baseline;
       gap: 16px;
-      padding: 12px 16px;
+      padding: 16px; /* 12px 16px -> 16px */
       border: 1px solid var(--line);
       background: rgba(139, 46, 46, 0.04);
       margin-top: auto;
@@ -311,18 +347,39 @@
       color: var(--text-light);
     }
 
-    .service-icon {
-      position: absolute;
-      bottom: 44px;
-      right: 48px;
-      opacity: 0.18;
+    /* === СЛАЙД 08: КОНТАКТЫ === */
+    .slide-final {
+      flex-direction: row;
+      align-items: stretch;
+      padding: 0;
     }
 
-    /* ─── Слайд 7: Контакты ─── */
-    .slide-final {
+    .final-left {
+      flex: 0 0 44%;
+      display: flex;
+      flex-direction: column;
       justify-content: center;
-      align-items: flex-start;
-      padding: 72px 96px;
+      padding: 72px 56px 72px 96px;
+      position: relative;
+    }
+
+    .final-right {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 56px;
+      position: relative;
+    }
+
+    .final-right::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 56px;
+      bottom: 56px;
+      width: 1px;
+      background: var(--line);
     }
 
     .final-tag {
@@ -331,10 +388,10 @@
       letter-spacing: 5px;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
     }
 
     .final-tag::before {
@@ -346,13 +403,13 @@
     }
 
     .final-title {
-      font-size: 50px;
+      font-size: 44px;
       font-weight: 900;
       text-transform: uppercase;
       color: var(--text);
       line-height: 1.05;
-      max-width: 780px;
-      margin-bottom: 20px;
+      max-width: 520px;
+      margin-bottom: 24px;
     }
 
     .final-title span {
@@ -360,25 +417,26 @@
     }
 
     .final-sub {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 400;
       color: var(--text-mid);
-      max-width: 640px;
+      max-width: 480px;
       line-height: 1.5;
-      margin-bottom: 44px;
+      margin-bottom: 40px;
     }
 
     .contacts-grid {
       display: flex;
-      gap: 40px;
+      gap: 32px;
       align-items: flex-start;
       flex-wrap: wrap;
+      margin-bottom: 32px;
     }
 
     .contact-item {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 8px;
     }
 
     .contact-label {
@@ -396,9 +454,7 @@
     }
 
     .final-cta {
-      position: absolute;
-      bottom: 52px;
-      right: 96px;
+      display: inline-block;
       background: var(--accent);
       color: #fff;
       font-size: 13px;
@@ -407,28 +463,115 @@
       text-transform: uppercase;
       padding: 16px 32px;
       border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      align-self: flex-start;
+    }
+
+    .final-cta:hover {
+      background: var(--accent-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(139, 46, 46, 0.25);
     }
 
     .final-note {
       position: absolute;
-      bottom: 56px;
+      bottom: 32px;
       left: 96px;
       font-size: 12px;
       color: var(--text-light);
-      max-width: 440px;
+      max-width: 400px;
       line-height: 1.6;
     }
 
-    .slide-number {
-      position: absolute;
-      top: 48px;
-      right: 96px;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--text-light);
-      letter-spacing: 2px;
+    /* === СЕТКА УСЛУГ НА ФИНАЛЬНОМ СЛАЙДЕ === */
+    .services-overview-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 12px;
+      width: 100%;
+      max-width: 620px;
     }
 
+    .sog-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.35);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 10px 6px 10px;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--text);
+      transition: var(--transition);
+      overflow: hidden;
+    }
+
+    .sog-card:hover {
+      background: rgba(255, 255, 255, 0.7);
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(139, 46, 46, 0.12);
+    }
+
+    .sog-card:hover .sog-num {
+      color: #fff;
+      background: var(--accent);
+    }
+
+    .sog-card:hover .sog-thumb {
+      filter: none;
+      transform: scale(1.05);
+    }
+
+    .sog-card:hover .sog-name {
+      color: var(--accent);
+    }
+
+    .sog-num {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      font-size: 9px;
+      font-weight: 800;
+      color: var(--text-light);
+      background: rgba(139, 46, 46, 0.08);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      z-index: 2;
+    }
+
+    .sog-thumb {
+      width: 100%;
+      height: 90px;
+      object-fit: contain;
+      object-position: center top;
+      margin-bottom: 8px;
+      filter: grayscale(0.3) brightness(0.95);
+      transition: var(--transition);
+    }
+
+    .sog-name {
+      font-size: 8.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-align: center;
+      line-height: 1.25;
+      color: var(--text-mid);
+      transition: var(--transition);
+      padding: 0 2px;
+    }
+
+    /* === МЕДИА ЗАПРОСЫ (ПЕЧАТЬ) === */
     @media print {
       body {
         background: white;
@@ -443,330 +586,854 @@
         border: none;
       }
     }
+
+    /* === АНИМАЦИЯ ЦЕН === */
+    .service-price-block {
+      position: relative;
+      cursor: help;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      gap: 12px;
+    }
+
+    .price-main-container {
+      display: flex;
+      align-items: baseline;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.5px;
+      transition: color 0.4s ease;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .price-prefix {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-light);
+      margin-right: 8px;
+      min-width: 24px;
+    }
+
+    .price-value {
+      min-width: 48px;
+      text-align: right;
+    }
+
+    .price-zeros {
+      min-width: 44px;
+      text-align: left;
+    }
+
+    .price-currency {
+      margin-left: 4px;
+      color: var(--accent);
+      min-width: 20px;
+      text-align: left;
+    }
+
+    .price-up {
+      color: var(--accent) !important;
+    }
+
+    .price-down {
+      color: var(--text-light) !important;
+    }
+
+    .price-negotiable {
+      position: absolute;
+      top: -28px;
+      left: 16px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      opacity: 0;
+      transform: translateY(5px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      white-space: nowrap;
+      z-index: 20;
+      box-shadow: 0 4px 12px rgba(139, 46, 46, 0.2);
+    }
+
+    .price-negotiable::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 12px;
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      transform: rotate(45deg);
+    }
+
+    .service-price-block:hover .price-negotiable {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .price-support {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-light);
+      text-align: right;
+      white-space: nowrap;
+      border-left: 1px solid var(--line);
+      padding-left: 12px;
+    }
+
+    /* Кнопка КОНТАКТЫ — под номером слайда, справа, над hero */
+    .nav-contacts {
+      position: absolute;
+      top: 80px;
+      right: 48px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: none;
+      border: 1.5px solid var(--line);
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: var(--transition);
+      z-index: 100;
+    }
+
+    .nav-contacts:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- СЛАЙД 01: ГЛАВНЫЙ -->
-  <section class="slide slide-title">
-    <div class="bg-grid"></div>
+  <!-- ============================================== -->
+  <!-- === SLIDE 01: ГЛАВНЫЙ ЗАГОЛОВОЧНЫЙ ЭКРАН === -->
+  <!-- ============================================== -->
+  <section class="slide slide-title" aria-label="Главный экран">
+    <!-- Декор -->
+    <div class="bg-figures"></div>
     <div class="corner corner-tl"></div>
     <div class="corner corner-br"></div>
     <div class="slide-number">01 / 08</div>
+    
+    <button class="nav-contacts" onclick="document.querySelector('.slide-final').scrollIntoView({behavior: 'smooth'})">КОНТАКТЫ</button>
 
+    <!-- Контент -->
     <div class="title-tag">Прейскурант 2026 · Разработка под ключ</div>
     <h1 class="title-main">ИИ-ПОМОЩНИКИ И ИНТЕЛЛЕКТУАЛЬНЫЕ <span>АВТОМАТИЗАЦИИ</span></h1>
-    <p class="title-sub">10 готовых решений, которые окупаются за 2–4 месяца. Внедрение без остановки бизнес-процессов.
-    </p>
+    <p class="title-sub">12 готовых решений, которые окупаются за 2–4 месяца. Внедрение без остановки бизнес-процессов.</p>
 
+    <!-- Футер слайда -->
     <div class="title-footer">
       <div class="title-footer-item">BITRIX24</div>
       <div class="title-footer-item">1С</div>
       <div class="title-footer-item">ТЕЛЕФОНИЯ</div>
       <div class="title-footer-item">TELEGRAM</div>
-      <div class="title-footer-item" style="color: var(--accent)">12 РЕШЕНИЙ · С НДС</div>
     </div>
 
-    <!-- Gear Icon Placeholder SVG -->
-    <div class="title-gear">
-      <svg width="400" height="400" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="1" stroke-dasharray="2 4" />
-        <circle cx="50" cy="50" r="30" stroke="currentColor" stroke-width="0.5" />
-        <path d="M50 10V30M50 70V90M10 50H30M70 50H90" stroke="currentColor" stroke-width="1" />
-      </svg>
+    <!-- Hero-карусель скриншотов (правая половина) -->
+    <div class="hero-carousel" aria-hidden="true">
+      <div class="hero-carousel__viewport"></div>
+      <div class="hero-carousel__progress">
+        <div class="hero-carousel__progress-bar"></div>
+      </div>
+      <!-- Кнопки навигации для Hero -->
+      <div class="hero-carousel__nav">
+        <button class="hero-nav-btn hero-prev" aria-label="Назад">←</button>
+        <button class="hero-nav-btn hero-next" aria-label="Вперед">→</button>
+      </div>
     </div>
   </section>
 
-  <!-- СЛАЙД 02: УСЛУГИ 01-02 -->
-  <section class="slide slide-services">
+  <!-- ============================================== -->
+  <!-- === SLIDE 02: УСЛУГИ 01-02                 === -->
+  <!-- ============================================== -->
+  <section class="slide slide-services" aria-label="Услуги Анализа и Квалификации">
+    <!-- Декор -->
     <div class="slide-header-bar"></div>
-    <div class="bg-grid"></div>
+    <div class="bg-figures"></div>
     <div class="slide-number">02 / 08</div>
 
     <!-- Услуга 01 -->
-    <div class="service-col">
+    <article class="service-col" id="service-01">
       <div class="service-num">01</div>
       <div class="service-label">Услуга 01</div>
       <h2 class="service-name">DEEP CLIENT ANALYSIS AI</h2>
       <p class="service-utp">Глубокий автоматический анализ клиента за 3 минуты</p>
       <div class="divider-h"></div>
-      <p class="service-desc">ИИ анализирует полную карточку клиента в CRM: звонки, переписку, историю сделок и контент
-        компании. Выявляет реальные боли, триггеры принятия решений и скрытые возражения. На выходе — готовый план
-        разговора и профессиональный отчёт. Менеджер получает полную картину вместо 2 часов ручной работы.</p>
-      <div class="service-result">Рост конверсии в сделку до 35–50 % по нашим кейсам · Сокращение холостых звонков ·
-        Повышение среднего чека</div>
-      <p class="service-branches"><strong>Ветки развития:</strong> автозапуск по новым лидам, история анализов,
-        интеграция с Telegram</p>
+      <p class="service-desc">ИИ анализирует полную карточку клиента в CRM: звонки, переписку, историю сделок и контент компании. Выявляет реальные боли, триггеры принятия решений и скрытые возражения. На выходе — готовый план разговора и профессиональный отчёт. Менеджер получает полную картину вместо 2 часов ручной работы.</p>
+      <!-- Карусель скриншотов услуги 01 -->
+      <div class="screenshot-carousel" data-service="01">
+        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-viewport">
+          <img src="IMAGES/SCREENSHOTS/01_01_DEEP-CLIENT-ANALYSIS_01.png" alt="Deep Client Analysis 1" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/01_02_DEEP-CLIENT-ANALYSIS_02_01.png" alt="Deep Client Analysis 2" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/01_03_DEEP-CLIENT-ANALYSIS_02_02.png" alt="Deep Client Analysis 3" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/01_04_DEEP-CLIENT-ANALYSIS_02_03.png" alt="Deep Client Analysis 4" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/01_05_DEEP-CLIENT-ANALYSIS_02_04.png" alt="Deep Client Analysis 5" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/01_06_DEEP-CLIENT-ANALYSIS_02.png" alt="Deep Client Analysis 6" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/01_07_DEEP-CLIENT-ANALYSIS_02M_02.png" alt="Deep Client Analysis 7" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/01_08_DEEP-CLIENT-ANALYSIS_03.png" alt="Deep Client Analysis 8" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/01_09_DEEP-CLIENT-ANALYSIS_04.png" alt="Deep Client Analysis 9" loading="lazy" decoding="async">
+        </div>
+        <div class="carousel-dots"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+      <div class="service-result">Рост конверсии в сделку до 35–50 % по нашим кейсам · Сокращение холостых звонков · Повышение среднего чека</div>
+      <p class="service-branches"><strong>Ветки развития:</strong> автозапуск по новым лидам, история анализов, интеграция с Telegram</p>
+      
+      <!-- Цена -->
       <div class="service-price-block">
-        <span class="price-main">от 610 000 ₽</span>
+        <div class="price-main-container">
+          <span class="price-prefix">от </span>
+          <span class="price-value" data-base="610000">610</span>
+          <span class="price-zeros">000</span>
+          <span class="price-currency">₽</span>
+        </div>
         <span class="price-support">+ 44 000 ₽/мес поддержка · с НДС</span>
       </div>
-    </div>
+    </article>
 
     <!-- Услуга 02 -->
-    <div class="service-col">
+    <article class="service-col" id="service-02">
       <div class="service-num">02</div>
       <div class="service-label">Услуга 02</div>
       <h2 class="service-name">ИИ-КВАЛИФИКАТОР И РОУТЕР ЛИДОВ</h2>
       <p class="service-utp">Автоматическая оценка и распределение всех входящих заявок</p>
       <div class="divider-h"></div>
-      <p class="service-desc">Автоматическая оценка входящих заявок, скоринг по 30+ параметрам, маршрутизация по
-        менеджерам и первичные квалифицирующие вопросы через чат или телефонию. Система работает 24/7, не пропуская ни
-        одной «тёплой» заявки. Полная интеграция в Bitrix24 без изменения текущих процессов.</p>
-      <div class="service-result">Снижение нагрузки на менеджеров на 50–70 % · Рост качества лидов · Минимизация потерь
-        заявок</div>
-      <p class="service-branches"><strong>Ветки развития:</strong> интеграция с маркетингом, автоматическое обогащение
-        данных о компании, предиктивный скоринг</p>
+      <p class="service-desc">Автоматическая оценка входящих заявок, скоринг по 30+ параметрам, маршрутизация по менеджерам и первичные квалифицирующие вопросы через чат или телефонию. Система работает 24/7, не пропуская ни одной «тёплой» заявки. Полная интеграция в Bitrix24 без изменения текущих процессов.</p>
+      <!-- Карусель скриншотов услуги 02 -->
+      <div class="screenshot-carousel" data-service="02">
+        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-viewport">
+          <img src="IMAGES/SCREENSHOTS/02_AI-LEAD-QUALIFIER_01.png" alt="ИИ-Квалификатор лидов 1" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/02_AI-LEAD-QUALIFIER_02.png" alt="ИИ-Квалификатор лидов 2" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/02_AI-LEAD-QUALIFIER_03.png" alt="ИИ-Квалификатор лидов 3" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/02_AI-LEAD-QUALIFIER_04.png" alt="ИИ-Квалификатор лидов 4" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/02_AI-LEAD-QUALIFIER_04M.png" alt="ИИ-Квалификатор лидов 5" loading="lazy" decoding="async">
+        </div>
+        <div class="carousel-dots"><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+      <div class="service-result">Снижение нагрузки на менеджеров на 50–70 % · Рост качества лидов · Минимизация потерь заявок</div>
+      <p class="service-branches"><strong>Ветки развития:</strong> интеграция с маркетингом, автоматическое обогащение данных о компании, предиктивный скоринг</p>
+      
+      <!-- Цена -->
       <div class="service-price-block">
-        <span class="price-main">от 380 000 ₽</span>
+        <div class="price-main-container">
+          <span class="price-prefix">от </span>
+          <span class="price-value" data-base="380000">380</span>
+          <span class="price-zeros">000</span>
+          <span class="price-currency">₽</span>
+        </div>
         <span class="price-support">+ 29 000 ₽/мес поддержка · с НДС</span>
       </div>
-    </div>
+    </article>
   </section>
 
-  <!-- СЛАЙД 03 -->
-  <section class="slide slide-services">
+  <!-- ============================================== -->
+  <!-- === SLIDE 03: УСЛУГИ 03-04                 === -->
+  <!-- ============================================== -->
+  <section class="slide slide-services" aria-label="Услуги Аналитики и КП">
+    <!-- Декор -->
     <div class="slide-header-bar"></div>
-    <div class="bg-grid"></div>
+    <div class="bg-figures"></div>
     <div class="slide-number">03 / 08</div>
-    <div class="service-col">
+
+    <!-- Услуга 03 -->
+    <article class="service-col" id="service-03">
       <div class="service-num">03</div>
       <div class="service-label">Услуга 03</div>
       <h2 class="service-name">ИИ-АНАЛИТИК КОММУНИКАЦИЙ</h2>
       <p class="service-utp">Контроль качества 100% звонков и чатов без участия РОПа</p>
       <div class="divider-h"></div>
-      <p class="service-desc">Автоматическая расшифровка и анализ всех диалогов менеджеров. ИИ проверяет соблюдение
-        скрипта, выявляет конфликтные ситуации и выставляет оценки по чек-листу. Вы получаете ежедневный дашборд с
-        проблемными зонами и точками роста каждого сотрудника.</p>
-      <div class="service-result">Объективный контроль 100% коммуникаций · Быстрая адаптация новичков · Снижение рисков
-        увода клиентов</div>
-      <p class="service-branches"><strong>Ветки развития:</strong> еженедельные отчёты РОПу, интеграция с телефонией,
-        автоматические рекомендации по обучению</p>
+      <p class="service-desc">Автоматическая расшифровка и анализ всех диалогов менеджеров. ИИ проверяет соблюдение скрипта, выявляет конфликтные ситуации и выставляет оценки по чек-листу. Вы получаете ежедневный дашборд с проблемными зонами и точками роста каждого сотрудника.</p>
+      <div class="screenshot-carousel" data-service="03">
+        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-viewport">
+          <img src="IMAGES/SCREENSHOTS/03_COMMS-ANALYST_01.png" alt="Аналитик коммуникаций 1" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/03_COMMS-ANALYST_02.png" alt="Аналитик коммуникаций 2" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/03_COMMS-ANALYST_03M.png" alt="Аналитик коммуникаций 3" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/03_COMMS-ANALYST_04M.png" alt="Аналитик коммуникаций 4" loading="lazy" decoding="async">
+        </div>
+        <div class="carousel-dots"><span></span><span></span><span></span><span></span></div>
+      </div>
+      <div class="service-result">Объективный контроль 100% коммуникаций · Быстрая адаптация новичков · Снижение рисков увода клиентов</div>
+      <p class="service-branches"><strong>Ветки развития:</strong> еженедельные отчёты РОПу, интеграция с телефонией, автоматические рекомендации по обучению</p>
+      
+      <!-- Цена -->
       <div class="service-price-block">
-        <span class="price-main">от 340 000 ₽</span>
+        <div class="price-main-container">
+          <span class="price-prefix">от </span>
+          <span class="price-value" data-base="340000">340</span>
+          <span class="price-zeros">000</span>
+          <span class="price-currency">₽</span>
+        </div>
         <span class="price-support">+ 26 000 ₽/мес поддержка · с НДС</span>
       </div>
-    </div>
-    <div class="service-col">
+    </article>
+
+    <!-- Услуга 04 -->
+    <article class="service-col" id="service-04">
       <div class="service-num">04</div>
       <div class="service-label">Услуга 04</div>
       <h2 class="service-name">ГЕНЕРАТОР ПЕРСОН. КП</h2>
       <p class="service-utp">Создание коммерческих предложений под конкретные боли за 30 секунд</p>
       <div class="divider-h"></div>
-      <p class="service-desc">ИИ собирает данные из CRM и генерирует уникальное КП, которое бьёт точно в потребности
-        клиента. Больше никаких шаблонных файлов. Каждое предложение выглядит как результат глубокой работы аналитика.
-      </p>
-      <div class="service-result">Увеличение конверсии КП в оплату в среднем в 1,5–2 раза · Скорость ответа на запрос
-        менее 1 минуты</div>
-      <p class="service-branches"><strong>Ветки развития:</strong> интеграция с почтой, история КП, автоматическое
-        обновление шаблонов</p>
+      <p class="service-desc">ИИ собирает данные из CRM и генерирует уникальное КП, которое бьёт точно в потребности клиента. Больше никаких шаблонных файлов. Каждое предложение выглядит как результат глубокой работы аналитика.</p>
+      <div class="screenshot-carousel" data-service="04">
+        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-viewport">
+          <img src="IMAGES/SCREENSHOTS/04_PERSONA-GENERATOR_01.png" alt="Генератор персон 1" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/04_PERSONA-GENERATOR_01M.png" alt="Генератор персон 1M" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/04_PERSONA-GENERATOR_02.png" alt="Генератор персон 2" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/04_PERSONA-GENERATOR_03.png" alt="Генератор персон 3" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/04_PERSONA-GENERATOR_04.png" alt="Генератор персон 4" loading="lazy" decoding="async">
+        </div>
+        <div class="carousel-dots"><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+      <div class="service-result">Увеличение конверсии КП в оплату в среднем в 1,5–2 раза · Скорость ответа на запрос менее 1 минуты</div>
+      <p class="service-branches"><strong>Ветки развития:</strong> интеграция с почтой, история КП, автоматическое обновление шаблонов</p>
+      
+      <!-- Цена -->
       <div class="service-price-block">
-        <span class="price-main">от 260 000 ₽</span>
+        <div class="price-main-container">
+          <span class="price-prefix">от </span>
+          <span class="price-value" data-base="260000">260</span>
+          <span class="price-zeros">000</span>
+          <span class="price-currency">₽</span>
+        </div>
         <span class="price-support">+ 19 000 ₽/мес поддержка · с НДС</span>
       </div>
-    </div>
+    </article>
   </section>
 
-  <!-- СЛАЙД 04 -->
-  <section class="slide slide-services">
+  <!-- ============================================== -->
+  <!-- === SLIDE 04: УСЛУГИ 05-06                 === -->
+  <!-- ============================================== -->
+  <section class="slide slide-services" aria-label="Услуги Коучинга и Закупок">
+    <!-- Декор -->
     <div class="slide-header-bar"></div>
-    <div class="bg-grid"></div>
+    <div class="bg-figures"></div>
     <div class="slide-number">04 / 08</div>
-    <div class="service-col">
+
+    <!-- Услуга 05 -->
+    <article class="service-col" id="service-05">
       <div class="service-num">05</div>
       <div class="service-label">Услуга 05</div>
       <h2 class="service-name">ИИ SALES COACH</h2>
       <p class="service-utp">Персональный наставник в ухе менеджера во время сделки</p>
       <div class="divider-h"></div>
-      <p class="service-desc">Интерактивная база знаний, которая подсказывает лучшие ответы на возражения в режиме
-        реального времени. На основе лучших практик ваших топовых продавцов ИИ обучает всю команду прямо в процессе
-        работы.</p>
+      <p class="service-desc">Интерактивная база знаний, которая подсказывает лучшие ответы на возражения в режиме реального времени. На основе лучших практик ваших топовых продавцов ИИ обучает всю команду прямо в процессе работы.</p>
+      <div class="screenshot-carousel" data-service="05">
+        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-viewport">
+          <img src="IMAGES/SCREENSHOTS/05_SALES-COACH_01.png" alt="Sales Coach 1" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/05_SALES-COACH_01M.png" alt="Sales Coach 1M" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/05_SALES-COACH_02.png" alt="Sales Coach 2" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/05_SALES-COACH_03.png" alt="Sales Coach 3" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/05_SALES-COACH_04.png" alt="Sales Coach 4" loading="lazy" decoding="async">
+        </div>
+        <div class="carousel-dots"><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
       <div class="service-result">Рост экспертности отдела продаж · Сокращение цикла сделки в среднем на 15–20 %</div>
-      <p class="service-branches"><strong>Ветки развития:</strong> анализ записей звонков, персональные рекомендации,
-        интеграция с CRM</p>
+      <p class="service-branches"><strong>Ветки развития:</strong> анализ записей звонков, персональные рекомендации, интеграция с CRM</p>
+      
+      <!-- Цена -->
       <div class="service-price-block">
-        <span class="price-main">от 485 000 ₽</span>
+        <div class="price-main-container">
+          <span class="price-prefix">от </span>
+          <span class="price-value" data-base="485000">485</span>
+          <span class="price-zeros">000</span>
+          <span class="price-currency">₽</span>
+        </div>
         <span class="price-support">+ 37 000 ₽/мес поддержка · с НДС</span>
       </div>
-    </div>
-    <div class="service-col">
+    </article>
+
+    <!-- Услуга 06 -->
+    <article class="service-col" id="service-06">
       <div class="service-num">06</div>
       <div class="service-label">Услуга 06</div>
       <h2 class="service-name">ИИ ДЛЯ СКЛАДА И ЗАКУПОК</h2>
       <p class="service-utp">Предиктивное управление запасами и автоматизация снабжения</p>
       <div class="divider-h"></div>
-      <p class="service-desc">ИИ анализирует историю продаж и прогнозирует спрос на месяцы вперёд. Автоматически
-        формирует заявки поставщикам, оптимизирует логистику и предотвращает дефицит или затоваривание склада.</p>
-      <div class="service-result">Высвобождение до 30 % оборотного капитала · Исключение упущенной прибыли из-за
-        отсутствия товара</div>
-      <p class="service-branches"><strong>Ветки развития:</strong> интеграция с 1С, автоматические уведомления, анализ
-        поставщиков</p>
+      <p class="service-desc">ИИ анализирует историю продаж и прогнозирует спрос на месяцы вперёд. Автоматически формирует заявки поставщикам, оптимизирует логистику и предотвращает дефицит или затоваривание склада.</p>
+      <div class="screenshot-carousel" data-service="06">
+        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-viewport">
+          <img src="IMAGES/SCREENSHOTS/06_WAREHOUSE-PROCUREMENT_01.png" alt="Для склада и закупок 1" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/06_WAREHOUSE-PROCUREMENT_01M.png" alt="Для склада и закупок 1M" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/06_WAREHOUSE-PROCUREMENT_02.png" alt="Для склада и закупок 2" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/06_WAREHOUSE-PROCUREMENT_03.png" alt="Для склада и закупок 3" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/06_WAREHOUSE-PROCUREMENT_04.png" alt="Для склада и закупок 4" loading="lazy" decoding="async">
+        </div>
+        <div class="carousel-dots"><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+      <div class="service-result">Высвобождение до 30 % оборотного капитала · Исключение упущенной прибыли из-за отсутствия товара</div>
+      <p class="service-branches"><strong>Ветки развития:</strong> интеграция с 1С, автоматические уведомления, анализ поставщиков</p>
+      
+      <!-- Цена -->
       <div class="service-price-block">
-        <span class="price-main">от 650 000 ₽</span>
+        <div class="price-main-container">
+          <span class="price-prefix">от </span>
+          <span class="price-value" data-base="650000">650</span>
+          <span class="price-zeros">000</span>
+          <span class="price-currency">₽</span>
+        </div>
         <span class="price-support">+ 48 000 ₽/мес поддержка · с НДС</span>
       </div>
-    </div>
+    </article>
   </section>
 
-  <!-- СЛАЙД 05 -->
-  <section class="slide slide-services">
+  <!-- ============================================== -->
+  <!-- === SLIDE 05: УСЛУГИ 07-08                 === -->
+  <!-- ============================================== -->
+  <section class="slide slide-services" aria-label="Услуги Маркетинга и Управления">
+    <!-- Декор -->
     <div class="slide-header-bar"></div>
-    <div class="bg-grid"></div>
+    <div class="bg-figures"></div>
     <div class="slide-number">05 / 08</div>
-    <div class="service-col">
+
+    <!-- Услуга 07 -->
+    <article class="service-col" id="service-07">
       <div class="service-num">07</div>
       <div class="service-label">Услуга 07</div>
       <h2 class="service-name">ИИ-АССИСТЕНТ МАРКЕТИНГА</h2>
       <p class="service-utp">Автоматическая генерация контента и анализ рекламных кампаний</p>
       <div class="divider-h"></div>
-      <p class="service-desc">Создание статей, постов, рекламных объявлений и SEO-описаний на основе вашего Tone of
-        Voice. Моментальный анализ эффективности каналов и перераспределение бюджета в пользу самых конверсионных лидов.
-      </p>
-      <div class="service-result">Снижение стоимости лида (CPL) до 40 % · Рост охватов без увеличения штата маркетинга
+      <p class="service-desc">Создание статей, постов, рекламных объявлений и SEO-описаний на основе вашего Tone of Voice. Моментальный анализ эффективности каналов и перераспределение бюджета в пользу самых конверсионных лидов.</p>
+      <div class="screenshot-carousel" data-service="07">
+        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-viewport">
+          <img src="IMAGES/SCREENSHOTS/07_AI-MARKETING-ASSISTANT_01.png" alt="ИИ-Ассистент маркетинга 1" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/07_AI-MARKETING-ASSISTANT_01M.png" alt="ИИ-Ассистент маркетинга 1M" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/07_AI-MARKETING-ASSISTANT_02.png" alt="ИИ-Ассистент маркетинга 2" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/07_AI-MARKETING-ASSISTANT_03.png" alt="ИИ-Ассистент маркетинга 3" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/07_AI-MARKETING-ASSISTANT_04.png" alt="ИИ-Ассистент маркетинга 4" loading="lazy" decoding="async">
+        </div>
+        <div class="carousel-dots"><span></span><span></span><span></span><span></span><span></span></div>
       </div>
-      <p class="service-branches"><strong>Ветки развития:</strong> генерация визуалов, A/B-тестирование, интеграция с
-        рекламными кабинетами</p>
+      <div class="service-result">Снижение стоимости лида (CPL) до 40 % · Рост охватов без увеличения штата маркетинга</div>
+      <p class="service-branches"><strong>Ветки развития:</strong> генерация визуалов, A/B-тестирование, интеграция с рекламными кабинетами</p>
+      
+      <!-- Цена -->
       <div class="service-price-block">
-        <span class="price-main">от 280 000 ₽</span>
+        <div class="price-main-container">
+          <span class="price-prefix">от </span>
+          <span class="price-value" data-base="280000">280</span>
+          <span class="price-zeros">000</span>
+          <span class="price-currency">₽</span>
+        </div>
         <span class="price-support">+ 21 000 ₽/мес поддержка · с НДС</span>
       </div>
-    </div>
-    <div class="service-col">
+    </article>
+
+    <!-- Услуга 08 -->
+    <article class="service-col" id="service-08">
       <div class="service-num">08</div>
       <div class="service-label">Услуга 08</div>
       <h2 class="service-name">EXECUTIVE AI DASHBOARD</h2>
       <p class="service-utp">Голосовое управление бизнесом через интеллектуальные дашборды</p>
       <div class="divider-h"></div>
-      <p class="service-desc">Единое окно для собственника: задавайте вопросы голосом («Какая маржинальность по филиалу
-        Х за неделю?») и получайте мгновенные ответы с графиками и прогнозом выполнения плана.</p>
-      <div class="service-result">Принятие решений на основе данных за секунды · Полная прозрачность всех процессов
+      <p class="service-desc">Единое окно для собственника: задавайте вопросы голосом («Какая маржинальность по филиалу Х за неделю?») и получайте мгновенные ответы с графиками и прогнозом выполнения плана.</p>
+      <div class="screenshot-carousel" data-service="08">
+        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-viewport">
+          <img src="IMAGES/SCREENSHOTS/08_EXECUTIVE-AI-DASHBOARD_01M.png" alt="Executive AI Dashboard 1" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/08_EXECUTIVE-AI-DASHBOARD_02M.png" alt="Executive AI Dashboard 2" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/08_EXECUTIVE-AI-DASHBOARD_03M.png" alt="Executive AI Dashboard 3" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/08_EXECUTIVE-AI-DASHBOARD_04M.png" alt="Executive AI Dashboard 4" loading="lazy" decoding="async">
+        </div>
+        <div class="carousel-dots"><span></span><span></span><span></span><span></span></div>
       </div>
-      <p class="service-branches"><strong>Ветки развития:</strong> интеграция с 1С и Bitrix24, прогнозы, голосовые
-        отчёты</p>
+      <div class="service-result">Принятие решений на основе данных за секунды · Полная прозрачность всех процессов</div>
+      <p class="service-branches"><strong>Ветки развития:</strong> интеграция с 1С и Bitrix24, прогнозы, голосовые отчёты</p>
+      
+      <!-- Цена -->
       <div class="service-price-block">
-        <span class="price-main">от 800 000 ₽</span>
+        <div class="price-main-container">
+          <span class="price-prefix">от </span>
+          <span class="price-value" data-base="800000">800</span>
+          <span class="price-zeros">000</span>
+          <span class="price-currency">₽</span>
+        </div>
         <span class="price-support">+ 59 000 ₽/мес поддержка · с НДС</span>
       </div>
-    </div>
+    </article>
   </section>
 
-  <!-- СЛАЙД 06 -->
-  <section class="slide slide-services">
+  <!-- ============================================== -->
+  <!-- === SLIDE 06: УСЛУГИ 09-10                 === -->
+  <!-- ============================================== -->
+  <section class="slide slide-services" aria-label="Услуги Тендеров и Корп. Баз Знаний">
+    <!-- Декор -->
     <div class="slide-header-bar"></div>
-    <div class="bg-grid"></div>
+    <div class="bg-figures"></div>
     <div class="slide-number">06 / 08</div>
-    <div class="service-col">
+
+    <!-- Услуга 09 -->
+    <article class="service-col" id="service-09">
       <div class="service-num">09</div>
       <div class="service-label">Услуга 09</div>
       <h2 class="service-name">ИИ-ПОМОЩНИК ПО ТЕНДЕРАМ</h2>
       <p class="service-utp">Автоматический поиск и скоринг тендеров за 15 секунд</p>
       <div class="divider-h"></div>
-      <p class="service-desc">ИИ сканирует все площадки, анализирует техзадание и оценивает вероятность вашей победы с
-        учётом конкурентов и истории торгов. Готовит черновик заявки и список необходимых документов.</p>
+      <p class="service-desc">ИИ сканирует все площадки, анализирует техзадание и оценивает вероятность вашей победы с учётом конкурентов и истории торгов. Готовит черновик заявки и список необходимых документов.</p>
+      <div class="screenshot-carousel" data-service="09">
+        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-viewport">
+          <img src="IMAGES/SCREENSHOTS/09_AI-TENDER-ASSISTANT_01.png" alt="ИИ-Помощник по тендерам 1" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/09_AI-TENDER-ASSISTANT_01M.png" alt="ИИ-Помощник по тендерам 1M" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/09_AI-TENDER-ASSISTANT_02.png" alt="ИИ-Помощник по тендерам 2" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/09_AI-TENDER-ASSISTANT_03.png" alt="ИИ-Помощник по тендерам 3" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/09_AI-TENDER-ASSISTANT_04.png" alt="ИИ-Помощник по тендерам 4" loading="lazy" decoding="async">
+        </div>
+        <div class="carousel-dots"><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
       <div class="service-result">Рост количества поданных заявок до 3 раз · Фокус только на прибыльных тендерах</div>
-      <p class="service-branches"><strong>Ветки развития:</strong> автоподача, мониторинг конкурентов, шаблоны
-        документов</p>
+      <p class="service-branches"><strong>Ветки развития:</strong> автоподача, мониторинг конкурентов, шаблоны документов</p>
+      
+      <!-- Цена -->
       <div class="service-price-block">
-        <span class="price-main">от 415 000 ₽</span>
+        <div class="price-main-container">
+          <span class="price-prefix">от </span>
+          <span class="price-value" data-base="415000">415</span>
+          <span class="price-zeros">000</span>
+          <span class="price-currency">₽</span>
+        </div>
         <span class="price-support">+ 31 000 ₽/мес поддержка · с НДС</span>
       </div>
-    </div>
-    <div class="service-col">
+    </article>
+
+    <!-- Услуга 10 -->
+    <article class="service-col" id="service-10">
       <div class="service-num">10</div>
       <div class="service-label">Услуга 10</div>
       <h2 class="service-name">КОРПОРАТИВНЫЙ ИИ-АССИСТЕНТ</h2>
       <p class="service-utp">База знаний компании, которая сама отвечает на вопросы сотрудников</p>
       <div class="divider-h"></div>
-      <p class="service-desc">Загрузите все регламенты, инструкции и договоры. ИИ станет умным помощником для каждого
-        отдела, мгновенно находя нужную информацию и обучая сотрудников по вашим стандартам.</p>
-      <div class="service-result">Минимизация ошибок из-за «человеческого фактора» · Снижение времени на поиск
-        информации до 90 %</div>
-      <p class="service-branches"><strong>Ветки развития:</strong> обучение новых сотрудников, обновление базы,
-        интеграция в Telegram</p>
+      <p class="service-desc">Загрузите все регламенты, инструкции и договоры. ИИ станет умным помощником для каждого отдела, мгновенно находя нужную информацию и обучая сотрудников по вашим стандартам.</p>
+      <div class="screenshot-carousel" data-service="10">
+        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-viewport">
+          <img src="IMAGES/SCREENSHOTS/10_CORPORATE-AI-ASSISTANT_01.png" alt="Корпоративный ИИ-ассистент 1" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/10_CORPORATE-AI-ASSISTANT_02.png" alt="Корпоративный ИИ-ассистент 2" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/10_CORPORATE-AI-ASSISTANT_03.png" alt="Корпоративный ИИ-ассистент 3" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/10_CORPORATE-AI-ASSISTANT_04.png" alt="Корпоративный ИИ-ассистент 4" loading="lazy" decoding="async">
+        </div>
+        <div class="carousel-dots"><span></span><span></span><span></span><span></span></div>
+      </div>
+      <div class="service-result">Минимизация ошибок из-за «человеческого фактора» · Снижение времени на поиск информации до 90 %</div>
+      <p class="service-branches"><strong>Ветки развития:</strong> обучение новых сотрудников, обновление базы, интеграция в Telegram</p>
+      
+      <!-- Цена -->
       <div class="service-price-block">
-        <span class="price-main">от 315 000 ₽</span>
+        <div class="price-main-container">
+          <span class="price-prefix">от </span>
+          <span class="price-value" data-base="315000">315</span>
+          <span class="price-zeros">000</span>
+          <span class="price-currency">₽</span>
+        </div>
         <span class="price-support">+ 24 000 ₽/мес поддержка · с НДС</span>
       </div>
-    </div>
+    </article>
   </section>
 
-  <!-- СЛАЙД 07 -->
-  <section class="slide slide-services">
+  <!-- ============================================== -->
+  <!-- === SLIDE 07: УСЛУГИ 11-12                 === -->
+  <!-- ============================================== -->
+  <section class="slide slide-services" aria-label="Услуги Google Sheets и Систематизации">
+    <!-- Декор -->
     <div class="slide-header-bar"></div>
-    <div class="bg-grid"></div>
+    <div class="bg-figures"></div>
     <div class="slide-number">07 / 08</div>
-    <div class="service-col">
+
+    <!-- Услуга 11 -->
+    <article class="service-col" id="service-11">
       <div class="service-num">11</div>
       <div class="service-label">Услуга 11</div>
       <h2 class="service-name">SMART GOOGLE SHEETS AI</h2>
       <p class="service-utp">Глубокая автоматизация Google Таблиц под ваши задачи</p>
       <div class="divider-h"></div>
-      <p class="service-desc">ИИ-разработка динамических таблиц, которые сами считают, анализируют и обновляются.
-        Прошитые формулы, Google Apps Script, автоматические дашборды, парсинг данных, условное форматирование и
-        триггеры. Таблица «оживает» при вводе новых данных и присылает уведомления.</p>
-      <div class="service-result">Сокращение рутинной работы в 5–10 раз · Всегда актуальные отчёты одним взглядом · Без
-        ошибок ручного ввода</div>
-      <p class="service-branches"><strong>Ветки развития:</strong> интеграция с Bitrix24 / 1С / Telegram, автоматический
-        импорт из CRM, еженедельные PDF-отчёты</p>
+      <p class="service-desc">ИИ-разработка динамических таблиц, которые сами считают, анализируют и обновляются. Прошитые формулы, Google Apps Script, автоматические дашборды, парсинг данных, условное форматирование и триггеры. Таблица «оживает» при вводе новых данных и присылает уведомления.</p>
+      <div class="screenshot-carousel" data-service="11">
+        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-viewport">
+          <img src="IMAGES/SCREENSHOTS/11_SMART-GOOGLE-SHEETS_01.png" alt="Smart Google Sheets 1" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/11_SMART-GOOGLE-SHEETS_02.png" alt="Smart Google Sheets 2" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/11_SMART-GOOGLE-SHEETS_03.png" alt="Smart Google Sheets 3" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/11_SMART-GOOGLE-SHEETS_04.png" alt="Smart Google Sheets 4" loading="lazy" decoding="async">
+        </div>
+        <div class="carousel-dots"><span></span><span></span><span></span><span></span></div>
+      </div>
+      <div class="service-result">Сокращение рутинной работы в 5–10 раз · Всегда актуальные отчёты одним взглядом · Без ошибок ручного ввода</div>
+      <p class="service-branches"><strong>Ветки развития:</strong> интеграция с Bitrix24 / 1С / Telegram, автоматический импорт из CRM, еженедельные PDF-отчёты</p>
+      
+      <!-- Цена -->
       <div class="service-price-block">
-        <span class="price-main">от 220 000 ₽</span>
+        <div class="price-main-container">
+          <span class="price-prefix">от </span>
+          <span class="price-value" data-base="220000">220</span>
+          <span class="price-zeros">000</span>
+          <span class="price-currency">₽</span>
+        </div>
         <span class="price-support">+ 16 000 ₽/мес поддержка · с НДС</span>
       </div>
-    </div>
-    <div class="service-col">
+    </article>
+
+    <!-- Услуга 12 -->
+    <article class="service-col" id="service-12">
       <div class="service-num">12</div>
       <div class="service-label">Услуга 12</div>
       <h2 class="service-name">SYSTEM ORGANIZER AI</h2>
       <p class="service-utp">Умная систематизация и наведение порядка в данных</p>
       <div class="divider-h"></div>
-      <p class="service-desc">Комплексная цифровая уборка и организация ваших систем. Автоматическая очистка от дублей,
-        умная категоризация клиентов/сделок/товаров/документов, динамические фильтры, правила сортировки и единая
-        логическая структура.</p>
-      <div class="service-result">+40–60 % скорости работы команды · Меньше ошибок и «потерянных» данных · Чистая
-        аналитика за секунды</div>
-      <p class="service-branches"><strong>Ветки развития:</strong> регулярная автоподдержка порядка, интеграция с
-        существующими базами, создание правил для новых данных</p>
+      <p class="service-desc">Комплексная цифровая уборка и организация ваших систем. Автоматическая очистка от дублей, умная категоризация клиентов/сделок/товаров/документов, динамические фильтры, правила сортировки и единая логическая структура.</p>
+      <div class="screenshot-carousel" data-service="12">
+        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-viewport">
+          <img src="IMAGES/SCREENSHOTS/12_-SYSTEM-ORGANIZER_01.png" alt="System Organizer 1" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/12_-SYSTEM-ORGANIZER_02.png" alt="System Organizer 2" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/12_SYSTEM-ORGANIZER_02M.png" alt="System Organizer 2M" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/12_-SYSTEM-ORGANIZER_03.png" alt="System Organizer 3" loading="lazy" decoding="async">
+        </div>
+        <div class="carousel-dots"><span></span><span></span><span></span><span></span></div>
+      </div>
+      <div class="service-result">+40–60 % скорости работы команды · Меньше ошибок и «потерянных» данных · Чистая аналитика за секунды</div>
+      <p class="service-branches"><strong>Ветки развития:</strong> регулярная автоподдержка порядка, интеграция с существующими базами, создание правил для новых данных</p>
+      
+      <!-- Цена -->
       <div class="service-price-block">
-        <span class="price-main">от 265 000 ₽</span>
+        <div class="price-main-container">
+          <span class="price-prefix">от </span>
+          <span class="price-value" data-base="265000">265</span>
+          <span class="price-zeros">000</span>
+          <span class="price-currency">₽</span>
+        </div>
         <span class="price-support">+ 19 000 ₽/мес поддержка · с НДС</span>
       </div>
-    </div>
+    </article>
   </section>
 
-  <!-- СЛАЙД 08: ФИНАЛ -->
-  <section class="slide slide-final">
-    <div class="bg-grid"></div>
+  <!-- ============================================== -->
+  <!-- === SLIDE 08: ФИНАЛ (КОНТАКТЫ)             === -->
+  <!-- ============================================== -->
+  <section class="slide slide-final" aria-label="Финальный экран и контакты">
+    <!-- Декор -->
+    <div class="bg-figures"></div>
     <div class="corner corner-tl"></div>
     <div class="corner corner-br"></div>
     <div class="slide-number">08 / 08</div>
 
-    <div class="final-tag">Следующий шаг</div>
-    <h2 class="final-title">ГОТОВЫ ВНЕДРИТЬ ИИ, КОТОРЫЙ <span>РЕАЛЬНО ПОВЫСИТ ПРОДАЖИ?</span></h2>
-    <p class="final-sub">Закажите бесплатный аудит вашей CRM. Мы проанализируем 30 последних сделок и покажем точки
-      роста ROI при помощи нейросетей АЛЬТАИР.</p>
+    <!-- Левая колонка: контент + контакты -->
+    <div class="final-left">
+      <div class="final-tag">Следующий шаг</div>
+      <h2 class="final-title">ГОТОВЫ ВНЕДРИТЬ ИИ, КОТОРЫЙ <span>РЕАЛЬНО ПОВЫСИТ ПРОДАЖИ?</span></h2>
+      <p class="final-sub">Закажите бесплатный аудит вашей CRM. Мы проанализируем 30 последних сделок и покажем точки роста ROI при помощи нейросетей АЛЬТАИР.</p>
 
-    <div class="contacts-grid">
-      <div class="contact-item">
-        <div class="contact-label">Телефон / WhatsApp</div>
-        <div class="contact-value">+7 996 794 87 56</div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-label">Telegram</div>
-        <div class="contact-value">@denispolotsk</div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-label">E-mail</div>
-        <div class="contact-value">denjah@gmail.com</div>
+      <!-- Сетка контактов -->
+      <address class="contacts-grid" style="font-style: normal;">
+        <div class="contact-item">
+          <div class="contact-label">Телефон / WhatsApp</div>
+          <div class="contact-value">+7 996 794 87 56</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Telegram</div>
+          <div class="contact-value">@denispolotsk</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">E-mail</div>
+          <div class="contact-value">denjah@gmail.com</div>
+        </div>
+      </address>
+
+      <!-- Кнопка действия -->
+      <button class="final-cta">Записаться на аудит процессов →</button>
+
+      <!-- Футер слайда -->
+      <div class="final-note">
+        Разработка систем CRM + Интеллектуальные алгоритмы ИИ от 220 000 ₽ | Окупаемость от 2 месяцев
       </div>
     </div>
 
-    <div class="final-note">
-      Разработка систем CRM + Интеллектуальные алгоритмы ИИ от 220 000 ₽ | Окупаемость от 2 месяцев
+    <!-- Правая колонка: сетка 12 услуг -->
+    <div class="final-right">
+      <div class="services-overview-grid">
+        <a href="#service-01" class="sog-card" aria-label="Deep Client Analysis">
+          <div class="sog-num">01</div>
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/01_03_DEEP-CLIENT-ANALYSIS_02_02M.png" alt="Deep Client Analysis" loading="lazy" decoding="async">
+          <div class="sog-name">Deep Client Analysis</div>
+        </a>
+        <a href="#service-02" class="sog-card" aria-label="ИИ-Квалификатор лидов">
+          <div class="sog-num">02</div>
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/02_AI-LEAD-QUALIFIER_04M.png" alt="ИИ-Квалификатор лидов" loading="lazy" decoding="async">
+          <div class="sog-name">ИИ-Квалификатор лидов</div>
+        </a>
+        <a href="#service-03" class="sog-card" aria-label="Аналитик коммуникаций">
+          <div class="sog-num">03</div>
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/03_COMMS-ANALYST_03M.png" alt="Аналитик коммуникаций" loading="lazy" decoding="async">
+          <div class="sog-name">Аналитик коммуникаций</div>
+        </a>
+        <a href="#service-04" class="sog-card" aria-label="Генератор персон. КП">
+          <div class="sog-num">04</div>
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/04_PERSONA-GENERATOR_01M.png" alt="Генератор персон" loading="lazy" decoding="async">
+          <div class="sog-name">Генератор персон. КП</div>
+        </a>
+        <a href="#service-05" class="sog-card" aria-label="Sales Coach">
+          <div class="sog-num">05</div>
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/05_SALES-COACH_01M.png" alt="Sales Coach" loading="lazy" decoding="async">
+          <div class="sog-name">ИИ Sales Coach</div>
+        </a>
+        <a href="#service-06" class="sog-card" aria-label="ИИ для склада и закупок">
+          <div class="sog-num">06</div>
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/06_WAREHOUSE-PROCUREMENT_01M.png" alt="ИИ для склада и закупок" loading="lazy" decoding="async">
+          <div class="sog-name">Склад и закупки</div>
+        </a>
+        <a href="#service-07" class="sog-card" aria-label="ИИ-Ассистент маркетинга">
+          <div class="sog-num">07</div>
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/07_AI-MARKETING-ASSISTANT_01M.png" alt="ИИ-Ассистент маркетинга" loading="lazy" decoding="async">
+          <div class="sog-name">Ассистент маркетинга</div>
+        </a>
+        <a href="#service-08" class="sog-card" aria-label="Executive AI Dashboard">
+          <div class="sog-num">08</div>
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/08_EXECUTIVE-AI-DASHBOARD_01M.png" alt="Executive AI Dashboard" loading="lazy" decoding="async">
+          <div class="sog-name">Executive Dashboard</div>
+        </a>
+        <a href="#service-09" class="sog-card" aria-label="ИИ-Помощник по тендерам">
+          <div class="sog-num">09</div>
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/09_AI-TENDER-ASSISTANT_01M.png" alt="ИИ-Помощник по тендерам" loading="lazy" decoding="async">
+          <div class="sog-name">Помощник по тендерам</div>
+        </a>
+        <a href="#service-10" class="sog-card" aria-label="Корпоративный ИИ-Ассистент">
+          <div class="sog-num">10</div>
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/10_CORPORATE-AI-ASSISTANT_02M.png" alt="Корпоративный ИИ-ассистент" loading="lazy" decoding="async">
+          <div class="sog-name">Корп. ИИ-ассистент</div>
+        </a>
+        <a href="#service-11" class="sog-card" aria-label="Smart Google Sheets">
+          <div class="sog-num">11</div>
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/11_SMART-GOOGLE-SHEETS_01.png" alt="Smart Google Sheets" loading="lazy" decoding="async">
+          <div class="sog-name">Smart Google Sheets</div>
+        </a>
+        <a href="#service-12" class="sog-card" aria-label="System Organizer">
+          <div class="sog-num">12</div>
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/12_SYSTEM-ORGANIZER_02M.png" alt="System Organizer" loading="lazy" decoding="async">
+          <div class="sog-name">System Organizer</div>
+        </a>
+      </div>
     </div>
-
-    <button class="final-cta">Записаться на аудит процессов →</button>
   </section>
+
+  <script src="carousel.js"></script>
+  <script src="hero-carousel.js"></script>
+  <script src="background-figures.js"></script>
+
+  <script>
+    /**
+     * Анимация цен: синхронизированная, мультивалютная, с цветовой индикацией
+     */
+    document.addEventListener('DOMContentLoaded', () => {
+      const currencies = [
+        { symbol: '₽', rate: 1, zeros: '000' },
+        { symbol: '$', rate: 1/92, zeros: '' },
+        { symbol: '€', rate: 1/100, zeros: '' }
+      ];
+
+      let currentCurrencyIndex = 0;
+      let startTime = Date.now();
+      const cycle = 10; // 10 секунд на полный цикл одной валюты
+
+      const priceBlocks = Array.from(document.querySelectorAll('.service-price-block')).map(block => {
+        // Добавляем плашку "ЦЕНЫ ДОГОВОРНЫЕ" (если еще нет)
+        if (!block.querySelector('.price-negotiable')) {
+          const tip = document.createElement('div');
+          tip.className = 'price-negotiable';
+          tip.innerText = 'ЦЕНЫ ДОГОВОРНЫЕ';
+          block.appendChild(tip);
+        }
+
+        const container = block.querySelector('.price-main-container');
+        const valEl = block.querySelector('.price-value');
+        const zerosEl = block.querySelector('.price-zeros');
+        const currEl = block.querySelector('.price-currency');
+        
+        const basePrice = parseInt(valEl.dataset.base);
+        
+        let blockPausedTime = 0;
+        let isHovered = false;
+
+        block.addEventListener('mouseenter', () => { isHovered = true; });
+        block.addEventListener('mouseleave', () => { isHovered = false; });
+
+        return { block, container, valEl, zerosEl, currEl, basePrice, getHover: () => isHovered };
+      });
+
+      function update() {
+        const now = Date.now();
+        const totalElapsed = (now - startTime) / 1000;
+        
+        // Определяем текущую валюту и прогресс внутри цикла
+        const currencyCycleIndex = Math.floor(totalElapsed / cycle) % currencies.length;
+        if (currencyCycleIndex !== currentCurrencyIndex) {
+          currentCurrencyIndex = currencyCycleIndex;
+        }
+
+        const curr = currencies[currentCurrencyIndex];
+        const progress = (totalElapsed % cycle) / cycle;
+        
+        // Треугольная волна 0 -> 1 -> 0
+        const factor = progress < 0.5 ? progress * 2 : 2 - progress * 2;
+        const isDescending = progress < 0.5; // Сначала идем вниз (от 100% до 20%)
+
+        // Множитель от 1.0 до 0.2
+        const currentMult = 1.0 - (0.8 * factor);
+
+        priceBlocks.forEach(p => {
+          if (p.getHover()) return; // Замирает при наведении
+
+          // Расчет цены в рублях с шагом 10 000
+          const rubPrice = Math.round((p.basePrice * currentMult) / 10000) * 10000;
+          
+          // Конвертация в текущую валюту
+          const targetPrice = rubPrice * curr.rate;
+
+          // Обновление частей
+          if (curr.symbol === '₽') {
+            p.valEl.innerText = Math.floor(targetPrice / 1000).toLocaleString('ru-RU');
+            p.zerosEl.innerText = '000';
+          } else {
+            // Для валют показываем число, а блок zeros оставляем пустым, 
+            // но он сохраняет свою ширину (min-width в CSS), чтобы валюта не прыгала
+            p.valEl.innerText = Math.round(targetPrice).toLocaleString('en-US');
+            p.zerosEl.innerText = ''; 
+          }
+
+          p.currEl.innerText = curr.symbol;
+
+          // Цветовая индикация: вниз — серый, вверх — красный
+          // Т.к. мы идем от 100% вниз до 20%, то первая половина (isDescending) — это уменьшение цены
+          if (isDescending) {
+            p.container.classList.add('price-down');
+            p.container.classList.remove('price-up');
+          } else {
+            p.container.classList.add('price-up');
+            p.container.classList.remove('price-down');
+          }
+        });
+
+        requestAnimationFrame(update);
+      }
+
+      update();
+    });
+  </script>
 
 </body>
 

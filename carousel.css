@@ -1,0 +1,185 @@
+/* === КАРУСЕЛЬ СКРИНШОТОВ === */
+
+/* Контейнер карусели */
+.screenshot-carousel {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  min-height: 200px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  background: transparent;
+}
+
+/* Загрузочная полоска */
+.carousel-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  z-index: 10; /* Поверх всего */
+  transition: opacity 0.25s ease;
+}
+
+.carousel-loader.done {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader-bar {
+  width: 50%;
+  height: 2px;
+  background: var(--line);
+  position: relative;
+  overflow: hidden;
+}
+
+.loader-bar::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+}
+
+.carousel-loader.filling .loader-bar::after {
+  animation: loader-fill 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes loader-fill {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+/* Вьюпорт изображений */
+.carousel-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-viewport img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  /* ЧБ: очень светлое, низкоконтрастное и тонированное под фон */
+  filter: grayscale(1) brightness(1.7) contrast(0.4) sepia(0.4);
+  opacity: 0;
+  z-index: 1;
+  will-change: transform, opacity;
+  transition: opacity 0.8s ease, filter 0.4s ease;
+}
+
+/* Новый слайд появляется под старым (z-index: 1) */
+.carousel-viewport img.active {
+  opacity: 1;
+  z-index: 1;
+  animation: kenburns 5s ease-out forwards;
+}
+
+/* Старый слайд уходит, плавно исчезая (z-index: 2) */
+.carousel-viewport img.leaving {
+  opacity: 0;
+  z-index: 2;
+  /* Анимация на уходящем слайде замирает или продолжается, 
+     но он должен быть выше, чтобы мы видели его исчезновение */
+}
+
+@keyframes kenburns {
+  from { 
+    transform: translate(var(--rand-x, 0), var(--rand-y, 0)) scale(0.85); 
+  }
+  to { 
+    transform: translate(0, 0) scale(1); 
+  }
+}
+
+/* Hover: цвет + пауза */
+.screenshot-carousel:hover .carousel-viewport img.active {
+  filter: grayscale(0) brightness(1) contrast(1) sepia(0);
+  animation-play-state: paused;
+}
+
+/* Навигация (назад/вперед) */
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  z-index: 15;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.screenshot-carousel:hover .carousel-nav {
+  opacity: 1;
+}
+
+.nav-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(240, 230, 218, 0.8);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: all 0.2s ease;
+  color: var(--text);
+}
+
+.nav-btn:hover {
+  background: var(--bg);
+  transform: scale(1.1);
+  border-color: var(--accent);
+}
+
+.nav-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+/* Индикатор слайдов (точки) */
+.carousel-dots {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+  z-index: 10;
+}
+
+.carousel-dots span {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(139, 46, 46, 0.25);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.carousel-dots span.active {
+  background: var(--accent);
+  transform: scale(1.4);
+}
+
+/* Печать: скрыть карусели */
+@media print {
+  .screenshot-carousel {
+    display: none;
+  }
+}

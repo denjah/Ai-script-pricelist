@@ -1,0 +1,258 @@
+/* === HERO CAROUSEL — Слайд 01, правая половина === */
+
+/* Контейнер: правая половина экрана */
+.hero-carousel {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Вьюпорт изображений */
+.hero-carousel__viewport {
+  position: absolute;
+  inset: 32px; /* отступ от краёв */
+  overflow: hidden;
+}
+
+/* Каждый слайд (изображение + текст) */
+.hero-carousel__slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-carousel__slide.is-active {
+  opacity: 1;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.hero-carousel__slide.is-leaving {
+  opacity: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Обёртка изображения — забирает всё пространство минус текст */
+.hero-carousel__img-wrap {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Само изображение */
+.hero-carousel__img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+
+  /* Тонирование: тёмно-серый + красноватый оттенок */
+  filter: grayscale(1) brightness(0.55) contrast(0.9) sepia(0.25);
+  opacity: 0.85;
+
+  /* Стартовый размер меньше на 25% */
+  transform: scale(0.75);
+  will-change: transform, filter, opacity;
+  transition: filter 0.6s ease, opacity 0.6s ease;
+}
+
+/* Анимация Ken Burns — медленный зум без кадрирования */
+.hero-carousel__slide.is-active .hero-carousel__img {
+  animation: hero-kenburns 6s ease-in-out forwards;
+}
+
+@keyframes hero-kenburns {
+  0% {
+    transform: scale(0.75);
+  }
+  15% {
+    transform: scale(0.75);
+  }
+  100% {
+    /* Увеличение на 10% от текущего (0.75 * 1.1 = 0.825) */
+    transform: scale(0.825);
+  }
+}
+
+/* При наведении: замирает, становится цветным */
+.hero-carousel:hover .hero-carousel__slide.is-active .hero-carousel__img {
+  filter: grayscale(0) brightness(1) contrast(1) sepia(0);
+  opacity: 1;
+  animation-play-state: paused;
+}
+
+/* === Текстовая композиция услуги === */
+.hero-carousel__caption {
+  position: absolute;
+  bottom: 20%; /* Подняли выше */
+  left: 0;
+  right: auto;
+  padding: 18px 24px; /* Уменьшили на ~25% */
+  background: #2D241E; /* Темная плашка */
+  box-shadow: none; /* Убрали тень */
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s,
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s;
+  z-index: 10;
+}
+
+.hero-carousel__slide.is-active .hero-carousel__caption {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Номер услуги */
+.hero-carousel__service-num {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #C43B3B;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-carousel__service-num::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 2px;
+  background: #C43B3B;
+}
+
+/* Название услуги — светлый текст */
+.hero-carousel__service-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px; /* Уменьшили */
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #F0E6DA; /* Светлый */
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+}
+
+/* Краткое описание — светлый текст */
+.hero-carousel__service-desc {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px; /* Уменьшили */
+  font-weight: 400;
+  color: #8A7B6E; /* Светло-серый */
+  line-height: 1.5;
+  max-width: 280px; /* Уменьшили */
+}
+
+/* Убираем градиент */
+.hero-carousel__img-wrap::after {
+  display: none;
+}
+
+/* === Прогресс-бар (тонкая линия внизу) === */
+.hero-carousel__progress {
+  position: absolute;
+  bottom: 0;
+  left: 32px;
+  right: 32px;
+  height: 2px;
+  background: rgba(196, 59, 59, 0.15);
+  z-index: 10;
+  overflow: hidden;
+}
+
+.hero-carousel__progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #C43B3B;
+  transition: none;
+}
+
+.hero-carousel__progress-bar.is-running {
+  width: 100%;
+  transition: width 6s linear;
+}
+
+/* При наведении — прогресс-бар тоже замирает */
+.hero-carousel:hover .hero-carousel__progress-bar.is-running {
+  transition: none;
+}
+
+/* === Печать: скрыть hero-карусель === */
+@media print {
+  .hero-carousel {
+    display: none;
+  }
+}
+
+/* === Адаптация slide-title под двухколоночный layout === */
+.slide-title {
+  /* Текст занимает левую половину */
+  padding-right: 52% !important; /* половина + зазор */
+  z-index: 2;
+}
+
+/* Скрываем старый SVG-декор */
+.slide-title .title-gear {
+  display: none;
+}
+
+/* === Навигация Hero === */
+.hero-carousel__nav {
+  position: absolute;
+  top: 50%;
+  left: 32px;
+  right: 32px;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  z-index: 20;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hero-carousel:hover .hero-carousel__nav {
+  opacity: 1;
+}
+
+.hero-nav-btn {
+  width: 44px;
+  height: 44px;
+  background: rgba(45, 36, 30, 0.7);
+  border: 1px solid rgba(240, 230, 218, 0.2);
+  color: #F0E6DA;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.hero-nav-btn:hover {
+  background: #8B2E2E;
+  border-color: #8B2E2E;
+  transform: scale(1.1);
+}
