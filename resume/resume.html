@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Полоцк Денис - Резюме</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Цвета */
+            --bg: #F0E6DA;
+            --bg-alt: #EDE0D4;
+            --bg-dark: #1A1715;
+            --accent: #8B2E2E;
+            --accent-light: #A64B4B;
+            --text: #2D241E;
+            --text-mid: #5C4D40;
+            --text-light: #8A7B6E;
+            --line: rgba(139, 46, 46, 0.12);
+            --bg-price: rgba(139, 46, 46, 0.04);
+            --grid-line: rgba(139, 46, 46, 0.04);
+
+            /* Spacing */
+            --spacing-micro-4: 4px;
+            --spacing-micro-8: 8px;
+            --spacing-micro-12: 12px;
+            --spacing-small-16: 16px;
+            --spacing-small-24: 24px;
+            --spacing-medium-32: 32px;
+            --spacing-medium-40: 40px;
+            --spacing-large-56: 56px;
+            --spacing-large-72: 72px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+            /* Grid Background */
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 48px 48px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-large-56) var(--spacing-small-24);
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 62px;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.05;
+            letter-spacing: -1px;
+            color: var(--accent);
+            margin-bottom: var(--spacing-micro-12);
+        }
+
+        h2 {
+            font-size: 50px;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.05;
+            color: var(--accent);
+            margin-top: var(--spacing-large-72);
+            margin-bottom: var(--spacing-medium-40);
+            position: relative;
+        }
+
+        h2::before {
+            content: '';
+            display: block;
+            width: 32px;
+            height: 2px;
+            background-color: var(--accent);
+            margin-bottom: var(--spacing-small-16);
+        }
+
+        h3 {
+            font-size: 26px;
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+            color: var(--text);
+            margin-top: var(--spacing-medium-32);
+            margin-bottom: var(--spacing-small-16);
+        }
+
+        .subtitle {
+            font-size: 22px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: var(--text-mid);
+            margin-bottom: var(--spacing-medium-32);
+        }
+
+        .body-text {
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        /* Layout Elements */
+        .header-section {
+            border-bottom: 1.5px solid var(--line);
+            padding-bottom: var(--spacing-medium-40);
+            margin-bottom: var(--spacing-large-56);
+        }
+
+        .contact-info {
+            display: flex;
+            gap: var(--spacing-medium-32);
+            flex-wrap: wrap;
+            margin-top: var(--spacing-small-24);
+        }
+
+        .contact-item {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-mid);
+        }
+        
+        .contact-item span {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-light);
+            display: block;
+            margin-bottom: var(--spacing-micro-4);
+        }
+
+        .section-box {
+            background-color: var(--bg-alt);
+            border-left: 3px solid var(--accent);
+            padding: var(--spacing-medium-32);
+            margin-bottom: var(--spacing-medium-40);
+            border-radius: 0; /* Strict engineering style */
+            position: relative;
+        }
+
+        /* Corners detail */
+        .section-box::before, .section-box::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 1.5px solid var(--accent);
+            opacity: 0.3;
+        }
+        .section-box::before {
+            top: -1.5px;
+            right: -1.5px;
+            border-bottom: none;
+            border-left: none;
+        }
+        .section-box::after {
+            bottom: -1.5px;
+            right: -1.5px;
+            border-top: none;
+            border-left: none;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-medium-32);
+        }
+
+        .skill-group h4 {
+            font-size: 14px;
+            font-weight: 600;
+            font-style: italic;
+            color: var(--accent);
+            margin-bottom: var(--spacing-small-16);
+            border-bottom: 1.5px solid var(--line);
+            padding-bottom: var(--spacing-micro-8);
+            display: inline-block;
+        }
+
+        .skill-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .skill-list li {
+            font-size: 13px;
+            line-height: 1.7;
+            margin-bottom: var(--spacing-micro-8);
+            position: relative;
+            padding-left: var(--spacing-small-16);
+        }
+
+        .skill-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-light);
+            border-radius: 50%;
+        }
+
+        .job-item {
+            margin-bottom: var(--spacing-medium-40);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: var(--spacing-small-16);
+            margin-bottom: var(--spacing-micro-12);
+        }
+
+        .job-title {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text);
+            margin: 0;
+        }
+
+        .job-period {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--accent-light);
+        }
+
+        .job-role {
+            font-size: 14px;
+            font-weight: 600;
+            font-style: italic;
+            color: var(--text-mid);
+            margin-bottom: var(--spacing-small-16);
+        }
+
+        .profile-photo {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border: 1.5px solid var(--accent);
+            padding: 4px;
+            background: var(--bg);
+            margin-bottom: var(--spacing-small-24);
+        }
+
+        .header-content {
+            display: flex;
+            gap: var(--spacing-medium-40);
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .header-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header-section">
+            <div class="header-content">
+                <img src="../design/Полоцк Денис-8_С.png" alt="Полоцк Денис" class="profile-photo">
+                <div class="header-text">
+                    <h1>Полоцк Денис</h1>
+                    <div class="subtitle">AI-Enhanced Creative Technologist | AI Automation Architect</div>
+                    <div class="body-text">
+                        Опыт: 31 год и 3 месяца, из них последние 3 года — AI-first подход.<br>
+                        Локация: Санкт-Петербург
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>Телефон</span>
+                    <a href="tel:+79967948756" style="text-decoration: none; color: inherit;">+7 996 794-87-56</a>
+                </div>
+                <div class="contact-item">
+                    <span>Email</span>
+                    <a href="mailto:denjah@gmail.com" style="text-decoration: none; color: inherit;">denjah@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <span>Портфолио</span>
+                    <a href="https://www.behance.net/DENJAH777" target="_blank" style="text-decoration: none; color: inherit;">Behance: DENJAH777</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- О себе -->
+        <h2>О себе</h2>
+        <div class="section-box">
+            <div class="body-text">
+                Дизайнер с 31-летним опытом, который за последние 3 года полностью перешёл на AI-first подход. Специализируюсь на интеграции нейросетей в креативные и бизнес-процессы. Создаю не просто визуалы, а <strong>масштабируемые системы производства контента и автоматизаций</strong>, которые дают измеримый бизнес-результат.
+            </div>
+        </div>
+
+        <!-- Навыки -->
+        <h2>Технические навыки</h2>
+        <div class="skills-grid section-box">
+            <div class="skill-group">
+                <h4>Frontend Development</h4>
+                <ul class="skill-list">
+                    <li><strong>Core:</strong> Чистый HTML5, CSS3, JavaScript ES6+ (без лишних библиотек).</li>
+                    <li><strong>Styling:</strong> Tailwind CSS, Custom CSS, Responsive/Mobile-first вёрстка.</li>
+                    <li><strong>Interaction:</strong> IntersectionObserver, requestAnimationFrame, Touch-события.</li>
+                    <li><strong>Features:</strong> Сложные карусели, ROI-калькуляторы, асинхронные формы, Lazy/Eager loading, магнитные CTA, анимированные цены.</li>
+                    <li><strong>Design-to-Code:</strong> Перенос из Figma в HTML/CSS с сохранением дизайн-систем.</li>
+                </ul>
+            </div>
+            
+            <div class="skill-group">
+                <h4>AI & Автоматизация</h4>
+                <ul class="skill-list">
+                    <li><strong>Prompt Engineering:</strong> Продвинутый уровень (Vibe Coding: Antigravity, Cursor, Trae, Codex, Comet).</li>
+                    <li><strong>No-Code:</strong> n8n, Make.com (сложные автоматизированные пайплайны).</li>
+                    <li><strong>AI Agents:</strong> Multi-agent системы, node-based workflows (ComfyUI, Weavy).</li>
+                    <li><strong>Интеграции:</strong> Google Apps Script, API, Webhooks, CRM (Bitrix24, amoCRM).</li>
+                </ul>
+            </div>
+
+            <div class="skill-group">
+                <h4>Дизайн и Инструменты</h4>
+                <ul class="skill-list">
+                    <li><strong>Направления:</strong> UI/UX, брендинг, моушн-дизайн, видеомонтаж, Rich-контент для маркетплейсов.</li>
+                    <li><strong>Софт:</strong> Figma (Dev Mode), Adobe Creative Cloud (PS, AI, AE, PR, ID, LR).</li>
+                    <li><strong>ИИ-генерация:</strong> Midjourney, Stable Diffusion, Flux, Leonardo, Runway ML, Kling AI, Luma.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Опыт работы -->
+        <h2>Опыт работы</h2>
+        <div class="section-box">
+            <div class="job-item">
+                <div class="job-header">
+                    <h3 class="job-title">Личный проект</h3>
+                    <div class="job-period">Май 2026 — Н.В.</div>
+                </div>
+                <div class="job-role">Frontend Web Developer</div>
+                <ul class="skill-list">
+                    <li>Разработал и запустил современный многостраничный production-ready сайт-презентацию услуг за 2 рабочих дня.</li>
+                    <li>Стек: HTML5 + Tailwind CSS + чистый JS (0 внешних JS-библиотек).</li>
+                </ul>
+            </div>
+
+            <div class="job-item">
+                <div class="job-header">
+                    <h3 class="job-title">Альтаир Груп, ООО</h3>
+                    <div class="job-period">Сент. 2023 — Н.В.</div>
+                </div>
+                <div class="job-role">AI-Enhanced Designer & Automation Specialist</div>
+                <ul class="skill-list">
+                    <li>Полный цикл создания визуального контента для маркетплейсов и сайта.</li>
+                    <li>Внедрение AI-пайплайнов, ускоривших производство контента в 3-5 раз.</li>
+                </ul>
+            </div>
+
+            <div class="job-item">
+                <div class="job-header">
+                    <h3 class="job-title">Фриланс</h3>
+                    <div class="job-period">Сент. 2013 — Н.В.</div>
+                </div>
+                <div class="job-role">Graphic Designer → AI Creative Technologist → Frontend Developer</div>
+                <ul class="skill-list">
+                    <li>Работа с международными брендами в маркетинге, PR и Event.</li>
+                    <li>С 2023 года — полный переход на AI-first подход в разработке и дизайне.</li>
+                </ul>
+            </div>
+            
+            <div class="job-item">
+                <div class="job-header">
+                    <h3 class="job-title">RBH Group</h3>
+                    <div class="job-period">Сент. 2021 — Май 2023</div>
+                </div>
+                <div class="job-role">Дизайнер</div>
+                <ul class="skill-list">
+                    <li>Дизайн карточек товаров для маркетплейсов и предметная фотосъемка.</li>
+                </ul>
+            </div>
+
+            <div class="job-item">
+                <div class="job-header">
+                    <h3 class="job-title">Различные компании (ForDA, REKOM Media и др.)</h3>
+                    <div class="job-period">2003 — 2021</div>
+                </div>
+                <div class="job-role">Дизайн и Брендинг</div>
+                <ul class="skill-list">
+                    <li>Глубокий опыт в визуальных коммуникациях, рекламе и брендинге (18 лет).</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Образование и Языки -->
+        <div style="display: flex; gap: var(--spacing-large-56); flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 300px;">
+                <h2>Образование</h2>
+                <div class="section-box">
+                    <div class="job-item">
+                        <h3 class="job-title" style="margin-top: 0; font-size: 18px;">Балтийская Международная Академия (БМИ БРИ)</h3>
+                        <div class="job-period" style="margin: 8px 0;">1998 — 2002</div>
+                        <div class="body-text">Специальность: Дизайн (Высшее образование).</div>
+                    </div>
+                    <div class="job-item" style="margin-bottom: 0;">
+                        <h3 class="job-title" style="margin-top: 0; font-size: 18px;">Школа программирования</h3>
+                        <div class="job-period" style="margin: 8px 0;">2025 — 2026</div>
+                        <div class="body-text">Направление: Frontend разработка.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="flex: 1; min-width: 300px;">
+                <h2>Языки</h2>
+                <div class="section-box">
+                    <ul class="skill-list">
+                        <li><strong>Русский:</strong> Родной</li>
+                        <li><strong>Английский:</strong> B1 (чтение тех. документации, работа с AI-инструментами)</li>
+                        <li><strong>Латышский:</strong> A1</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

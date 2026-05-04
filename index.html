@@ -108,7 +108,8 @@
       .sog-num { @apply absolute flex items-center justify-center rounded-full font-extrabold text-txt-light; top: 6px; left: 6px; font-size: 9px; width: 20px; height: 20px; background: rgba(139,46,46,0.08); transition: var(--transition); z-index: 2; }
       .sog-thumb { @apply w-full mb-2; height: 90px; object-fit: contain; object-position: center top; filter: grayscale(0.3) brightness(0.95); transition: var(--transition); }
       .sog-name { @apply text-sog-name uppercase text-center text-txt-mid px-0.5; transition: var(--transition); }
-      .nav-contacts { @apply absolute font-bold uppercase text-accent bg-transparent cursor-pointer z-50; top: 80px; right: 48px; font-size: 11px; letter-spacing: 2px; border: 1.5px solid var(--line); padding: 10px 20px; transition: var(--transition); }
+      .nav-group { @apply absolute z-50 flex items-center gap-3; top: 80px; right: 48px; }
+      .nav-contacts { @apply font-bold uppercase text-accent bg-transparent cursor-pointer flex items-center justify-center; font-size: 11px; letter-spacing: 2px; border: 1.5px solid var(--line); padding: 10px 20px; transition: var(--transition); text-decoration: none; min-height: 40px; }
       .nav-contacts:hover { @apply bg-accent text-white border-accent; }
     }
 
@@ -131,7 +132,7 @@
       .slide-number { @apply right-12; }
       .corner-tl { @apply top-8 left-8; }
       .corner-br { @apply bottom-8 right-8; }
-      .nav-contacts { top: 56px; @apply right-8; }
+      .nav-group { top: 56px; @apply right-8; }
     }
 
     /* === RESPONSIVE: MOBILE (≤768px) === */
@@ -163,7 +164,8 @@
       .corner { @apply w-6 h-6; }
       .corner-tl { @apply top-4 left-4; }
       .corner-br { @apply bottom-4 right-4; }
-      .nav-contacts { top: 20px; right: auto; left: 24px; font-size: 10px; padding: 10px 16px; letter-spacing: 1px; z-index: 200; min-height: 44px; @apply flex items-center; }
+      .nav-group { top: 20px; right: auto; left: 24px; z-index: 200; gap: 8px; }
+      .nav-contacts { font-size: 10px; padding: 10px 16px; letter-spacing: 1px; min-height: 44px; }
       .slide-final { @apply flex-col; }
       .final-left { @apply flex-none; padding: 40px 24px 32px; }
       .final-right { @apply flex-none; padding: 24px; }
@@ -200,7 +202,8 @@
       .sog-thumb { width: 64px; height: 48px; @apply flex-shrink-0 mb-0; }
       .sog-name { @apply text-left; font-size: 10px; }
       .sog-num { top: 50%; left: auto; right: 8px; transform: translateY(-50%); }
-      .nav-contacts { font-size: 9px; padding: 8px 12px; right: auto; left: 12px; }
+      .nav-group { right: auto; left: 12px; gap: 6px; }
+      .nav-contacts { font-size: 9px; padding: 8px 12px; }
       .screenshot-carousel { height: 200px; min-height: 200px; }
     }
   </style>
@@ -220,7 +223,10 @@
     <div class="corner corner-br"></div>
     <div class="slide-number">01 / 08</div>
     
-    <button class="nav-contacts" aria-label="Перейти к контактам" onclick="document.querySelector('.slide-final').scrollIntoView({behavior: 'smooth'})">КОНТАКТЫ</button>
+    <div class="nav-group">
+      <a href="resume.html" class="nav-contacts" aria-label="Обо мне">ОБО МНЕ</a>
+      <button class="nav-contacts" aria-label="Перейти к контактам" onclick="document.querySelector('.slide-final').scrollIntoView({behavior: 'smooth'})">КОНТАКТЫ</button>
+    </div>
 
     <!-- Контент -->
     <div class="title-tag">Прейскурант 2026 · Разработка под ключ</div>
@@ -243,8 +249,16 @@
       </div>
       <!-- Кнопки навигации для Hero -->
       <div class="hero-carousel__nav">
-        <button class="hero-nav-btn hero-prev" aria-label="Назад">←</button>
-        <button class="hero-nav-btn hero-next" aria-label="Вперед">→</button>
+        <button class="hero-nav-btn hero-prev" aria-label="Назад">
+          <svg width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-0.5">
+            <path d="M8.5 2L1.5 7L8.5 12V2Z" fill="currentColor"/>
+          </svg>
+        </button>
+        <button class="hero-nav-btn hero-next" aria-label="Вперед">
+          <svg width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="ml-0.5">
+            <path d="M1.5 2L8.5 7L1.5 12V2Z" fill="currentColor"/>
+          </svg>
+        </button>
       </div>
     </div>
   </section>
@@ -273,12 +287,12 @@
           <img src="IMAGES/SCREENSHOTS/01_01_DEEP-CLIENT-ANALYSIS_01.png" alt="Deep Client Analysis 1" loading="lazy" decoding="async">
           <img src="IMAGES/SCREENSHOTS/01_02_DEEP-CLIENT-ANALYSIS_02_01.png" alt="Deep Client Analysis 2" loading="lazy" decoding="async">
           <img src="IMAGES/SCREENSHOTS/01_03_DEEP-CLIENT-ANALYSIS_02_02.png" alt="Deep Client Analysis 3" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/01_04_DEEP-CLIENT-ANALYSIS_02_03.png" alt="Deep Client Analysis 4" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/01_05_DEEP-CLIENT-ANALYSIS_02_04.png" alt="Deep Client Analysis 5" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/01_04_DEEP-CLIENT-ANALYSIS_02_03M.png" alt="Deep Client Analysis 4" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/01_05_DEEP-CLIENT-ANALYSIS_02_04M.png" alt="Deep Client Analysis 5" loading="lazy" decoding="async">
           <img src="IMAGES/SCREENSHOTS/01_06_DEEP-CLIENT-ANALYSIS_02.png" alt="Deep Client Analysis 6" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/01_07_DEEP-CLIENT-ANALYSIS_02M_02.png" alt="Deep Client Analysis 7" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/01_08_DEEP-CLIENT-ANALYSIS_03.png" alt="Deep Client Analysis 8" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/01_09_DEEP-CLIENT-ANALYSIS_04.png" alt="Deep Client Analysis 9" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/01_07_DEEP-CLIENT-ANALYSIS_02_02M.png" alt="Deep Client Analysis 7" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/01_08_DEEP-CLIENT-ANALYSIS_03M.png" alt="Deep Client Analysis 8" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/01_09_DEEP-CLIENT-ANALYSIS_04M.png" alt="Deep Client Analysis 9" loading="lazy" decoding="async">
         </div>
         <div class="carousel-dots"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
       </div>
