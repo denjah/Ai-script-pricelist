@@ -195,5 +195,48 @@ document.addEventListener('DOMContentLoaded', () => {
   carousels.forEach(carousel => {
     carousel.addEventListener('mouseenter', () => carousel._paused = true);
     carousel.addEventListener('mouseleave', () => carousel._paused = false);
+
+    // === Touch swipe support ===
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let isSwiping = false;
+
+    carousel.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].clientX;
+      touchStartY = e.changedTouches[0].clientY;
+      isSwiping = true;
+      carousel._paused = true;
+    }, { passive: true });
+
+    carousel.addEventListener('touchmove', (e) => {
+      if (!isSwiping) return;
+      const deltaX = Math.abs(e.changedTouches[0].clientX - touchStartX);
+      const deltaY = Math.abs(e.changedTouches[0].clientY - touchStartY);
+      // If horizontal swipe is dominant, prevent vertical scroll
+      if (deltaX > deltaY && deltaX > 10) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    carousel.addEventListener('touchend', (e) => {
+      if (!isSwiping) return;
+      isSwiping = false;
+      carousel._paused = false;
+
+      const deltaX = e.changedTouches[0].clientX - touchStartX;
+      const deltaY = Math.abs(e.changedTouches[0].clientY - touchStartY);
+      const threshold = 50;
+
+      // Only trigger if horizontal swipe is dominant
+      if (Math.abs(deltaX) > threshold && Math.abs(deltaX) > deltaY) {
+        const images = carousel.querySelectorAll('.carousel-viewport img');
+        const dots = carousel.querySelectorAll('.carousel-dots span');
+        if (deltaX < 0) {
+          navigate(carousel, images, dots, 1);  // Swipe left = next
+        } else {
+          navigate(carousel, images, dots, -1); // Swipe right = prev
+        }
+      }
+    }, { passive: true });
   });
 });

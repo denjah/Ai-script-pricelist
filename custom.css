@@ -1,0 +1,206 @@
+/* === CUSTOM CSS — только то, что НЕЛЬЗЯ сделать через Tailwind === */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --bg: #F0E6DA;
+  --bg-alt: #EDE0D4;
+  --bg-dark: #1A1715;
+  --accent: #8B2E2E;
+  --accent-light: #A64B4B;
+  --text: #2D241E;
+  --text-mid: #5C4D40;
+  --text-light: #8A7B6E;
+  --line: rgba(139, 46, 46, 0.12);
+  --bg-price: rgba(139, 46, 46, 0.04);
+  --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* === REDUCED MOTION === */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* === BG FIGURES (JS-driven) === */
+.bg-figures {
+  position: absolute; top: 50%; left: 50%;
+  width: 150vmax; height: 150vmax;
+  pointer-events: none; z-index: 0;
+  display: flex; align-items: center; justify-content: center;
+  will-change: transform;
+}
+.figure-layer {
+  position: absolute; inset: 0; opacity: 0;
+  transition: opacity 4s ease-in-out;
+  display: flex; align-items: center; justify-content: center;
+}
+.figure-layer.active-layer { opacity: 1; }
+
+@media (max-width: 768px) {
+  .bg-figures { width: 120vmax; height: 120vmax; }
+}
+
+/* === PSEUDO-ELEMENT DECORATORS === */
+.title-tag::before {
+  content: ''; display: inline-block;
+  width: 32px; height: 2px; background: var(--accent);
+}
+.service-label::before {
+  content: ''; display: inline-block;
+  width: 20px; height: 1.5px; background: var(--accent);
+}
+.final-tag::before {
+  content: ''; display: inline-block;
+  width: 32px; height: 2px; background: var(--accent);
+}
+
+/* === VERTICAL DIVIDERS (desktop only) === */
+@media (min-width: 1025px) {
+  .service-col + .service-col::before {
+    content: ''; position: absolute; left: 0;
+    top: 56px; bottom: 56px; width: 1px;
+    background: var(--line);
+  }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .service-col + .service-col::before {
+    content: ''; position: absolute; left: 0;
+    top: 40px; bottom: 40px; width: 1px;
+    background: var(--line);
+  }
+}
+@media (max-width: 768px) {
+  .service-col + .service-col::before { display: none; }
+  .service-col + .service-col { border-top: 1px solid var(--line); }
+}
+
+/* === FINAL RIGHT DIVIDER === */
+@media (min-width: 769px) {
+  .final-right::before {
+    content: ''; position: absolute; left: 0;
+    top: 56px; bottom: 56px; width: 1px;
+    background: var(--line);
+  }
+}
+@media (max-width: 768px) {
+  .final-right::before {
+    content: ''; position: absolute;
+    left: 24px; right: 24px; top: 0; bottom: auto;
+    width: auto; height: 1px; background: var(--line);
+  }
+}
+
+/* === PRICE BLOCK GLOW === */
+.service-price-block {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.service-price-block:hover {
+  box-shadow: 0 0 24px rgba(139, 46, 46, 0.15);
+  border-color: var(--accent);
+}
+
+/* === PRICE ANIMATION === */
+.price-main-container {
+  font-variant-numeric: tabular-nums;
+  transition: color 0.4s ease;
+}
+.price-up { color: var(--accent) !important; }
+.price-down { color: var(--text-light) !important; }
+
+.price-negotiable {
+  position: absolute; top: -28px; left: 16px;
+  background: var(--accent); color: #fff;
+  font-size: 9px; font-weight: 800; letter-spacing: 1px;
+  padding: 4px 10px; border-radius: 4px;
+  opacity: 0; transform: translateY(5px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none; white-space: nowrap; z-index: 20;
+  box-shadow: 0 4px 12px rgba(139, 46, 46, 0.2);
+}
+.price-negotiable::after {
+  content: ''; position: absolute; bottom: -4px; left: 12px;
+  width: 8px; height: 8px; background: var(--accent);
+  transform: rotate(45deg);
+}
+.service-price-block:hover .price-negotiable {
+  opacity: 1; transform: translateY(0);
+}
+@media (max-width: 768px) {
+  .price-negotiable { display: none; }
+}
+
+/* === SOG CARD HOVER === */
+.sog-card:hover .sog-num { color: #fff; background: var(--accent); }
+.sog-card:hover .sog-thumb { filter: none; transform: scale(1.05); }
+.sog-card:hover .sog-name { color: var(--accent); }
+
+/* === FOCUS VISIBLE === */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* === PRINT === */
+@media print {
+  body { background: white !important; padding: 0 !important; gap: 0 !important; }
+  .slide { page-break-after: always; height: 100vh; min-height: auto !important; }
+}
+
+/* === CUSTOM RANGE SLIDER (ROI CALCULATOR) === */
+.custom-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: var(--line);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.custom-range:hover {
+  background: rgba(139, 46, 46, 0.2);
+}
+.custom-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(139, 46, 46, 0.4);
+  cursor: grabbing;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+.custom-range::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 10px rgba(139, 46, 46, 0.5);
+}
+.custom-range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(139, 46, 46, 0.4);
+  cursor: grabbing;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+.custom-range::-moz-range-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 10px rgba(139, 46, 46, 0.5);
+}
+
+/* Input number hide arrows */
+#roi-calculator input[type=number]::-webkit-inner-spin-button, 
+#roi-calculator input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+#roi-calculator input[type=number] {
+  -moz-appearance: textfield;
+}
+

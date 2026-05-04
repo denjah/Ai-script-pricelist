@@ -5,715 +5,209 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ИИ-помощники для бизнеса | Прейскурант 2026</title>
+  <meta name="description" content="12 готовых ИИ-решений для бизнеса от Дениса Полоцкого. Внедрение без остановки процессов, окупаемость от 2 месяцев.">
   <link rel="stylesheet" href="carousel.css">
   <link rel="stylesheet" href="hero-carousel.css">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    /* === ТОКЕНЫ (DESIGN TOKENS) === */
-    :root {
-      /* Цвета */
-      --bg: #F0E6DA;
-      --bg-alt: #EDE0D4;
-      --accent: #8B2E2E;
-      --accent-light: #A64B4B;
-      --text: #2D241E;
-      --text-mid: #5C4D40;
-      --text-light: #8A7B6E;
-      --line: rgba(139, 46, 46, 0.12);
-      
-      /* Анимации */
-      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    /* === ГЛОБАЛЬНЫЕ СТИЛИ === */
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: #1A1715;
-      color: var(--text);
-      overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-      gap: 24px; /* 20px -> 24px (8px grid) */
-      padding: 24px; /* 20px -> 24px (8px grid) */
-    }
-
-    /* === БАЗОВЫЙ КЛАСС СЛАЙДА === */
-    .slide {
-      position: relative;
-      width: 100%;
-      min-height: 100vh;
-      background-color: var(--bg);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    /* === ДЕКОРАТИВНЫЕ ЭЛЕМЕНТЫ === */
-    /* Векторные фигуры на фоне */
-    .bg-figures {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 150vmax;
-      height: 150vmax;
-      pointer-events: none;
-      z-index: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      will-change: transform;
-    }
-
-    .figure-layer {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transition: opacity 4s ease-in-out;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .figure-layer.active-layer {
-      opacity: 1;
-    }
-
-    /* Декоративные уголки (L-shapes) */
-    .corner {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      border-color: var(--line);
-      border-style: solid;
-      pointer-events: none;
-    }
-
-    .corner-tl {
-      top: 48px;
-      left: 48px;
-      border-width: 1.5px 0 0 1.5px;
-    }
-
-    .corner-br {
-      bottom: 48px;
-      right: 48px;
-      border-width: 0 1.5px 1.5px 0;
-    }
-
-    /* Номер слайда */
-    .slide-number {
-      position: absolute;
-      top: 48px;
-      right: 96px;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--text-light);
-      letter-spacing: 2px;
-    }
-
-    /* Полоса сверху на слайдах услуг */
-    .slide-header-bar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background: var(--accent);
-    }
-
-    /* === СЛАЙД 01: ЗАГОЛОВОК === */
-    .slide-title {
-      padding: 96px;
-      justify-content: center;
-      align-items: flex-start;
-    }
-
-    .title-tag {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: var(--text-light);
-      margin-bottom: 24px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .title-tag::before {
-      content: '';
-      display: inline-block;
-      width: 32px;
-      height: 2px;
-      background: var(--accent);
-    }
-
-    .title-main {
-      font-size: 52px;
-      font-weight: 900;
-      text-transform: uppercase;
-      color: var(--text);
-      line-height: 1.05;
-      letter-spacing: -1px;
-      max-width: 48%; /* Чтобы не заходило за свою половину */
-      margin-bottom: 32px;
-    }
-
-    .title-main span {
-      color: var(--accent);
-    }
-
-    .title-sub {
-      font-size: 22px;
-      font-weight: 400;
-      color: var(--text-mid);
-      max-width: 680px;
-      line-height: 1.5;
-      margin-bottom: 56px; /* 52px -> 56px */
-    }
-
-    .title-footer {
-      display: flex;
-      gap: 0;
-      align-items: center;
-      border-top: 1.5px solid var(--line);
-      padding-top: 24px;
-      width: 100%;
-    }
-
-    .title-footer-item {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text-light);
-      padding-right: 32px; /* 28px -> 32px */
-      margin-right: 32px;  /* 28px -> 32px */
-      border-right: 1px solid var(--line);
-    }
-
-    .title-footer-item:last-child {
-      border-right: none;
-    }
-
-    .title-gear {
-      position: absolute;
-      right: 96px;
-      top: 50%;
-      transform: translateY(-50%);
-      opacity: 0.07;
-    }
-
-    /* === СЛАЙДЫ 02-07: УСЛУГИ === */
-    .slide-services {
-      flex-direction: row;
-    }
-
-    .service-col {
-      flex: 1;
-      padding: 56px; /* 52px 56px 44px 56px -> 56px (8px grid) */
-      display: flex;
-      flex-direction: column;
-      position: relative;
-    }
-
-    .service-col + .service-col::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 56px;
-      bottom: 56px;
-      width: 1px;
-      background: var(--line);
-    }
-
-    .service-num {
-      font-size: 80px;
-      font-weight: 900;
-      color: var(--accent);
-      opacity: 0.12;
-      line-height: 1;
-      position: absolute;
-      top: 40px; /* 36px -> 40px */
-      right: 48px;
-      letter-spacing: -4px;
-    }
-
-    .service-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 8px; /* 10px -> 8px */
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .service-label::before {
-      content: '';
-      width: 20px;
-      height: 1.5px;
-      background: var(--accent);
-      display: inline-block;
-    }
-
-    .service-name {
-      font-size: 26px;
-      font-weight: 800;
-      text-transform: uppercase;
-      color: var(--text);
-      line-height: 1.1;
-      letter-spacing: -0.5px;
-      margin-bottom: 16px; /* 12px -> 16px */
-      max-width: 460px;
-    }
-
-    .service-utp {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--accent-light);
-      margin-bottom: 16px;
-      font-style: italic;
-      line-height: 1.4;
-    }
-
-    .divider-h {
-      width: 40px;
-      height: 1.5px;
-      background: var(--line);
-      margin-bottom: 16px;
-    }
-
-    .service-desc {
-      font-size: 13px;
-      font-weight: 400;
-      color: var(--text-mid);
-      line-height: 1.7;
-      margin-bottom: 16px; /* 14px -> 16px */
-    }
-
-    .service-result {
-      font-size: 12.5px;
-      font-weight: 600;
-      color: var(--text);
-      line-height: 1.5;
-      margin-bottom: 16px; /* 10px -> 16px */
-      padding-left: 12px;
-      border-left: 3px solid var(--accent);
-    }
-
-    .service-branches {
-      font-size: 11.5px;
-      color: var(--text-light);
-      line-height: 1.5;
-      margin-bottom: 24px; /* 18px -> 24px */
-    }
-
-    .service-branches strong {
-      color: var(--text-mid);
-      font-weight: 600;
-    }
-
-    .service-price-block {
-      display: flex;
-      align-items: baseline;
-      gap: 16px;
-      padding: 16px; /* 12px 16px -> 16px */
-      border: 1px solid var(--line);
-      background: rgba(139, 46, 46, 0.04);
-      margin-top: auto;
-    }
-
-    .price-main {
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--accent);
-      letter-spacing: -0.5px;
-    }
-
-    .price-support {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text-light);
-    }
-
-    /* === СЛАЙД 08: КОНТАКТЫ === */
-    .slide-final {
-      flex-direction: row;
-      align-items: stretch;
-      padding: 0;
-    }
-
-    .final-left {
-      flex: 0 0 44%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 72px 56px 72px 96px;
-      position: relative;
-    }
-
-    .final-right {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 48px 56px;
-      position: relative;
-    }
-
-    .final-right::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 56px;
-      bottom: 56px;
-      width: 1px;
-      background: var(--line);
-    }
-
-    .final-tag {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 24px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .final-tag::before {
-      content: '';
-      display: inline-block;
-      width: 32px;
-      height: 2px;
-      background: var(--accent);
-    }
-
-    .final-title {
-      font-size: 44px;
-      font-weight: 900;
-      text-transform: uppercase;
-      color: var(--text);
-      line-height: 1.05;
-      max-width: 520px;
-      margin-bottom: 24px;
-    }
-
-    .final-title span {
-      color: var(--accent);
-    }
-
-    .final-sub {
-      font-size: 18px;
-      font-weight: 400;
-      color: var(--text-mid);
-      max-width: 480px;
-      line-height: 1.5;
-      margin-bottom: 40px;
-    }
-
-    .contacts-grid {
-      display: flex;
-      gap: 32px;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      margin-bottom: 32px;
-    }
-
-    .contact-item {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .contact-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--text-light);
-    }
-
-    .contact-value {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--accent);
-    }
-
-    .final-cta {
-      display: inline-block;
-      background: var(--accent);
-      color: #fff;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      padding: 16px 32px;
-      border: none;
-      cursor: pointer;
-      transition: var(--transition);
-      align-self: flex-start;
-    }
-
-    .final-cta:hover {
-      background: var(--accent-light);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(139, 46, 46, 0.25);
-    }
-
-    .final-note {
-      position: absolute;
-      bottom: 32px;
-      left: 96px;
-      font-size: 12px;
-      color: var(--text-light);
-      max-width: 400px;
-      line-height: 1.6;
-    }
-
-    /* === СЕТКА УСЛУГ НА ФИНАЛЬНОМ СЛАЙДЕ === */
-    .services-overview-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-      gap: 12px;
-      width: 100%;
-      max-width: 620px;
-    }
-
-    .sog-card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.35);
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      padding: 10px 6px 10px;
-      cursor: pointer;
-      text-decoration: none;
-      color: var(--text);
-      transition: var(--transition);
-      overflow: hidden;
-    }
-
-    .sog-card:hover {
-      background: rgba(255, 255, 255, 0.7);
-      border-color: var(--accent);
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(139, 46, 46, 0.12);
-    }
-
-    .sog-card:hover .sog-num {
-      color: #fff;
-      background: var(--accent);
-    }
-
-    .sog-card:hover .sog-thumb {
-      filter: none;
-      transform: scale(1.05);
-    }
-
-    .sog-card:hover .sog-name {
-      color: var(--accent);
-    }
-
-    .sog-num {
-      position: absolute;
-      top: 6px;
-      left: 6px;
-      font-size: 9px;
-      font-weight: 800;
-      color: var(--text-light);
-      background: rgba(139, 46, 46, 0.08);
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-      z-index: 2;
-    }
-
-    .sog-thumb {
-      width: 100%;
-      height: 90px;
-      object-fit: contain;
-      object-position: center top;
-      margin-bottom: 8px;
-      filter: grayscale(0.3) brightness(0.95);
-      transition: var(--transition);
-    }
-
-    .sog-name {
-      font-size: 8.5px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      text-align: center;
-      line-height: 1.25;
-      color: var(--text-mid);
-      transition: var(--transition);
-      padding: 0 2px;
-    }
-
-    /* === МЕДИА ЗАПРОСЫ (ПЕЧАТЬ) === */
-    @media print {
-      body {
-        background: white;
-        padding: 0;
-        gap: 0;
-      }
-
-      .slide {
-        page-break-after: always;
-        height: 100vh;
-        min-height: auto;
-        border: none;
-      }
-    }
-
-    /* === АНИМАЦИЯ ЦЕН === */
-    .service-price-block {
-      position: relative;
-      cursor: help;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 16px;
-      gap: 12px;
-    }
-
-    .price-main-container {
-      display: flex;
-      align-items: baseline;
-      font-weight: 800;
-      font-size: 20px;
-      letter-spacing: -0.5px;
-      transition: color 0.4s ease;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .price-prefix {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-light);
-      margin-right: 8px;
-      min-width: 24px;
-    }
-
-    .price-value {
-      min-width: 48px;
-      text-align: right;
-    }
-
-    .price-zeros {
-      min-width: 44px;
-      text-align: left;
-    }
-
-    .price-currency {
-      margin-left: 4px;
-      color: var(--accent);
-      min-width: 20px;
-      text-align: left;
-    }
-
-    .price-up {
-      color: var(--accent) !important;
-    }
-
-    .price-down {
-      color: var(--text-light) !important;
-    }
-
-    .price-negotiable {
-      position: absolute;
-      top: -28px;
-      left: 16px;
-      background: var(--accent);
-      color: #fff;
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      padding: 4px 10px;
-      border-radius: 4px;
-      opacity: 0;
-      transform: translateY(5px);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      pointer-events: none;
-      white-space: nowrap;
-      z-index: 20;
-      box-shadow: 0 4px 12px rgba(139, 46, 46, 0.2);
-    }
-
-    .price-negotiable::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 12px;
-      width: 8px;
-      height: 8px;
-      background: var(--accent);
-      transform: rotate(45deg);
-    }
-
-    .service-price-block:hover .price-negotiable {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .price-support {
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--text-light);
-      text-align: right;
-      white-space: nowrap;
-      border-left: 1px solid var(--line);
-      padding-left: 12px;
-    }
-
-    /* Кнопка КОНТАКТЫ — под номером слайда, справа, над hero */
-    .nav-contacts {
-      position: absolute;
-      top: 80px;
-      right: 48px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--accent);
-      background: none;
-      border: 1.5px solid var(--line);
-      padding: 10px 20px;
-      cursor: pointer;
-      transition: var(--transition);
-      z-index: 100;
-    }
-
-    .nav-contacts:hover {
-      background: var(--accent);
-      color: #fff;
-      border-color: var(--accent);
+  <link rel="stylesheet" href="custom.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        fontFamily: { sans: ['Montserrat', 'sans-serif'] },
+        extend: {
+          colors: {
+            bg: '#F0E6DA', 'bg-alt': '#EDE0D4', 'bg-dark': '#1A1715',
+            accent: '#8B2E2E', 'accent-light': '#A64B4B',
+            txt: '#2D241E', 'txt-mid': '#5C4D40', 'txt-light': '#8A7B6E',
+            line: 'rgba(139,46,46,0.12)', 'bg-price': 'rgba(139,46,46,0.04)',
+          },
+          fontSize: {
+            'h1': ['52px', { lineHeight: '1.05', letterSpacing: '-1px', fontWeight: '900' }],
+            'h1-md': ['40px', { lineHeight: '1.05', letterSpacing: '-1px', fontWeight: '900' }],
+            'h1-sm': ['34px', { lineHeight: '1.05', letterSpacing: '-0.5px', fontWeight: '900' }],
+            'h1-xs': ['28px', { lineHeight: '1.05', fontWeight: '900' }],
+            'h2-final': ['44px', { lineHeight: '1.05', fontWeight: '900' }],
+            'h3-svc': ['26px', { lineHeight: '1.1', letterSpacing: '-0.5px', fontWeight: '800' }],
+            'h3-svc-md': ['22px', { lineHeight: '1.1', fontWeight: '800' }],
+            'h3-svc-sm': ['21px', { lineHeight: '1.1', fontWeight: '800' }],
+            'slide-num': ['80px', { lineHeight: '1', letterSpacing: '-4px', fontWeight: '900' }],
+            'sub': ['22px', { lineHeight: '1.5', fontWeight: '400' }],
+            'utp': ['14px', { lineHeight: '1.4', fontWeight: '600' }],
+            'desc': ['13px', { lineHeight: '1.7', fontWeight: '400' }],
+            'result': ['12.5px', { lineHeight: '1.5', fontWeight: '600' }],
+            'branches': ['11.5px', { lineHeight: '1.5', fontWeight: '400' }],
+            'price': ['20px', { letterSpacing: '-0.5px', fontWeight: '800' }],
+            'tag': ['11px', { letterSpacing: '5px', fontWeight: '700' }],
+            'label': ['10px', { letterSpacing: '4px', fontWeight: '700' }],
+            'footer-item': ['13px', { letterSpacing: '2px', fontWeight: '600' }],
+            'slide-nr': ['12px', { letterSpacing: '2px', fontWeight: '700' }],
+            'note': ['12px', { lineHeight: '1.6', fontWeight: '400' }],
+            'contact-lbl': ['10px', { letterSpacing: '3px', fontWeight: '700' }],
+            'contact-val': ['16px', { fontWeight: '600' }],
+            'cta': ['13px', { letterSpacing: '2px', fontWeight: '700' }],
+            'sog-name': ['8.5px', { lineHeight: '1.25', letterSpacing: '0.5px', fontWeight: '700' }],
+          },
+          transitionTimingFunction: { 'smooth': 'cubic-bezier(0.16, 1, 0.3, 1)' },
+          spacing: { '14': '56px', '18': '72px', '24': '96px' },
+        },
+      },
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .slide { @apply relative w-full min-h-screen bg-bg flex flex-col overflow-hidden flex-shrink-0; }
+      .slide-title { @apply p-24 justify-center items-start; }
+      .slide-services { @apply flex-row; }
+      .slide-final { @apply flex-row items-stretch p-0; }
+      .corner { @apply absolute w-10 h-10 border-line border-solid pointer-events-none; }
+      .corner-tl { @apply top-12 left-12; border-width: 1.5px 0 0 1.5px; }
+      .corner-br { @apply bottom-12 right-12; border-width: 0 1.5px 1.5px 0; }
+      .slide-number { @apply absolute top-12 right-24 text-slide-nr text-txt-light uppercase; }
+      .slide-header-bar { @apply absolute top-0 left-0 right-0 h-1.5 bg-accent; }
+      .title-tag { @apply text-tag uppercase text-txt-light mb-6 flex items-center gap-4; }
+      .title-main { @apply text-h1 uppercase text-txt mb-8; max-width: 48%; }
+      .title-main span { @apply text-accent; }
+      .title-sub { @apply text-sub text-txt-mid mb-14; max-width: 680px; }
+      .title-footer { @apply flex items-center border-t border-line pt-6 w-full gap-0; }
+      .title-footer-item { @apply text-footer-item uppercase text-txt-light pr-8 mr-8 border-r border-line; }
+      .title-footer-item:last-child { @apply border-r-0; }
+      .service-col { @apply flex-1 p-14 flex flex-col relative; }
+      .service-num { @apply text-slide-num text-accent absolute right-12; opacity: 0.12; top: 40px; }
+      .service-label { @apply text-label uppercase text-accent mb-2 flex items-center gap-2; }
+      .service-name { @apply text-h3-svc uppercase text-txt mb-4; max-width: 460px; }
+      .service-utp { @apply text-utp text-accent-light mb-4 italic; }
+      .divider-h { @apply mb-4; width: 40px; height: 1.5px; background: var(--line); }
+      .service-desc { @apply text-desc text-txt-mid mb-4; }
+      .service-result { @apply text-result text-txt mb-4 pl-3; border-left: 3px solid var(--accent); }
+      .service-branches { @apply text-branches text-txt-light mb-6; }
+      .service-branches strong { @apply text-txt-mid font-semibold; }
+      .service-price-block { @apply relative flex justify-between items-center border border-line mt-auto cursor-help gap-3; padding: 12px 16px; background: var(--bg-price); }
+      .price-main-container { @apply flex items-baseline text-price; }
+      .price-prefix { @apply text-sm font-semibold text-txt-light mr-2; min-width: 24px; }
+      .price-value { @apply text-right; min-width: 48px; }
+      .price-zeros { @apply text-left; min-width: 44px; }
+      .price-currency { @apply ml-1 text-accent text-left; min-width: 20px; }
+      .price-support { @apply text-xs font-medium text-txt-light text-right whitespace-nowrap border-l border-line pl-3; font-size: 11px; }
+      .final-left { @apply flex flex-col justify-center relative; flex: 0 0 44%; padding: 72px 56px 72px 96px; }
+      .final-right { @apply flex-1 flex items-center justify-center relative; padding: 48px 56px; }
+      .final-tag { @apply text-tag uppercase text-accent mb-6 flex items-center gap-4; }
+      .final-title { @apply font-black uppercase text-txt mb-6; font-size: 44px; line-height: 1.05; max-width: 520px; }
+      .final-title span { @apply text-accent; }
+      .final-sub { @apply text-txt-mid mb-10; font-size: 18px; line-height: 1.5; max-width: 480px; }
+      .contacts-grid { @apply flex gap-8 items-start flex-wrap mb-8; }
+      .contact-item { @apply flex flex-col gap-2; }
+      .contact-label { @apply text-contact-lbl uppercase text-txt-light; }
+      .contact-value { @apply text-contact-val text-accent; }
+      .final-cta { @apply inline-block bg-accent text-white text-cta uppercase py-4 px-8 border-none cursor-pointer self-start; transition: var(--transition); }
+      .final-cta:hover { @apply bg-accent-light; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(139,46,46,0.25); }
+      .final-note { @apply absolute text-note text-txt-light; bottom: 32px; left: 96px; max-width: 400px; }
+      .services-overview-grid { @apply grid gap-3 w-full; grid-template-columns: repeat(4,1fr); max-width: 620px; }
+      .sog-card { @apply relative flex flex-col items-center border border-line rounded-md cursor-pointer no-underline text-txt overflow-hidden; padding: 10px 6px; background: rgba(255,255,255,0.35); transition: var(--transition); }
+      .sog-card:hover { background: rgba(255,255,255,0.7); @apply border-accent; transform: translateY(-8px); box-shadow: 0 12px 32px rgba(139,46,46,0.15); }
+      .sog-num { @apply absolute flex items-center justify-center rounded-full font-extrabold text-txt-light; top: 6px; left: 6px; font-size: 9px; width: 20px; height: 20px; background: rgba(139,46,46,0.08); transition: var(--transition); z-index: 2; }
+      .sog-thumb { @apply w-full mb-2; height: 90px; object-fit: contain; object-position: center top; filter: grayscale(0.3) brightness(0.95); transition: var(--transition); }
+      .sog-name { @apply text-sog-name uppercase text-center text-txt-mid px-0.5; transition: var(--transition); }
+      .nav-contacts { @apply absolute font-bold uppercase text-accent bg-transparent cursor-pointer z-50; top: 80px; right: 48px; font-size: 11px; letter-spacing: 2px; border: 1.5px solid var(--line); padding: 10px 20px; transition: var(--transition); }
+      .nav-contacts:hover { @apply bg-accent text-white border-accent; }
+    }
+
+    /* === RESPONSIVE: TABLET (769-1024px) === */
+    @media (max-width: 1024px) {
+      body { @apply p-4 gap-4; }
+      .slide { @apply min-h-0; }
+      .slide-title { padding: 56px 40px; min-height: 80vh; }
+      .title-main { font-size: 40px; max-width: 55%; @apply mb-6; }
+      .title-sub { font-size: 18px; max-width: 50%; @apply mb-10; }
+      .title-footer-item { font-size: 11px; @apply pr-5 mr-5; }
+      .service-col { @apply p-10; }
+      .service-name { font-size: 22px; }
+      .service-num { font-size: 64px; }
+      .final-left { padding: 48px 40px; }
+      .final-title { font-size: 34px; }
+      .final-sub { font-size: 16px; @apply mb-8; }
+      .services-overview-grid { max-width: 480px; @apply gap-2; }
+      .sog-thumb { height: 70px; }
+      .slide-number { @apply right-12; }
+      .corner-tl { @apply top-8 left-8; }
+      .corner-br { @apply bottom-8 right-8; }
+      .nav-contacts { top: 56px; @apply right-8; }
+    }
+
+    /* === RESPONSIVE: MOBILE (≤768px) === */
+    @media (max-width: 768px) {
+      body { @apply p-3 gap-3; }
+      .slide { @apply min-h-0; }
+      .slide-title { padding: 80px 24px 40px; min-height: 100vh; min-height: 100dvh; @apply items-stretch; }
+      .title-tag { font-size: 9px; letter-spacing: 3px; @apply mb-5; }
+      .title-main { font-size: 34px; max-width: 100%; letter-spacing: -0.5px; @apply mb-5; }
+      .title-sub { font-size: 15px; max-width: 100%; line-height: 1.45; @apply mb-8; }
+      .title-footer { @apply flex-wrap gap-2 pt-5; }
+      .title-footer-item { font-size: 10px; @apply pr-4 mr-4; letter-spacing: 1.5px; }
+      .title-gear { @apply hidden; }
+      .slide-services { @apply flex-col; }
+      .service-col { padding: 32px 24px; @apply flex-none; }
+      .screenshot-carousel { @apply flex-none; height: 250px; min-height: 250px; }
+      .service-num { font-size: 56px; top: 24px; right: 24px; }
+      .service-label { font-size: 9px; letter-spacing: 3px; }
+      .service-name { font-size: 21px; max-width: 100%; @apply mb-3; }
+      .service-utp { font-size: 13px; @apply mb-3; }
+      .service-desc { font-size: 13px; line-height: 1.6; @apply mb-3; }
+      .service-result { font-size: 12px; @apply mb-3; }
+      .service-branches { font-size: 11px; @apply mb-4; }
+      .service-price-block { padding: 12px 14px; @apply flex-col items-start gap-2; }
+      .price-main-container { font-size: 18px; }
+      .price-support { @apply border-l-0 pl-0 border-t border-line pt-2 w-full; font-size: 11px; }
+      .slide-header-bar { @apply h-1; }
+      .slide-number { top: 20px; right: 24px; font-size: 10px; }
+      .corner { @apply w-6 h-6; }
+      .corner-tl { @apply top-4 left-4; }
+      .corner-br { @apply bottom-4 right-4; }
+      .nav-contacts { top: 20px; right: auto; left: 24px; font-size: 10px; padding: 10px 16px; letter-spacing: 1px; z-index: 200; min-height: 44px; @apply flex items-center; }
+      .slide-final { @apply flex-col; }
+      .final-left { @apply flex-none; padding: 40px 24px 32px; }
+      .final-right { @apply flex-none; padding: 24px; }
+      .final-tag { font-size: 10px; letter-spacing: 3px; @apply mb-4; }
+      .final-title { font-size: 28px; max-width: 100%; @apply mb-4; }
+      .final-sub { font-size: 15px; max-width: 100%; @apply mb-6; }
+      .contacts-grid { @apply gap-5 mb-6; }
+      .contact-label { font-size: 9px; }
+      .contact-value { font-size: 15px; }
+      .final-cta { font-size: 12px; padding: 14px 24px; letter-spacing: 1.5px; min-height: 48px; @apply flex items-center justify-center w-full text-center; }
+      .final-note { @apply static mt-6; font-size: 11px; max-width: 100%; }
+      .services-overview-grid { grid-template-columns: repeat(2,1fr); @apply gap-2.5; max-width: 100%; }
+      .sog-card { padding: 12px 8px; }
+      .sog-thumb { height: 80px; }
+      .sog-name { font-size: 9px; }
+      .sog-num { width: 22px; height: 22px; font-size: 10px; }
+    }
+
+    /* === RESPONSIVE: SMALL MOBILE (≤480px) === */
+    @media (max-width: 480px) {
+      .slide-title { padding: 72px 16px 32px; }
+      .title-main { font-size: 28px; }
+      .title-sub { font-size: 14px; }
+      .title-footer-item { font-size: 9px; @apply pr-3 mr-3; }
+      .service-col { padding: 24px 16px; }
+      .service-name { font-size: 19px; }
+      .service-num { font-size: 48px; top: 16px; right: 16px; }
+      .final-left { padding: 32px 16px 24px; }
+      .final-right { padding: 16px; }
+      .final-title { font-size: 24px; }
+      .final-sub { font-size: 14px; }
+      .services-overview-grid { grid-template-columns: 1fr; }
+      .sog-card { @apply flex-row gap-3 items-center; padding: 10px 12px; }
+      .sog-thumb { width: 64px; height: 48px; @apply flex-shrink-0 mb-0; }
+      .sog-name { @apply text-left; font-size: 10px; }
+      .sog-num { top: 50%; left: auto; right: 8px; transform: translateY(-50%); }
+      .nav-contacts { font-size: 9px; padding: 8px 12px; right: auto; left: 12px; }
+      .screenshot-carousel { height: 200px; min-height: 200px; }
     }
   </style>
 </head>
 
-<body>
+<body class="font-sans bg-bg-dark text-txt overflow-x-hidden flex flex-col gap-6 p-6">
+
+
 
   <!-- ============================================== -->
   <!-- === SLIDE 01: ГЛАВНЫЙ ЗАГОЛОВОЧНЫЙ ЭКРАН === -->
@@ -725,7 +219,7 @@
     <div class="corner corner-br"></div>
     <div class="slide-number">01 / 08</div>
     
-    <button class="nav-contacts" onclick="document.querySelector('.slide-final').scrollIntoView({behavior: 'smooth'})">КОНТАКТЫ</button>
+    <button class="nav-contacts" aria-label="Перейти к контактам" onclick="document.querySelector('.slide-final').scrollIntoView({behavior: 'smooth'})">КОНТАКТЫ</button>
 
     <!-- Контент -->
     <div class="title-tag">Прейскурант 2026 · Разработка под ключ</div>
@@ -1239,6 +733,119 @@
       <h2 class="final-title">ГОТОВЫ ВНЕДРИТЬ ИИ, КОТОРЫЙ <span>РЕАЛЬНО ПОВЫСИТ ПРОДАЖИ?</span></h2>
       <p class="final-sub">Закажите бесплатный аудит вашей CRM. Мы проанализируем 30 последних сделок и покажем точки роста ROI при помощи нейросетей АЛЬТАИР.</p>
 
+      <!-- Форма захвата -->
+      <div id="form-container" class="w-full max-w-[480px] mb-8 relative">
+        <form id="lead-form" action="https://formspree.io/f/mrejplob" method="POST" enctype="multipart/form-data" class="flex flex-col gap-5 relative z-20 transition-all duration-500 origin-top">
+          <div class="flex gap-4 max-sm:flex-col">
+            <div class="w-full flex flex-col relative">
+              <input type="text" name="name" required placeholder="Имя *" aria-label="Ваше имя" class="w-full bg-transparent border-b border-line text-txt py-3 px-2 focus:outline-none focus:border-accent focus:bg-white/40 transition-all duration-300 placeholder:text-txt-light/70 text-[15px] font-medium peer">
+              <span class="text-red-500 text-[11px] absolute -bottom-4 left-2 opacity-0 peer-invalid:peer-[.is-dirty]:opacity-100 transition-opacity">Пожалуйста, введите ваше имя</span>
+            </div>
+            <div class="w-full flex flex-col relative">
+              <input type="tel" name="phone" required placeholder="Телефон / WhatsApp *" aria-label="Ваш телефон" class="w-full bg-transparent border-b border-line text-txt py-3 px-2 focus:outline-none focus:border-accent focus:bg-white/40 transition-all duration-300 placeholder:text-txt-light/70 text-[15px] font-medium peer">
+              <span class="text-red-500 text-[11px] absolute -bottom-4 left-2 opacity-0 peer-invalid:peer-[.is-dirty]:opacity-100 transition-opacity">Укажите контактный номер</span>
+            </div>
+          </div>
+          <div class="w-full flex flex-col mt-1">
+            <input type="email" name="email" placeholder="E-mail (необязательно)" aria-label="Ваш email" class="w-full bg-transparent border-b border-line text-txt py-3 px-2 focus:outline-none focus:border-accent focus:bg-white/40 transition-all duration-300 placeholder:text-txt-light/70 text-[15px] font-medium">
+          </div>
+          <div class="w-full flex flex-col mt-1">
+            <textarea name="task" rows="3" placeholder="Какая задача стоит?" aria-label="Описание задачи" class="w-full bg-transparent border-b border-line text-txt py-3 px-2 focus:outline-none focus:border-accent focus:bg-white/40 transition-all duration-300 placeholder:text-txt-light/70 text-[15px] font-medium resize-none"></textarea>
+          </div>
+          
+          <div id="form-error" class="hidden text-red-600 bg-red-50 p-3 text-[13px] font-medium border border-red-200 rounded-sm shadow-sm transition-all duration-300 mt-2">
+            Что-то пошло не так. Попробуйте ещё раз или напишите нам в Telegram @denispolotsk
+          </div>
+          
+          <button type="submit" id="submit-btn" class="final-cta mt-4 w-full flex items-center justify-center gap-3 active:scale-[0.98] active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed disabled:active:scale-100 transition-all duration-300">
+            <span id="submit-text">ЗАПИСАТЬСЯ НА БЕСПЛАТНЫЙ АУДИТ →</span>
+            <svg id="submit-spinner" class="animate-spin h-5 w-5 text-white hidden absolute right-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+          </button>
+        </form>
+
+        <!-- Блок успешной отправки -->
+        <div id="form-success" class="absolute inset-0 flex-col items-center justify-center p-10 border border-accent/20 bg-bg z-30 text-center shadow-xl transition-all duration-500 opacity-0 scale-95 pointer-events-none hidden rounded-sm">
+          <div class="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+          </div>
+          <h3 class="text-[26px] font-black uppercase text-txt mb-4 tracking-tight leading-none">Заявка отправлена!</h3>
+          <p class="text-txt-mid text-[16px] leading-relaxed">Спасибо за обращение. Мы изучим вашу задачу и свяжемся с вами в течение 2 часов.</p>
+        </div>
+      </div>
+
+      <!-- ROI Калькулятор -->
+      <div id="roi-calculator" class="w-full max-w-[480px] mb-8 bg-white/30 border border-line rounded-xl p-5 sm:p-6 relative backdrop-blur-sm shadow-sm transition-all duration-300 hover:shadow-md hover:bg-white/40 group">
+        <h3 class="text-[18px] font-bold text-txt mb-4 flex items-center gap-2">
+          <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+          Калькулятор выгоды (ROI)
+        </h3>
+        
+        <!-- Параметры -->
+        <div class="flex flex-col gap-4 mb-6">
+          <!-- Чек -->
+          <div class="flex flex-col gap-1">
+            <div class="flex justify-between items-center text-[13px] font-medium text-txt-mid">
+              <label for="roi-check-range">Средний чек (₽)</label>
+              <input type="number" id="roi-check-input" value="150000" min="50000" max="2000000" step="10000" class="w-24 bg-transparent border-b border-line text-right text-txt font-semibold focus:outline-none focus:border-accent">
+            </div>
+            <input type="range" id="roi-check-range" min="50000" max="2000000" step="10000" value="150000" class="custom-range w-full">
+          </div>
+          
+          <!-- Лиды -->
+          <div class="flex flex-col gap-1">
+            <div class="flex justify-between items-center text-[13px] font-medium text-txt-mid">
+              <label for="roi-leads-range">Лидов в месяц</label>
+              <input type="number" id="roi-leads-input" value="100" min="10" max="500" step="10" class="w-16 bg-transparent border-b border-line text-right text-txt font-semibold focus:outline-none focus:border-accent">
+            </div>
+            <input type="range" id="roi-leads-range" min="10" max="500" step="10" value="100" class="custom-range w-full">
+          </div>
+          
+          <!-- Конверсия -->
+          <div class="flex flex-col gap-1">
+            <div class="flex justify-between items-center text-[13px] font-medium text-txt-mid">
+              <label for="roi-conv-range">Конверсия в сделку (%)</label>
+              <input type="number" id="roi-conv-input" value="15" min="5" max="40" step="1" class="w-16 bg-transparent border-b border-line text-right text-txt font-semibold focus:outline-none focus:border-accent">
+            </div>
+            <input type="range" id="roi-conv-range" min="5" max="40" step="1" value="15" class="custom-range w-full">
+          </div>
+          
+          <!-- Часы -->
+          <div class="flex flex-col gap-1">
+            <div class="flex justify-between items-center text-[13px] font-medium text-txt-mid">
+              <label for="roi-hours-range">Часов на рутину (в нед.)</label>
+              <input type="number" id="roi-hours-input" value="15" min="5" max="40" step="1" class="w-16 bg-transparent border-b border-line text-right text-txt font-semibold focus:outline-none focus:border-accent">
+            </div>
+            <input type="range" id="roi-hours-range" min="5" max="40" step="1" value="15" class="custom-range w-full">
+          </div>
+        </div>
+
+        <!-- Результаты -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="bg-bg-alt/50 border border-line rounded-lg p-3 flex flex-col transition-all duration-300 hover:bg-bg-alt/80 hover:border-accent/30">
+            <span class="text-[11px] text-txt-light uppercase tracking-wide font-semibold mb-1">Потерянная прибыль</span>
+            <div class="text-[18px] font-bold text-txt tabular-nums leading-none"><span id="res-lost">0</span> ₽<span class="text-[11px] text-txt-light font-normal">/мес</span></div>
+          </div>
+          
+          <div class="bg-accent/5 border border-accent/20 rounded-lg p-3 flex flex-col transition-all duration-300 hover:bg-accent/10">
+            <span class="text-[11px] text-accent uppercase tracking-wide font-semibold mb-1">Доп. прибыль (+ИИ)</span>
+            <div class="text-[18px] font-bold text-accent tabular-nums leading-none">+<span id="res-profit">0</span> ₽<span class="text-[11px] text-accent/70 font-normal">/мес</span></div>
+          </div>
+
+          <div class="bg-bg-alt/50 border border-line rounded-lg p-3 flex flex-col transition-all duration-300 hover:bg-bg-alt/80 hover:border-accent/30">
+            <span class="text-[11px] text-txt-light uppercase tracking-wide font-semibold mb-1">Сэкономлено времени</span>
+            <div class="text-[18px] font-bold text-txt tabular-nums leading-none"><span id="res-hours">0</span> ч<span class="text-[11px] text-txt-light font-normal">/мес</span></div>
+          </div>
+          
+          <div class="bg-accent text-white rounded-lg p-3 flex flex-col shadow-md transition-all duration-300 hover:bg-accent-light hover:shadow-lg hover:-translate-y-0.5">
+            <span class="text-[11px] text-white/80 uppercase tracking-wide font-semibold mb-1">ROI за 3 месяца</span>
+            <div class="text-[20px] font-black tabular-nums leading-none"><span id="res-roi">0</span> %</div>
+          </div>
+        </div>
+      </div>
+
       <!-- Сетка контактов -->
       <address class="contacts-grid" style="font-style: normal;">
         <div class="contact-item">
@@ -1255,14 +862,84 @@
         </div>
       </address>
 
-      <!-- Кнопка действия -->
-      <button class="final-cta">Записаться на аудит процессов →</button>
-
       <!-- Футер слайда -->
       <div class="final-note">
         Разработка систем CRM + Интеллектуальные алгоритмы ИИ от 220 000 ₽ | Окупаемость от 2 месяцев
       </div>
     </div>
+
+    <!-- Скрипт для обработки формы -->
+    <script>
+      const form = document.getElementById('lead-form');
+      const submitBtn = document.getElementById('submit-btn');
+      const submitText = document.getElementById('submit-text');
+      const submitSpinner = document.getElementById('submit-spinner');
+      const successBlock = document.getElementById('form-success');
+      const errorBlock = document.getElementById('form-error');
+
+      // Помечаем инпуты как "dirty" после взаимодействия (для валидации)
+      form.querySelectorAll('input, textarea').forEach(input => {
+        input.addEventListener('blur', () => input.classList.add('is-dirty'));
+      });
+
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Сбрасываем возможную ошибку
+        errorBlock.classList.add('hidden');
+        
+        // Включаем состояние "Загрузка"
+        submitBtn.disabled = true;
+        submitText.textContent = 'ОТПРАВКА...';
+        submitSpinner.classList.remove('hidden');
+
+        try {
+          const formData = new FormData(form);
+          const response = await fetch(form.action, {
+            method: form.method,
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            // Плавно скрываем форму
+            form.style.opacity = '0';
+            form.style.pointerEvents = 'none';
+            form.style.transform = 'scale(0.98)';
+            
+            // Показываем блок успеха с анимацией
+            successBlock.classList.remove('hidden');
+            successBlock.classList.add('flex');
+            
+            setTimeout(() => {
+              successBlock.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+              successBlock.classList.add('opacity-100', 'scale-100');
+            }, 50);
+
+            // Очищаем форму
+            form.reset();
+            form.querySelectorAll('.is-dirty').forEach(el => el.classList.remove('is-dirty'));
+
+            // Опционально: плавный скролл вверх через 5 секунд
+            setTimeout(() => {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 5000);
+
+          } else {
+            throw new Error('Server returned error');
+          }
+        } catch (error) {
+          // Показываем блок с ошибкой
+          errorBlock.classList.remove('hidden');
+          // Возвращаем кнопку в исходное состояние
+          submitBtn.disabled = false;
+          submitText.textContent = 'ЗАПИСАТЬСЯ НА БЕСПЛАТНЫЙ АУДИТ →';
+          submitSpinner.classList.add('hidden');
+        }
+      });
+    </script>
 
     <!-- Правая колонка: сетка 12 услуг -->
     <div class="final-right">
@@ -1337,6 +1014,26 @@
 
   <script>
     /**
+     * Премиум Magnetic CTA эффект
+     */
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.querySelector('.final-cta');
+      if (btn) {
+        btn.addEventListener('mousemove', (e) => {
+          const rect = btn.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px) scale(1.02)`;
+          btn.style.transition = 'transform 0.1s ease-out';
+        });
+        btn.addEventListener('mouseleave', () => {
+          btn.style.transform = '';
+          btn.style.transition = 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+        });
+      }
+    });
+
+    /**
      * Анимация цен: синхронизированная, мультивалютная, с цветовой индикацией
      */
     document.addEventListener('DOMContentLoaded', () => {
@@ -1348,7 +1045,7 @@
 
       let currentCurrencyIndex = 0;
       let startTime = Date.now();
-      const cycle = 10; // 10 секунд на полный цикл одной валюты
+      const cycle = window.innerWidth <= 768 ? 20 : 10; // 10 секунд на полный цикл одной валюты (20 на мобильных)
 
       const priceBlocks = Array.from(document.querySelectorAll('.service-price-block')).map(block => {
         // Добавляем плашку "ЦЕНЫ ДОГОВОРНЫЕ" (если еще нет)
@@ -1432,6 +1129,78 @@
       }
 
       update();
+    });
+
+    /**
+     * ROI Calculator Logic
+     */
+    document.addEventListener('DOMContentLoaded', () => {
+      // Inputs
+      const checkRange = document.getElementById('roi-check-range');
+      const checkInput = document.getElementById('roi-check-input');
+      const leadsRange = document.getElementById('roi-leads-range');
+      const leadsInput = document.getElementById('roi-leads-input');
+      const convRange = document.getElementById('roi-conv-range');
+      const convInput = document.getElementById('roi-conv-input');
+      const hoursRange = document.getElementById('roi-hours-range');
+      const hoursInput = document.getElementById('roi-hours-input');
+
+      // Outputs
+      const resLost = document.getElementById('res-lost');
+      const resProfit = document.getElementById('res-profit');
+      const resHours = document.getElementById('res-hours');
+      const resRoi = document.getElementById('res-roi');
+
+      const costOfImplementation = 415000;
+      const formatter = new Intl.NumberFormat('ru-RU');
+
+      // Связывание Range и Input (двустороннее)
+      function bindInputs(rangeEl, inputEl) {
+        rangeEl.addEventListener('input', () => {
+          inputEl.value = rangeEl.value;
+          calculate();
+        });
+        inputEl.addEventListener('input', () => {
+          let val = Number(inputEl.value);
+          let min = Number(inputEl.min);
+          let max = Number(inputEl.max);
+          if (val < min) val = min;
+          if (val > max) val = max;
+          rangeEl.value = val;
+          calculate();
+        });
+      }
+
+      bindInputs(checkRange, checkInput);
+      bindInputs(leadsRange, leadsInput);
+      bindInputs(convRange, convInput);
+      bindInputs(hoursRange, hoursInput);
+
+      function calculate() {
+        const check = Number(checkInput.value);
+        const leads = Number(leadsInput.value);
+        const conv = Number(convInput.value) / 100;
+        const hours = Number(hoursInput.value);
+
+        // Формулы
+        // Потерянная прибыль = (лиды * конверсия * средний чек) * 0.15
+        const lostProfit = (leads * conv * check) * 0.15;
+        // Доп. прибыль = потерянная прибыль * 0.7
+        const additionalProfit = lostProfit * 0.7;
+        // ROI за 3 мес = (доп. прибыль * 3) / стоимость внедрения * 100
+        const roi = (additionalProfit * 3) / costOfImplementation * 100;
+        // Сэкономленные часы = часы на рутину * 4.3
+        const savedHours = hours * 4.3;
+
+        // Анимация изменения чисел (простой вариант без requestAnimationFrame для мгновенного отклика)
+        resLost.textContent = formatter.format(Math.round(lostProfit));
+        resProfit.textContent = formatter.format(Math.round(additionalProfit));
+        resHours.textContent = Math.round(savedHours);
+        resRoi.textContent = formatter.format(Math.round(roi));
+      }
+
+      // Initial calculation
+      calculate();
     });
   </script>
 

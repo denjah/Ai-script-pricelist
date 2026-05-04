@@ -316,6 +316,45 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // === Touch swipe для мобильных ===
+  let heroTouchStartX = 0;
+  let heroTouchStartY = 0;
+  let isHeroSwiping = false;
+
+  heroContainer.addEventListener('touchstart', (e) => {
+    heroTouchStartX = e.changedTouches[0].clientX;
+    heroTouchStartY = e.changedTouches[0].clientY;
+    isHeroSwiping = true;
+  }, { passive: true });
+
+  heroContainer.addEventListener('touchmove', (e) => {
+    if (!isHeroSwiping) return;
+    const deltaX = Math.abs(e.changedTouches[0].clientX - heroTouchStartX);
+    const deltaY = Math.abs(e.changedTouches[0].clientY - heroTouchStartY);
+    // If horizontal swipe is dominant, prevent vertical scroll for better UX
+    if (deltaX > deltaY && deltaX > 10) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  heroContainer.addEventListener('touchend', (e) => {
+    if (!isHeroSwiping) return;
+    isHeroSwiping = false;
+
+    const deltaX = e.changedTouches[0].clientX - heroTouchStartX;
+    const deltaY = Math.abs(e.changedTouches[0].clientY - heroTouchStartY);
+    const threshold = 50;
+
+    if (Math.abs(deltaX) > threshold && Math.abs(deltaX) > deltaY) {
+      if (deltaX < 0) {
+        navigate(1);  // Swipe left = next
+      } else {
+        navigate(-1); // Swipe right = prev
+      }
+      startAutoplay();
+    }
+  }, { passive: true });
+
   // === Запуск ===
   // Предзагрузим первое изображение
   const firstData = sequence[currentIdx];

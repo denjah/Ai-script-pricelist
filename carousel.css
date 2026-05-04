@@ -70,16 +70,17 @@
   object-fit: contain;
   object-position: center;
   /* ЧБ: очень светлое, низкоконтрастное и тонированное под фон */
-  filter: grayscale(1) brightness(1.7) contrast(0.4) sepia(0.4);
+  filter: grayscale(1) brightness(1.7) contrast(0.4) sepia(0.4) blur(8px);
   opacity: 0;
   z-index: 1;
-  will-change: transform, opacity;
-  transition: opacity 0.8s ease, filter 0.4s ease;
+  will-change: transform, opacity, filter;
+  transition: opacity 0.8s ease, filter 0.8s ease;
 }
 
 /* Новый слайд появляется под старым (z-index: 1) */
 .carousel-viewport img.active {
   opacity: 1;
+  filter: grayscale(1) brightness(1.7) contrast(0.4) sepia(0.4) blur(0px);
   z-index: 1;
   animation: kenburns 5s ease-out forwards;
 }
@@ -103,7 +104,7 @@
 
 /* Hover: цвет + пауза */
 .screenshot-carousel:hover .carousel-viewport img.active {
-  filter: grayscale(0) brightness(1) contrast(1) sepia(0);
+  filter: grayscale(0) brightness(1) contrast(1) sepia(0) blur(0px);
   animation-play-state: paused;
 }
 
@@ -181,5 +182,86 @@
 @media print {
   .screenshot-carousel {
     display: none;
+  }
+}
+
+/* ============================================================ */
+/* === RESPONSIVE: ПЛАНШЕТ (769–1024 px)                    === */
+/* ============================================================ */
+@media (max-width: 1024px) {
+  .screenshot-carousel {
+    min-height: 180px;
+    margin-bottom: 20px;
+  }
+
+  .carousel-dots span {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+/* ============================================================ */
+/* === RESPONSIVE: МОБИЛЬНЫЕ (≤768 px)                      === */
+/* ============================================================ */
+@media (max-width: 768px) {
+  .screenshot-carousel {
+    min-height: 160px;
+    margin-bottom: 16px;
+  }
+
+  /* Навигация: всегда видна (нет hover на мобильных) */
+  .carousel-nav {
+    opacity: 1;
+  }
+
+  .nav-btn {
+    width: 36px;
+    height: 36px;
+    /* Минимальный touch target обеспечен */
+  }
+
+  /* Точки: крупнее для удобства тапа */
+  .carousel-dots {
+    bottom: 8px;
+    gap: 6px;
+  }
+
+  .carousel-dots span {
+    width: 8px;
+    height: 8px;
+  }
+
+  .carousel-dots span.active {
+    transform: scale(1.3);
+  }
+
+  /* Ken Burns — отключаем на мобильных для производительности и удобства чтения */
+  @keyframes kenburns {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(0, 0) scale(1); }
+  }
+
+  .carousel-viewport img.active {
+    animation-duration: 7s;
+  }
+}
+
+/* ============================================================ */
+/* === RESPONSIVE: МАЛЕНЬКИЙ МОБИЛЬНЫЙ (≤480 px)             === */
+/* ============================================================ */
+@media (max-width: 480px) {
+  .screenshot-carousel {
+    min-height: 140px;
+    margin-bottom: 12px;
+  }
+
+  .carousel-dots span {
+    width: 7px;
+    height: 7px;
+  }
+
+  .nav-btn {
+    width: 32px;
+    height: 32px;
   }
 }
