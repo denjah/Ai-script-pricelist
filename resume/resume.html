@@ -20,6 +20,7 @@
             --text-light: #8A7B6E;
             --line: rgba(139, 46, 46, 0.12);
             --bg-price: rgba(139, 46, 46, 0.04);
+            --theme-transition: background-color 0.6s cubic-bezier(0.16,1,0.3,1), color 0.6s cubic-bezier(0.16,1,0.3,1), border-color 0.6s cubic-bezier(0.16,1,0.3,1);
             --grid-line: rgba(139, 46, 46, 0.04);
 
             /* Spacing */
@@ -34,6 +35,32 @@
             --spacing-large-72: 72px;
         }
 
+        /* Profession color themes */
+        [data-theme="automation"]{
+          --bg:#D9CCAD;--bg-alt:#CFC19E;--bg-dark:#2E2A1E;
+          --accent:#7A6B2E;--accent-light:#9A8A42;
+          --text:#3B3422;--text-mid:#635A42;--text-light:#8A7E68;
+          --line:rgba(122,107,46,0.15);--grid-line:rgba(122,107,46,0.05);
+        }
+        [data-theme="designer"]{
+          --bg:#16161E;--bg-alt:#1E1E2A;--bg-dark:#0E0E14;
+          --accent:#E8A84C;--accent-light:#F0C070;
+          --text:#E8E0D4;--text-mid:#A09888;--text-light:#706860;
+          --line:rgba(232,168,76,0.15);--grid-line:rgba(232,168,76,0.04);
+        }
+        [data-theme="frontend"]{
+          --bg:#C8CEBC;--bg-alt:#BBC2AE;--bg-dark:#1E2218;
+          --accent:#3E5C32;--accent-light:#557846;
+          --text:#262E20;--text-mid:#4A5440;--text-light:#728066;
+          --line:rgba(62,92,50,0.15);--grid-line:rgba(62,92,50,0.05);
+        }
+        [data-theme="knowledge"]{
+          --bg:#D4C0AA;--bg-alt:#C8B49C;--bg-dark:#251A10;
+          --accent:#5E3D2A;--accent-light:#7A5640;
+          --text:#32231A;--text-mid:#5C4838;--text-light:#887060;
+          --line:rgba(94,61,42,0.15);--grid-line:rgba(94,61,42,0.05);
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--bg);
@@ -41,11 +68,11 @@
             margin: 0;
             padding: 0;
             line-height: 1.5;
-            /* Grid Background */
             background-image: 
                 linear-gradient(var(--grid-line) 1px, transparent 1px),
                 linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
             background-size: 48px 48px;
+            transition: var(--theme-transition);
         }
 
         .container {
@@ -148,6 +175,7 @@
             margin-bottom: var(--spacing-medium-40);
             border-radius: 0; /* Strict engineering style */
             position: relative;
+            transition: var(--theme-transition);
         }
 
         /* Corners detail */
@@ -253,12 +281,12 @@
 
         .profile-photo {
             width: 160px;
-            height: 160px;
-            object-fit: cover;
+            height: auto;
             border: 1.5px solid var(--accent);
             padding: 4px;
             background: var(--bg);
             margin-bottom: var(--spacing-small-24);
+            transition: var(--theme-transition);
         }
 
         .header-content {
@@ -273,6 +301,61 @@
             min-width: 300px;
         }
 
+        /* Profession Cards */
+        .prof-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--spacing-small-24);margin-bottom:var(--spacing-medium-40)}
+        .pcard{background:var(--bg-alt);border-left:4px solid var(--accent);padding:var(--spacing-small-24);cursor:pointer;position:relative;transition:all .4s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column}
+        .pcard::before,.pcard::after{content:'';position:absolute;width:28px;height:28px;border:1.5px solid var(--accent);opacity:.15;pointer-events:none;transition:opacity .4s}
+        .pcard::before{top:-1.5px;right:-1.5px;border-bottom:none;border-left:none}
+        .pcard::after{bottom:-1.5px;right:-1.5px;border-top:none;border-left:none}
+        .pcard:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.1),0 0 0 1px var(--accent)}
+        .pcard:hover::before,.pcard:hover::after{opacity:.5}
+        .pcard__num{position:absolute;top:8px;right:12px;font-size:56px;font-weight:900;line-height:1;opacity:.05;pointer-events:none}
+        .pcard__icon{margin-bottom:var(--spacing-micro-12)}
+        .pcard__icon svg{width:32px;height:32px;fill:var(--accent)}
+        .pcard__title{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:-.3px;line-height:1.2;margin-bottom:var(--spacing-micro-8)}
+        .pcard__carousel{position:relative;min-height:44px;margin-bottom:var(--spacing-micro-12);flex:1}
+        .pcard__slides{position:relative;min-height:36px}
+        .pcard__slide{position:absolute;top:0;left:0;right:0;font-size:11px;font-weight:500;line-height:1.5;color:var(--text-mid);opacity:0;transform:translateY(6px);transition:all .4s;pointer-events:none}
+        .pcard__slide.active{opacity:1;transform:translateY(0);pointer-events:auto}
+        .pcard__dots{display:flex;gap:5px;margin-top:var(--spacing-micro-8)}
+        .pcard__dot{width:5px;height:5px;border-radius:50%;background:var(--text-light);opacity:.3;transition:all .3s}
+        .pcard__dot.active{background:var(--accent);opacity:1;width:16px;border-radius:3px}
+        .pcard__meta{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:var(--spacing-micro-8);margin-top:auto;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--accent)}
+        .pcard__arrow{font-size:16px;color:var(--accent-light);transition:transform .3s}
+        .pcard:hover .pcard__arrow{transform:translateX(4px)}
+
+        /* Detail View */
+        .prof-detail{display:none;margin-bottom:var(--spacing-medium-40)}
+        .prof-detail.active{display:block;animation:profFadeUp .5s cubic-bezier(.16,1,.3,1)}
+        @keyframes profFadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+        .prof-detail__head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:var(--spacing-small-16);margin-bottom:var(--spacing-small-24)}
+        .prof-detail__title{font-size:clamp(20px,3vw,36px);font-weight:900;text-transform:uppercase;line-height:1.1;color:var(--text)}
+        .prof-detail__sub{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:4px;color:var(--accent-light);display:block;margin-bottom:var(--spacing-micro-8)}
+        .prof-detail__ver{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--accent-light);padding:3px 10px;border:1.5px solid var(--line)}
+        .prof-detail__about{font-size:13px;line-height:1.7;color:var(--text);margin-bottom:var(--spacing-small-24)}
+        .prof-nav{display:flex;flex-wrap:wrap;gap:var(--spacing-micro-8);margin-bottom:var(--spacing-small-24)}
+        .prof-nav__btn{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;padding:var(--spacing-micro-8) var(--spacing-micro-12);cursor:pointer;border:1.5px solid var(--line);background:transparent;color:var(--text-mid);transition:all .3s;display:inline-flex;align-items:center;gap:6px}
+        .prof-nav__btn:hover{color:var(--accent);border-color:var(--accent);background:var(--bg-alt)}
+        .prof-nav__btn.active{color:var(--accent);border-color:var(--accent);background:var(--bg-alt);font-weight:800}
+        .prof-nav__btn--back{color:var(--text-light);border-color:transparent;background:none}
+        .prof-nav__btn--back:hover{color:var(--accent);border-color:var(--line)}
+        .prof-nav__btn svg{width:14px;height:14px;fill:currentColor;flex-shrink:0}
+        .sk-cat{font-size:13px;font-weight:600;font-style:italic;color:var(--accent);margin-bottom:var(--spacing-micro-12);border-bottom:1.5px solid var(--line);padding-bottom:var(--spacing-micro-4);display:inline-block;margin-top:var(--spacing-small-16)}
+        .sk-row{display:flex;align-items:center;gap:var(--spacing-micro-12);margin-bottom:var(--spacing-micro-8)}
+        .sk-row__name{font-size:11px;font-weight:500;min-width:220px;flex-shrink:0}
+        .sk-row__bar{flex:1;height:5px;background:var(--line);position:relative;overflow:hidden}
+        .sk-row__fill{position:absolute;top:0;left:0;bottom:0;width:0;background:var(--accent);transition:width .8s cubic-bezier(.16,1,.3,1)}
+        .sk-row__val{font-size:10px;font-weight:800;min-width:30px;text-align:right}
+        .prof-results{background:var(--bg-dark);color:var(--bg);padding:var(--spacing-small-24);margin-top:var(--spacing-small-24)}
+        .prof-results__title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--accent-light);margin-bottom:var(--spacing-micro-12)}
+        .prof-results__text{font-size:13px;line-height:1.7;opacity:.8}
+
+        @media(max-width:768px){
+            .sk-row{flex-direction:column;align-items:flex-start;gap:3px}
+            .sk-row__name{min-width:unset}
+            .sk-row__bar{width:100%}
+        }
+
     </style>
 </head>
 <body>
@@ -281,10 +364,10 @@
         <!-- Header -->
         <div class="header-section">
             <div class="header-content">
-                <img src="../design/Полоцк Денис-8_С.png" alt="Полоцк Денис" class="profile-photo">
+                <img src="den_polock.webp" alt="Полоцк Денис" class="profile-photo">
                 <div class="header-text">
                     <h1>Полоцк Денис</h1>
-                    <div class="subtitle">AI-Enhanced Creative Technologist | AI Automation Architect</div>
+                    <div class="subtitle">4 профессии · AI-first с 2023</div>
                     <div class="body-text">
                         Опыт: 31 год и 3 месяца, из них последние 3 года — AI-first подход.<br>
                         Локация: Санкт-Петербург
@@ -307,6 +390,13 @@
                 </div>
             </div>
         </div>
+
+        <!-- Профессии -->
+        <h2>Мои профессии</h2>
+        <div class="prof-grid" id="prof-grid"></div>
+
+        <!-- Detail View -->
+        <div id="prof-detail" class="prof-detail"></div>
 
         <!-- О себе -->
         <h2>О себе</h2>
@@ -443,6 +533,77 @@
         </div>
 
     </div>
+<script>
+const ICONS={
+  automation:'<svg viewBox="0 0 36 36"><path d="M18 6a2 2 0 0 1 2 2v1.1A9 9 0 0 1 24.9 12H26a2 2 0 1 1 0 4h-1.1A9 9 0 0 1 22 20.9V22a2 2 0 1 1-4 0v-1.1A9 9 0 0 1 14 18H12a2 2 0 1 1 0-4h2a9 9 0 0 1 2-2.9V10a2 2 0 0 1 2-2zm0 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/><circle cx="6" cy="6" r="2"/><circle cx="30" cy="6" r="2"/><circle cx="6" cy="30" r="2"/><circle cx="30" cy="30" r="2"/></svg>',
+  designer:'<svg viewBox="0 0 36 36"><path d="M28 4L32 8 12 28H8v-4L28 4zM26 10l-2-2M14 22l-2-2"/><path d="M8 28c0 0-4 1-4 4s4 0 4 0" opacity="0.5"/><circle cx="30" cy="14" r="3" opacity="0.3"/></svg>',
+  frontend:'<svg viewBox="0 0 36 36"><path d="M12 8L4 18l8 10M24 8l8 10-8 10" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="20" y1="6" x2="16" y2="30" stroke="currentColor" stroke-width="2" opacity="0.5" stroke-linecap="round"/></svg>',
+  knowledge:'<svg viewBox="0 0 36 36"><circle cx="18" cy="10" r="4"/><circle cx="8" cy="26" r="3.5"/><circle cx="28" cy="26" r="3.5"/><line x1="18" y1="14" x2="10" y2="23" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="14" x2="26" y2="23" stroke="currentColor" stroke-width="1.5"/></svg>'
+};
+const USPS={
+  automation:['Сокращение рутины на 50–70% через ИИ-агентов','35+ AI-проектов: от Dashboard до мультиагентных CRM','No-Code × Vibe Coding × Prompt Engineering'],
+  designer:['60–80% ускорение производства контента через AI','31 год дизайна × 3 года AI = уникальная экспертиза','От Midjourney до ComfyUI — полный арсенал'],
+  frontend:['Production-ready сайт за 2 дня — 0 внешних библиотек','Карусели, ROI-калькуляторы, формы на чистом JS','AI-first: Vibe Coding ускоряет цикл в 3–5 раз'],
+  knowledge:['10 000+ узлов в графовой базе знаний PHOTOBASE','YAML-схема 12 полей + LLM через MCP-протокол','Онтологии, таксономии, миграция legacy-данных']
+};
+const PROFS=[
+  {id:'automation',title:'AI Automation Architect',sub:'Архитектор интеллектуальных систем',r:95,about:'AI Automation Architect с 31-летним опытом. 3 года строю интеллектуальные системы автоматизации с ИИ, агентами и no-code. Сокращение рутины на 50–70%.',skills:[{cat:'AI Automation & Systems',items:[{n:'AI Prompt Engineering',l:95},{n:'Vibe Coding (Junior → Senior)',l:85},{n:'No-Code (n8n, Make.com)',l:90},{n:'AI Agents & Multi-agent',l:85},{n:'Node-based workflows (ComfyUI)',l:80}]},{cat:'Бизнес-интеграции',items:[{n:'Битрикс24 (вебхуки, роботы, ИИ)',l:90},{n:'CRM, 1С, маркетплейсы',l:85},{n:'Google Apps Script, API',l:88}]}],res:'🚀 50–70% меньше рутины | 📈 Рост конверсии | 💰 Экономия времени | 📊 Масштабируемые системы'},
+  {id:'designer',title:'AI-Enhanced Designer',sub:'Creative Technologist',r:92,about:'AI-Enhanced Designer с 31-летним опытом. 3 года AI-first. Масштабируемые системы визуального контента. Ускорение на 60–80%.',skills:[{cat:'AI в дизайне',items:[{n:'AI Prompt Engineering (визуал)',l:95},{n:'AI Video & Image Restoration',l:85},{n:'Node-based AI (ComfyUI)',l:82}]},{cat:'Классический дизайн (31 год)',items:[{n:'Adobe Creative Cloud (эксперт)',l:98},{n:'Figma (Dev Mode, дизайн-системы)',l:92},{n:'Rich-контент маркетплейсов',l:95}]}],res:'🚀 60–80% быстрее контент | ⚡ 3–5× ускорение | 🎯 Высокий креативный контроль'},
+  {id:'frontend',title:'Frontend Web Developer',sub:'AI-first разработка',r:88,about:'Frontend-разработчик, 31 год опыта + 3 года AI-first. Чистый код без лишних зависимостей. Полный цикл: от структуры до интеграций.',skills:[{cat:'Frontend Development',items:[{n:'HTML5, CSS3, Tailwind CSS',l:92},{n:'JavaScript ES6+ (без фреймворков)',l:90},{n:'Карусели, калькуляторы, формы',l:88}]},{cat:'AI & Automation',items:[{n:'Prompt Engineering + Vibe Coding',l:85},{n:'No-Code (n8n, Make.com)',l:80}]}],res:'🚀 2 дня — production-ready сайт | 📱 Full responsive + touch | ⚡ 3–5× через AI'},
+  {id:'knowledge',title:'Knowledge Graph Architect',sub:'Архитектор графов знаний',r:98,about:'Knowledge Graph Architect, 31 год. Графовые базы знаний (>10 000 узлов), онтологии, стандартизация метаданных, интеграция с LLM.',skills:[{cat:'Knowledge Management',items:[{n:'Graph Database Architecture',l:95},{n:'Ontology & Taxonomy Design',l:90},{n:'Metadata Schema (YAML 12 полей)',l:100},{n:'Information Architecture (>10k)',l:90}]},{cat:'AI-Интеграции',items:[{n:'AI Agents + MCP',l:85},{n:'Prompt Engineering & Context',l:95},{n:'Data Migration & Cleansing',l:85}]}],res:'🚀 >10 000 узлов PHOTOBASE | ✅ Единая схема 12 полей | ⚡ LLM через MCP'}
+];
+function renderCards(){
+  const g=document.getElementById('prof-grid');if(!g)return;
+  g.innerHTML=PROFS.map((p,i)=>`
+    <div class="pcard" data-id="${p.id}" onclick="showProf('${p.id}')">
+      <span class="pcard__num">0${i+1}</span>
+      <span class="pcard__icon">${ICONS[p.id]}</span>
+      <div class="pcard__title">${p.title}</div>
+      <div class="pcard__carousel">
+        <div class="pcard__slides">
+          ${USPS[p.id].map((u,j)=>`<div class="pcard__slide${j===0?' active':''}">${u}</div>`).join('')}
+        </div>
+        <div class="pcard__dots">
+          ${USPS[p.id].map((_,j)=>`<span class="pcard__dot${j===0?' active':''}"></span>`).join('')}
+        </div>
+      </div>
+      <div class="pcard__meta"><span>${p.r}%</span><span class="pcard__arrow">→</span></div>
+    </div>`).join('');
+  document.querySelectorAll('.pcard').forEach(card=>{
+    const sl=card.querySelectorAll('.pcard__slide'),dt=card.querySelectorAll('.pcard__dot');
+    let idx=0,t=null;
+    card.addEventListener('mouseenter',()=>{t=setInterval(()=>{sl[idx].classList.remove('active');dt[idx].classList.remove('active');idx=(idx+1)%sl.length;sl[idx].classList.add('active');dt[idx].classList.add('active')},2000)});
+    card.addEventListener('mouseleave',()=>{if(t){clearInterval(t);t=null}sl.forEach((s,i)=>s.classList.toggle('active',i===0));dt.forEach((d,i)=>d.classList.toggle('active',i===0));idx=0});
+  });
+}
+function showProf(id){
+  const p=PROFS.find(x=>x.id===id);if(!p)return;
+  document.body.setAttribute('data-theme',p.id);
+  const el=document.getElementById('prof-detail');
+  const others=PROFS.filter(x=>x.id!==p.id);
+  el.innerHTML=`<div class="section-box">
+    <div class="prof-nav">
+      <button class="prof-nav__btn prof-nav__btn--back" onclick="hideProf()">← Все профессии</button>
+      ${others.map(o=>`<button class="prof-nav__btn" onclick="showProf('${o.id}')">${ICONS[o.id].replace('<svg','<svg style="width:14px;height:14px"')} ${o.title}</button>`).join('')}
+    </div>
+    <div class="prof-detail__head"><div><span class="prof-detail__sub">${p.sub}</span><div class="prof-detail__title">${p.title}</div></div><span class="prof-detail__ver">${p.r}%</span></div>
+    <div class="prof-detail__about">${p.about}</div>
+    ${p.skills.map(c=>`<div class="sk-cat">${c.cat}</div>${c.items.map(s=>`<div class="sk-row"><span class="sk-row__name">${s.n}</span><div class="sk-row__bar"><div class="sk-row__fill" data-l="${s.l}"></div></div><span class="sk-row__val">${s.l}%</span></div>`).join('')}`).join('')}
+    <div class="prof-results"><div class="prof-results__title">Ключевые достижения</div><div class="prof-results__text">${p.res}</div></div>
+  </div>`;
+  el.classList.add('active');
+  document.getElementById('prof-grid').style.display='none';
+  requestAnimationFrame(()=>el.querySelectorAll('.sk-row__fill').forEach(b=>b.style.width=b.dataset.l+'%'));
+  el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function hideProf(){
+  document.body.removeAttribute('data-theme');
+  document.getElementById('prof-detail').classList.remove('active');
+  document.getElementById('prof-detail').innerHTML='';
+  document.getElementById('prof-grid').style.display='';
+}
+document.addEventListener('DOMContentLoaded',renderCards);
+</script>
 
 </body>
 </html>
