@@ -1,0 +1,133 @@
+{
+  "serviceId": "10",
+  "serviceName": "AI Corporate Assistant",
+  "serviceShort": "Corporate AI",
+
+  "basePrice": 205000,
+  "monthlySupportDefault": 14000,
+  "currency": "RUB",
+
+  "preSettings": [
+    {
+      "id": "minimum",
+      "name": "Минимум",
+      "price": 205000,
+      "monthlySupport": 14000,
+      "description": "Базовый ассистент + подключение 3 источников"
+    },
+    {
+      "id": "optimal",
+      "name": "Оптимально",
+      "price": 335000,
+      "monthlySupport": 21500,
+      "description": "Полный цикл + RAG + безопасность",
+      "popular": true
+    },
+    {
+      "id": "full",
+      "name": "Полный цикл",
+      "price": 485000,
+      "monthlySupport": 0,
+      "description": "Всё под ключ + обучение команды + 3 мес поддержки"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "price": 730000,
+      "monthlySupport": 42000,
+      "description": "Максимальная кастомизация + dedicated инженер + SLA + on-premise"
+    }
+  ],
+
+  "wizard": {
+    "step1": {
+      "title": "Что ближе всего к вашей задаче?",
+      "options": [
+        {
+          "id": "new",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/></svg>",
+          "label": "Новый продукт с нуля",
+          "tooltipTitle": "Разработка с нуля",
+          "tooltipText": "Полный цикл: аудит знаний компании → создание корпоративной базы → настройка RAG → интеграция с Telegram/почтой → запуск за 5 недель. Сотрудники получают точные ответы за 3–5 секунд."
+        },
+        {
+          "id": "improve",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='22 7 13.5 15.5 8.5 10.5 2 17'/><polyline points='16 7 22 7 22 13'/></svg>",
+          "label": "Доработка существующего",
+          "tooltipTitle": "Усиление текущей системы",
+          "tooltipText": "Подключаем ИИ-ассистента к твоим существующим базам (1С, SharePoint, Confluence, Google Drive, CRM). Сотрудники перестают тратить часы на поиск информации. Окупается за 2–3 месяца."
+        },
+        {
+          "id": "research",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>",
+          "label": "Исследование / концепция",
+          "tooltipTitle": "Пилот и стратегия",
+          "tooltipText": "Анализ текущих источников знаний + пилотный ассистент на 50–100 запросах + оценка точности + ТЗ и план внедрения."
+        }
+      ]
+    },
+    "step2": {
+      "volume": {
+        "label": "Количество активных пользователей ассистента",
+        "min": 10,
+        "max": 500,
+        "step": 5,
+        "default": 45,
+        "unit": "пользователей",
+        "pricePerUnit": 4200
+      },
+      "checkboxes": [
+        {
+          "id": "knowledge",
+          "label": "Подключение к корпоративным базам знаний (RAG)",
+          "priceDelta": 135000,
+          "tooltip": "ИИ подключается к 1С, SharePoint, Confluence, Google Drive, Notion, внутренним порталами и отвечает только на основе твоих данных с указанием источника."
+        },
+        {
+          "id": "security",
+          "label": "Корпоративная безопасность и разграничение доступа",
+          "priceDelta": 98000,
+          "tooltip": "Полный контроль доступа по ролям, логирование всех запросов, on-premise установка при необходимости, соответствие 152-ФЗ."
+        },
+        {
+          "id": "integration",
+          "label": "Интеграция с Telegram, почтой и внутренними чатами",
+          "priceDelta": 85000,
+          "tooltip": "Ассистент доступен в Telegram, Outlook, Teams, корпоративном портале. Можно задавать вопросы прямо из рабочего чата."
+        },
+        {
+          "id": "reports",
+          "label": "Генерация отчётов и аналитики по запросам",
+          "priceDelta": 72000,
+          "tooltip": "Автоматическая генерация отчётов, сводок, сравнений на основе внутренних данных (продажи, финансы, HR и т.д.)."
+        },
+        {
+          "id": "training",
+          "label": "Обучение на внутренних документах и процессах",
+          "priceDelta": 88000,
+          "tooltip": "ИИ обучается на твоих регламентах, инструкциях, договорах и отвечает в стиле и терминологии компании."
+        }
+      ],
+      "deadline": [
+        { "id": "4weeks", "label": "4 недели (ускоренный)", "priceDelta": 92000 },
+        { "id": "6weeks", "label": "6 недель (стандарт)", "priceDelta": 0 },
+        { "id": "flexible", "label": "Гибко / под вас", "priceDelta": -28000 }
+      ]
+    },
+    "step3": {
+      "ctaPrimary": "Забронировать внедрение",
+      "ctaSecondary": "Обсудить проект"
+    }
+  },
+
+  "manual": {
+    "volumeDefault": 45,
+    "checkboxes": ["knowledge", "security", "integration", "training"],
+    "deadlineDefault": "6weeks"
+  },
+
+  "pricing": {
+    "formula": "basePrice + (volume * pricePerUnit) + sum(checkboxDeltas) + deadlineDelta",
+    "notes": "Цены указаны с НДС. Поддержка оплачивается ежемесячно отдельно. Объём считается по количеству активных пользователей с доступом к ассистенту."
+  }
+}

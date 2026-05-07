@@ -1,0 +1,133 @@
+{
+  "serviceId": "12",
+  "serviceName": "AI System Organizer",
+  "serviceShort": "System Organizer",
+
+  "basePrice": 155000,
+  "monthlySupportDefault": 10500,
+  "currency": "RUB",
+
+  "preSettings": [
+    {
+      "id": "minimum",
+      "name": "Минимум",
+      "price": 155000,
+      "monthlySupport": 10500,
+      "description": "Базовая организация + очистка 1 системы"
+    },
+    {
+      "id": "optimal",
+      "name": "Оптимально",
+      "price": 255000,
+      "monthlySupport": 15500,
+      "description": "Полный цикл + 3 системы + автоматизация",
+      "popular": true
+    },
+    {
+      "id": "full",
+      "name": "Полный цикл",
+      "price": 365000,
+      "monthlySupport": 0,
+      "description": "Всё под ключ + обучение + 3 мес поддержки"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "price": 540000,
+      "monthlySupport": 30000,
+      "description": "Максимальная кастомизация + dedicated поддержка + SLA"
+    }
+  ],
+
+  "wizard": {
+    "step1": {
+      "title": "Что ближе всего к вашей задаче?",
+      "options": [
+        {
+          "id": "new",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/></svg>",
+          "label": "Новый продукт с нуля",
+          "tooltipTitle": "Разработка с нуля",
+          "tooltipText": "Полный цикл: аудит всех систем → создание единой структуры → автоматизация рутины → запуск за 4 недели. Наводим порядок в хаосе данных и процессов."
+        },
+        {
+          "id": "improve",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='22 7 13.5 15.5 8.5 10.5 2 17'/><polyline points='16 7 22 7 22 13'/></svg>",
+          "label": "Доработка существующего",
+          "tooltipTitle": "Усиление текущей системы",
+          "tooltipText": "Приводим в порядок твои текущие системы (CRM, файлы, почту, 1С). Убираем дубли, наводим структуру, автоматизируем рутинные задачи. Окупается за 2 месяца."
+        },
+        {
+          "id": "research",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>",
+          "label": "Исследование / концепция",
+          "tooltipTitle": "Пилот и стратегия",
+          "tooltipText": "Аудит 2–3 твоих систем + пилотная организация + карта улучшений + ТЗ и план наведения порядка."
+        }
+      ]
+    },
+    "step2": {
+      "volume": {
+        "label": "Количество объектов / записей под организацией",
+        "min": 2000,
+        "max": 200000,
+        "step": 2000,
+        "default": 25000,
+        "unit": "объектов",
+        "pricePerUnit": 5.8
+      },
+      "checkboxes": [
+        {
+          "id": "files",
+          "label": "Организация файлов и папок (Google Drive / OneDrive / локально)",
+          "priceDelta": 85000,
+          "tooltip": "ИИ наводит порядок в файлах: убирает дубли, создаёт логичную структуру папок, переименовывает по правилам."
+        },
+        {
+          "id": "crm",
+          "label": "Очистка и структурирование CRM (Bitrix24, amoCRM, HubSpot)",
+          "priceDelta": 98000,
+          "tooltip": "Автоматически находит и исправляет дубли клиентов, приводит данные к единому формату, заполняет пропуски."
+        },
+        {
+          "id": "automation",
+          "label": "Автоматизация рутинных процессов и задач",
+          "priceDelta": 92000,
+          "tooltip": "Создаёт автоматические правила: перемещение файлов, уведомления, обновление статусов, генерация отчётов."
+        },
+        {
+          "id": "duplicates",
+          "label": "Поиск и удаление дублей во всех системах",
+          "priceDelta": 68000,
+          "tooltip": "Глубокий поиск дублей по 8+ параметрам с безопасным слиянием и сохранением истории."
+        },
+        {
+          "id": "knowledge",
+          "label": "Структурирование базы знаний и регламентов",
+          "priceDelta": 75000,
+          "tooltip": "Приводит в порядок внутренние документы, инструкции и регламенты в единую удобную структуру."
+        }
+      ],
+      "deadline": [
+        { "id": "3weeks", "label": "3 недели (ускоренный)", "priceDelta": 72000 },
+        { "id": "4weeks", "label": "4 недели (стандарт)", "priceDelta": 0 },
+        { "id": "flexible", "label": "Гибко / под вас", "priceDelta": -20000 }
+      ]
+    },
+    "step3": {
+      "ctaPrimary": "Забронировать внедрение",
+      "ctaSecondary": "Обсудить проект"
+    }
+  },
+
+  "manual": {
+    "volumeDefault": 25000,
+    "checkboxes": ["files", "crm", "automation", "duplicates"],
+    "deadlineDefault": "4weeks"
+  },
+
+  "pricing": {
+    "formula": "basePrice + (volume * pricePerUnit) + sum(checkboxDeltas) + deadlineDelta",
+    "notes": "Цены указаны с НДС. Поддержка оплачивается ежемесячно отдельно. Объём считается по количеству объектов (файлы, контакты, записи), которые находятся под управлением ИИ."
+  }
+}

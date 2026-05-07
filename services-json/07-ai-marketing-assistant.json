@@ -1,0 +1,139 @@
+{
+  "serviceId": "07",
+  "serviceName": "AI Marketing Assistant",
+  "serviceShort": "Marketing AI",
+
+  "basePrice": 175000,
+  "monthlySupportDefault": 12000,
+  "currency": "RUB",
+
+  "preSettings": [
+    {
+      "id": "minimum",
+      "name": "Минимум",
+      "price": 175000,
+      "monthlySupport": 12000,
+      "description": "Базовый ассистент + 30 шаблонов"
+    },
+    {
+      "id": "optimal",
+      "name": "Оптимально",
+      "price": 285000,
+      "monthlySupport": 18000,
+      "description": "Полный цикл + визуалы + аналитика",
+      "popular": true
+    },
+    {
+      "id": "full",
+      "name": "Полный цикл",
+      "price": 410000,
+      "monthlySupport": 0,
+      "description": "Всё под ключ + бренд-кит + обучение + 3 мес поддержки"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "price": 620000,
+      "monthlySupport": 35000,
+      "description": "Максимальная кастомизация + dedicated маркетолог + SLA"
+    }
+  ],
+
+  "wizard": {
+    "step1": {
+      "title": "Что ближе всего к вашей задаче?",
+      "options": [
+        {
+          "id": "new",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/></svg>",
+          "label": "Новый продукт с нуля",
+          "tooltipTitle": "Разработка с нуля",
+          "tooltipText": "Полный цикл: анализ твоей целевой аудитории → создание бренд-voice + визуального стиля → интеграция → запуск за 4–5 недель. Контент генерируется в 5–7 раз быстрее."
+        },
+        {
+          "id": "improve",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='22 7 13.5 15.5 8.5 10.5 2 17'/><polyline points='16 7 22 7 22 13'/></svg>",
+          "label": "Доработка существующего",
+          "tooltipTitle": "Усиление текущей системы",
+          "tooltipText": "Встроим ИИ-ассистента в твои процессы. Автоматическая генерация постов, баннеров и текстов с сохранением фирменного стиля. Маркетолог тратит в 3–4 раза меньше времени. Окупается за 2 месяца."
+        },
+        {
+          "id": "research",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>",
+          "label": "Исследование / концепция",
+          "tooltipTitle": "Пилот и стратегия",
+          "tooltipText": "Анализ 3–6 месяцев твоей рекламы + пилотный генератор + сравнение конверсии + ТЗ и готовый бренд-кит под твою нишу."
+        }
+      ]
+    },
+    "step2": {
+      "volume": {
+        "label": "Количество контент-единиц в месяц",
+        "min": 50,
+        "max": 3000,
+        "step": 50,
+        "default": 400,
+        "unit": "единиц",
+        "pricePerUnit": 380
+      },
+      "checkboxes": [
+        {
+          "id": "visual",
+          "label": "Генерация визуалов и баннеров (Midjourney + Flux)",
+          "priceDelta": 125000,
+          "tooltip": "Автоматическая генерация баннеров, постов для соцсетей, email-шапок и рекламных креативов в твоём фирменном стиле."
+        },
+        {
+          "id": "content",
+          "label": "Полная генерация текстов + постов + email",
+          "priceDelta": 95000,
+          "tooltip": "Тексты для постов, продающих описаний, email-рассылок и рекламных объявлений с учётом твоего бренд-voice."
+        },
+        {
+          "id": "analysis",
+          "label": "Анализ эффективности рекламы + рекомендации",
+          "priceDelta": 88000,
+          "tooltip": "Подключается к рекламным кабинетам (VK, MyTarget, Facebook) и даёт точные рекомендации: что работает, что нужно поменять."
+        },
+        {
+          "id": "ab",
+          "label": "A/B-тестирование креативов + автоподбор",
+          "priceDelta": 72000,
+          "tooltip": "Генерирует 3–5 вариантов одного креатива и автоматически определяет, какой конвертится лучше."
+        },
+        {
+          "id": "brandkit",
+          "label": "Сохранение фирменного стиля (Brand Kit)",
+          "priceDelta": 78000,
+          "tooltip": "ИИ запоминает твои цвета, шрифты, стиль фотографий и никогда не нарушает бренд-айдентичность."
+        },
+        {
+          "id": "calendar",
+          "label": "Автоматический контент-план на месяц",
+          "priceDelta": 65000,
+          "tooltip": "Генерирует готовый контент-план на 30 дней с учётом праздников, акций и твоей воронки продаж."
+        }
+      ],
+      "deadline": [
+        { "id": "3weeks", "label": "3 недели (ускоренный)", "priceDelta": 82000 },
+        { "id": "1month", "label": "1 месяц (стандарт)", "priceDelta": 0 },
+        { "id": "flexible", "label": "Гибко / под вас", "priceDelta": -25000 }
+      ]
+    },
+    "step3": {
+      "ctaPrimary": "Забронировать внедрение",
+      "ctaSecondary": "Обсудить проект"
+    }
+  },
+
+  "manual": {
+    "volumeDefault": 400,
+    "checkboxes": ["visual", "content", "brandkit", "analysis"],
+    "deadlineDefault": "1month"
+  },
+
+  "pricing": {
+    "formula": "basePrice + (volume * pricePerUnit) + sum(checkboxDeltas) + deadlineDelta",
+    "notes": "Цены указаны с НДС. Поддержка оплачивается ежемесячно отдельно. Объём считается по реально сгенерированным контент-единицам (пост + баннер = 2 единицы)."
+  }
+}

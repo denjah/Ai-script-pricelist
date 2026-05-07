@@ -1,0 +1,127 @@
+{
+  "serviceId": "01",
+  "serviceName": "Deep Client Analysis AI",
+  "serviceShort": "Deep Analysis",
+
+  "basePrice": 170000,
+  "monthlySupportDefault": 12000,
+  "currency": "RUB",
+
+  "preSettings": [
+    {
+      "id": "minimum",
+      "name": "Минимум",
+      "price": 170000,
+      "monthlySupport": 12000,
+      "description": "Базовый анализ + отчёт"
+    },
+    {
+      "id": "optimal",
+      "name": "Оптимально",
+      "price": 285000,
+      "monthlySupport": 18500,
+      "description": "Полный цикл + интеграция",
+      "popular": true
+    },
+    {
+      "id": "full",
+      "name": "Полный цикл",
+      "price": 410000,
+      "monthlySupport": 0,
+      "description": "Всё под ключ + 3 мес поддержки"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "price": 620000,
+      "monthlySupport": 32000,
+      "description": "Максимальная кастомизация + SLA"
+    }
+  ],
+
+  "wizard": {
+    "step1": {
+      "title": "Что ближе всего к вашей задаче?",
+      "options": [
+        {
+          "id": "new",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/></svg>",
+          "label": "Новый продукт с нуля",
+          "tooltipTitle": "Разработка с нуля",
+          "tooltipText": "Полный цикл: проектирование ИИ-модели → интеграция с CRM → обучение на ваших данных → запуск за 3–4 недели. Средний рост конверсии: +38%."
+        },
+        {
+          "id": "improve",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='22 7 13.5 15.5 8.5 10.5 2 17'/><polyline points='16 7 22 7 22 13'/></svg>",
+          "label": "Доработка существующего",
+          "tooltipTitle": "Усиление текущей системы",
+          "tooltipText": "Встроим ИИ-аналитику в вашу CRM без остановки работы. Автоматизация скоринга, подсказки менеджерам, авто-отчёты. Окупается за 2–3 месяца."
+        },
+        {
+          "id": "research",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>",
+          "label": "Исследование / концепция",
+          "tooltipTitle": "Пилот и стратегия",
+          "tooltipText": "Аудит процессов + пилотный анализ на реальных данных + детальная ROI-модель. Получите ТЗ и дорожную карту внедрения."
+        }
+      ]
+    },
+    "step2": {
+      "volume": {
+        "label": "Количество карточек клиентов для анализа",
+        "min": 50,
+        "max": 2000,
+        "step": 50,
+        "default": 500,
+        "unit": "карточек",
+        "pricePerUnit": 450
+      },
+      "checkboxes": [
+        {
+          "id": "bitrix",
+          "label": "Интеграция с телефонией / Bitrix24",
+          "priceDelta": 145000,
+          "tooltip": "Автоматический запуск анализа при входящем звонке и сохранение результата в карточку клиента."
+        },
+        {
+          "id": "telegram",
+          "label": "Telegram-уведомления",
+          "priceDelta": 95000,
+          "tooltip": "Менеджер получает мгновенное уведомление в Telegram с ключевыми выводами и ссылкой на полный отчёт."
+        },
+        {
+          "id": "pdf",
+          "label": "PDF-экспорт + дашборд",
+          "priceDelta": 110000,
+          "tooltip": "Автоматическая генерация красивого PDF-отчёта и еженедельный дашборд для руководителя отдела продаж."
+        },
+        {
+          "id": "mobile",
+          "label": "Мобильная версия",
+          "priceDelta": 165000,
+          "tooltip": "Полностью адаптивный интерфейс + красивые анимации переходов между состояниями."
+        }
+      ],
+      "deadline": [
+        { "id": "2weeks", "label": "2 недели (ускоренный)", "priceDelta": 85000 },
+        { "id": "1month", "label": "1 месяц (стандарт)", "priceDelta": 0 },
+        { "id": "flexible", "label": "Гибко / под вас", "priceDelta": -25000 }
+      ]
+    },
+    "step3": {
+      "ctaPrimary": "Забронировать внедрение",
+      "ctaSecondary": "Обсудить проект"
+    }
+  },
+
+  "manual": {
+    "volumeDefault": 500,
+    "checkboxes": ["bitrix", "telegram", "pdf", "mobile"],
+    "deadlineDefault": "1month"
+  },
+
+  "pricing": {
+    "formula": "basePrice + (volume * pricePerUnit) + sum(checkboxDeltas) + deadlineDelta",
+    "notes": "Цены указаны с НДС. Поддержка оплачивается ежемесячно отдельно."
+  }
+}

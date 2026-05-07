@@ -1,0 +1,133 @@
+{
+  "serviceId": "03",
+  "serviceName": "AI Communications Analyst",
+  "serviceShort": "Comms Analyst",
+
+  "basePrice": 195000,
+  "monthlySupportDefault": 13500,
+  "currency": "RUB",
+
+  "preSettings": [
+    {
+      "id": "minimum",
+      "name": "Минимум",
+      "price": 195000,
+      "monthlySupport": 13500,
+      "description": "Базовый анализ коммуникаций + отчёт"
+    },
+    {
+      "id": "optimal",
+      "name": "Оптимально",
+      "price": 310000,
+      "monthlySupport": 19500,
+      "description": "Полный цикл + интеграция + coaching",
+      "popular": true
+    },
+    {
+      "id": "full",
+      "name": "Полный цикл",
+      "price": 445000,
+      "monthlySupport": 0,
+      "description": "Всё под ключ + 3 мес поддержки + обучение команды"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "price": 680000,
+      "monthlySupport": 35000,
+      "description": "Максимальная кастомизация + SLA + dedicated support"
+    }
+  ],
+
+  "wizard": {
+    "step1": {
+      "title": "Что ближе всего к вашей задаче?",
+      "options": [
+        {
+          "id": "new",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/></svg>",
+          "label": "Новый продукт с нуля",
+          "tooltipTitle": "Разработка с нуля",
+          "tooltipText": "Полный цикл: проектирование ИИ-аналитика → интеграция с телефонией/чатами → обучение на ваших данных → запуск за 4–5 недель. Результат: контроль 100% коммуникаций + рост конверсии на 25–32%."
+        },
+        {
+          "id": "improve",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='22 7 13.5 15.5 8.5 10.5 2 17'/><polyline points='16 7 22 7 22 13'/></svg>",
+          "label": "Доработка существующего",
+          "tooltipTitle": "Усиление текущей системы",
+          "tooltipText": "Встроим ИИ-аналитику в вашу текущую телефонию и чаты без остановки работы. Автоматическая транскрипция, анализ тональности, выявление возражений. РОП экономит 15–20 часов в неделю. Окупается за 2–3 месяца."
+        },
+        {
+          "id": "research",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>",
+          "label": "Исследование / концепция",
+          "tooltipTitle": "Пилот и стратегия",
+          "tooltipText": "Аудит 200–500 реальных коммуникаций + пилотный анализ + детальная модель влияния на продажи + ТЗ и дорожная карта. Получите точное понимание, где теряете деньги."
+        }
+      ]
+    },
+    "step2": {
+      "volume": {
+        "label": "Количество коммуникаций (звонки + чаты) в месяц",
+        "min": 200,
+        "max": 15000,
+        "step": 200,
+        "default": 2500,
+        "unit": "коммуникаций",
+        "pricePerUnit": 95
+      },
+      "checkboxes": [
+        {
+          "id": "bitrix",
+          "label": "Интеграция с Bitrix24 + телефонией",
+          "priceDelta": 125000,
+          "tooltip": "Автоматическая загрузка всех звонков и чатов, скоринг в реальном времени и сохранение выводов в карточку клиента."
+        },
+        {
+          "id": "telegram",
+          "label": "Telegram-уведомления + coaching tips",
+          "priceDelta": 78000,
+          "tooltip": "Менеджер получает в Telegram разбор разговора + 2–3 конкретные рекомендации, как улучшить следующий контакт."
+        },
+        {
+          "id": "transcription",
+          "label": "Полная транскрипция + поиск по ключам",
+          "priceDelta": 95000,
+          "tooltip": "Точная транскрипция звонков + возможность искать по ключевым словам, возражениям и упоминаниям конкурентов."
+        },
+        {
+          "id": "sentiment",
+          "label": "Анализ тональности + выявление возражений",
+          "priceDelta": 85000,
+          "tooltip": "Автоматическое определение эмоций клиента и ключевых возражений с привязкой к конкретным фразам менеджера."
+        },
+        {
+          "id": "dashboard",
+          "label": "Дашборд РОПа + еженедельные insights",
+          "priceDelta": 110000,
+          "tooltip": "Реал-тайм дашборд с рейтингом менеджеров, топ-возражениями, трендами и персональными рекомендациями для РОПа."
+        }
+      ],
+      "deadline": [
+        { "id": "3weeks", "label": "3 недели (ускоренный)", "priceDelta": 85000 },
+        { "id": "1month", "label": "1 месяц (стандарт)", "priceDelta": 0 },
+        { "id": "flexible", "label": "Гибко / под вас", "priceDelta": -25000 }
+      ]
+    },
+    "step3": {
+      "ctaPrimary": "Забронировать внедрение",
+      "ctaSecondary": "Обсудить проект"
+    }
+  },
+
+  "manual": {
+    "volumeDefault": 2500,
+    "checkboxes": ["bitrix", "telegram", "sentiment", "dashboard"],
+    "deadlineDefault": "1month"
+  },
+
+  "pricing": {
+    "formula": "basePrice + (volume * pricePerUnit) + sum(checkboxDeltas) + deadlineDelta",
+    "notes": "Цены указаны с НДС. Поддержка оплачивается ежемесячно отдельно. Объём коммуникаций считается суммарно (звонки + чаты)."
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "serviceId": "08",
+  "serviceName": "AI Visualization & Control System",
+  "serviceShort": "Viz & Control",
+
+  "basePrice": 235000,
+  "monthlySupportDefault": 15500,
+  "currency": "RUB",
+
+  "preSettings": [
+    {
+      "id": "minimum",
+      "name": "Минимум",
+      "price": 235000,
+      "monthlySupport": 15500,
+      "description": "Базовая визуализация + 1 экран"
+    },
+    {
+      "id": "optimal",
+      "name": "Оптимально",
+      "price": 375000,
+      "monthlySupport": 23500,
+      "description": "Полный цикл + интерактив + калибровка",
+      "popular": true
+    },
+    {
+      "id": "full",
+      "name": "Полный цикл",
+      "price": 540000,
+      "monthlySupport": 0,
+      "description": "Всё под ключ + обучение + 3 мес поддержки + SLA"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "price": 820000,
+      "monthlySupport": 48000,
+      "description": "Максимальная кастомизация + dedicated инженер + SLA"
+    }
+  ],
+
+  "wizard": {
+    "step1": {
+      "title": "Что ближе всего к вашей задаче?",
+      "options": [
+        {
+          "id": "new",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/></svg>",
+          "label": "Новый продукт с нуля",
+          "tooltipTitle": "Разработка с нуля",
+          "tooltipText": "Полный цикл: анализ пространства → разработка визуального языка → создание интерактивной карты → интеграция оборудования → запуск за 6–8 недель. Готовое решение для командных центров и шоурумов."
+        },
+        {
+          "id": "improve",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='22 7 13.5 15.5 8.5 10.5 2 17'/><polyline points='16 7 22 7 22 13'/></svg>",
+          "label": "Доработка существующего",
+          "tooltipTitle": "Усиление текущей системы",
+          "tooltipText": "Модернизируем твою видеостену или интерактивный экран. Добавляем AI-визуализации, точную цветовую калибровку и интеллектуальное управление коммутацией. Окупается за 4–6 месяцев."
+        },
+        {
+          "id": "research",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>",
+          "label": "Исследование / концепция",
+          "tooltipTitle": "Пилот и стратегия",
+          "tooltipText": "Анализ текущего оборудования + пилотная визуализация на 2–4 экранах + техническое ТЗ + расчёт бюджета и сроков реализации."
+        }
+      ]
+    },
+    "step2": {
+      "volume": {
+        "label": "Количество экранов / видеостен в системе",
+        "min": 2,
+        "max": 60,
+        "step": 1,
+        "default": 8,
+        "unit": "экранов",
+        "pricePerUnit": 18500
+      },
+      "checkboxes": [
+        {
+          "id": "visual",
+          "label": "Разработка визуализаций и анимаций для больших экранов",
+          "priceDelta": 145000,
+          "tooltip": "Создание динамических визуализаций, 3D-анимаций, инфографики и дашбордов, оптимизированных для больших разрешений и видеостен."
+        },
+        {
+          "id": "interactive",
+          "label": "Интерактивные карты и touch/gesture управление",
+          "priceDelta": 125000,
+          "tooltip": "Разработка интерактивных карт помещений, процессов или данных с поддержкой тач, жестов и multi-touch."
+        },
+        {
+          "id": "calibration",
+          "label": "Профессиональная калибровка цветов и синхронизация",
+          "priceDelta": 98000,
+          "tooltip": "Точная цветовая калибровка всех экранов в единую цветовую температуру и яркость. Идеально для видеостен и шоурумов."
+        },
+        {
+          "id": "commutation",
+          "label": "Коммутация и управление оборудованием (Crestron/Extron)",
+          "priceDelta": 115000,
+          "tooltip": "Интеллектуальная коммутация источников, автоматическое переключение сценариев, интеграция с системами управления (Crestron, Extron, AMX)."
+        },
+        {
+          "id": "ai",
+          "label": "AI real-time оверлеи и интеллектуальные подсказки",
+          "priceDelta": 88000,
+          "tooltip": "Наложение AI-аналитики в реальном времени (данные, прогнозы, предупреждения) прямо на визуализацию."
+        },
+        {
+          "id": "remote",
+          "label": "Удалённое управление и мониторинг 24/7",
+          "priceDelta": 72000,
+          "tooltip": "Полный удалённый контроль системы с любого устройства + автоматические отчёты и алерты."
+        }
+      ],
+      "deadline": [
+        { "id": "5weeks", "label": "5 недель (ускоренный)", "priceDelta": 105000 },
+        { "id": "7weeks", "label": "7 недель (стандарт)", "priceDelta": 0 },
+        { "id": "flexible", "label": "Гибко / под вас", "priceDelta": -32000 }
+      ]
+    },
+    "step3": {
+      "ctaPrimary": "Забронировать внедрение",
+      "ctaSecondary": "Обсудить проект"
+    }
+  },
+
+  "manual": {
+    "volumeDefault": 8,
+    "checkboxes": ["visual", "interactive", "calibration", "commutation"],
+    "deadlineDefault": "7weeks"
+  },
+
+  "pricing": {
+    "formula": "basePrice + (volume * pricePerUnit) + sum(checkboxDeltas) + deadlineDelta",
+    "notes": "Цены указаны с НДС. Поддержка оплачивается ежемесячно отдельно. Объём считается по количеству физических экранов/видеостен в единой системе."
+  }
+}

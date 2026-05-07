@@ -1,0 +1,133 @@
+{
+  "serviceId": "09",
+  "serviceName": "AI Tender Assistant",
+  "serviceShort": "Tender AI",
+
+  "basePrice": 195000,
+  "monthlySupportDefault": 13500,
+  "currency": "RUB",
+
+  "preSettings": [
+    {
+      "id": "minimum",
+      "name": "Минимум",
+      "price": 195000,
+      "monthlySupport": 13500,
+      "description": "Базовый поиск + скоринг 50 тендеров"
+    },
+    {
+      "id": "optimal",
+      "name": "Оптимально",
+      "price": 315000,
+      "monthlySupport": 20500,
+      "description": "Полный цикл + авто-документы + уведомления",
+      "popular": true
+    },
+    {
+      "id": "full",
+      "name": "Полный цикл",
+      "price": 455000,
+      "monthlySupport": 0,
+      "description": "Всё под ключ + обучение + 3 мес поддержки"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "price": 690000,
+      "monthlySupport": 38000,
+      "description": "Максимальная кастомизация + dedicated тендерный аналитик + SLA"
+    }
+  ],
+
+  "wizard": {
+    "step1": {
+      "title": "Что ближе всего к вашей задаче?",
+      "options": [
+        {
+          "id": "new",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/></svg>",
+          "label": "Новый продукт с нуля",
+          "tooltipTitle": "Разработка с нуля",
+          "tooltipText": "Полный цикл: настройка поиска по 44-ФЗ/223-ФЗ/коммерческим → обучение на твоей нише → интеграция → запуск за 4 недели. Экономия 15–25 часов в неделю на поиск и анализ."
+        },
+        {
+          "id": "improve",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='22 7 13.5 15.5 8.5 10.5 2 17'/><polyline points='16 7 22 7 22 13'/></svg>",
+          "label": "Доработка существующего",
+          "tooltipTitle": "Усиление текущей системы",
+          "tooltipText": "Встроим ИИ-ассистента в твои процессы. Автоматический поиск, скоринг релевантности и подготовка документов. Увеличивает количество подаваемых заявок в 2–3 раза. Окупается за 2–3 месяца."
+        },
+        {
+          "id": "research",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>",
+          "label": "Исследование / концепция",
+          "tooltipTitle": "Пилот и стратегия",
+          "tooltipText": "Анализ 100–200 реальных тендеров + пилотный скоринг + карта твоих конкурентных преимуществ + ТЗ и план внедрения."
+        }
+      ]
+    },
+    "step2": {
+      "volume": {
+        "label": "Количество анализируемых тендеров в месяц",
+        "min": 100,
+        "max": 5000,
+        "step": 50,
+        "default": 600,
+        "unit": "тендеров",
+        "pricePerUnit": 145
+      },
+      "checkboxes": [
+        {
+          "id": "search",
+          "label": "Автоматический поиск по 44-ФЗ, 223-ФЗ и коммерческим площадкам",
+          "priceDelta": 125000,
+          "tooltip": "ИИ ежедневно мониторит все площадки и присылает только релевантные тендеры под твою нишу и географию."
+        },
+        {
+          "id": "scoring",
+          "label": "Скоринг релевантности и вероятности победы",
+          "priceDelta": 98000,
+          "tooltip": "Автоматическая оценка тендера по 12 параметрам (конкуренция, цена, сроки, твои сильные стороны) с рекомендацией: подавать / не подавать."
+        },
+        {
+          "id": "documents",
+          "label": "Авто-подготовка документов и форм",
+          "priceDelta": 115000,
+          "tooltip": "Генерация заявки, коммерческого предложения, формы 2 и других документов на основе данных тендера и твоих шаблонов."
+        },
+        {
+          "id": "competitors",
+          "label": "Анализ конкурентов и их цен",
+          "priceDelta": 82000,
+          "tooltip": "ИИ анализирует, кто обычно побеждает в похожих тендерах, и даёт рекомендации по цене и сильным сторонам."
+        },
+        {
+          "id": "notifications",
+          "label": "Мгновенные уведомления + Telegram-бот",
+          "priceDelta": 68000,
+          "tooltip": "Мгновенные push и Telegram-уведомления о новых подходящих тендерах с прямой ссылкой и кратким анализом."
+        }
+      ],
+      "deadline": [
+        { "id": "3weeks", "label": "3 недели (ускоренный)", "priceDelta": 88000 },
+        { "id": "1month", "label": "1 месяц (стандарт)", "priceDelta": 0 },
+        { "id": "flexible", "label": "Гибко / под вас", "priceDelta": -26000 }
+      ]
+    },
+    "step3": {
+      "ctaPrimary": "Забронировать внедрение",
+      "ctaSecondary": "Обсудить проект"
+    }
+  },
+
+  "manual": {
+    "volumeDefault": 600,
+    "checkboxes": ["search", "scoring", "documents", "notifications"],
+    "deadlineDefault": "1month"
+  },
+
+  "pricing": {
+    "formula": "basePrice + (volume * pricePerUnit) + sum(checkboxDeltas) + deadlineDelta",
+    "notes": "Цены указаны с НДС. Поддержка оплачивается ежемесячно отдельно. Объём считается по реально проанализированным тендерам."
+  }
+}

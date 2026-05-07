@@ -1,0 +1,127 @@
+{
+  "serviceId": "02",
+  "serviceName": "AI Lead Qualifier",
+  "serviceShort": "Lead Qualifier",
+
+  "basePrice": 150000,
+  "monthlySupportDefault": 10000,
+  "currency": "RUB",
+
+  "preSettings": [
+    {
+      "id": "minimum",
+      "name": "Минимум",
+      "price": 150000,
+      "monthlySupport": 10000,
+      "description": "Базовый квалификатор + отчёт"
+    },
+    {
+      "id": "optimal",
+      "name": "Оптимально",
+      "price": 245000,
+      "monthlySupport": 15000,
+      "description": "Полный цикл + интеграция",
+      "popular": true
+    },
+    {
+      "id": "full",
+      "name": "Полный цикл",
+      "price": 360000,
+      "monthlySupport": 0,
+      "description": "Всё под ключ + 3 мес поддержки"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "price": 550000,
+      "monthlySupport": 28000,
+      "description": "Максимальная кастомизация + SLA"
+    }
+  ],
+
+  "wizard": {
+    "step1": {
+      "title": "Что ближе всего к вашей задаче?",
+      "options": [
+        {
+          "id": "new",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/></svg>",
+          "label": "Новый продукт с нуля",
+          "tooltipTitle": "Разработка с нуля",
+          "tooltipText": "Полный цикл: проектирование ИИ-квалификатора → интеграция с CRM → обучение на ваших лидах → запуск за 3–4 недели. Средний рост качества лидов: +45%."
+        },
+        {
+          "id": "improve",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='22 7 13.5 15.5 8.5 10.5 2 17'/><polyline points='16 7 22 7 22 13'/></svg>",
+          "label": "Доработка существующего",
+          "tooltipTitle": "Усиление текущей системы",
+          "tooltipText": "Встроим ИИ-скоринг в вашу CRM без остановки работы. Автоматическая квалификация, роутинг менеджерам, авто-уведомления. Окупается за 1–2 месяца."
+        },
+        {
+          "id": "research",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>",
+          "label": "Исследование / концепция",
+          "tooltipTitle": "Пилот и стратегия",
+          "tooltipText": "Аудит процессов квалификации + пилотный скоринг на реальных лидах + детальная ROI-модель. Получите ТЗ и дорожную карту внедрения."
+        }
+      ]
+    },
+    "step2": {
+      "volume": {
+        "label": "Количество лидов для квалификации в месяц",
+        "min": 100,
+        "max": 5000,
+        "step": 100,
+        "default": 1000,
+        "unit": "лидов",
+        "pricePerUnit": 120
+      },
+      "checkboxes": [
+        {
+          "id": "bitrix",
+          "label": "Интеграция с Bitrix24 / CRM",
+          "priceDelta": 95000,
+          "tooltip": "Автоматический скоринг при создании лида и сохранение результата в карточку с рекомендацией менеджера."
+        },
+        {
+          "id": "telegram",
+          "label": "Telegram-уведомления менеджерам",
+          "priceDelta": 65000,
+          "tooltip": "Менеджер получает мгновенное уведомление в Telegram с оценкой лида (A/B/C) и готовым планом разговора."
+        },
+        {
+          "id": "email",
+          "label": "Email-рассылка по квалифицированным лидам",
+          "priceDelta": 75000,
+          "tooltip": "Автоматическая отправка персонализированных писем лидам с оценкой A/B и ссылкой на встречу."
+        },
+        {
+          "id": "dashboard",
+          "label": "Дашборд для РОПа + еженедельные отчёты",
+          "priceDelta": 85000,
+          "tooltip": "Реал-тайм дашборд с конверсией по источникам, топ-менеджерами и рекомендациями по улучшению."
+        }
+      ],
+      "deadline": [
+        { "id": "2weeks", "label": "2 недели (ускоренный)", "priceDelta": 65000 },
+        { "id": "1month", "label": "1 месяц (стандарт)", "priceDelta": 0 },
+        { "id": "flexible", "label": "Гибко / под вас", "priceDelta": -20000 }
+      ]
+    },
+    "step3": {
+      "ctaPrimary": "Забронировать внедрение",
+      "ctaSecondary": "Обсудить проект"
+    }
+  },
+
+  "manual": {
+    "volumeDefault": 1000,
+    "checkboxes": ["bitrix", "telegram", "dashboard"],
+    "deadlineDefault": "1month"
+  },
+
+  "pricing": {
+    "formula": "basePrice + (volume * pricePerUnit) + sum(checkboxDeltas) + deadlineDelta",
+    "notes": "Цены указаны с НДС. Поддержка оплачивается ежемесячно отдельно."
+  }
+}

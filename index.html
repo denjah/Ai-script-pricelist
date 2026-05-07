@@ -5,11 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ИИ-помощники для бизнеса | Прейскурант 2026</title>
-  <meta name="description" content="13 готовых ИИ-решений для бизнеса от Дениса Полоцкого. Внедрение без остановки процессов, окупаемость от 2 месяцев.">
+  <meta name="description"
+    content="13 готовых ИИ-решений для бизнеса от Дениса Полоцкого. Внедрение без остановки процессов, окупаемость от 2 месяцев.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="carousel.css">
   <link rel="stylesheet" href="hero-carousel.css">
   <link rel="stylesheet" href="custom.css">
+  <link rel="stylesheet" href="configurator.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -102,15 +104,23 @@
       .final-cta { @apply inline-block bg-accent text-white text-cta uppercase py-4 px-8 border-none cursor-pointer self-start; transition: var(--transition); }
       .final-cta:hover { @apply bg-accent-light; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(139,46,46,0.25); }
       .final-note { @apply absolute text-note text-txt-light; bottom: 32px; left: 96px; max-width: 400px; }
-      .services-overview-grid { @apply grid gap-3 w-full; grid-template-columns: repeat(4,1fr); max-width: 620px; }
-      .sog-card { @apply relative flex flex-col items-center border border-line rounded-md cursor-pointer no-underline text-txt overflow-hidden; padding: 10px 6px; background: rgba(255,255,255,0.35); transition: var(--transition); }
+      .services-overview-grid { @apply grid w-full; gap: 14px; grid-template-columns: repeat(4,1fr); max-width: 740px; }
+      .sog-card { @apply relative flex flex-col items-center border border-line rounded-md cursor-pointer no-underline text-txt overflow-hidden; padding: 12px 8px; background: rgba(255,255,255,0.35); transition: var(--transition); }
       .sog-card:hover { background: rgba(255,255,255,0.7); @apply border-accent; transform: translateY(-8px); box-shadow: 0 12px 32px rgba(139,46,46,0.15); }
       .sog-num { @apply absolute flex items-center justify-center rounded-full font-extrabold text-txt-light; top: 6px; left: 6px; font-size: 9px; width: 20px; height: 20px; background: rgba(139,46,46,0.08); transition: var(--transition); z-index: 2; }
-      .sog-thumb { @apply w-full mb-2; height: 90px; object-fit: contain; object-position: center top; filter: grayscale(0.3) brightness(0.95); transition: var(--transition); }
+      .sog-thumb { @apply w-full mb-2; height: 108px; object-fit: contain; object-position: center top; filter: grayscale(0.3) brightness(0.95); transition: var(--transition); }
       .sog-name { @apply text-sog-name uppercase text-center text-txt-mid px-0.5; transition: var(--transition); }
       .nav-group { @apply absolute z-50 flex items-center gap-3; top: 80px; right: 48px; }
       .nav-contacts { @apply font-bold uppercase text-accent bg-transparent cursor-pointer flex items-center justify-center; font-size: 11px; letter-spacing: 2px; border: 1.5px solid var(--line); padding: 10px 20px; transition: var(--transition); text-decoration: none; min-height: 40px; }
       .nav-contacts:hover { @apply bg-accent text-white border-accent; }
+
+      /* === SOLO SERVICE SLIDE (one service per slide, two-column layout) === */
+      .slide-solo { @apply flex-row items-stretch p-0; }
+      .solo-left { @apply flex flex-col relative; flex: 0 0 50%; padding: 56px 48px 56px 64px; overflow-y: auto; }
+      .solo-left article { @apply flex flex-col flex-1; }
+      .solo-left .configurator { @apply mt-auto; }
+      .solo-right { @apply flex-1 flex items-center justify-center relative; padding: 48px; background: rgba(139,46,46,0.02); }
+      .solo-right .screenshot-carousel { @apply w-full; height: 100%; min-height: 0; flex: 1; margin-bottom: 0; position: sticky; top: 48px; }
     }
 
     /* === RESPONSIVE: TABLET (769-1024px) === */
@@ -127,12 +137,14 @@
       .final-left { padding: 48px 40px; }
       .final-title { font-size: 34px; }
       .final-sub { font-size: 16px; @apply mb-8; }
-      .services-overview-grid { max-width: 480px; @apply gap-2; }
-      .sog-thumb { height: 70px; }
+      .services-overview-grid { max-width: 580px; gap: 10px; }
+      .sog-thumb { height: 84px; }
       .slide-number { @apply right-12; }
       .corner-tl { @apply top-8 left-8; }
       .corner-br { @apply bottom-8 right-8; }
       .nav-group { top: 56px; @apply right-8; }
+      .solo-left { padding: 48px 32px 48px 40px; }
+      .solo-right { padding: 32px; }
     }
 
     /* === RESPONSIVE: MOBILE (≤768px) === */
@@ -141,12 +153,16 @@
       .slide { @apply min-h-0; }
       .slide-title { padding: 80px 24px 40px; min-height: 100vh; min-height: 100dvh; @apply items-stretch; }
       .title-tag { font-size: 9px; letter-spacing: 3px; @apply mb-5; }
-      .title-main { font-size: 34px; max-width: 100%; letter-spacing: -0.5px; @apply mb-5; }
+      .title-main { font-size: 34px; max-width: 100%; letter-spacing: -0.5px; @apply mb-5; hyphens: manual; -webkit-hyphens: manual; }
       .title-sub { font-size: 15px; max-width: 100%; line-height: 1.45; @apply mb-8; }
       .title-footer { @apply flex-wrap gap-2 pt-5; }
       .title-footer-item { font-size: 10px; @apply pr-4 mr-4; letter-spacing: 1.5px; }
       .title-gear { @apply hidden; }
       .slide-services { @apply flex-col; }
+      .slide-solo { @apply flex-col; }
+      .solo-left { @apply flex-none; padding: 32px 24px; }
+      .solo-right { @apply flex-none; padding: 0 24px 24px; }
+      .solo-right .screenshot-carousel { position: relative; top: auto; height: 300px; min-height: 300px; }
       .service-col { padding: 32px 24px; @apply flex-none; }
       .screenshot-carousel { @apply flex-none; height: 250px; min-height: 250px; }
       .service-num { font-size: 56px; top: 24px; right: 24px; }
@@ -164,7 +180,7 @@
       .corner { @apply w-6 h-6; }
       .corner-tl { @apply top-4 left-4; }
       .corner-br { @apply bottom-4 right-4; }
-      .nav-group { top: 20px; right: auto; left: 24px; z-index: 200; gap: 8px; }
+      .nav-group { top: 32px; right: auto; left: 32px; z-index: 200; gap: 8px; }
       .nav-contacts { font-size: 10px; padding: 10px 16px; letter-spacing: 1px; min-height: 44px; }
       .slide-final { @apply flex-col; }
       .final-left { @apply flex-none; padding: 40px 24px 32px; }
@@ -177,17 +193,17 @@
       .contact-value { font-size: 15px; }
       .final-cta { font-size: 12px; padding: 14px 24px; letter-spacing: 1.5px; min-height: 48px; @apply flex items-center justify-center w-full text-center; }
       .final-note { @apply static mt-6; font-size: 11px; max-width: 100%; }
-      .services-overview-grid { grid-template-columns: repeat(2,1fr); @apply gap-2.5; max-width: 100%; }
-      .sog-card { padding: 12px 8px; }
-      .sog-thumb { height: 80px; }
-      .sog-name { font-size: 9px; }
+      .services-overview-grid { grid-template-columns: repeat(2,1fr); gap: 10px; max-width: 100%; }
+      .sog-card { padding: 14px 10px; }
+      .sog-thumb { height: 96px; }
+      .sog-name { font-size: 9.5px; }
       .sog-num { width: 22px; height: 22px; font-size: 10px; }
     }
 
     /* === RESPONSIVE: SMALL MOBILE (≤480px) === */
     @media (max-width: 480px) {
       .slide-title { padding: 72px 16px 32px; }
-      .title-main { font-size: 28px; }
+      .title-main { font-size: 28px; hyphens: manual; -webkit-hyphens: manual; }
       .title-sub { font-size: 14px; }
       .title-footer-item { font-size: 9px; @apply pr-3 mr-3; }
       .service-col { padding: 24px 16px; }
@@ -202,9 +218,10 @@
       .sog-thumb { width: 64px; height: 48px; @apply flex-shrink-0 mb-0; }
       .sog-name { @apply text-left; font-size: 10px; }
       .sog-num { top: 50%; left: auto; right: 8px; transform: translateY(-50%); }
-      .nav-group { right: auto; left: 12px; gap: 6px; }
+      .nav-group { right: auto; left: 20px; top: 36px; gap: 6px; }
       .nav-contacts { font-size: 9px; padding: 8px 12px; }
       .screenshot-carousel { height: 200px; min-height: 200px; }
+      .solo-right .screenshot-carousel { height: 200px; min-height: 200px; }
     }
   </style>
 </head>
@@ -221,17 +238,19 @@
     <div class="bg-figures"></div>
     <div class="corner corner-tl"></div>
     <div class="corner corner-br"></div>
-    <div class="slide-number">01 / 09</div>
-    
+    <div class="slide-number">01 / 11</div>
+
     <div class="nav-group">
       <a href="resume/resume.html" class="nav-contacts" aria-label="Обо мне">ОБО МНЕ</a>
-      <button class="nav-contacts" aria-label="Перейти к контактам" onclick="document.querySelector('.slide-final').scrollIntoView({behavior: 'smooth'})">КОНТАКТЫ</button>
+      <button class="nav-contacts" aria-label="Перейти к контактам"
+        onclick="document.querySelector('.slide-final').scrollIntoView({behavior: 'smooth'})">КОНТАКТЫ</button>
     </div>
 
     <!-- Контент -->
     <div class="title-tag">Прейскурант 2026 · Разработка под ключ</div>
-    <h1 class="title-main">ИИ-ПОМОЩНИКИ И ИНТЕЛЛЕКТУАЛЬНЫЕ <span>АВТОМАТИЗАЦИИ</span></h1>
-    <p class="title-sub">13 готовых решений, которые окупаются за 2–4 месяца. Внедрение без остановки бизнес-процессов.</p>
+    <h1 class="title-main">ИИ-ПОМОЩНИКИ И&nbsp;ИНТЕЛЛЕКТУАЛЬНЫЕ <span>АВТОМАТИЗАЦИИ</span></h1>
+    <p class="title-sub">13&nbsp;готовых решений, которые окупаются за&nbsp;2–4&nbsp;месяца. Внедрение без&nbsp;остановки бизнес-процессов.
+    </p>
 
     <!-- Футер слайда -->
     <div class="title-footer">
@@ -251,12 +270,12 @@
       <div class="hero-carousel__nav">
         <button class="hero-nav-btn hero-prev" aria-label="Назад">
           <svg width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-0.5">
-            <path d="M8.5 2L1.5 7L8.5 12V2Z" fill="currentColor"/>
+            <path d="M8.5 2L1.5 7L8.5 12V2Z" fill="currentColor" />
           </svg>
         </button>
         <button class="hero-nav-btn hero-next" aria-label="Вперед">
           <svg width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="ml-0.5">
-            <path d="M1.5 2L8.5 7L1.5 12V2Z" fill="currentColor"/>
+            <path d="M1.5 2L8.5 7L1.5 12V2Z" fill="currentColor" />
           </svg>
         </button>
       </div>
@@ -270,7 +289,7 @@
     <!-- Декор -->
     <div class="slide-header-bar"></div>
     <div class="bg-figures"></div>
-    <div class="slide-number">02 / 09</div>
+    <div class="slide-number">02 / 11</div>
 
     <!-- Услуга 01 -->
     <article class="service-col" id="service-01">
@@ -279,35 +298,207 @@
       <h2 class="service-name">DEEP CLIENT ANALYSIS AI</h2>
       <p class="service-utp">Глубокий автоматический анализ клиента за 3 минуты</p>
       <div class="divider-h"></div>
-      <p class="service-desc">ИИ анализирует полную карточку клиента в CRM: звонки, переписку, историю сделок и контент компании. Выявляет реальные боли, триггеры принятия решений и скрытые возражения. На выходе — готовый план разговора и профессиональный отчёт. Менеджер получает полную картину вместо 2 часов ручной работы.</p>
+      <p class="service-desc">ИИ анализирует полную карточку клиента в&nbsp;CRM: звонки, переписку, историю сделок и&nbsp;контент
+        компании. Выявляет реальные боли, триггеры принятия решений и&nbsp;скрытые возражения. На&nbsp;выходе&nbsp;— готовый план
+        разговора и&nbsp;профессиональный отчёт. Менеджер получает полную картину вместо 2&nbsp;часов ручной работы.</p>
       <!-- Карусель скриншотов услуги 01 -->
       <div class="screenshot-carousel" data-service="01">
-        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-loader">
+          <div class="loader-bar"></div>
+        </div>
         <div class="carousel-viewport">
-          <img src="IMAGES/SCREENSHOTS/01_01_DEEP-CLIENT-ANALYSIS_01.png" alt="Deep Client Analysis 1" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/01_02_DEEP-CLIENT-ANALYSIS_02_01.png" alt="Deep Client Analysis 2" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/01_03_DEEP-CLIENT-ANALYSIS_02_02.png" alt="Deep Client Analysis 3" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/01_04_DEEP-CLIENT-ANALYSIS_02_03M.png" alt="Deep Client Analysis 4" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/01_05_DEEP-CLIENT-ANALYSIS_02_04M.png" alt="Deep Client Analysis 5" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/01_06_DEEP-CLIENT-ANALYSIS_02.png" alt="Deep Client Analysis 6" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/01_07_DEEP-CLIENT-ANALYSIS_02_02M.png" alt="Deep Client Analysis 7" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/01_08_DEEP-CLIENT-ANALYSIS_03M.png" alt="Deep Client Analysis 8" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/01_09_DEEP-CLIENT-ANALYSIS_04M.png" alt="Deep Client Analysis 9" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/01_01_DEEP-CLIENT-ANALYSIS_01.png" alt="Deep Client Analysis 1" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/01_02_DEEP-CLIENT-ANALYSIS_02_01.png" alt="Deep Client Analysis 2" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/01_03_DEEP-CLIENT-ANALYSIS_02_02.png" alt="Deep Client Analysis 3" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/01_04_DEEP-CLIENT-ANALYSIS_02_03M.png" alt="Deep Client Analysis 4"
+            loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/01_05_DEEP-CLIENT-ANALYSIS_02_04M.png" alt="Deep Client Analysis 5"
+            loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/01_06_DEEP-CLIENT-ANALYSIS_02.png" alt="Deep Client Analysis 6" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/01_07_DEEP-CLIENT-ANALYSIS_02_02M.png" alt="Deep Client Analysis 7"
+            loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/01_08_DEEP-CLIENT-ANALYSIS_03M.png" alt="Deep Client Analysis 8" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/01_09_DEEP-CLIENT-ANALYSIS_04M.png" alt="Deep Client Analysis 9" loading="lazy"
+            decoding="async">
         </div>
-        <div class="carousel-dots"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="carousel-dots">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
       </div>
-      <div class="service-result">Рост конверсии в сделку до 35–50 % по нашим кейсам · Сокращение холостых звонков · Повышение среднего чека</div>
-      <p class="service-branches"><strong>Ветки развития:</strong> автозапуск по новым лидам, история анализов, интеграция с Telegram</p>
-      
-      <!-- Цена -->
-      <div class="service-price-block">
-        <div class="price-main-container">
-          <span class="price-prefix">от </span>
-          <span class="price-value" data-base="610000">610</span>
-          <span class="price-zeros">000</span>
-          <span class="price-currency">₽</span>
+      <div class="service-result">Рост конверсии в сделку до 35–50 % по нашим кейсам · Сокращение холостых звонков ·
+        Повышение среднего чека</div>
+      <p class="service-branches"><strong>Ветки развития:</strong> автозапуск по новым лидам, история анализов,
+        интеграция с Telegram</p>
+
+      <!-- Гибридный конфигуратор цены -->
+      <div class="configurator" id="cfg-service-01">
+
+        <!-- ===== INITIAL STATE ===== -->
+        <div class="cfg-initial">
+          <button class="cfg-cta-btn" type="button" aria-label="Рассчитать стоимость Deep Client Analysis AI">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path
+                d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+            РАСЧЁТ СТОИМОСТИ
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" style="width:14px;height:14px">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+          <div class="cfg-chips">
+            <button class="cfg-chip" data-preset="minimum" type="button">Минимум<span
+                class="chip-price"></span></button>
+            <button class="cfg-chip" data-preset="optimal" type="button">Оптимально<span
+                class="chip-price"></span></button>
+            <button class="cfg-chip" data-preset="full" type="button">Полный цикл<span
+                class="chip-price"></span></button>
+            <button class="cfg-chip" data-preset="enterprise" type="button">Enterprise<span
+                class="chip-price"></span></button>
+          </div>
         </div>
-        <span class="price-support">+ 44 000 ₽/мес поддержка · с НДС</span>
+
+        <!-- ===== WIZARD MODE ===== -->
+        <div class="cfg-wizard">
+          <!-- Stepper -->
+          <div class="cfg-stepper">
+            <div class="cfg-step-indicator active">
+              <span class="cfg-step-dot">1</span>
+              <span class="step-text">Тип</span>
+            </div>
+            <div class="cfg-step-line"></div>
+            <div class="cfg-step-indicator">
+              <span class="cfg-step-dot">2</span>
+              <span class="step-text">Параметры</span>
+            </div>
+            <div class="cfg-step-line"></div>
+            <div class="cfg-step-indicator">
+              <span class="cfg-step-dot">3</span>
+              <span class="step-text">Расчёт</span>
+            </div>
+          </div>
+
+          <!-- Wizard Body -->
+          <div class="cfg-wizard-body">
+
+            <!-- STEP 1: Project Type -->
+            <div class="cfg-step-panel active" data-step="1">
+              <div class="cfg-step-title">Что ближе всего к вашей задаче?</div>
+              <div class="cfg-type-cards">
+                <!-- Динамически рендерится из JSON -->
+              </div>
+            </div>
+
+            <!-- STEP 2: Parameters -->
+            <div class="cfg-step-panel" data-step="2">
+              <div class="cfg-param-group">
+                <div class="cfg-param-label"><span id="cfg-volume-label">Количество карточек клиентов для анализа</span>
+                  <span id="cfg-volume-value">500</span></div>
+                <input type="range" id="cfg-volume-range" class="cfg-range" min="50" max="2000" step="50" value="500">
+              </div>
+              <div class="cfg-checks">
+                <!-- Dynamic checkboxes injected by JS -->
+              </div>
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Сроки</div>
+                <div class="cfg-select-wrap">
+                  <select id="cfg-deadline" class="cfg-select">
+                    <option value="2weeks">2 недели (ускоренный)</option>
+                    <option value="1month" selected>1 месяц (стандарт)</option>
+                    <option value="flexible">Гибко / под вас</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 3: Final Calculation -->
+            <div class="cfg-step-panel" data-step="3">
+              <div class="cfg-final-price">
+                <div class="cfg-price-breakdown" id="cfg-breakdown">
+                  <!-- Dynamic breakdown injected by JS -->
+                </div>
+                <div class="cfg-total-row">
+                  <span class="cfg-total-label">Итого</span>
+                  <span class="cfg-total-value" id="cfg-total-value">610 000 ₽</span>
+                </div>
+                <div class="cfg-currency-switch">
+                  <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
+                  <button class="cfg-curr-btn" data-currency="USD" type="button">$</button>
+                  <button class="cfg-curr-btn" data-currency="EUR" type="button">€</button>
+                  <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
+                </div>
+                <div class="cfg-actions">
+                  <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Забронировать внедрение</button>
+                  <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить проект</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Wizard Navigation -->
+          <div class="cfg-wizard-nav">
+            <button class="cfg-nav-btn cfg-nav-prev" type="button" style="visibility:hidden">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Назад
+            </button>
+            <button class="cfg-close-wizard" type="button">Свернуть</button>
+            <button class="cfg-nav-btn nav-next cfg-nav-next" type="button" disabled>
+              Далее
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- ===== MANUAL CONFIGURATOR ===== -->
+        <div class="cfg-manual">
+          <button class="cfg-manual-toggle" type="button">
+            <span>Настроить вручную</span>
+            <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="cfg-manual-body">
+            <div class="cfg-manual-content">
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Карточек клиентов <span id="cfg-manual-volume-value">500</span></div>
+                <input type="range" id="cfg-manual-volume" class="cfg-range" min="50" max="2000" step="50" value="500">
+              </div>
+              <div class="cfg-checks">
+                <!-- Динамически рендерится из JSON -->
+              </div>
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Сроки</div>
+                <div class="cfg-select-wrap">
+                  <select id="cfg-manual-deadline" class="cfg-select">
+                    <option value="2weeks">2 недели (ускоренный)</option>
+                    <option value="1month" selected>1 месяц (стандарт)</option>
+                    <option value="flexible">Гибко / под вас</option>
+                  </select>
+                </div>
+              </div>
+              <div class="cfg-manual-result">
+                <span class="cfg-manual-result-label">Итого</span>
+                <span class="cfg-manual-result-value" id="cfg-manual-result-value">610 000 ₽</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </article>
 
@@ -318,120 +509,610 @@
       <h2 class="service-name">ИИ-КВАЛИФИКАТОР И РОУТЕР ЛИДОВ</h2>
       <p class="service-utp">Автоматическая оценка и распределение всех входящих заявок</p>
       <div class="divider-h"></div>
-      <p class="service-desc">Автоматическая оценка входящих заявок, скоринг по 30+ параметрам, маршрутизация по менеджерам и первичные квалифицирующие вопросы через чат или телефонию. Система работает 24/7, не пропуская ни одной «тёплой» заявки. Полная интеграция в Bitrix24 без изменения текущих процессов.</p>
+      <p class="service-desc">Автоматическая оценка входящих заявок, скоринг по&nbsp;30+&nbsp;параметрам, маршрутизация по
+        менеджерам и&nbsp;первичные квалифицирующие вопросы через чат или телефонию. Система работает 24/7, не&nbsp;пропуская ни
+        одной «тёплой» заявки. Полная интеграция в&nbsp;Bitrix24 без&nbsp;изменения текущих процессов.</p>
       <!-- Карусель скриншотов услуги 02 -->
       <div class="screenshot-carousel" data-service="02">
-        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-loader">
+          <div class="loader-bar"></div>
+        </div>
         <div class="carousel-viewport">
-          <img src="IMAGES/SCREENSHOTS/02_AI-LEAD-QUALIFIER_01.png" alt="ИИ-Квалификатор лидов 1" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/02_AI-LEAD-QUALIFIER_02.png" alt="ИИ-Квалификатор лидов 2" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/02_AI-LEAD-QUALIFIER_03.png" alt="ИИ-Квалификатор лидов 3" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/02_AI-LEAD-QUALIFIER_04.png" alt="ИИ-Квалификатор лидов 4" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/02_AI-LEAD-QUALIFIER_04M.png" alt="ИИ-Квалификатор лидов 5" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/02_AI-LEAD-QUALIFIER_01.png" alt="ИИ-Квалификатор лидов 1" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/02_AI-LEAD-QUALIFIER_02.png" alt="ИИ-Квалификатор лидов 2" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/02_AI-LEAD-QUALIFIER_03.png" alt="ИИ-Квалификатор лидов 3" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/02_AI-LEAD-QUALIFIER_04.png" alt="ИИ-Квалификатор лидов 4" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/02_AI-LEAD-QUALIFIER_04M.png" alt="ИИ-Квалификатор лидов 5" loading="lazy"
+            decoding="async">
         </div>
         <div class="carousel-dots"><span></span><span></span><span></span><span></span><span></span></div>
       </div>
-      <div class="service-result">Снижение нагрузки на менеджеров на 50–70 % · Рост качества лидов · Минимизация потерь заявок</div>
-      <p class="service-branches"><strong>Ветки развития:</strong> интеграция с маркетингом, автоматическое обогащение данных о компании, предиктивный скоринг</p>
-      
-      <!-- Цена -->
-      <div class="service-price-block">
-        <div class="price-main-container">
-          <span class="price-prefix">от </span>
-          <span class="price-value" data-base="380000">380</span>
-          <span class="price-zeros">000</span>
-          <span class="price-currency">₽</span>
+      <div class="service-result">Снижение нагрузки на менеджеров на 50–70 % · Рост качества лидов · Минимизация потерь
+        заявок</div>
+      <p class="service-branches"><strong>Ветки развития:</strong> интеграция с маркетингом, автоматическое обогащение
+        данных о компании, предиктивный скоринг</p>
+
+      <!-- Гибридный конфигуратор цены -->
+      <div class="configurator" id="cfg-service-02">
+
+        <!-- ===== INITIAL STATE ===== -->
+        <div class="cfg-initial">
+          <button class="cfg-cta-btn" type="button" aria-label="Рассчитать стоимость AI Lead Qualifier">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path
+                d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+            РАСЧЁТ СТОИМОСТИ
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" style="width:14px;height:14px">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+          <div class="cfg-chips">
+            <!-- Dynamic presets from JSON -->
+          </div>
         </div>
-        <span class="price-support">+ 29 000 ₽/мес поддержка · с НДС</span>
+
+        <!-- ===== WIZARD MODE ===== -->
+        <div class="cfg-wizard">
+          <!-- Stepper -->
+          <div class="cfg-stepper">
+            <div class="cfg-step-indicator active">
+              <span class="cfg-step-dot">1</span>
+              <span class="step-text">Тип</span>
+            </div>
+            <div class="cfg-step-line"></div>
+            <div class="cfg-step-indicator">
+              <span class="cfg-step-dot">2</span>
+              <span class="step-text">Параметры</span>
+            </div>
+            <div class="cfg-step-line"></div>
+            <div class="cfg-step-indicator">
+              <span class="cfg-step-dot">3</span>
+              <span class="step-text">Расчёт</span>
+            </div>
+          </div>
+
+          <!-- Wizard Body -->
+          <div class="cfg-wizard-body">
+
+            <!-- STEP 1: Project Type -->
+            <div class="cfg-step-panel active" data-step="1">
+              <div class="cfg-step-title">Что ближе всего к вашей задаче?</div>
+              <div class="cfg-type-cards">
+                <!-- Динамически рендерится из JSON -->
+              </div>
+            </div>
+
+            <!-- STEP 2: Parameters -->
+            <div class="cfg-step-panel" data-step="2">
+              <div class="cfg-param-group">
+                <div class="cfg-param-label"><span id="cfg-volume-label">Количество лидов</span> <span
+                    id="cfg-volume-value">1000</span></div>
+                <input type="range" id="cfg-volume-range" class="cfg-range" min="100" max="5000" step="100"
+                  value="1000">
+              </div>
+              <div class="cfg-checks">
+                <!-- Dynamic checkboxes injected by JS -->
+              </div>
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Сроки</div>
+                <div class="cfg-select-wrap">
+                  <select id="cfg-deadline" class="cfg-select">
+                    <!-- Dynamic options -->
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 3: Final Calculation -->
+            <div class="cfg-step-panel" data-step="3">
+              <div class="cfg-final-price">
+                <div class="cfg-price-breakdown" id="cfg-breakdown">
+                  <!-- Dynamic breakdown injected by JS -->
+                </div>
+                <div class="cfg-total-row">
+                  <span class="cfg-total-label">Итого</span>
+                  <span class="cfg-total-value" id="cfg-total-value">0 ₽</span>
+                </div>
+                <div class="cfg-currency-switch">
+                  <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
+                  <button class="cfg-curr-btn" data-currency="USD" type="button">$</button>
+                  <button class="cfg-curr-btn" data-currency="EUR" type="button">€</button>
+                  <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
+                </div>
+                <div class="cfg-actions">
+                  <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Забронировать внедрение</button>
+                  <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить проект</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Wizard Navigation -->
+          <div class="cfg-wizard-nav">
+            <button class="cfg-nav-btn cfg-nav-prev" type="button" style="visibility:hidden">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Назад
+            </button>
+            <button class="cfg-close-wizard" type="button">Свернуть</button>
+            <button class="cfg-nav-btn nav-next cfg-nav-next" type="button" disabled>
+              Далее
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- ===== MANUAL CONFIGURATOR ===== -->
+        <div class="cfg-manual">
+          <button class="cfg-manual-toggle" type="button">
+            <span>Настроить вручную</span>
+            <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="cfg-manual-body">
+            <div class="cfg-manual-content">
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Объём <span id="cfg-manual-volume-value">1000</span></div>
+                <input type="range" id="cfg-manual-volume" class="cfg-range" min="100" max="5000" step="100"
+                  value="1000">
+              </div>
+              <div class="cfg-checks">
+                <!-- Динамически рендерится из JSON -->
+              </div>
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Сроки</div>
+                <div class="cfg-select-wrap">
+                  <select id="cfg-manual-deadline" class="cfg-select">
+                    <!-- Dynamic options -->
+                  </select>
+                </div>
+              </div>
+              <div class="cfg-manual-result">
+                <span class="cfg-manual-result-label">Итого</span>
+                <span class="cfg-manual-result-value" id="cfg-manual-result-value">0 ₽</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </article>
   </section>
 
   <!-- ============================================== -->
-  <!-- === SLIDE 03: УСЛУГИ 03-04                 === -->
+  <!-- === SLIDE 03: УСЛУГА 03                    === -->
   <!-- ============================================== -->
-  <section class="slide slide-services" aria-label="Услуги Аналитики и КП">
+  <section class="slide slide-services slide-solo" aria-label="Услуга 03: ИИ-Аналитик коммуникаций">
     <!-- Декор -->
     <div class="slide-header-bar"></div>
     <div class="bg-figures"></div>
-    <div class="slide-number">03 / 09</div>
+    <div class="slide-number">03 / 11</div>
 
-    <!-- Услуга 03 -->
-    <article class="service-col" id="service-03">
-      <div class="service-num">03</div>
-      <div class="service-label">Услуга 03</div>
-      <h2 class="service-name">ИИ-АНАЛИТИК КОММУНИКАЦИЙ</h2>
-      <p class="service-utp">Контроль качества 100% звонков и чатов без участия РОПа</p>
-      <div class="divider-h"></div>
-      <p class="service-desc">Автоматическая расшифровка и анализ всех диалогов менеджеров. ИИ проверяет соблюдение скрипта, выявляет конфликтные ситуации и выставляет оценки по чек-листу. Вы получаете ежедневный дашборд с проблемными зонами и точками роста каждого сотрудника.</p>
+    <!-- Левая колонка: тексты + конфигуратор -->
+    <div class="solo-left">
+      <article id="service-03">
+        <div class="service-num">03</div>
+        <div class="service-label">Услуга 03</div>
+        <h2 class="service-name">ИИ-АНАЛИТИК КОММУНИКАЦИЙ</h2>
+        <p class="service-utp">Контроль качества 100% звонков и чатов без участия РОПа</p>
+        <div class="divider-h"></div>
+        <p class="service-desc">Автоматическая расшифровка и&nbsp;анализ всех диалогов менеджеров. ИИ проверяет соблюдение
+          скрипта, выявляет конфликтные ситуации и&nbsp;выставляет оценки по&nbsp;чек-листу. Вы&nbsp;получаете ежедневный дашборд с
+          проблемными зонами и&nbsp;точками роста каждого сотрудника.</p>
+        <div class="service-result">Объективный контроль 100% коммуникаций · Быстрая адаптация новичков · Снижение рисков
+          увода клиентов</div>
+        <p class="service-branches"><strong>Ветки развития:</strong> еженедельные отчёты РОПу, интеграция с телефонией,
+          автоматические рекомендации по обучению</p>
+
+        <!-- Гибридный конфигуратор цены -->
+        <div class="configurator" id="cfg-service-03">
+
+          <!-- ===== INITIAL STATE ===== -->
+          <div class="cfg-initial">
+            <button class="cfg-cta-btn" type="button" aria-label="Рассчитать стоимость AI Communications Analyst">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+              РАСЧЁТ СТОИМОСТИ
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" style="width:14px;height:14px">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+            <div class="cfg-chips">
+              <!-- Dynamic presets from JSON -->
+            </div>
+          </div>
+
+          <!-- ===== WIZARD MODE ===== -->
+          <div class="cfg-wizard">
+            <!-- Stepper -->
+            <div class="cfg-stepper">
+              <div class="cfg-step-indicator active">
+                <span class="cfg-step-dot">1</span>
+                <span class="step-text">Тип</span>
+              </div>
+              <div class="cfg-step-line"></div>
+              <div class="cfg-step-indicator">
+                <span class="cfg-step-dot">2</span>
+                <span class="step-text">Параметры</span>
+              </div>
+              <div class="cfg-step-line"></div>
+              <div class="cfg-step-indicator">
+                <span class="cfg-step-dot">3</span>
+                <span class="step-text">Расчёт</span>
+              </div>
+            </div>
+
+            <!-- Wizard Body -->
+            <div class="cfg-wizard-body">
+
+              <!-- STEP 1: Project Type -->
+              <div class="cfg-step-panel active" data-step="1">
+                <div class="cfg-step-title">Что ближе всего к вашей задаче?</div>
+                <div class="cfg-type-cards">
+                  <!-- Динамически рендерится из JSON -->
+                </div>
+              </div>
+
+              <!-- STEP 2: Parameters -->
+              <div class="cfg-step-panel" data-step="2">
+                <div class="cfg-param-group">
+                  <div class="cfg-param-label"><span id="cfg-volume-label">Количество коммуникаций</span> <span
+                      id="cfg-volume-value">2500</span></div>
+                  <input type="range" id="cfg-volume-range" class="cfg-range" min="200" max="15000" step="200"
+                    value="2500">
+                </div>
+                <div class="cfg-checks">
+                  <!-- Dynamic checkboxes injected by JS -->
+                </div>
+                <div class="cfg-param-group">
+                  <div class="cfg-param-label">Сроки</div>
+                  <div class="cfg-select-wrap">
+                    <select id="cfg-deadline" class="cfg-select">
+                      <!-- Dynamic options -->
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- STEP 3: Final Calculation -->
+              <div class="cfg-step-panel" data-step="3">
+                <div class="cfg-final-price">
+                  <div class="cfg-price-breakdown" id="cfg-breakdown">
+                    <!-- Dynamic breakdown injected by JS -->
+                  </div>
+                  <div class="cfg-total-row">
+                    <span class="cfg-total-label">Итого</span>
+                    <span class="cfg-total-value" id="cfg-total-value">0 ₽</span>
+                  </div>
+                  <div class="cfg-currency-switch">
+                    <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
+                    <button class="cfg-curr-btn" data-currency="USD" type="button">$</button>
+                    <button class="cfg-curr-btn" data-currency="EUR" type="button">€</button>
+                    <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
+                  </div>
+                  <div class="cfg-actions">
+                    <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Забронировать внедрение</button>
+                    <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить проект</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Wizard Navigation -->
+            <div class="cfg-wizard-nav">
+              <button class="cfg-nav-btn cfg-nav-prev" type="button" style="visibility:hidden">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+                Назад
+              </button>
+              <button class="cfg-close-wizard" type="button">Свернуть</button>
+              <button class="cfg-nav-btn nav-next cfg-nav-next" type="button" disabled>
+                Далее
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- ===== MANUAL CONFIGURATOR ===== -->
+          <div class="cfg-manual">
+            <button class="cfg-manual-toggle" type="button">
+              <span>Настроить вручную</span>
+              <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            <div class="cfg-manual-body">
+              <div class="cfg-manual-content">
+                <div class="cfg-param-group">
+                  <div class="cfg-param-label">Объём <span id="cfg-manual-volume-value">2500</span></div>
+                  <input type="range" id="cfg-manual-volume" class="cfg-range" min="200" max="15000" step="200"
+                    value="2500">
+                </div>
+                <div class="cfg-checks">
+                  <!-- Динамически рендерится из JSON -->
+                </div>
+                <div class="cfg-param-group">
+                  <div class="cfg-param-label">Сроки</div>
+                  <div class="cfg-select-wrap">
+                    <select id="cfg-manual-deadline" class="cfg-select">
+                      <!-- Dynamic options -->
+                    </select>
+                  </div>
+                </div>
+                <div class="cfg-manual-result">
+                  <span class="cfg-manual-result-label">Итого</span>
+                  <span class="cfg-manual-result-value" id="cfg-manual-result-value">0 ₽</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </article>
+    </div>
+
+    <!-- Правая колонка: карусель скриншотов -->
+    <div class="solo-right">
       <div class="screenshot-carousel" data-service="03">
-        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-loader">
+          <div class="loader-bar"></div>
+        </div>
         <div class="carousel-viewport">
-          <img src="IMAGES/SCREENSHOTS/03_COMMS-ANALYST_01.png" alt="Аналитик коммуникаций 1" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/03_COMMS-ANALYST_02.png" alt="Аналитик коммуникаций 2" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/03_COMMS-ANALYST_03M.png" alt="Аналитик коммуникаций 3" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/03_COMMS-ANALYST_04M.png" alt="Аналитик коммуникаций 4" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/03_COMMS-ANALYST_01.png" alt="Аналитик коммуникаций 1" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/03_COMMS-ANALYST_02.png" alt="Аналитик коммуникаций 2" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/03_COMMS-ANALYST_03M.png" alt="Аналитик коммуникаций 3" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/03_COMMS-ANALYST_04M.png" alt="Аналитик коммуникаций 4" loading="lazy"
+            decoding="async">
         </div>
         <div class="carousel-dots"><span></span><span></span><span></span><span></span></div>
       </div>
-      <div class="service-result">Объективный контроль 100% коммуникаций · Быстрая адаптация новичков · Снижение рисков увода клиентов</div>
-      <p class="service-branches"><strong>Ветки развития:</strong> еженедельные отчёты РОПу, интеграция с телефонией, автоматические рекомендации по обучению</p>
-      
-      <!-- Цена -->
-      <div class="service-price-block">
-        <div class="price-main-container">
-          <span class="price-prefix">от </span>
-          <span class="price-value" data-base="340000">340</span>
-          <span class="price-zeros">000</span>
-          <span class="price-currency">₽</span>
-        </div>
-        <span class="price-support">+ 26 000 ₽/мес поддержка · с НДС</span>
-      </div>
-    </article>
+    </div>
+  </section>
 
-    <!-- Услуга 04 -->
-    <article class="service-col" id="service-04">
+  <!-- ============================================== -->
+  <!-- === SLIDE 04: УСЛУГА 04                    === -->
+  <!-- ============================================== -->
+  <section class="slide slide-services slide-solo" aria-label="Услуга 04: Генератор персональных КП">
+    <!-- Декор -->
+    <div class="slide-header-bar"></div>
+    <div class="bg-figures"></div>
+    <div class="slide-number">04 / 11</div>
+    <!-- Левая колонка: тексты + конфигуратор -->
+    <div class="solo-left">
+    <article id="service-04">
       <div class="service-num">04</div>
       <div class="service-label">Услуга 04</div>
       <h2 class="service-name">ГЕНЕРАТОР ПЕРСОН. КП</h2>
       <p class="service-utp">Создание коммерческих предложений под конкретные боли за 30 секунд</p>
       <div class="divider-h"></div>
-      <p class="service-desc">ИИ собирает данные из CRM и генерирует уникальное КП, которое бьёт точно в потребности клиента. Больше никаких шаблонных файлов. Каждое предложение выглядит как результат глубокой работы аналитика.</p>
+      <p class="service-desc">ИИ собирает данные из&nbsp;CRM и&nbsp;генерирует уникальное КП, которое бьёт точно в&nbsp;потребности
+        клиента. Больше никаких шаблонных файлов. Каждое предложение выглядит как результат глубокой работы аналитика.
+      </p>
+      
+      <div class="service-result">Увеличение конверсии КП в оплату в среднем в 1,5–2 раза · Скорость ответа на запрос
+        менее 1 минуты</div>
+      <p class="service-branches"><strong>Ветки развития:</strong> интеграция с почтой, история КП, автоматическое
+        обновление шаблонов</p>
+
+      <!-- Гибридный конфигуратор цены -->
+      <div class="configurator" id="cfg-service-04">
+
+        <!-- ===== INITIAL STATE ===== -->
+        <div class="cfg-initial">
+          <button class="cfg-cta-btn" type="button" aria-label="Рассчитать стоимость AI Persona Generator">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path
+                d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+            РАСЧЁТ СТОИМОСТИ
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" style="width:14px;height:14px">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+          <div class="cfg-chips">
+            <!-- Dynamic presets from JSON -->
+          </div>
+        </div>
+
+        <!-- ===== WIZARD MODE ===== -->
+        <div class="cfg-wizard">
+          <!-- Stepper -->
+          <div class="cfg-stepper">
+            <div class="cfg-step-indicator active">
+              <span class="cfg-step-dot">1</span>
+              <span class="step-text">Тип</span>
+            </div>
+            <div class="cfg-step-line"></div>
+            <div class="cfg-step-indicator">
+              <span class="cfg-step-dot">2</span>
+              <span class="step-text">Параметры</span>
+            </div>
+            <div class="cfg-step-line"></div>
+            <div class="cfg-step-indicator">
+              <span class="cfg-step-dot">3</span>
+              <span class="step-text">Расчёт</span>
+            </div>
+          </div>
+
+          <!-- Wizard Body -->
+          <div class="cfg-wizard-body">
+
+            <!-- STEP 1: Project Type -->
+            <div class="cfg-step-panel active" data-step="1">
+              <div class="cfg-step-title">Что ближе всего к вашей задаче?</div>
+              <div class="cfg-type-cards">
+                <!-- Динамически рендерится из JSON -->
+              </div>
+            </div>
+
+            <!-- STEP 2: Parameters -->
+            <div class="cfg-step-panel" data-step="2">
+              <div class="cfg-param-group">
+                <div class="cfg-param-label"><span id="cfg-volume-label">Количество КП</span> <span
+                    id="cfg-volume-value">300</span></div>
+                <input type="range" id="cfg-volume-range" class="cfg-range" min="50" max="2000" step="50" value="300">
+              </div>
+              <div class="cfg-checks">
+                <!-- Dynamic checkboxes injected by JS -->
+              </div>
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Сроки</div>
+                <div class="cfg-select-wrap">
+                  <select id="cfg-deadline" class="cfg-select">
+                    <!-- Dynamic options -->
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 3: Final Calculation -->
+            <div class="cfg-step-panel" data-step="3">
+              <div class="cfg-final-price">
+                <div class="cfg-price-breakdown" id="cfg-breakdown">
+                  <!-- Dynamic breakdown injected by JS -->
+                </div>
+                <div class="cfg-total-row">
+                  <span class="cfg-total-label">Итого</span>
+                  <span class="cfg-total-value" id="cfg-total-value">0 ₽</span>
+                </div>
+                <div class="cfg-currency-switch">
+                  <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
+                  <button class="cfg-curr-btn" data-currency="USD" type="button">$</button>
+                  <button class="cfg-curr-btn" data-currency="EUR" type="button">€</button>
+                  <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
+                </div>
+                <div class="cfg-actions">
+                  <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Забронировать внедрение</button>
+                  <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить проект</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Wizard Navigation -->
+          <div class="cfg-wizard-nav">
+            <button class="cfg-nav-btn cfg-nav-prev" type="button" style="visibility:hidden">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Назад
+            </button>
+            <button class="cfg-close-wizard" type="button">Свернуть</button>
+            <button class="cfg-nav-btn nav-next cfg-nav-next" type="button" disabled>
+              Далее
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- ===== MANUAL CONFIGURATOR ===== -->
+        <div class="cfg-manual">
+          <button class="cfg-manual-toggle" type="button">
+            <span>Настроить вручную</span>
+            <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="cfg-manual-body">
+            <div class="cfg-manual-content">
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Объём <span id="cfg-manual-volume-value">300</span></div>
+                <input type="range" id="cfg-manual-volume" class="cfg-range" min="50" max="2000" step="50" value="300">
+              </div>
+              <div class="cfg-checks">
+                <!-- Динамически рендерится из JSON -->
+              </div>
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Сроки</div>
+                <div class="cfg-select-wrap">
+                  <select id="cfg-manual-deadline" class="cfg-select">
+                    <!-- Dynamic options -->
+                  </select>
+                </div>
+              </div>
+              <div class="cfg-manual-result">
+                <span class="cfg-manual-result-label">Итого</span>
+                <span class="cfg-manual-result-value" id="cfg-manual-result-value">0 ₽</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </article>
+    </div>
+
+    <!-- Правая колонка: карусель скриншотов -->
+    <div class="solo-right">
       <div class="screenshot-carousel" data-service="04">
-        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-loader">
+          <div class="loader-bar"></div>
+        </div>
         <div class="carousel-viewport">
-          <img src="IMAGES/SCREENSHOTS/04_PERSONA-GENERATOR_01.png" alt="Генератор персон 1" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/04_PERSONA-GENERATOR_01M.png" alt="Генератор персон 1M" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/04_PERSONA-GENERATOR_02.png" alt="Генератор персон 2" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/04_PERSONA-GENERATOR_03.png" alt="Генератор персон 3" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/04_PERSONA-GENERATOR_04.png" alt="Генератор персон 4" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/04_PERSONA-GENERATOR_01.png" alt="Генератор персон 1" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/04_PERSONA-GENERATOR_01M.png" alt="Генератор персон 1M" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/04_PERSONA-GENERATOR_02.png" alt="Генератор персон 2" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/04_PERSONA-GENERATOR_03.png" alt="Генератор персон 3" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/04_PERSONA-GENERATOR_04.png" alt="Генератор персон 4" loading="lazy"
+            decoding="async">
         </div>
         <div class="carousel-dots"><span></span><span></span><span></span><span></span><span></span></div>
       </div>
-      <div class="service-result">Увеличение конверсии КП в оплату в среднем в 1,5–2 раза · Скорость ответа на запрос менее 1 минуты</div>
-      <p class="service-branches"><strong>Ветки развития:</strong> интеграция с почтой, история КП, автоматическое обновление шаблонов</p>
-      
-      <!-- Цена -->
-      <div class="service-price-block">
-        <div class="price-main-container">
-          <span class="price-prefix">от </span>
-          <span class="price-value" data-base="260000">260</span>
-          <span class="price-zeros">000</span>
-          <span class="price-currency">₽</span>
-        </div>
-        <span class="price-support">+ 19 000 ₽/мес поддержка · с НДС</span>
-      </div>
-    </article>
+    </div>
   </section>
 
   <!-- ============================================== -->
-  <!-- === SLIDE 04: УСЛУГИ 05-06                 === -->
+  <!-- === SLIDE 05: УСЛУГИ 05-06                 === -->
   <!-- ============================================== -->
   <section class="slide slide-services" aria-label="Услуги Коучинга и Закупок">
     <!-- Декор -->
     <div class="slide-header-bar"></div>
     <div class="bg-figures"></div>
-    <div class="slide-number">04 / 09</div>
+    <div class="slide-number">05 / 11</div>
 
     <!-- Услуга 05 -->
     <article class="service-col" id="service-05">
@@ -440,9 +1121,13 @@
       <h2 class="service-name">ИИ SALES COACH</h2>
       <p class="service-utp">Персональный наставник в ухе менеджера во время сделки</p>
       <div class="divider-h"></div>
-      <p class="service-desc">Интерактивная база знаний, которая подсказывает лучшие ответы на возражения в режиме реального времени. На основе лучших практик ваших топовых продавцов ИИ обучает всю команду прямо в процессе работы.</p>
+      <p class="service-desc">Интерактивная база знаний, которая подсказывает лучшие ответы на&nbsp;возражения в&nbsp;режиме
+        реального времени. На&nbsp;основе лучших практик ваших топовых продавцов ИИ обучает всю команду прямо в&nbsp;процессе
+        работы.</p>
       <div class="screenshot-carousel" data-service="05">
-        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-loader">
+          <div class="loader-bar"></div>
+        </div>
         <div class="carousel-viewport">
           <img src="IMAGES/SCREENSHOTS/05_SALES-COACH_01.png" alt="Sales Coach 1" loading="lazy" decoding="async">
           <img src="IMAGES/SCREENSHOTS/05_SALES-COACH_01M.png" alt="Sales Coach 1M" loading="lazy" decoding="async">
@@ -453,17 +1138,162 @@
         <div class="carousel-dots"><span></span><span></span><span></span><span></span><span></span></div>
       </div>
       <div class="service-result">Рост экспертности отдела продаж · Сокращение цикла сделки в среднем на 15–20 %</div>
-      <p class="service-branches"><strong>Ветки развития:</strong> анализ записей звонков, персональные рекомендации, интеграция с CRM</p>
-      
-      <!-- Цена -->
-      <div class="service-price-block">
-        <div class="price-main-container">
-          <span class="price-prefix">от </span>
-          <span class="price-value" data-base="485000">485</span>
-          <span class="price-zeros">000</span>
-          <span class="price-currency">₽</span>
+      <p class="service-branches"><strong>Ветки развития:</strong> анализ записей звонков, персональные рекомендации,
+        интеграция с CRM</p>
+
+      <!-- Гибридный конфигуратор цены -->
+      <div class="configurator" id="cfg-service-05">
+
+        <!-- ===== INITIAL STATE ===== -->
+        <div class="cfg-initial">
+          <button class="cfg-cta-btn" type="button" aria-label="Рассчитать стоимость AI Sales Coach">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path
+                d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+            РАСЧЁТ СТОИМОСТИ
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" style="width:14px;height:14px">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+          <div class="cfg-chips">
+            <!-- Dynamic presets from JSON -->
+          </div>
         </div>
-        <span class="price-support">+ 37 000 ₽/мес поддержка · с НДС</span>
+
+        <!-- ===== WIZARD MODE ===== -->
+        <div class="cfg-wizard">
+          <!-- Stepper -->
+          <div class="cfg-stepper">
+            <div class="cfg-step-indicator active">
+              <span class="cfg-step-dot">1</span>
+              <span class="step-text">Тип</span>
+            </div>
+            <div class="cfg-step-line"></div>
+            <div class="cfg-step-indicator">
+              <span class="cfg-step-dot">2</span>
+              <span class="step-text">Параметры</span>
+            </div>
+            <div class="cfg-step-line"></div>
+            <div class="cfg-step-indicator">
+              <span class="cfg-step-dot">3</span>
+              <span class="step-text">Расчёт</span>
+            </div>
+          </div>
+
+          <!-- Wizard Body -->
+          <div class="cfg-wizard-body">
+
+            <!-- STEP 1: Project Type -->
+            <div class="cfg-step-panel active" data-step="1">
+              <div class="cfg-step-title">Что ближе всего к вашей задаче?</div>
+              <div class="cfg-type-cards">
+                <!-- Динамически рендерится из JSON -->
+              </div>
+            </div>
+
+            <!-- STEP 2: Parameters -->
+            <div class="cfg-step-panel" data-step="2">
+              <div class="cfg-param-group">
+                <div class="cfg-param-label"><span id="cfg-volume-label">Количество менеджеров</span> <span
+                    id="cfg-volume-value">12</span></div>
+                <input type="range" id="cfg-volume-range" class="cfg-range" min="3" max="80" step="1" value="12">
+              </div>
+              <div class="cfg-checks">
+                <!-- Dynamic checkboxes injected by JS -->
+              </div>
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Сроки</div>
+                <div class="cfg-select-wrap">
+                  <select id="cfg-deadline" class="cfg-select">
+                    <!-- Dynamic options -->
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 3: Final Calculation -->
+            <div class="cfg-step-panel" data-step="3">
+              <div class="cfg-final-price">
+                <div class="cfg-price-breakdown" id="cfg-breakdown">
+                  <!-- Dynamic breakdown injected by JS -->
+                </div>
+                <div class="cfg-total-row">
+                  <span class="cfg-total-label">Итого</span>
+                  <span class="cfg-total-value" id="cfg-total-value">0 ₽</span>
+                </div>
+                <div class="cfg-currency-switch">
+                  <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
+                  <button class="cfg-curr-btn" data-currency="USD" type="button">$</button>
+                  <button class="cfg-curr-btn" data-currency="EUR" type="button">€</button>
+                  <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
+                </div>
+                <div class="cfg-actions">
+                  <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Забронировать внедрение</button>
+                  <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить проект</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Wizard Navigation -->
+          <div class="cfg-wizard-nav">
+            <button class="cfg-nav-btn cfg-nav-prev" type="button" style="visibility:hidden">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Назад
+            </button>
+            <button class="cfg-close-wizard" type="button">Свернуть</button>
+            <button class="cfg-nav-btn nav-next cfg-nav-next" type="button" disabled>
+              Далее
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- ===== MANUAL CONFIGURATOR ===== -->
+        <div class="cfg-manual">
+          <button class="cfg-manual-toggle" type="button">
+            <span>Настроить вручную</span>
+            <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="cfg-manual-body">
+            <div class="cfg-manual-content">
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Объём <span id="cfg-manual-volume-value">12</span></div>
+                <input type="range" id="cfg-manual-volume" class="cfg-range" min="3" max="80" step="1" value="12">
+              </div>
+              <div class="cfg-checks">
+                <!-- Динамически рендерится из JSON -->
+              </div>
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Сроки</div>
+                <div class="cfg-select-wrap">
+                  <select id="cfg-manual-deadline" class="cfg-select">
+                    <!-- Dynamic options -->
+                  </select>
+                </div>
+              </div>
+              <div class="cfg-manual-result">
+                <span class="cfg-manual-result-label">Итого</span>
+                <span class="cfg-manual-result-value" id="cfg-manual-result-value">0 ₽</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </article>
 
@@ -474,42 +1304,198 @@
       <h2 class="service-name">ИИ ДЛЯ СКЛАДА И ЗАКУПОК</h2>
       <p class="service-utp">Предиктивное управление запасами и автоматизация снабжения</p>
       <div class="divider-h"></div>
-      <p class="service-desc">ИИ анализирует историю продаж и прогнозирует спрос на месяцы вперёд. Автоматически формирует заявки поставщикам, оптимизирует логистику и предотвращает дефицит или затоваривание склада.</p>
+      <p class="service-desc">ИИ анализирует историю продаж и прогнозирует спрос на месяцы вперёд. Автоматически
+        формирует заявки поставщикам, оптимизирует логистику и предотвращает дефицит или затоваривание склада.</p>
       <div class="screenshot-carousel" data-service="06">
-        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-loader">
+          <div class="loader-bar"></div>
+        </div>
         <div class="carousel-viewport">
-          <img src="IMAGES/SCREENSHOTS/06_WAREHOUSE-PROCUREMENT_01.png" alt="Для склада и закупок 1" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/06_WAREHOUSE-PROCUREMENT_01M.png" alt="Для склада и закупок 1M" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/06_WAREHOUSE-PROCUREMENT_02.png" alt="Для склада и закупок 2" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/06_WAREHOUSE-PROCUREMENT_03.png" alt="Для склада и закупок 3" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/06_WAREHOUSE-PROCUREMENT_04.png" alt="Для склада и закупок 4" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/06_WAREHOUSE-PROCUREMENT_01.png" alt="Для склада и закупок 1" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/06_WAREHOUSE-PROCUREMENT_01M.png" alt="Для склада и закупок 1M" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/06_WAREHOUSE-PROCUREMENT_02.png" alt="Для склада и закупок 2" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/06_WAREHOUSE-PROCUREMENT_03.png" alt="Для склада и закупок 3" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/06_WAREHOUSE-PROCUREMENT_04.png" alt="Для склада и закупок 4" loading="lazy"
+            decoding="async">
         </div>
         <div class="carousel-dots"><span></span><span></span><span></span><span></span><span></span></div>
       </div>
-      <div class="service-result">Высвобождение до 30 % оборотного капитала · Исключение упущенной прибыли из-за отсутствия товара</div>
-      <p class="service-branches"><strong>Ветки развития:</strong> интеграция с 1С, автоматические уведомления, анализ поставщиков</p>
-      
-      <!-- Цена -->
-      <div class="service-price-block">
-        <div class="price-main-container">
-          <span class="price-prefix">от </span>
-          <span class="price-value" data-base="650000">650</span>
-          <span class="price-zeros">000</span>
-          <span class="price-currency">₽</span>
+      <div class="service-result">Высвобождение до 30 % оборотного капитала · Исключение упущенной прибыли из-за
+        отсутствия товара</div>
+      <p class="service-branches"><strong>Ветки развития:</strong> интеграция с 1С, автоматические уведомления, анализ
+        поставщиков</p>
+
+      <!-- Гибридный конфигуратор цены -->
+      <div class="configurator" id="cfg-service-06">
+
+        <!-- ===== INITIAL STATE ===== -->
+        <div class="cfg-initial">
+          <button class="cfg-cta-btn" type="button" aria-label="Рассчитать стоимость AI Warehouse & Procurement">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path
+                d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+            РАСЧЁТ СТОИМОСТИ
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" style="width:14px;height:14px">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+          <div class="cfg-chips">
+            <!-- Dynamic presets from JSON -->
+          </div>
         </div>
-        <span class="price-support">+ 48 000 ₽/мес поддержка · с НДС</span>
+
+        <!-- ===== WIZARD MODE ===== -->
+        <div class="cfg-wizard">
+          <!-- Stepper -->
+          <div class="cfg-stepper">
+            <div class="cfg-step-indicator active">
+              <span class="cfg-step-dot">1</span>
+              <span class="step-text">Тип</span>
+            </div>
+            <div class="cfg-step-line"></div>
+            <div class="cfg-step-indicator">
+              <span class="cfg-step-dot">2</span>
+              <span class="step-text">Параметры</span>
+            </div>
+            <div class="cfg-step-line"></div>
+            <div class="cfg-step-indicator">
+              <span class="cfg-step-dot">3</span>
+              <span class="step-text">Расчёт</span>
+            </div>
+          </div>
+
+          <!-- Wizard Body -->
+          <div class="cfg-wizard-body">
+
+            <!-- STEP 1: Project Type -->
+            <div class="cfg-step-panel active" data-step="1">
+              <div class="cfg-step-title">Что ближе всего к вашей задаче?</div>
+              <div class="cfg-type-cards">
+                <!-- Динамически рендерится из JSON -->
+              </div>
+            </div>
+
+            <!-- STEP 2: Parameters -->
+            <div class="cfg-step-panel" data-step="2">
+              <div class="cfg-param-group">
+                <div class="cfg-param-label"><span id="cfg-volume-label">Количество SKU</span> <span
+                    id="cfg-volume-value">2200</span></div>
+                <input type="range" id="cfg-volume-range" class="cfg-range" min="300" max="15000" step="100"
+                  value="2200">
+              </div>
+              <div class="cfg-checks">
+                <!-- Dynamic checkboxes injected by JS -->
+              </div>
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Сроки</div>
+                <div class="cfg-select-wrap">
+                  <select id="cfg-deadline" class="cfg-select">
+                    <!-- Dynamic options -->
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 3: Final Calculation -->
+            <div class="cfg-step-panel" data-step="3">
+              <div class="cfg-final-price">
+                <div class="cfg-price-breakdown" id="cfg-breakdown">
+                  <!-- Dynamic breakdown injected by JS -->
+                </div>
+                <div class="cfg-total-row">
+                  <span class="cfg-total-label">Итого</span>
+                  <span class="cfg-total-value" id="cfg-total-value">0 ₽</span>
+                </div>
+                <div class="cfg-currency-switch">
+                  <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
+                  <button class="cfg-curr-btn" data-currency="USD" type="button">$</button>
+                  <button class="cfg-curr-btn" data-currency="EUR" type="button">€</button>
+                  <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
+                </div>
+                <div class="cfg-actions">
+                  <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Забронировать внедрение</button>
+                  <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить проект</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Wizard Navigation -->
+          <div class="cfg-wizard-nav">
+            <button class="cfg-nav-btn cfg-nav-prev" type="button" style="visibility:hidden">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Назад
+            </button>
+            <button class="cfg-close-wizard" type="button">Свернуть</button>
+            <button class="cfg-nav-btn nav-next cfg-nav-next" type="button" disabled>
+              Далее
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- ===== MANUAL CONFIGURATOR ===== -->
+        <div class="cfg-manual">
+          <button class="cfg-manual-toggle" type="button">
+            <span>Настроить вручную</span>
+            <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="cfg-manual-body">
+            <div class="cfg-manual-content">
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Объём <span id="cfg-manual-volume-value">2200</span></div>
+                <input type="range" id="cfg-manual-volume" class="cfg-range" min="300" max="15000" step="100"
+                  value="2200">
+              </div>
+              <div class="cfg-checks">
+                <!-- Динамически рендерится из JSON -->
+              </div>
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Сроки</div>
+                <div class="cfg-select-wrap">
+                  <select id="cfg-manual-deadline" class="cfg-select">
+                    <!-- Dynamic options -->
+                  </select>
+                </div>
+              </div>
+              <div class="cfg-manual-result">
+                <span class="cfg-manual-result-label">Итого</span>
+                <span class="cfg-manual-result-value" id="cfg-manual-result-value">0 ₽</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </article>
   </section>
 
   <!-- ============================================== -->
-  <!-- === SLIDE 05: УСЛУГИ 07-08                 === -->
+  <!-- === SLIDE 06: УСЛУГИ 07-08                 === -->
   <!-- ============================================== -->
   <section class="slide slide-services" aria-label="Услуги Маркетинга и Управления">
     <!-- Декор -->
     <div class="slide-header-bar"></div>
     <div class="bg-figures"></div>
-    <div class="slide-number">05 / 09</div>
+    <div class="slide-number">06 / 11</div>
 
     <!-- Услуга 07 -->
     <article class="service-col" id="service-07">
@@ -518,30 +1504,185 @@
       <h2 class="service-name">ИИ-АССИСТЕНТ МАРКЕТИНГА</h2>
       <p class="service-utp">Автоматическая генерация контента и анализ рекламных кампаний</p>
       <div class="divider-h"></div>
-      <p class="service-desc">Создание статей, постов, рекламных объявлений и SEO-описаний на основе вашего Tone of Voice. Моментальный анализ эффективности каналов и перераспределение бюджета в пользу самых конверсионных лидов.</p>
+      <p class="service-desc">Создание статей, постов, рекламных объявлений и SEO-описаний на основе вашего Tone of
+        Voice. Моментальный анализ эффективности каналов и перераспределение бюджета в пользу самых конверсионных лидов.
+      </p>
       <div class="screenshot-carousel" data-service="07">
-        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-loader">
+          <div class="loader-bar"></div>
+        </div>
         <div class="carousel-viewport">
-          <img src="IMAGES/SCREENSHOTS/07_AI-MARKETING-ASSISTANT_01.png" alt="ИИ-Ассистент маркетинга 1" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/07_AI-MARKETING-ASSISTANT_01M.png" alt="ИИ-Ассистент маркетинга 1M" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/07_AI-MARKETING-ASSISTANT_02.png" alt="ИИ-Ассистент маркетинга 2" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/07_AI-MARKETING-ASSISTANT_03.png" alt="ИИ-Ассистент маркетинга 3" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/07_AI-MARKETING-ASSISTANT_04.png" alt="ИИ-Ассистент маркетинга 4" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/07_AI-MARKETING-ASSISTANT_01.png" alt="ИИ-Ассистент маркетинга 1" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/07_AI-MARKETING-ASSISTANT_01M.png" alt="ИИ-Ассистент маркетинга 1M"
+            loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/07_AI-MARKETING-ASSISTANT_02.png" alt="ИИ-Ассистент маркетинга 2" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/07_AI-MARKETING-ASSISTANT_03.png" alt="ИИ-Ассистент маркетинга 3" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/07_AI-MARKETING-ASSISTANT_04.png" alt="ИИ-Ассистент маркетинга 4" loading="lazy"
+            decoding="async">
         </div>
         <div class="carousel-dots"><span></span><span></span><span></span><span></span><span></span></div>
       </div>
-      <div class="service-result">Снижение стоимости лида (CPL) до 40 % · Рост охватов без увеличения штата маркетинга</div>
-      <p class="service-branches"><strong>Ветки развития:</strong> генерация визуалов, A/B-тестирование, интеграция с рекламными кабинетами</p>
-      
-      <!-- Цена -->
-      <div class="service-price-block">
-        <div class="price-main-container">
-          <span class="price-prefix">от </span>
-          <span class="price-value" data-base="280000">280</span>
-          <span class="price-zeros">000</span>
-          <span class="price-currency">₽</span>
+      <div class="service-result">Снижение стоимости лида (CPL) до 40 % · Рост охватов без увеличения штата маркетинга
+      </div>
+      <p class="service-branches"><strong>Ветки развития:</strong> генерация визуалов, A/B-тестирование, интеграция с
+        рекламными кабинетами</p>
+
+      <!-- Гибридный конфигуратор цены -->
+      <div class="configurator" id="cfg-service-07">
+
+        <!-- ===== INITIAL STATE ===== -->
+        <div class="cfg-initial">
+          <button class="cfg-cta-btn" type="button" aria-label="Рассчитать стоимость AI Marketing Assistant">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path
+                d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+            РАСЧЁТ СТОИМОСТИ
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" style="width:14px;height:14px">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+          <div class="cfg-chips">
+            <!-- Dynamic presets from JSON -->
+          </div>
         </div>
-        <span class="price-support">+ 21 000 ₽/мес поддержка · с НДС</span>
+
+        <!-- ===== WIZARD MODE ===== -->
+        <div class="cfg-wizard">
+          <!-- Stepper -->
+          <div class="cfg-stepper">
+            <div class="cfg-step-indicator active">
+              <span class="cfg-step-dot">1</span>
+              <span class="step-text">Тип</span>
+            </div>
+            <div class="cfg-step-line"></div>
+            <div class="cfg-step-indicator">
+              <span class="cfg-step-dot">2</span>
+              <span class="step-text">Параметры</span>
+            </div>
+            <div class="cfg-step-line"></div>
+            <div class="cfg-step-indicator">
+              <span class="cfg-step-dot">3</span>
+              <span class="step-text">Расчёт</span>
+            </div>
+          </div>
+
+          <!-- Wizard Body -->
+          <div class="cfg-wizard-body">
+
+            <!-- STEP 1: Project Type -->
+            <div class="cfg-step-panel active" data-step="1">
+              <div class="cfg-step-title">Что ближе всего к вашей задаче?</div>
+              <div class="cfg-type-cards">
+                <!-- Динамически рендерится из JSON -->
+              </div>
+            </div>
+
+            <!-- STEP 2: Parameters -->
+            <div class="cfg-step-panel" data-step="2">
+              <div class="cfg-param-group">
+                <div class="cfg-param-label"><span id="cfg-volume-label">Количество контент-единиц</span> <span
+                    id="cfg-volume-value">400</span></div>
+                <input type="range" id="cfg-volume-range" class="cfg-range" min="50" max="3000" step="50" value="400">
+              </div>
+              <div class="cfg-checks">
+                <!-- Dynamic checkboxes injected by JS -->
+              </div>
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Сроки</div>
+                <div class="cfg-select-wrap">
+                  <select id="cfg-deadline" class="cfg-select">
+                    <!-- Dynamic options -->
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 3: Final Calculation -->
+            <div class="cfg-step-panel" data-step="3">
+              <div class="cfg-final-price">
+                <div class="cfg-price-breakdown" id="cfg-breakdown">
+                  <!-- Dynamic breakdown injected by JS -->
+                </div>
+                <div class="cfg-total-row">
+                  <span class="cfg-total-label">Итого</span>
+                  <span class="cfg-total-value" id="cfg-total-value">0 ₽</span>
+                </div>
+                <div class="cfg-currency-switch">
+                  <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
+                  <button class="cfg-curr-btn" data-currency="USD" type="button">$</button>
+                  <button class="cfg-curr-btn" data-currency="EUR" type="button">€</button>
+                  <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
+                </div>
+                <div class="cfg-actions">
+                  <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Забронировать внедрение</button>
+                  <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить проект</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Wizard Navigation -->
+          <div class="cfg-wizard-nav">
+            <button class="cfg-nav-btn cfg-nav-prev" type="button" style="visibility:hidden">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Назад
+            </button>
+            <button class="cfg-close-wizard" type="button">Свернуть</button>
+            <button class="cfg-nav-btn nav-next cfg-nav-next" type="button" disabled>
+              Далее
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- ===== MANUAL CONFIGURATOR ===== -->
+        <div class="cfg-manual">
+          <button class="cfg-manual-toggle" type="button">
+            <span>Настроить вручную</span>
+            <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="cfg-manual-body">
+            <div class="cfg-manual-content">
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Объём <span id="cfg-manual-volume-value">400</span></div>
+                <input type="range" id="cfg-manual-volume" class="cfg-range" min="50" max="3000" step="50" value="400">
+              </div>
+              <div class="cfg-checks">
+                <!-- Динамически рендерится из JSON -->
+              </div>
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Сроки</div>
+                <div class="cfg-select-wrap">
+                  <select id="cfg-manual-deadline" class="cfg-select">
+                    <!-- Dynamic options -->
+                  </select>
+                </div>
+              </div>
+              <div class="cfg-manual-result">
+                <span class="cfg-manual-result-label">Итого</span>
+                <span class="cfg-manual-result-value" id="cfg-manual-result-value">0 ₽</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </article>
 
@@ -549,44 +1690,197 @@
     <article class="service-col" id="service-08">
       <div class="service-num">08</div>
       <div class="service-label">Услуга 08</div>
-      <h2 class="service-name">EXECUTIVE AI DASHBOARD</h2>
+      <h2 class="service-name">AI VISUALIZATION & CONTROL SYSTEM</h2>
       <p class="service-utp">Голосовое управление бизнесом через интеллектуальные дашборды</p>
       <div class="divider-h"></div>
-      <p class="service-desc">Единое окно для собственника: задавайте вопросы голосом («Какая маржинальность по филиалу Х за неделю?») и получайте мгновенные ответы с графиками и прогнозом выполнения плана.</p>
+      <p class="service-desc">Единое окно для собственника: задавайте вопросы голосом («Какая маржинальность по филиалу
+        Х за неделю?») и получайте мгновенные ответы с графиками и прогнозом выполнения плана.</p>
       <div class="screenshot-carousel" data-service="08">
-        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-loader">
+          <div class="loader-bar"></div>
+        </div>
         <div class="carousel-viewport">
-          <img src="IMAGES/SCREENSHOTS/08_EXECUTIVE-AI-DASHBOARD_01M.png" alt="Executive AI Dashboard 1" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/08_EXECUTIVE-AI-DASHBOARD_02M.png" alt="Executive AI Dashboard 2" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/08_EXECUTIVE-AI-DASHBOARD_03M.png" alt="Executive AI Dashboard 3" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/08_EXECUTIVE-AI-DASHBOARD_04M.png" alt="Executive AI Dashboard 4" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/08_EXECUTIVE-AI-DASHBOARD_01M.png" alt="Executive AI Dashboard 1" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/08_EXECUTIVE-AI-DASHBOARD_02M.png" alt="Executive AI Dashboard 2" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/08_EXECUTIVE-AI-DASHBOARD_03M.png" alt="Executive AI Dashboard 3" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/08_EXECUTIVE-AI-DASHBOARD_04M.png" alt="Executive AI Dashboard 4" loading="lazy"
+            decoding="async">
         </div>
         <div class="carousel-dots"><span></span><span></span><span></span><span></span></div>
       </div>
-      <div class="service-result">Принятие решений на основе данных за секунды · Полная прозрачность всех процессов</div>
-      <p class="service-branches"><strong>Ветки развития:</strong> интеграция с 1С и Bitrix24, прогнозы, голосовые отчёты</p>
-      
-      <!-- Цена -->
-      <div class="service-price-block">
-        <div class="price-main-container">
-          <span class="price-prefix">от </span>
-          <span class="price-value" data-base="800000">800</span>
-          <span class="price-zeros">000</span>
-          <span class="price-currency">₽</span>
+      <div class="service-result">Принятие решений на основе данных за секунды · Полная прозрачность всех процессов
+      </div>
+      <p class="service-branches"><strong>Ветки развития:</strong> интеграция с 1С и Bitrix24, прогнозы, голосовые
+        отчёты</p>
+
+      <!-- Гибридный конфигуратор цены -->
+      <div class="configurator" id="cfg-service-08">
+
+        <!-- ===== INITIAL STATE ===== -->
+        <div class="cfg-initial">
+          <button class="cfg-cta-btn" type="button" aria-label="Рассчитать стоимость AI Visualization & Control System">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path
+                d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+            РАСЧЁТ СТОИМОСТИ
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" style="width:14px;height:14px">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+          <div class="cfg-chips">
+            <!-- Dynamic presets from JSON -->
+          </div>
         </div>
-        <span class="price-support">+ 59 000 ₽/мес поддержка · с НДС</span>
+
+        <!-- ===== WIZARD MODE ===== -->
+        <div class="cfg-wizard">
+          <!-- Stepper -->
+          <div class="cfg-stepper">
+            <div class="cfg-step-indicator active">
+              <span class="cfg-step-dot">1</span>
+              <span class="step-text">Тип</span>
+            </div>
+            <div class="cfg-step-line"></div>
+            <div class="cfg-step-indicator">
+              <span class="cfg-step-dot">2</span>
+              <span class="step-text">Параметры</span>
+            </div>
+            <div class="cfg-step-line"></div>
+            <div class="cfg-step-indicator">
+              <span class="cfg-step-dot">3</span>
+              <span class="step-text">Расчёт</span>
+            </div>
+          </div>
+
+          <!-- Wizard Body -->
+          <div class="cfg-wizard-body">
+
+            <!-- STEP 1: Project Type -->
+            <div class="cfg-step-panel active" data-step="1">
+              <div class="cfg-step-title">Что ближе всего к вашей задаче?</div>
+              <div class="cfg-type-cards">
+                <!-- Динамически рендерится из JSON -->
+              </div>
+            </div>
+
+            <!-- STEP 2: Parameters -->
+            <div class="cfg-step-panel" data-step="2">
+              <div class="cfg-param-group">
+                <div class="cfg-param-label"><span id="cfg-volume-label">Количество экранов</span> <span
+                    id="cfg-volume-value">8</span></div>
+                <input type="range" id="cfg-volume-range" class="cfg-range" min="2" max="60" step="1" value="8">
+              </div>
+              <div class="cfg-checks">
+                <!-- Dynamic checkboxes injected by JS -->
+              </div>
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Сроки</div>
+                <div class="cfg-select-wrap">
+                  <select id="cfg-deadline" class="cfg-select">
+                    <!-- Dynamic options -->
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 3: Final Calculation -->
+            <div class="cfg-step-panel" data-step="3">
+              <div class="cfg-final-price">
+                <div class="cfg-price-breakdown" id="cfg-breakdown">
+                  <!-- Dynamic breakdown injected by JS -->
+                </div>
+                <div class="cfg-total-row">
+                  <span class="cfg-total-label">Итого</span>
+                  <span class="cfg-total-value" id="cfg-total-value">0 ₽</span>
+                </div>
+                <div class="cfg-currency-switch">
+                  <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
+                  <button class="cfg-curr-btn" data-currency="USD" type="button">$</button>
+                  <button class="cfg-curr-btn" data-currency="EUR" type="button">€</button>
+                  <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
+                </div>
+                <div class="cfg-actions">
+                  <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Забронировать внедрение</button>
+                  <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить проект</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Wizard Navigation -->
+          <div class="cfg-wizard-nav">
+            <button class="cfg-nav-btn cfg-nav-prev" type="button" style="visibility:hidden">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Назад
+            </button>
+            <button class="cfg-close-wizard" type="button">Свернуть</button>
+            <button class="cfg-nav-btn nav-next cfg-nav-next" type="button" disabled>
+              Далее
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- ===== MANUAL CONFIGURATOR ===== -->
+        <div class="cfg-manual">
+          <button class="cfg-manual-toggle" type="button">
+            <span>Настроить вручную</span>
+            <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="cfg-manual-body">
+            <div class="cfg-manual-content">
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Объём <span id="cfg-manual-volume-value">8</span></div>
+                <input type="range" id="cfg-manual-volume" class="cfg-range" min="2" max="60" step="1" value="8">
+              </div>
+              <div class="cfg-checks">
+                <!-- Динамически рендерится из JSON -->
+              </div>
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Сроки</div>
+                <div class="cfg-select-wrap">
+                  <select id="cfg-manual-deadline" class="cfg-select">
+                    <!-- Dynamic options -->
+                  </select>
+                </div>
+              </div>
+              <div class="cfg-manual-result">
+                <span class="cfg-manual-result-label">Итого</span>
+                <span class="cfg-manual-result-value" id="cfg-manual-result-value">0 ₽</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </article>
   </section>
 
   <!-- ============================================== -->
-  <!-- === SLIDE 06: УСЛУГИ 09-10                 === -->
+  <!-- === SLIDE 07: УСЛУГИ 09-10                 === -->
   <!-- ============================================== -->
   <section class="slide slide-services" aria-label="Услуги Тендеров и Корп. Баз Знаний">
     <!-- Декор -->
     <div class="slide-header-bar"></div>
     <div class="bg-figures"></div>
-    <div class="slide-number">06 / 09</div>
+    <div class="slide-number">07 / 11</div>
 
     <!-- Услуга 09 -->
     <article class="service-col" id="service-09">
@@ -595,30 +1889,183 @@
       <h2 class="service-name">ИИ-ПОМОЩНИК ПО ТЕНДЕРАМ</h2>
       <p class="service-utp">Автоматический поиск и скоринг тендеров за 15 секунд</p>
       <div class="divider-h"></div>
-      <p class="service-desc">ИИ сканирует все площадки, анализирует техзадание и оценивает вероятность вашей победы с учётом конкурентов и истории торгов. Готовит черновик заявки и список необходимых документов.</p>
+      <p class="service-desc">ИИ сканирует все площадки, анализирует техзадание и оценивает вероятность вашей победы с
+        учётом конкурентов и истории торгов. Готовит черновик заявки и список необходимых документов.</p>
       <div class="screenshot-carousel" data-service="09">
-        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-loader">
+          <div class="loader-bar"></div>
+        </div>
         <div class="carousel-viewport">
-          <img src="IMAGES/SCREENSHOTS/09_AI-TENDER-ASSISTANT_01.png" alt="ИИ-Помощник по тендерам 1" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/09_AI-TENDER-ASSISTANT_01M.png" alt="ИИ-Помощник по тендерам 1M" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/09_AI-TENDER-ASSISTANT_02.png" alt="ИИ-Помощник по тендерам 2" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/09_AI-TENDER-ASSISTANT_03.png" alt="ИИ-Помощник по тендерам 3" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/09_AI-TENDER-ASSISTANT_04.png" alt="ИИ-Помощник по тендерам 4" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/09_AI-TENDER-ASSISTANT_01.png" alt="ИИ-Помощник по тендерам 1" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/09_AI-TENDER-ASSISTANT_01M.png" alt="ИИ-Помощник по тендерам 1M" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/09_AI-TENDER-ASSISTANT_02.png" alt="ИИ-Помощник по тендерам 2" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/09_AI-TENDER-ASSISTANT_03.png" alt="ИИ-Помощник по тендерам 3" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/09_AI-TENDER-ASSISTANT_04.png" alt="ИИ-Помощник по тендерам 4" loading="lazy"
+            decoding="async">
         </div>
         <div class="carousel-dots"><span></span><span></span><span></span><span></span><span></span></div>
       </div>
       <div class="service-result">Рост количества поданных заявок до 3 раз · Фокус только на прибыльных тендерах</div>
-      <p class="service-branches"><strong>Ветки развития:</strong> автоподача, мониторинг конкурентов, шаблоны документов</p>
-      
-      <!-- Цена -->
-      <div class="service-price-block">
-        <div class="price-main-container">
-          <span class="price-prefix">от </span>
-          <span class="price-value" data-base="415000">415</span>
-          <span class="price-zeros">000</span>
-          <span class="price-currency">₽</span>
+      <p class="service-branches"><strong>Ветки развития:</strong> автоподача, мониторинг конкурентов, шаблоны
+        документов</p>
+
+      <!-- Гибридный конфигуратор цены -->
+      <div class="configurator" id="cfg-service-09">
+
+        <!-- ===== INITIAL STATE ===== -->
+        <div class="cfg-initial">
+          <button class="cfg-cta-btn" type="button" aria-label="Рассчитать стоимость AI Tender Assistant">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path
+                d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+            РАСЧЁТ СТОИМОСТИ
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" style="width:14px;height:14px">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+          <div class="cfg-chips">
+            <!-- Dynamic presets from JSON -->
+          </div>
         </div>
-        <span class="price-support">+ 31 000 ₽/мес поддержка · с НДС</span>
+
+        <!-- ===== WIZARD MODE ===== -->
+        <div class="cfg-wizard">
+          <!-- Stepper -->
+          <div class="cfg-stepper">
+            <div class="cfg-step-indicator active">
+              <span class="cfg-step-dot">1</span>
+              <span class="step-text">Тип</span>
+            </div>
+            <div class="cfg-step-line"></div>
+            <div class="cfg-step-indicator">
+              <span class="cfg-step-dot">2</span>
+              <span class="step-text">Параметры</span>
+            </div>
+            <div class="cfg-step-line"></div>
+            <div class="cfg-step-indicator">
+              <span class="cfg-step-dot">3</span>
+              <span class="step-text">Расчёт</span>
+            </div>
+          </div>
+
+          <!-- Wizard Body -->
+          <div class="cfg-wizard-body">
+
+            <!-- STEP 1: Project Type -->
+            <div class="cfg-step-panel active" data-step="1">
+              <div class="cfg-step-title">Что ближе всего к вашей задаче?</div>
+              <div class="cfg-type-cards">
+                <!-- Динамически рендерится из JSON -->
+              </div>
+            </div>
+
+            <!-- STEP 2: Parameters -->
+            <div class="cfg-step-panel" data-step="2">
+              <div class="cfg-param-group">
+                <div class="cfg-param-label"><span id="cfg-volume-label">Тендеров в месяц</span> <span
+                    id="cfg-volume-value">600</span></div>
+                <input type="range" id="cfg-volume-range" class="cfg-range" min="100" max="5000" step="50" value="600">
+              </div>
+              <div class="cfg-checks">
+                <!-- Dynamic checkboxes injected by JS -->
+              </div>
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Сроки</div>
+                <div class="cfg-select-wrap">
+                  <select id="cfg-deadline" class="cfg-select">
+                    <!-- Dynamic options -->
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 3: Final Calculation -->
+            <div class="cfg-step-panel" data-step="3">
+              <div class="cfg-final-price">
+                <div class="cfg-price-breakdown" id="cfg-breakdown">
+                  <!-- Dynamic breakdown injected by JS -->
+                </div>
+                <div class="cfg-total-row">
+                  <span class="cfg-total-label">Итого</span>
+                  <span class="cfg-total-value" id="cfg-total-value">0 ₽</span>
+                </div>
+                <div class="cfg-currency-switch">
+                  <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
+                  <button class="cfg-curr-btn" data-currency="USD" type="button">$</button>
+                  <button class="cfg-curr-btn" data-currency="EUR" type="button">€</button>
+                  <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
+                </div>
+                <div class="cfg-actions">
+                  <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Забронировать внедрение</button>
+                  <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить проект</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Wizard Navigation -->
+          <div class="cfg-wizard-nav">
+            <button class="cfg-nav-btn cfg-nav-prev" type="button" style="visibility:hidden">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Назад
+            </button>
+            <button class="cfg-close-wizard" type="button">Свернуть</button>
+            <button class="cfg-nav-btn nav-next cfg-nav-next" type="button" disabled>
+              Далее
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- ===== MANUAL CONFIGURATOR ===== -->
+        <div class="cfg-manual">
+          <button class="cfg-manual-toggle" type="button">
+            <span>Настроить вручную</span>
+            <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="cfg-manual-body">
+            <div class="cfg-manual-content">
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Объём <span id="cfg-manual-volume-value">600</span></div>
+                <input type="range" id="cfg-manual-volume" class="cfg-range" min="100" max="5000" step="50" value="600">
+              </div>
+              <div class="cfg-checks">
+                <!-- Динамически рендерится из JSON -->
+              </div>
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Сроки</div>
+                <div class="cfg-select-wrap">
+                  <select id="cfg-manual-deadline" class="cfg-select">
+                    <!-- Dynamic options -->
+                  </select>
+                </div>
+              </div>
+              <div class="cfg-manual-result">
+                <span class="cfg-manual-result-label">Итого</span>
+                <span class="cfg-manual-result-value" id="cfg-manual-result-value">0 ₽</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </article>
 
@@ -629,130 +2076,791 @@
       <h2 class="service-name">КОРПОРАТИВНЫЙ ИИ-АССИСТЕНТ</h2>
       <p class="service-utp">База знаний компании, которая сама отвечает на вопросы сотрудников</p>
       <div class="divider-h"></div>
-      <p class="service-desc">Загрузите все регламенты, инструкции и договоры. ИИ станет умным помощником для каждого отдела, мгновенно находя нужную информацию и обучая сотрудников по вашим стандартам.</p>
+      <p class="service-desc">Загрузите все регламенты, инструкции и договоры. ИИ станет умным помощником для каждого
+        отдела, мгновенно находя нужную информацию и обучая сотрудников по вашим стандартам.</p>
       <div class="screenshot-carousel" data-service="10">
-        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-loader">
+          <div class="loader-bar"></div>
+        </div>
         <div class="carousel-viewport">
-          <img src="IMAGES/SCREENSHOTS/10_CORPORATE-AI-ASSISTANT_01.png" alt="Корпоративный ИИ-ассистент 1" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/10_CORPORATE-AI-ASSISTANT_02.png" alt="Корпоративный ИИ-ассистент 2" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/10_CORPORATE-AI-ASSISTANT_03.png" alt="Корпоративный ИИ-ассистент 3" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/10_CORPORATE-AI-ASSISTANT_04.png" alt="Корпоративный ИИ-ассистент 4" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/10_CORPORATE-AI-ASSISTANT_01.png" alt="Корпоративный ИИ-ассистент 1"
+            loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/10_CORPORATE-AI-ASSISTANT_02.png" alt="Корпоративный ИИ-ассистент 2"
+            loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/10_CORPORATE-AI-ASSISTANT_03.png" alt="Корпоративный ИИ-ассистент 3"
+            loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/10_CORPORATE-AI-ASSISTANT_04.png" alt="Корпоративный ИИ-ассистент 4"
+            loading="lazy" decoding="async">
         </div>
         <div class="carousel-dots"><span></span><span></span><span></span><span></span></div>
       </div>
-      <div class="service-result">Минимизация ошибок из-за «человеческого фактора» · Снижение времени на поиск информации до 90 %</div>
-      <p class="service-branches"><strong>Ветки развития:</strong> обучение новых сотрудников, обновление базы, интеграция в Telegram</p>
-      
-      <!-- Цена -->
-      <div class="service-price-block">
-        <div class="price-main-container">
-          <span class="price-prefix">от </span>
-          <span class="price-value" data-base="315000">315</span>
-          <span class="price-zeros">000</span>
-          <span class="price-currency">₽</span>
+      <div class="service-result">Минимизация ошибок из-за «человеческого фактора» · Снижение времени на поиск
+        информации до 90 %</div>
+      <p class="service-branches"><strong>Ветки развития:</strong> обучение новых сотрудников, обновление базы,
+        интеграция в Telegram</p>
+
+      <!-- Гибридный конфигуратор цены -->
+      <div class="configurator" id="cfg-service-10">
+
+        <!-- ===== INITIAL STATE ===== -->
+        <div class="cfg-initial">
+          <button class="cfg-cta-btn" type="button" aria-label="Рассчитать стоимость AI Corporate Assistant">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path
+                d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+            РАСЧЁТ СТОИМОСТИ
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" style="width:14px;height:14px">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+          <div class="cfg-chips">
+            <!-- Dynamic presets from JSON -->
+          </div>
         </div>
-        <span class="price-support">+ 24 000 ₽/мес поддержка · с НДС</span>
+
+        <!-- ===== WIZARD MODE ===== -->
+        <div class="cfg-wizard">
+          <!-- Stepper -->
+          <div class="cfg-stepper">
+            <div class="cfg-step-indicator active">
+              <span class="cfg-step-dot">1</span>
+              <span class="step-text">Тип</span>
+            </div>
+            <div class="cfg-step-line"></div>
+            <div class="cfg-step-indicator">
+              <span class="cfg-step-dot">2</span>
+              <span class="step-text">Параметры</span>
+            </div>
+            <div class="cfg-step-line"></div>
+            <div class="cfg-step-indicator">
+              <span class="cfg-step-dot">3</span>
+              <span class="step-text">Расчёт</span>
+            </div>
+          </div>
+
+          <!-- Wizard Body -->
+          <div class="cfg-wizard-body">
+
+            <!-- STEP 1: Project Type -->
+            <div class="cfg-step-panel active" data-step="1">
+              <div class="cfg-step-title">Что ближе всего к вашей задаче?</div>
+              <div class="cfg-type-cards">
+                <!-- Динамически рендерится из JSON -->
+              </div>
+            </div>
+
+            <!-- STEP 2: Parameters -->
+            <div class="cfg-step-panel" data-step="2">
+              <div class="cfg-param-group">
+                <div class="cfg-param-label"><span id="cfg-volume-label">Активных пользователей</span> <span
+                    id="cfg-volume-value">45</span></div>
+                <input type="range" id="cfg-volume-range" class="cfg-range" min="10" max="500" step="5" value="45">
+              </div>
+              <div class="cfg-checks">
+                <!-- Dynamic checkboxes injected by JS -->
+              </div>
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Сроки</div>
+                <div class="cfg-select-wrap">
+                  <select id="cfg-deadline" class="cfg-select">
+                    <!-- Dynamic options -->
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 3: Final Calculation -->
+            <div class="cfg-step-panel" data-step="3">
+              <div class="cfg-final-price">
+                <div class="cfg-price-breakdown" id="cfg-breakdown">
+                  <!-- Dynamic breakdown injected by JS -->
+                </div>
+                <div class="cfg-total-row">
+                  <span class="cfg-total-label">Итого</span>
+                  <span class="cfg-total-value" id="cfg-total-value">0 ₽</span>
+                </div>
+                <div class="cfg-currency-switch">
+                  <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
+                  <button class="cfg-curr-btn" data-currency="USD" type="button">$</button>
+                  <button class="cfg-curr-btn" data-currency="EUR" type="button">€</button>
+                  <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
+                </div>
+                <div class="cfg-actions">
+                  <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Забронировать внедрение</button>
+                  <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить проект</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Wizard Navigation -->
+          <div class="cfg-wizard-nav">
+            <button class="cfg-nav-btn cfg-nav-prev" type="button" style="visibility:hidden">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Назад
+            </button>
+            <button class="cfg-close-wizard" type="button">Свернуть</button>
+            <button class="cfg-nav-btn nav-next cfg-nav-next" type="button" disabled>
+              Далее
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- ===== MANUAL CONFIGURATOR ===== -->
+        <div class="cfg-manual">
+          <button class="cfg-manual-toggle" type="button">
+            <span>Настроить вручную</span>
+            <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="cfg-manual-body">
+            <div class="cfg-manual-content">
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Объём <span id="cfg-manual-volume-value">45</span></div>
+                <input type="range" id="cfg-manual-volume" class="cfg-range" min="10" max="500" step="5" value="45">
+              </div>
+              <div class="cfg-checks">
+                <!-- Динамически рендерится из JSON -->
+              </div>
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Сроки</div>
+                <div class="cfg-select-wrap">
+                  <select id="cfg-manual-deadline" class="cfg-select">
+                    <!-- Dynamic options -->
+                  </select>
+                </div>
+              </div>
+              <div class="cfg-manual-result">
+                <span class="cfg-manual-result-label">Итого</span>
+                <span class="cfg-manual-result-value" id="cfg-manual-result-value">0 ₽</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </article>
   </section>
 
   <!-- ============================================== -->
-  <!-- === SLIDE 07: УСЛУГИ 11-12                 === -->
+  <!-- === SLIDE 08: УСЛУГА 11                    === -->
   <!-- ============================================== -->
-  <section class="slide slide-services" aria-label="Услуги Google Sheets и Систематизации">
+  <section class="slide slide-services slide-solo" aria-label="Услуга 11: Smart Google Sheets AI">
     <!-- Декор -->
     <div class="slide-header-bar"></div>
     <div class="bg-figures"></div>
-    <div class="slide-number">07 / 09</div>
-
-    <!-- Услуга 11 -->
-    <article class="service-col" id="service-11">
+    <div class="slide-number">08 / 11</div>
+    <!-- Левая колонка: тексты + конфигуратор -->
+    <div class="solo-left">
+    <article id="service-11">
       <div class="service-num">11</div>
       <div class="service-label">Услуга 11</div>
       <h2 class="service-name">SMART GOOGLE SHEETS AI</h2>
       <p class="service-utp">Глубокая автоматизация Google Таблиц под ваши задачи</p>
       <div class="divider-h"></div>
-      <p class="service-desc">ИИ-разработка динамических таблиц, которые сами считают, анализируют и обновляются. Прошитые формулы, Google Apps Script, автоматические дашборды, парсинг данных, условное форматирование и триггеры. Таблица «оживает» при вводе новых данных и присылает уведомления.</p>
+      <p class="service-desc">ИИ-разработка динамических таблиц, которые сами считают, анализируют и обновляются.
+        Прошитые формулы, Google Apps Script, автоматические дашборды, парсинг данных, условное форматирование и
+        триггеры. Таблица «оживает» при вводе новых данных и присылает уведомления.</p>
+      
+      <div class="service-result">Сокращение рутинной работы в 5–10 раз · Всегда актуальные отчёты одним взглядом · Без
+        ошибок ручного ввода</div>
+      <p class="service-branches"><strong>Ветки развития:</strong> интеграция с Bitrix24 / 1С / Telegram, автоматический
+        импорт из CRM, еженедельные PDF-отчёты</p>
+
+      <!-- Гибридный конфигуратор цены -->
+      <div class="configurator" id="cfg-service-11">
+
+        <!-- ===== INITIAL STATE ===== -->
+        <div class="cfg-initial">
+          <button class="cfg-cta-btn" type="button" aria-label="Рассчитать стоимость AI Smart Google Sheets">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path
+                d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+            РАСЧЁТ СТОИМОСТИ
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" style="width:14px;height:14px">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+          <div class="cfg-chips">
+            <!-- Dynamic presets from JSON -->
+          </div>
+        </div>
+
+        <!-- ===== WIZARD MODE ===== -->
+        <div class="cfg-wizard">
+          <!-- Stepper -->
+          <div class="cfg-stepper">
+            <div class="cfg-step-indicator active">
+              <span class="cfg-step-dot">1</span>
+              <span class="step-text">Тип</span>
+            </div>
+            <div class="cfg-step-line"></div>
+            <div class="cfg-step-indicator">
+              <span class="cfg-step-dot">2</span>
+              <span class="step-text">Параметры</span>
+            </div>
+            <div class="cfg-step-line"></div>
+            <div class="cfg-step-indicator">
+              <span class="cfg-step-dot">3</span>
+              <span class="step-text">Расчёт</span>
+            </div>
+          </div>
+
+          <!-- Wizard Body -->
+          <div class="cfg-wizard-body">
+
+            <!-- STEP 1: Project Type -->
+            <div class="cfg-step-panel active" data-step="1">
+              <div class="cfg-step-title">Что ближе всего к вашей задаче?</div>
+              <div class="cfg-type-cards">
+                <!-- Динамически рендерится из JSON -->
+              </div>
+            </div>
+
+            <!-- STEP 2: Parameters -->
+            <div class="cfg-step-panel" data-step="2">
+              <div class="cfg-param-group">
+                <div class="cfg-param-label"><span id="cfg-volume-label">Активных строк в месяц</span> <span
+                    id="cfg-volume-value">45000</span></div>
+                <input type="range" id="cfg-volume-range" class="cfg-range" min="5000" max="500000" step="5000"
+                  value="45000">
+              </div>
+              <div class="cfg-checks">
+                <!-- Dynamic checkboxes injected by JS -->
+              </div>
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Сроки</div>
+                <div class="cfg-select-wrap">
+                  <select id="cfg-deadline" class="cfg-select">
+                    <!-- Dynamic options -->
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 3: Final Calculation -->
+            <div class="cfg-step-panel" data-step="3">
+              <div class="cfg-final-price">
+                <div class="cfg-price-breakdown" id="cfg-breakdown">
+                  <!-- Dynamic breakdown injected by JS -->
+                </div>
+                <div class="cfg-total-row">
+                  <span class="cfg-total-label">Итого</span>
+                  <span class="cfg-total-value" id="cfg-total-value">0 ₽</span>
+                </div>
+                <div class="cfg-currency-switch">
+                  <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
+                  <button class="cfg-curr-btn" data-currency="USD" type="button">$</button>
+                  <button class="cfg-curr-btn" data-currency="EUR" type="button">€</button>
+                  <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
+                </div>
+                <div class="cfg-actions">
+                  <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Забронировать внедрение</button>
+                  <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить проект</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Wizard Navigation -->
+          <div class="cfg-wizard-nav">
+            <button class="cfg-nav-btn cfg-nav-prev" type="button" style="visibility:hidden">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Назад
+            </button>
+            <button class="cfg-close-wizard" type="button">Свернуть</button>
+            <button class="cfg-nav-btn nav-next cfg-nav-next" type="button" disabled>
+              Далее
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- ===== MANUAL CONFIGURATOR ===== -->
+        <div class="cfg-manual">
+          <button class="cfg-manual-toggle" type="button">
+            <span>Настроить вручную</span>
+            <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="cfg-manual-body">
+            <div class="cfg-manual-content">
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Объём <span id="cfg-manual-volume-value">45000</span></div>
+                <input type="range" id="cfg-manual-volume" class="cfg-range" min="5000" max="500000" step="5000"
+                  value="45000">
+              </div>
+              <div class="cfg-checks">
+                <!-- Динамически рендерится из JSON -->
+              </div>
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Сроки</div>
+                <div class="cfg-select-wrap">
+                  <select id="cfg-manual-deadline" class="cfg-select">
+                    <!-- Dynamic options -->
+                  </select>
+                </div>
+              </div>
+              <div class="cfg-manual-result">
+                <span class="cfg-manual-result-label">Итого</span>
+                <span class="cfg-manual-result-value" id="cfg-manual-result-value">0 ₽</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </article>
+    </div>
+
+    <!-- Правая колонка: карусель скриншотов -->
+    <div class="solo-right">
       <div class="screenshot-carousel" data-service="11">
-        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-loader">
+          <div class="loader-bar"></div>
+        </div>
         <div class="carousel-viewport">
-          <img src="IMAGES/SCREENSHOTS/11_SMART-GOOGLE-SHEETS_01.png" alt="Smart Google Sheets 1" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/11_SMART-GOOGLE-SHEETS_02.png" alt="Smart Google Sheets 2" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/11_SMART-GOOGLE-SHEETS_03.png" alt="Smart Google Sheets 3" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/11_SMART-GOOGLE-SHEETS_04.png" alt="Smart Google Sheets 4" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/11_SMART-GOOGLE-SHEETS_01.png" alt="Smart Google Sheets 1" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/11_SMART-GOOGLE-SHEETS_02.png" alt="Smart Google Sheets 2" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/11_SMART-GOOGLE-SHEETS_03.png" alt="Smart Google Sheets 3" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/11_SMART-GOOGLE-SHEETS_04.png" alt="Smart Google Sheets 4" loading="lazy"
+            decoding="async">
         </div>
         <div class="carousel-dots"><span></span><span></span><span></span><span></span></div>
       </div>
-      <div class="service-result">Сокращение рутинной работы в 5–10 раз · Всегда актуальные отчёты одним взглядом · Без ошибок ручного ввода</div>
-      <p class="service-branches"><strong>Ветки развития:</strong> интеграция с Bitrix24 / 1С / Telegram, автоматический импорт из CRM, еженедельные PDF-отчёты</p>
-      
-      <!-- Цена -->
-      <div class="service-price-block">
-        <div class="price-main-container">
-          <span class="price-prefix">от </span>
-          <span class="price-value" data-base="220000">220</span>
-          <span class="price-zeros">000</span>
-          <span class="price-currency">₽</span>
-        </div>
-        <span class="price-support">+ 16 000 ₽/мес поддержка · с НДС</span>
-      </div>
-    </article>
+    </div>
+  </section>
 
-    <!-- Услуга 12 -->
-    <article class="service-col" id="service-12">
+  <!-- ============================================== -->
+  <!-- === SLIDE 09: УСЛУГА 12                    === -->
+  <!-- ============================================== -->
+  <section class="slide slide-services slide-solo" aria-label="Услуга 12: System Organizer AI">
+    <!-- Декор -->
+    <div class="slide-header-bar"></div>
+    <div class="bg-figures"></div>
+    <div class="slide-number">09 / 11</div>
+    <!-- Левая колонка: тексты + конфигуратор -->
+    <div class="solo-left">
+    <article id="service-12">
       <div class="service-num">12</div>
       <div class="service-label">Услуга 12</div>
       <h2 class="service-name">SYSTEM ORGANIZER AI</h2>
       <p class="service-utp">Умная систематизация и наведение порядка в данных</p>
       <div class="divider-h"></div>
-      <p class="service-desc">Комплексная цифровая уборка и организация ваших систем. Автоматическая очистка от дублей, умная категоризация клиентов/сделок/товаров/документов, динамические фильтры, правила сортировки и единая логическая структура.</p>
+      <p class="service-desc">Комплексная цифровая уборка и организация ваших систем. Автоматическая очистка от дублей,
+        умная категоризация клиентов/сделок/товаров/документов, динамические фильтры, правила сортировки и единая
+        логическая структура.</p>
+      
+      <div class="service-result">+40–60 % скорости работы команды · Меньше ошибок и «потерянных» данных · Чистая
+        аналитика за секунды</div>
+      <p class="service-branches"><strong>Ветки развития:</strong> регулярная автоподдержка порядка, интеграция с
+        существующими базами, создание правил для новых данных</p>
+
+      <!-- Гибридный конфигуратор цены -->
+      <div class="configurator" id="cfg-service-12">
+
+        <!-- ===== INITIAL STATE ===== -->
+        <div class="cfg-initial">
+          <button class="cfg-cta-btn" type="button" aria-label="Рассчитать стоимость AI System Organizer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path
+                d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+            РАСЧЁТ СТОИМОСТИ
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" style="width:14px;height:14px">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+          <div class="cfg-chips">
+            <!-- Dynamic presets from JSON -->
+          </div>
+        </div>
+
+        <!-- ===== WIZARD MODE ===== -->
+        <div class="cfg-wizard">
+          <!-- Stepper -->
+          <div class="cfg-stepper">
+            <div class="cfg-step-indicator active">
+              <span class="cfg-step-dot">1</span>
+              <span class="step-text">Тип</span>
+            </div>
+            <div class="cfg-step-line"></div>
+            <div class="cfg-step-indicator">
+              <span class="cfg-step-dot">2</span>
+              <span class="step-text">Параметры</span>
+            </div>
+            <div class="cfg-step-line"></div>
+            <div class="cfg-step-indicator">
+              <span class="cfg-step-dot">3</span>
+              <span class="step-text">Расчёт</span>
+            </div>
+          </div>
+
+          <!-- Wizard Body -->
+          <div class="cfg-wizard-body">
+
+            <!-- STEP 1: Project Type -->
+            <div class="cfg-step-panel active" data-step="1">
+              <div class="cfg-step-title">Что ближе всего к вашей задаче?</div>
+              <div class="cfg-type-cards">
+                <!-- Динамически рендерится из JSON -->
+              </div>
+            </div>
+
+            <!-- STEP 2: Parameters -->
+            <div class="cfg-step-panel" data-step="2">
+              <div class="cfg-param-group">
+                <div class="cfg-param-label"><span id="cfg-volume-label">Количество объектов</span> <span
+                    id="cfg-volume-value">25000</span></div>
+                <input type="range" id="cfg-volume-range" class="cfg-range" min="2000" max="200000" step="2000"
+                  value="25000">
+              </div>
+              <div class="cfg-checks">
+                <!-- Dynamic checkboxes injected by JS -->
+              </div>
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Сроки</div>
+                <div class="cfg-select-wrap">
+                  <select id="cfg-deadline" class="cfg-select">
+                    <!-- Dynamic options -->
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 3: Final Calculation -->
+            <div class="cfg-step-panel" data-step="3">
+              <div class="cfg-final-price">
+                <div class="cfg-price-breakdown" id="cfg-breakdown">
+                  <!-- Dynamic breakdown injected by JS -->
+                </div>
+                <div class="cfg-total-row">
+                  <span class="cfg-total-label">Итого</span>
+                  <span class="cfg-total-value" id="cfg-total-value">0 ₽</span>
+                </div>
+                <div class="cfg-currency-switch">
+                  <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
+                  <button class="cfg-curr-btn" data-currency="USD" type="button">$</button>
+                  <button class="cfg-curr-btn" data-currency="EUR" type="button">€</button>
+                  <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
+                </div>
+                <div class="cfg-actions">
+                  <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Забронировать внедрение</button>
+                  <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить проект</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Wizard Navigation -->
+          <div class="cfg-wizard-nav">
+            <button class="cfg-nav-btn cfg-nav-prev" type="button" style="visibility:hidden">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Назад
+            </button>
+            <button class="cfg-close-wizard" type="button">Свернуть</button>
+            <button class="cfg-nav-btn nav-next cfg-nav-next" type="button" disabled>
+              Далее
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- ===== MANUAL CONFIGURATOR ===== -->
+        <div class="cfg-manual">
+          <button class="cfg-manual-toggle" type="button">
+            <span>Настроить вручную</span>
+            <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="cfg-manual-body">
+            <div class="cfg-manual-content">
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Объём <span id="cfg-manual-volume-value">25000</span></div>
+                <input type="range" id="cfg-manual-volume" class="cfg-range" min="2000" max="200000" step="2000"
+                  value="25000">
+              </div>
+              <div class="cfg-checks">
+                <!-- Динамически рендерится из JSON -->
+              </div>
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Сроки</div>
+                <div class="cfg-select-wrap">
+                  <select id="cfg-manual-deadline" class="cfg-select">
+                    <!-- Dynamic options -->
+                  </select>
+                </div>
+              </div>
+              <div class="cfg-manual-result">
+                <span class="cfg-manual-result-label">Итого</span>
+                <span class="cfg-manual-result-value" id="cfg-manual-result-value">0 ₽</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </article>
+    </div>
+
+    <!-- Правая колонка: карусель скриншотов -->
+    <div class="solo-right">
       <div class="screenshot-carousel" data-service="12">
-        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-loader">
+          <div class="loader-bar"></div>
+        </div>
         <div class="carousel-viewport">
-          <img src="IMAGES/SCREENSHOTS/12_-SYSTEM-ORGANIZER_01.png" alt="System Organizer 1" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/12_-SYSTEM-ORGANIZER_02.png" alt="System Organizer 2" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/12_SYSTEM-ORGANIZER_02M.png" alt="System Organizer 2M" loading="lazy" decoding="async">
-          <img src="IMAGES/SCREENSHOTS/12_-SYSTEM-ORGANIZER_03.png" alt="System Organizer 3" loading="lazy" decoding="async">
+          <img src="IMAGES/SCREENSHOTS/12_-SYSTEM-ORGANIZER_01.png" alt="System Organizer 1" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/12_-SYSTEM-ORGANIZER_02.png" alt="System Organizer 2" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/12_SYSTEM-ORGANIZER_02M.png" alt="System Organizer 2M" loading="lazy"
+            decoding="async">
+          <img src="IMAGES/SCREENSHOTS/12_-SYSTEM-ORGANIZER_03.png" alt="System Organizer 3" loading="lazy"
+            decoding="async">
         </div>
         <div class="carousel-dots"><span></span><span></span><span></span><span></span></div>
       </div>
-      <div class="service-result">+40–60 % скорости работы команды · Меньше ошибок и «потерянных» данных · Чистая аналитика за секунды</div>
-      <p class="service-branches"><strong>Ветки развития:</strong> регулярная автоподдержка порядка, интеграция с существующими базами, создание правил для новых данных</p>
-      
-      <!-- Цена -->
-      <div class="service-price-block">
-        <div class="price-main-container">
-          <span class="price-prefix">от </span>
-          <span class="price-value" data-base="265000">265</span>
-          <span class="price-zeros">000</span>
-          <span class="price-currency">₽</span>
-        </div>
-        <span class="price-support">+ 19 000 ₽/мес поддержка · с НДС</span>
-      </div>
-    </article>
+    </div>
   </section>
 
   <!-- ============================================== -->
-  <!-- === SLIDE 08: УСЛУГА 13                    === -->
+  <!-- === SLIDE 10: УСЛУГА 13                    === -->
   <!-- ============================================== -->
-  <section class="slide slide-services" aria-label="Услуга 13: Obsidian PKM Architect">
+  <section class="slide slide-services slide-solo" aria-label="Услуга 13: Obsidian PKM Architect">
     <!-- Декор -->
     <div class="slide-header-bar"></div>
     <div class="bg-figures"></div>
-    <div class="slide-number">08 / 09</div>
-
-    <!-- Услуга 13 -->
-    <article class="service-col" id="service-13">
+    <div class="slide-number">10 / 11</div>
+    <!-- Левая колонка: тексты + конфигуратор -->
+    <div class="solo-left">
+    <article id="service-13">
       <div class="service-num">13</div>
       <div class="service-label">Услуга 13</div>
       <h2 class="service-name">OBSIDIAN PKM ARCHITECT</h2>
       <p class="service-utp">Построение живой графовой базы знаний в Obsidian — от хаоса к системе</p>
       <div class="divider-h"></div>
-      <p class="service-desc">ИИ-архитектор персональной и командной базы знаний на платформе Obsidian. Проектирую графы связей между заметками (Graph Database Architecture), создаю онтологии и таксономии, разрабатываю строгие YAML/Frontmatter-схемы метаданных и структурирую большие массивы данных (>10 000 файлов). На выходе — управляемая, searchable система с автоматическими MOC, дашбордами и ежедневными workflow. Экономит 15–20 часов в неделю на поиск и организацию информации.</p>
-      
+      <p class="service-desc">ИИ-архитектор персональной и командной базы знаний на платформе Obsidian. Проектирую графы
+        связей между заметками (Graph Database Architecture), создаю онтологии и таксономии, разрабатываю строгие
+        YAML/Frontmatter-схемы метаданных и структурирую большие массивы данных (>10 000 файлов). На выходе —
+        управляемая, searchable система с автоматическими MOC, дашбордами и ежедневными workflow. Экономит 15–20 часов в
+        неделю на поиск и организацию информации.</p>
+
       <!-- Карусель скриншотов услуги 13 -->
+
+      <div class="service-result">95%+ связность графа · Стандартизированные метаданные · Экономия 15–20 ч/нед на поиск
+        информации</div>
+      <p class="service-branches"><strong>Ветки развития:</strong> автоматические MOC, интеграция с AI-агентами,
+        дашборды в Obsidian, экспорт в другие системы</p>
+
+      <!-- Гибридный конфигуратор цены -->
+      <div class="configurator" id="cfg-service-13">
+
+        <!-- ===== INITIAL STATE ===== -->
+        <div class="cfg-initial">
+          <button class="cfg-cta-btn" type="button" aria-label="Рассчитать стоимость Obsidian PKM Architect">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path
+                d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+            РАСЧЁТ СТОИМОСТИ
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" style="width:14px;height:14px">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+          <div class="cfg-chips">
+            <!-- Dynamic presets from JSON -->
+          </div>
+        </div>
+
+        <!-- ===== WIZARD MODE ===== -->
+        <div class="cfg-wizard">
+          <!-- Stepper -->
+          <div class="cfg-stepper">
+            <div class="cfg-step-indicator active">
+              <span class="cfg-step-dot">1</span>
+              <span class="step-text">Тип</span>
+            </div>
+            <div class="cfg-step-line"></div>
+            <div class="cfg-step-indicator">
+              <span class="cfg-step-dot">2</span>
+              <span class="step-text">Параметры</span>
+            </div>
+            <div class="cfg-step-line"></div>
+            <div class="cfg-step-indicator">
+              <span class="cfg-step-dot">3</span>
+              <span class="step-text">Расчёт</span>
+            </div>
+          </div>
+
+          <!-- Wizard Body -->
+          <div class="cfg-wizard-body">
+
+            <!-- STEP 1: Project Type -->
+            <div class="cfg-step-panel active" data-step="1">
+              <div class="cfg-step-title">Какой тип PKM-системы вам нужен?</div>
+              <div class="cfg-type-cards">
+                <!-- Динамически рендерится из JSON -->
+              </div>
+            </div>
+
+            <!-- STEP 2: Parameters -->
+            <div class="cfg-step-panel" data-step="2">
+              <div class="cfg-param-group">
+                <div class="cfg-param-label"><span id="cfg-volume-label">Количество узлов / заметок</span> <span
+                    id="cfg-volume-value">5000</span></div>
+                <input type="range" id="cfg-volume-range" class="cfg-range" min="500" max="20000" step="500"
+                  value="5000">
+              </div>
+              <div class="cfg-checks">
+                <!-- Dynamic checkboxes injected by JS -->
+              </div>
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Сроки</div>
+                <div class="cfg-select-wrap">
+                  <select id="cfg-deadline" class="cfg-select">
+                    <!-- Dynamic options -->
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 3: Final Calculation -->
+            <div class="cfg-step-panel" data-step="3">
+              <div class="cfg-final-price">
+                <div class="cfg-price-breakdown" id="cfg-breakdown">
+                  <!-- Dynamic breakdown injected by JS -->
+                </div>
+                <div class="cfg-total-row">
+                  <span class="cfg-total-label">Итого</span>
+                  <span class="cfg-total-value" id="cfg-total-value">0 ₽</span>
+                </div>
+                <div class="cfg-currency-switch">
+                  <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
+                  <button class="cfg-curr-btn" data-currency="USD" type="button">$</button>
+                  <button class="cfg-curr-btn" data-currency="EUR" type="button">€</button>
+                  <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
+                </div>
+                <div class="cfg-actions">
+                  <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Запустить свой Second
+                    Brain</button>
+                  <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить архитектуру</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Wizard Navigation -->
+          <div class="cfg-wizard-nav">
+            <button class="cfg-nav-btn cfg-nav-prev" type="button" style="visibility:hidden">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Назад
+            </button>
+            <button class="cfg-close-wizard" type="button">Свернуть</button>
+            <button class="cfg-nav-btn nav-next cfg-nav-next" type="button" disabled>
+              Далее
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- ===== MANUAL CONFIGURATOR ===== -->
+        <div class="cfg-manual">
+          <button class="cfg-manual-toggle" type="button">
+            <span>Настроить вручную</span>
+            <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="cfg-manual-body">
+            <div class="cfg-manual-content">
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Объём <span id="cfg-manual-volume-value">5000</span></div>
+                <input type="range" id="cfg-manual-volume" class="cfg-range" min="500" max="20000" step="500"
+                  value="5000">
+              </div>
+              <div class="cfg-checks">
+                <!-- Динамически рендерится из JSON -->
+              </div>
+              <div class="cfg-param-group">
+                <div class="cfg-param-label">Сроки</div>
+                <div class="cfg-select-wrap">
+                  <select id="cfg-manual-deadline" class="cfg-select">
+                    <!-- Dynamic options -->
+                  </select>
+                </div>
+              </div>
+              <div class="cfg-manual-result">
+                <span class="cfg-manual-result-label">Итого</span>
+                <span class="cfg-manual-result-value" id="cfg-manual-result-value">0 ₽</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </article>
+    </div>
+
+    <!-- Правая колонка: карусель скриншотов -->
+    <div class="solo-right">
       <div class="screenshot-carousel" data-service="13">
-        <div class="carousel-loader"><div class="loader-bar"></div></div>
+        <div class="carousel-loader">
+          <div class="loader-bar"></div>
+        </div>
         <div class="carousel-viewport">
           <img src="IMAGES/SCREENSHOTS/12_-obsidian_01M.png" alt="Obsidian PKM 1" loading="lazy" decoding="async">
           <img src="IMAGES/SCREENSHOTS/12_-obsidian_02M.png" alt="Obsidian PKM 2" loading="lazy" decoding="async">
@@ -761,148 +2869,154 @@
         </div>
         <div class="carousel-dots"><span></span><span></span><span></span><span></span></div>
       </div>
-
-      <div class="service-result">95%+ связность графа · Стандартизированные метаданные · Экономия 15–20 ч/нед на поиск информации</div>
-      <p class="service-branches"><strong>Ветки развития:</strong> автоматические MOC, интеграция с AI-агентами, дашборды в Obsidian, экспорт в другие системы</p>
-      
-      <!-- Цена (для анимации) -->
-      <div class="service-price-block">
-        <div class="price-main-container">
-          <span class="price-prefix">от </span>
-          <span class="price-value" data-base="295000">295</span>
-          <span class="price-zeros">000</span>
-          <span class="price-currency">₽</span>
-        </div>
-        <span class="price-support">+ 22 000 ₽/мес поддержка · с НДС</span>
-      </div>
-    </article>
+    </div>
   </section>
 
   <!-- ============================================== -->
-  <!-- === SLIDE 09: ФИНАЛ (КОНТАКТЫ)             === -->
+  <!-- === SLIDE 11: ФИНАЛ (КОНТАКТЫ)             === -->
   <!-- ============================================== -->
   <section class="slide slide-final" aria-label="Финальный экран и контакты">
     <!-- Декор -->
     <div class="bg-figures"></div>
     <div class="corner corner-tl"></div>
     <div class="corner corner-br"></div>
-    <div class="slide-number">09 / 09</div>
+    <div class="slide-number">11 / 11</div>
 
     <!-- Левая колонка: контент + контакты -->
     <div class="final-left">
       <div class="final-tag">Следующий шаг</div>
       <h2 class="final-title">ГОТОВЫ ВНЕДРИТЬ ИИ, КОТОРЫЙ <span>РЕАЛЬНО ПОВЫСИТ ПРОДАЖИ?</span></h2>
-      <p class="final-sub">Запишитесь на бесплатный аудит. Я проанализирую 30 ваших сделок и найду конкретные способы поднять ROI при помощи нейросетей.</p>
+      <p class="final-sub">Запишитесь на бесплатный аудит. Я проанализирую 30 ваших сделок и найду конкретные способы
+        поднять ROI при помощи нейросетей.</p>
 
       <!-- Форма захвата -->
       <div id="form-container" class="w-full max-w-[480px] mb-8 relative">
-        <form id="lead-form" action="https://formspree.io/f/mrejplob" method="POST" enctype="multipart/form-data" class="flex flex-col gap-5 relative z-20 transition-all duration-500 origin-top">
+        <form id="lead-form" action="https://formspree.io/f/mrejplob" method="POST" enctype="multipart/form-data"
+          class="flex flex-col gap-5 relative z-20 transition-all duration-500 origin-top">
           <div class="flex gap-4 max-sm:flex-col">
             <div class="w-full flex flex-col relative">
-              <input type="text" name="name" required placeholder="Имя *" aria-label="Ваше имя" class="w-full bg-transparent border-b border-line text-txt py-3 px-2 focus:outline-none focus:border-accent focus:bg-white/40 transition-all duration-300 placeholder:text-txt-light/70 text-[15px] font-medium peer">
-              <span class="text-red-500 text-[11px] absolute -bottom-4 left-2 opacity-0 peer-invalid:peer-[.is-dirty]:opacity-100 transition-opacity">Пожалуйста, введите ваше имя</span>
+              <input type="text" name="name" required placeholder="Имя *" aria-label="Ваше имя"
+                class="w-full bg-transparent border-b border-line text-txt py-3 px-2 focus:outline-none focus:border-accent focus:bg-white/40 transition-all duration-300 placeholder:text-txt-light/70 text-[15px] font-medium peer">
+              <span
+                class="text-red-500 text-[11px] absolute -bottom-4 left-2 opacity-0 peer-invalid:peer-[.is-dirty]:opacity-100 transition-opacity">Пожалуйста,
+                введите ваше имя</span>
             </div>
             <div class="w-full flex flex-col relative">
-              <input type="tel" name="phone" required placeholder="Телефон / WhatsApp *" aria-label="Ваш телефон" class="w-full bg-transparent border-b border-line text-txt py-3 px-2 focus:outline-none focus:border-accent focus:bg-white/40 transition-all duration-300 placeholder:text-txt-light/70 text-[15px] font-medium peer">
-              <span class="text-red-500 text-[11px] absolute -bottom-4 left-2 opacity-0 peer-invalid:peer-[.is-dirty]:opacity-100 transition-opacity">Укажите контактный номер</span>
+              <input type="tel" name="phone" required placeholder="Телефон / WhatsApp *" aria-label="Ваш телефон"
+                class="w-full bg-transparent border-b border-line text-txt py-3 px-2 focus:outline-none focus:border-accent focus:bg-white/40 transition-all duration-300 placeholder:text-txt-light/70 text-[15px] font-medium peer">
+              <span
+                class="text-red-500 text-[11px] absolute -bottom-4 left-2 opacity-0 peer-invalid:peer-[.is-dirty]:opacity-100 transition-opacity">Укажите
+                контактный номер</span>
             </div>
           </div>
           <div class="w-full flex flex-col mt-1">
-            <input type="email" name="email" placeholder="E-mail (необязательно)" aria-label="Ваш email" class="w-full bg-transparent border-b border-line text-txt py-3 px-2 focus:outline-none focus:border-accent focus:bg-white/40 transition-all duration-300 placeholder:text-txt-light/70 text-[15px] font-medium">
+            <input type="email" name="email" placeholder="E-mail (необязательно)" aria-label="Ваш email"
+              class="w-full bg-transparent border-b border-line text-txt py-3 px-2 focus:outline-none focus:border-accent focus:bg-white/40 transition-all duration-300 placeholder:text-txt-light/70 text-[15px] font-medium">
           </div>
           <div class="w-full flex flex-col mt-1">
-            <textarea name="task" rows="3" placeholder="Какая задача стоит?" aria-label="Описание задачи" class="w-full bg-transparent border-b border-line text-txt py-3 px-2 focus:outline-none focus:border-accent focus:bg-white/40 transition-all duration-300 placeholder:text-txt-light/70 text-[15px] font-medium resize-none"></textarea>
+            <textarea name="task" rows="3" placeholder="Какая задача стоит?" aria-label="Описание задачи"
+              class="w-full bg-transparent border-b border-line text-txt py-3 px-2 focus:outline-none focus:border-accent focus:bg-white/40 transition-all duration-300 placeholder:text-txt-light/70 text-[15px] font-medium resize-none"></textarea>
           </div>
-          
-          <div id="form-error" class="hidden text-red-600 bg-red-50 p-3 text-[13px] font-medium border border-red-200 rounded-sm shadow-sm transition-all duration-300 mt-2">
+
+          <div id="form-error"
+            class="hidden text-red-600 bg-red-50 p-3 text-[13px] font-medium border border-red-200 rounded-sm shadow-sm transition-all duration-300 mt-2">
             Что-то пошло не так. Попробуйте ещё раз или напишите нам в Telegram @denispolotsk
           </div>
-          
-          <button type="submit" id="submit-btn" class="final-cta mt-4 w-full flex items-center justify-center gap-3 active:scale-[0.98] active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed disabled:active:scale-100 transition-all duration-300">
+
+          <button type="submit" id="submit-btn"
+            class="final-cta mt-4 w-full flex items-center justify-center gap-3 active:scale-[0.98] active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed disabled:active:scale-100 transition-all duration-300">
             <span id="submit-text">ЗАПИСАТЬСЯ НА БЕСПЛАТНЫЙ АУДИТ →</span>
-            <svg id="submit-spinner" class="animate-spin h-5 w-5 text-white hidden absolute right-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <svg id="submit-spinner" class="animate-spin h-5 w-5 text-white hidden absolute right-6"
+              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              <path class="opacity-75" fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+              </path>
             </svg>
           </button>
         </form>
 
         <!-- Блок успешной отправки -->
-        <div id="form-success" class="absolute inset-0 flex-col items-center justify-center p-10 border border-accent/20 bg-bg z-30 text-center shadow-xl transition-all duration-500 opacity-0 scale-95 pointer-events-none hidden rounded-sm">
+        <div id="form-success"
+          class="absolute inset-0 flex-col items-center justify-center p-10 border border-accent/20 bg-bg z-30 text-center shadow-xl transition-all duration-500 opacity-0 scale-95 pointer-events-none hidden rounded-sm">
           <div class="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+            </svg>
           </div>
           <h3 class="text-[26px] font-black uppercase text-txt mb-4 tracking-tight leading-none">Заявка отправлена!</h3>
-          <p class="text-txt-mid text-[16px] leading-relaxed">Спасибо за обращение. Мы изучим вашу задачу и свяжемся с вами в течение 2 часов.</p>
+          <p class="text-txt-mid text-[16px] leading-relaxed">Спасибо за обращение. Мы изучим вашу задачу и свяжемся с
+            вами в течение 2 часов.</p>
         </div>
       </div>
 
-      <!-- ROI Калькулятор -->
-      <div id="roi-calculator" class="w-full max-w-[480px] mb-8 bg-white/30 border border-line rounded-xl p-5 sm:p-6 relative backdrop-blur-sm shadow-sm transition-all duration-300 hover:shadow-md hover:bg-white/40 group">
-        <h3 class="text-[18px] font-bold text-txt mb-4 flex items-center gap-2">
-          <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-          Калькулятор выгоды (ROI)
-        </h3>
-        
-        <!-- Параметры -->
-        <div class="flex flex-col gap-4 mb-6">
-          <!-- Чек -->
-          <div class="flex flex-col gap-1">
-            <div class="flex justify-between items-center text-[13px] font-medium text-txt-mid">
-              <label for="roi-check-range">Средний чек (₽)</label>
-              <input type="number" id="roi-check-input" value="150000" min="50000" max="2000000" step="10000" class="w-24 bg-transparent border-b border-line text-right text-txt font-semibold focus:outline-none focus:border-accent">
-            </div>
-            <input type="range" id="roi-check-range" min="50000" max="2000000" step="10000" value="150000" class="custom-range w-full">
-          </div>
-          
-          <!-- Лиды -->
-          <div class="flex flex-col gap-1">
-            <div class="flex justify-between items-center text-[13px] font-medium text-txt-mid">
-              <label for="roi-leads-range">Лидов в месяц</label>
-              <input type="number" id="roi-leads-input" value="100" min="10" max="500" step="10" class="w-16 bg-transparent border-b border-line text-right text-txt font-semibold focus:outline-none focus:border-accent">
-            </div>
-            <input type="range" id="roi-leads-range" min="10" max="500" step="10" value="100" class="custom-range w-full">
-          </div>
-          
-          <!-- Конверсия -->
-          <div class="flex flex-col gap-1">
-            <div class="flex justify-between items-center text-[13px] font-medium text-txt-mid">
-              <label for="roi-conv-range">Конверсия в сделку (%)</label>
-              <input type="number" id="roi-conv-input" value="15" min="5" max="40" step="1" class="w-16 bg-transparent border-b border-line text-right text-txt font-semibold focus:outline-none focus:border-accent">
-            </div>
-            <input type="range" id="roi-conv-range" min="5" max="40" step="1" value="15" class="custom-range w-full">
-          </div>
-          
-          <!-- Часы -->
-          <div class="flex flex-col gap-1">
-            <div class="flex justify-between items-center text-[13px] font-medium text-txt-mid">
-              <label for="roi-hours-range">Часов на рутину (в нед.)</label>
-              <input type="number" id="roi-hours-input" value="15" min="5" max="40" step="1" class="w-16 bg-transparent border-b border-line text-right text-txt font-semibold focus:outline-none focus:border-accent">
-            </div>
-            <input type="range" id="roi-hours-range" min="5" max="40" step="1" value="15" class="custom-range w-full">
-          </div>
+      <!-- ROI Калькулятор (configurator style) -->
+      <div id="roi-calculator" class="roi-configurator">
+        <div class="roi-header">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z">
+            </path>
+          </svg>
+          <h3>Калькулятор выгоды (ROI)</h3>
         </div>
+        <div class="roi-body">
+          <!-- Чек -->
+          <div class="roi-param">
+            <div class="roi-param-header">
+              <label for="roi-check-range">Средний чек (₽)</label>
+              <input type="number" id="roi-check-input" value="150000" min="50000" max="2000000" step="10000">
+            </div>
+            <input type="range" id="roi-check-range" min="50000" max="2000000" step="10000" value="150000"
+              class="cfg-range">
+          </div>
+          <!-- Лиды -->
+          <div class="roi-param">
+            <div class="roi-param-header">
+              <label for="roi-leads-range">Лидов в месяц</label>
+              <input type="number" id="roi-leads-input" value="100" min="10" max="500" step="10">
+            </div>
+            <input type="range" id="roi-leads-range" min="10" max="500" step="10" value="100" class="cfg-range">
+          </div>
+          <!-- Конверсия -->
+          <div class="roi-param">
+            <div class="roi-param-header">
+              <label for="roi-conv-range">Конверсия в сделку (%)</label>
+              <input type="number" id="roi-conv-input" value="15" min="5" max="40" step="1">
+            </div>
+            <input type="range" id="roi-conv-range" min="5" max="40" step="1" value="15" class="cfg-range">
+          </div>
+          <!-- Часы -->
+          <div class="roi-param">
+            <div class="roi-param-header">
+              <label for="roi-hours-range">Часов на рутину (в нед.)</label>
+              <input type="number" id="roi-hours-input" value="15" min="5" max="40" step="1">
+            </div>
+            <input type="range" id="roi-hours-range" min="5" max="40" step="1" value="15" class="cfg-range">
+          </div>
 
-        <!-- Результаты -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div class="bg-bg-alt/50 border border-line rounded-lg p-3 flex flex-col transition-all duration-300 hover:bg-bg-alt/80 hover:border-accent/30">
-            <span class="text-[11px] text-txt-light uppercase tracking-wide font-semibold mb-1">Потерянная прибыль</span>
-            <div class="text-[18px] font-bold text-txt tabular-nums leading-none"><span id="res-lost">0</span> ₽<span class="text-[11px] text-txt-light font-normal">/мес</span></div>
-          </div>
-          
-          <div class="bg-accent/5 border border-accent/20 rounded-lg p-3 flex flex-col transition-all duration-300 hover:bg-accent/10">
-            <span class="text-[11px] text-accent uppercase tracking-wide font-semibold mb-1">Доп. прибыль (+ИИ)</span>
-            <div class="text-[18px] font-bold text-accent tabular-nums leading-none">+<span id="res-profit">0</span> ₽<span class="text-[11px] text-accent/70 font-normal">/мес</span></div>
-          </div>
-
-          <div class="bg-bg-alt/50 border border-line rounded-lg p-3 flex flex-col transition-all duration-300 hover:bg-bg-alt/80 hover:border-accent/30">
-            <span class="text-[11px] text-txt-light uppercase tracking-wide font-semibold mb-1">Сэкономлено времени</span>
-            <div class="text-[18px] font-bold text-txt tabular-nums leading-none"><span id="res-hours">0</span> ч<span class="text-[11px] text-txt-light font-normal">/мес</span></div>
-          </div>
-          
-          <div class="bg-accent text-white rounded-lg p-3 flex flex-col shadow-md transition-all duration-300 hover:bg-accent-light hover:shadow-lg hover:-translate-y-0.5">
-            <span class="text-[11px] text-white/80 uppercase tracking-wide font-semibold mb-1">ROI за 3 месяца</span>
-            <div class="text-[20px] font-black tabular-nums leading-none"><span id="res-roi">0</span> %</div>
+          <!-- Результаты -->
+          <div class="roi-results">
+            <div class="roi-result-card">
+              <span class="roi-result-label">Потерянная прибыль</span>
+              <span class="roi-result-value"><span id="res-lost">0</span> ₽</span>
+              <span class="roi-result-unit">/мес</span>
+            </div>
+            <div class="roi-result-card accent-card">
+              <span class="roi-result-label">Доп. прибыль (+ИИ)</span>
+              <span class="roi-result-value">+<span id="res-profit">0</span> ₽</span>
+              <span class="roi-result-unit">/мес</span>
+            </div>
+            <div class="roi-result-card">
+              <span class="roi-result-label">Сэкономлено времени</span>
+              <span class="roi-result-value"><span id="res-hours">0</span> ч</span>
+              <span class="roi-result-unit">/мес</span>
+            </div>
+            <div class="roi-result-card highlight-card">
+              <span class="roi-result-label">ROI за 3 месяца</span>
+              <span class="roi-result-value"><span id="res-roi">0</span> %</span>
+            </div>
           </div>
         </div>
       </div>
@@ -943,12 +3057,12 @@
         input.addEventListener('blur', () => input.classList.add('is-dirty'));
       });
 
-      form.addEventListener('submit', async function(e) {
+      form.addEventListener('submit', async function (e) {
         e.preventDefault();
-        
+
         // Сбрасываем возможную ошибку
         errorBlock.classList.add('hidden');
-        
+
         // Включаем состояние "Загрузка"
         submitBtn.disabled = true;
         submitText.textContent = 'ОТПРАВКА...';
@@ -969,11 +3083,11 @@
             form.style.opacity = '0';
             form.style.pointerEvents = 'none';
             form.style.transform = 'scale(0.98)';
-            
+
             // Показываем блок успеха с анимацией
             successBlock.classList.remove('hidden');
             successBlock.classList.add('flex');
-            
+
             setTimeout(() => {
               successBlock.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
               successBlock.classList.add('opacity-100', 'scale-100');
@@ -1007,76 +3121,537 @@
       <div class="services-overview-grid">
         <a href="#service-01" class="sog-card" aria-label="Deep Client Analysis">
           <div class="sog-num">01</div>
-          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/01_03_DEEP-CLIENT-ANALYSIS_02_02M.png" alt="Deep Client Analysis" loading="lazy" decoding="async">
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/01_03_DEEP-CLIENT-ANALYSIS_02_02M.png"
+            alt="Deep Client Analysis" loading="lazy" decoding="async">
           <div class="sog-name">Deep Client Analysis</div>
         </a>
         <a href="#service-02" class="sog-card" aria-label="ИИ-Квалификатор лидов">
           <div class="sog-num">02</div>
-          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/02_AI-LEAD-QUALIFIER_04M.png" alt="ИИ-Квалификатор лидов" loading="lazy" decoding="async">
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/02_AI-LEAD-QUALIFIER_04M.png" alt="ИИ-Квалификатор лидов"
+            loading="lazy" decoding="async">
           <div class="sog-name">ИИ-Квалификатор лидов</div>
         </a>
         <a href="#service-03" class="sog-card" aria-label="Аналитик коммуникаций">
           <div class="sog-num">03</div>
-          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/03_COMMS-ANALYST_03M.png" alt="Аналитик коммуникаций" loading="lazy" decoding="async">
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/03_COMMS-ANALYST_03M.png" alt="Аналитик коммуникаций"
+            loading="lazy" decoding="async">
           <div class="sog-name">Аналитик коммуникаций</div>
         </a>
         <a href="#service-04" class="sog-card" aria-label="Генератор персон. КП">
           <div class="sog-num">04</div>
-          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/04_PERSONA-GENERATOR_01M.png" alt="Генератор персон" loading="lazy" decoding="async">
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/04_PERSONA-GENERATOR_01M.png" alt="Генератор персон"
+            loading="lazy" decoding="async">
           <div class="sog-name">Генератор персон. КП</div>
         </a>
         <a href="#service-05" class="sog-card" aria-label="Sales Coach">
           <div class="sog-num">05</div>
-          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/05_SALES-COACH_01M.png" alt="Sales Coach" loading="lazy" decoding="async">
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/05_SALES-COACH_01M.png" alt="Sales Coach" loading="lazy"
+            decoding="async">
           <div class="sog-name">ИИ Sales Coach</div>
         </a>
         <a href="#service-06" class="sog-card" aria-label="ИИ для склада и закупок">
           <div class="sog-num">06</div>
-          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/06_WAREHOUSE-PROCUREMENT_01M.png" alt="ИИ для склада и закупок" loading="lazy" decoding="async">
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/06_WAREHOUSE-PROCUREMENT_01M.png" alt="ИИ для склада и закупок"
+            loading="lazy" decoding="async">
           <div class="sog-name">Склад и закупки</div>
         </a>
         <a href="#service-07" class="sog-card" aria-label="ИИ-Ассистент маркетинга">
           <div class="sog-num">07</div>
-          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/07_AI-MARKETING-ASSISTANT_01M.png" alt="ИИ-Ассистент маркетинга" loading="lazy" decoding="async">
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/07_AI-MARKETING-ASSISTANT_01M.png"
+            alt="ИИ-Ассистент маркетинга" loading="lazy" decoding="async">
           <div class="sog-name">Ассистент маркетинга</div>
         </a>
         <a href="#service-08" class="sog-card" aria-label="Executive AI Dashboard">
           <div class="sog-num">08</div>
-          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/08_EXECUTIVE-AI-DASHBOARD_01M.png" alt="Executive AI Dashboard" loading="lazy" decoding="async">
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/08_EXECUTIVE-AI-DASHBOARD_01M.png" alt="Executive AI Dashboard"
+            loading="lazy" decoding="async">
           <div class="sog-name">Executive Dashboard</div>
         </a>
         <a href="#service-09" class="sog-card" aria-label="ИИ-Помощник по тендерам">
           <div class="sog-num">09</div>
-          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/09_AI-TENDER-ASSISTANT_01M.png" alt="ИИ-Помощник по тендерам" loading="lazy" decoding="async">
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/09_AI-TENDER-ASSISTANT_01M.png" alt="ИИ-Помощник по тендерам"
+            loading="lazy" decoding="async">
           <div class="sog-name">Помощник по тендерам</div>
         </a>
         <a href="#service-10" class="sog-card" aria-label="Корпоративный ИИ-Ассистент">
           <div class="sog-num">10</div>
-          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/10_CORPORATE-AI-ASSISTANT_02M.png" alt="Корпоративный ИИ-ассистент" loading="lazy" decoding="async">
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/10_CORPORATE-AI-ASSISTANT_02M.png"
+            alt="Корпоративный ИИ-ассистент" loading="lazy" decoding="async">
           <div class="sog-name">Корп. ИИ-ассистент</div>
         </a>
         <a href="#service-11" class="sog-card" aria-label="Smart Google Sheets">
           <div class="sog-num">11</div>
-          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/11_SMART-GOOGLE-SHEETS_01.png" alt="Smart Google Sheets" loading="lazy" decoding="async">
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/11_SMART-GOOGLE-SHEETS_01.png" alt="Smart Google Sheets"
+            loading="lazy" decoding="async">
           <div class="sog-name">Smart Google Sheets</div>
         </a>
         <a href="#service-12" class="sog-card" aria-label="System Organizer">
           <div class="sog-num">12</div>
-          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/12_SYSTEM-ORGANIZER_02M.png" alt="System Organizer" loading="lazy" decoding="async">
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/12_SYSTEM-ORGANIZER_02M.png" alt="System Organizer"
+            loading="lazy" decoding="async">
           <div class="sog-name">System Organizer</div>
         </a>
         <a href="#service-13" class="sog-card" aria-label="Obsidian PKM Architect">
           <div class="sog-num">13</div>
-          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/12_-obsidian_01M.png" alt="Obsidian PKM Architect" loading="lazy" decoding="async">
+          <img class="sog-thumb" src="IMAGES/SCREENSHOTS/12_-obsidian_01M.png" alt="Obsidian PKM Architect"
+            loading="lazy" decoding="async">
           <div class="sog-name">Obsidian PKM Architect</div>
         </a>
       </div>
     </div>
   </section>
 
+  <!-- ============================================== -->
+  <!-- === FOOTER: SKILLS MARQUEE + NAVIGATION    === -->
+  <!-- ============================================== -->
+  <footer class="site-footer" id="site-footer" aria-label="Подвал сайта">
+    <!-- Animated background rows -->
+    <div class="footer-marquee-bg" aria-hidden="true" id="footer-marquee-bg">
+      <!-- JS will inject marquee rows here -->
+    </div>
+
+    <!-- Footer content overlay -->
+    <div class="footer-content">
+      <!-- Profession buttons -->
+      <div class="footer-professions">
+        <div class="footer-prof-label">МОИ ПРОФЕССИИ</div>
+        <div class="footer-prof-buttons">
+          <a href="resume/resume.html" class="footer-prof-btn" data-full="AI Automation Architect"
+            data-short="Автоматизация">
+            <svg viewBox="0 0 36 36" class="footer-prof-icon">
+              <path
+                d="M18 6a2 2 0 0 1 2 2v1.1A9 9 0 0 1 24.9 12H26a2 2 0 1 1 0 4h-1.1A9 9 0 0 1 22 20.9V22a2 2 0 1 1-4 0v-1.1A9 9 0 0 1 14 18H12a2 2 0 1 1 0-4h2a9 9 0 0 1 2-2.9V10a2 2 0 0 1 2-2zm0 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" />
+              <circle cx="6" cy="6" r="2" />
+              <circle cx="30" cy="6" r="2" />
+              <circle cx="6" cy="30" r="2" />
+              <circle cx="30" cy="30" r="2" />
+            </svg>
+            <span class="prof-btn-full">AI Automation Architect</span>
+            <span class="prof-btn-short">Автоматизация</span>
+          </a>
+          <a href="resume/resume.html" class="footer-prof-btn" data-full="AI-Enhanced Designer" data-short="Дизайн">
+            <svg viewBox="0 0 36 36" class="footer-prof-icon">
+              <path d="M28 4L32 8 12 28H8v-4L28 4zM26 10l-2-2M14 22l-2-2" />
+              <path d="M8 28c0 0-4 1-4 4s4 0 4 0" opacity="0.5" />
+              <circle cx="30" cy="14" r="3" opacity="0.3" />
+            </svg>
+            <span class="prof-btn-full">AI-Enhanced Designer</span>
+            <span class="prof-btn-short">Дизайн</span>
+          </a>
+          <a href="resume/resume.html" class="footer-prof-btn" data-full="Frontend Web Developer" data-short="Frontend">
+            <svg viewBox="0 0 36 36" class="footer-prof-icon">
+              <path d="M12 8L4 18l8 10M24 8l8 10-8 10" stroke-width="2.5" stroke="currentColor" fill="none"
+                stroke-linecap="round" stroke-linejoin="round" />
+              <line x1="20" y1="6" x2="16" y2="30" stroke="currentColor" stroke-width="2" opacity="0.5"
+                stroke-linecap="round" />
+            </svg>
+            <span class="prof-btn-full">Frontend Web Developer</span>
+            <span class="prof-btn-short">Frontend</span>
+          </a>
+          <a href="resume/resume.html" class="footer-prof-btn" data-full="Knowledge Graph Architect"
+            data-short="Knowledge">
+            <svg viewBox="0 0 36 36" class="footer-prof-icon">
+              <circle cx="18" cy="10" r="4" />
+              <circle cx="8" cy="26" r="3.5" />
+              <circle cx="28" cy="26" r="3.5" />
+              <line x1="18" y1="14" x2="10" y2="23" stroke="currentColor" stroke-width="1.5" />
+              <line x1="18" y1="14" x2="26" y2="23" stroke="currentColor" stroke-width="1.5" />
+            </svg>
+            <span class="prof-btn-full">Knowledge Graph Architect</span>
+            <span class="prof-btn-short">Knowledge</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Back to top button -->
+      <button class="footer-back-top" id="footer-back-top" aria-label="Вернуться наверх"
+        onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15" />
+        </svg>
+        <span>НАВЕРХ</span>
+      </button>
+
+      <!-- Copyright -->
+      <div class="footer-copy">© 2026 · ДЕНИС ПОЛОЦК · AI-ПОМОЩНИКИ ДЛЯ БИЗНЕСА</div>
+    </div>
+  </footer>
+
+  <style>
+    /* ========== FOOTER STYLES ========== */
+    .site-footer {
+      position: relative;
+      height: 500px;
+      background: #0E0C0A;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 24px 24px;
+      border-top: 2px solid rgba(139, 46, 46, 0.25);
+    }
+
+    /* Marquee background */
+    .footer-marquee-bg {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
+      opacity: 0.07;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .footer-marquee-row {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      will-change: transform;
+      gap: 0;
+      padding: 6px 0;
+    }
+
+    .footer-marquee-row .marquee-track {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      animation: footerMarquee var(--marquee-duration, 60s) linear infinite;
+      animation-direction: var(--marquee-dir, normal);
+    }
+
+    .footer-marquee-row:nth-child(even) .marquee-track {
+      --marquee-dir: reverse;
+    }
+
+    @keyframes footerMarquee {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+      padding: 0 16px;
+    }
+
+    .marquee-item img {
+      width: 28px;
+      height: 28px;
+      opacity: 0.9;
+      flex-shrink: 0;
+    }
+
+    .marquee-item span {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #fff;
+      white-space: nowrap;
+    }
+
+    /* Gradient fade on sides */
+    .footer-marquee-bg::before,
+    .footer-marquee-bg::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 120px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .footer-marquee-bg::before {
+      left: 0;
+      background: linear-gradient(90deg, #0E0C0A 0%, transparent 100%);
+    }
+
+    .footer-marquee-bg::after {
+      right: 0;
+      background: linear-gradient(270deg, #0E0C0A 0%, transparent 100%);
+    }
+
+    /* Footer content overlay */
+    .footer-content {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    /* Profession section */
+    .footer-professions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .footer-prof-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(139, 46, 46, 0.6);
+    }
+
+    .footer-prof-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .footer-prof-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border: 1.5px solid rgba(139, 46, 46, 0.2);
+      background: rgba(139, 46, 46, 0.06);
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .footer-prof-btn:hover {
+      color: #fff;
+      border-color: rgba(139, 46, 46, 0.6);
+      background: rgba(139, 46, 46, 0.15);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(139, 46, 46, 0.2);
+    }
+
+    .footer-prof-icon {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    .prof-btn-short {
+      display: none;
+    }
+
+    /* Back to top button */
+    .footer-back-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 28px;
+      background: transparent;
+      border: 1.5px solid rgba(139, 46, 46, 0.3);
+      color: rgba(255, 255, 255, 0.45);
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .footer-back-top:hover {
+      color: #fff;
+      border-color: rgba(139, 46, 46, 0.7);
+      background: rgba(139, 46, 46, 0.1);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(139, 46, 46, 0.15);
+    }
+
+    .footer-back-top svg {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.3s ease;
+    }
+
+    .footer-back-top:hover svg {
+      transform: translateY(-3px);
+    }
+
+    .footer-back-top span {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+    }
+
+    /* Copyright */
+    .footer-copy {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: rgba(255, 255, 255, 0.15);
+      text-transform: uppercase;
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 768px) {
+      .site-footer {
+        height: 420px;
+        margin: 0 12px 12px;
+      }
+
+      .prof-btn-full {
+        display: none;
+      }
+
+      .prof-btn-short {
+        display: inline;
+      }
+
+      .footer-prof-btn {
+        padding: 8px 14px;
+        font-size: 10px;
+        letter-spacing: 1px;
+      }
+
+      .footer-prof-icon {
+        width: 15px;
+        height: 15px;
+      }
+
+      .marquee-item img {
+        width: 22px;
+        height: 22px;
+      }
+
+      .marquee-item span {
+        font-size: 11px;
+        letter-spacing: 2px;
+      }
+
+      .footer-content {
+        gap: 24px;
+        padding: 24px 16px;
+      }
+
+      .footer-copy {
+        font-size: 8px;
+        letter-spacing: 2px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .site-footer {
+        height: 380px;
+        margin: 0 8px 8px;
+      }
+
+      .footer-prof-buttons {
+        gap: 6px;
+      }
+
+      .footer-prof-btn {
+        padding: 7px 10px;
+        font-size: 9px;
+        gap: 5px;
+      }
+
+      .marquee-item img {
+        width: 18px;
+        height: 18px;
+      }
+
+      .marquee-item span {
+        font-size: 9px;
+        letter-spacing: 1.5px;
+      }
+    }
+  </style>
+
+  <script>
+    /**
+     * Footer Marquee Generator
+     * Creates infinite scrolling rows of icons + skill words
+     */
+    (function () {
+      const SKILLS_WORDS = [
+        'Автоматизация', 'Дизайн', 'Frontend', 'Промпты', 'n8n',
+        'Figma', 'Bitrix24', 'JavaScript', 'CSS', 'HTML5',
+        'Tailwind', 'ComfyUI', 'Midjourney', 'Telegram', 'CRM',
+        'API', 'Webhooks', 'AI-Агенты', 'Нейросети', 'Obsidian',
+        'Карусели', 'Калькуляторы', 'Интеграции', 'Брендинг', 'UI/UX',
+        'Вайбкодинг', 'Adobe', 'No-Code', 'Графы', 'Метаданные',
+        'PKM', 'Workflow', 'Motion', 'Скрипты', 'Аналитика',
+        'Маркетплейсы', 'Контент', 'Ретушь', 'Монтаж', 'Лендинги'
+      ];
+
+      // Use a subset of lightweight SVG icons (sorted by file size — smallest)
+      const ICON_INDICES = [
+        61, 64, 68, 71, 96, 97, 99, 106, 108, 137,
+        67, 69, 70, 72, 78, 86, 95, 103, 105, 128,
+        60, 62, 65, 66, 73, 74, 79, 80, 87, 104
+      ];
+
+      const ICON_BASE = 'IMAGES/ICONS/SVG_WHITE/ICON_SVG_WHITE_';
+      const ROW_COUNT = 8;
+      const ITEMS_PER_ROW = 20;
+
+      function shuffle(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.random() * (i + 1) | 0;
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+
+      function padNum(n) { return String(n).padStart(3, '0'); }
+
+      function buildRow(rowIndex) {
+        const icons = shuffle(ICON_INDICES);
+        const words = shuffle(SKILLS_WORDS);
+        let html = '';
+
+        for (let i = 0; i < ITEMS_PER_ROW; i++) {
+          const iconIdx = icons[i % icons.length];
+          const word = words[i % words.length];
+          html += `<span class="marquee-item"><img src="${ICON_BASE}${padNum(iconIdx)}.svg" alt="" width="28" height="28" loading="lazy" decoding="async"></span>`;
+          html += `<span class="marquee-item"><span>${word}</span></span>`;
+        }
+
+        // Duplicate for seamless loop
+        const trackContent = html + html;
+
+        const speed = 40 + Math.random() * 40; // 40-80s per cycle
+        const row = document.createElement('div');
+        row.className = 'footer-marquee-row';
+        row.innerHTML = `<div class="marquee-track" style="--marquee-duration:${speed}s">${trackContent}</div>`;
+        return row;
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const container = document.getElementById('footer-marquee-bg');
+        if (!container) return;
+
+        for (let i = 0; i < ROW_COUNT; i++) {
+          container.appendChild(buildRow(i));
+        }
+      });
+    })();
+  </script>
+
   <script src="carousel.js"></script>
   <script src="hero-carousel.js"></script>
   <script src="background-figures.js"></script>
+  <script src="configurator.js"></script>
 
   <script>
     /**
@@ -1105,8 +3680,8 @@
     document.addEventListener('DOMContentLoaded', () => {
       const currencies = [
         { symbol: '₽', rate: 1, zeros: '000' },
-        { symbol: '$', rate: 1/92, zeros: '' },
-        { symbol: '€', rate: 1/100, zeros: '' }
+        { symbol: '$', rate: 1 / 92, zeros: '' },
+        { symbol: '€', rate: 1 / 100, zeros: '' }
       ];
 
       let currentCurrencyIndex = 0;
@@ -1126,9 +3701,9 @@
         const valEl = block.querySelector('.price-value');
         const zerosEl = block.querySelector('.price-zeros');
         const currEl = block.querySelector('.price-currency');
-        
+
         const basePrice = parseInt(valEl.dataset.base);
-        
+
         let blockPausedTime = 0;
         let isHovered = false;
 
@@ -1141,7 +3716,7 @@
       function update() {
         const now = Date.now();
         const totalElapsed = (now - startTime) / 1000;
-        
+
         // Определяем текущую валюту и прогресс внутри цикла
         const currencyCycleIndex = Math.floor(totalElapsed / cycle) % currencies.length;
         if (currencyCycleIndex !== currentCurrencyIndex) {
@@ -1150,7 +3725,7 @@
 
         const curr = currencies[currentCurrencyIndex];
         const progress = (totalElapsed % cycle) / cycle;
-        
+
         // Треугольная волна 0 -> 1 -> 0
         const factor = progress < 0.5 ? progress * 2 : 2 - progress * 2;
         const isDescending = progress < 0.5; // Сначала идем вниз (от 100% до 20%)
@@ -1163,7 +3738,7 @@
 
           // Расчет цены в рублях с шагом 10 000
           const rubPrice = Math.round((p.basePrice * currentMult) / 10000) * 10000;
-          
+
           // Конвертация в текущую валюту
           const targetPrice = rubPrice * curr.rate;
 
@@ -1175,7 +3750,7 @@
             // Для валют показываем число, а блок zeros оставляем пустым, 
             // но он сохраняет свою ширину (min-width в CSS), чтобы валюта не прыгала
             p.valEl.innerText = Math.round(targetPrice).toLocaleString('en-US');
-            p.zerosEl.innerText = ''; 
+            p.zerosEl.innerText = '';
           }
 
           p.currEl.innerText = curr.symbol;

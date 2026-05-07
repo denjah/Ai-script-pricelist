@@ -1,0 +1,133 @@
+{
+  "serviceId": "11",
+  "serviceName": "AI Smart Google Sheets",
+  "serviceShort": "Smart Sheets",
+
+  "basePrice": 145000,
+  "monthlySupportDefault": 9500,
+  "currency": "RUB",
+
+  "preSettings": [
+    {
+      "id": "minimum",
+      "name": "Минимум",
+      "price": 145000,
+      "monthlySupport": 9500,
+      "description": "Базовый ИИ + 5 умных функций"
+    },
+    {
+      "id": "optimal",
+      "name": "Оптимально",
+      "price": 235000,
+      "monthlySupport": 14500,
+      "description": "Полный цикл + интеграции + обучение",
+      "popular": true
+    },
+    {
+      "id": "full",
+      "name": "Полный цикл",
+      "price": 340000,
+      "monthlySupport": 0,
+      "description": "Всё под ключ + шаблоны + 3 мес поддержки"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "price": 510000,
+      "monthlySupport": 28000,
+      "description": "Максимальная кастомизация + dedicated поддержка + SLA"
+    }
+  ],
+
+  "wizard": {
+    "step1": {
+      "title": "Что ближе всего к вашей задаче?",
+      "options": [
+        {
+          "id": "new",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 17 22 12'/></svg>",
+          "label": "Новый продукт с нуля",
+          "tooltipTitle": "Разработка с нуля",
+          "tooltipText": "Полный цикл: анализ твоих процессов → создание умных таблиц → интеграция с CRM/1С → запуск за 3 недели. Экономия 10–18 часов в неделю на рутине."
+        },
+        {
+          "id": "improve",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='22 7 13.5 15.5 8.5 10.5 2 17'/><polyline points='16 7 22 7 22 13'/></svg>",
+          "label": "Доработка существующего",
+          "tooltipTitle": "Усиление текущей системы",
+          "tooltipText": "Добавляем ИИ в твои существующие Google Sheets. Автоочистка данных, умные формулы, прогнозы и визуализации. Окупается за 1,5–2 месяца."
+        },
+        {
+          "id": "research",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>",
+          "label": "Исследование / концепция",
+          "tooltipTitle": "Пилот и стратегия",
+          "tooltipText": "Анализ 3–5 твоих таблиц + пилотные умные функции + оценка экономии времени + ТЗ и готовые шаблоны."
+        }
+      ]
+    },
+    "step2": {
+      "volume": {
+        "label": "Количество активных строк / записей в месяц",
+        "min": 5000,
+        "max": 500000,
+        "step": 5000,
+        "default": 45000,
+        "unit": "строк",
+        "pricePerUnit": 3.2
+      },
+      "checkboxes": [
+        {
+          "id": "cleaning",
+          "label": "Автоочистка и нормализация данных",
+          "priceDelta": 78000,
+          "tooltip": "ИИ автоматически находит и исправляет ошибки, дубли, пустые ячейки, приводит данные к единому формату."
+        },
+        {
+          "id": "formulas",
+          "label": "Умные формулы и авто-анализ",
+          "priceDelta": 92000,
+          "tooltip": "Генерация сложных формул по текстовому описанию + автоматический анализ данных и поиск аномалий."
+        },
+        {
+          "id": "prediction",
+          "label": "Прогнозы и предсказания на основе данных",
+          "priceDelta": 85000,
+          "tooltip": "ИИ строит прогнозы продаж, остатков, спроса прямо внутри таблицы с визуализацией."
+        },
+        {
+          "id": "visualization",
+          "label": "Автоматические дашборды и визуализации",
+          "priceDelta": 68000,
+          "tooltip": "Мгновенное создание красивых дашбордов, графиков и отчётов на основе данных таблицы."
+        },
+        {
+          "id": "integration",
+          "label": "Интеграция с CRM, 1С, Google Analytics",
+          "priceDelta": 75000,
+          "tooltip": "Автоматическая подтяжка данных из внешних источников и синхронизация в реальном времени."
+        }
+      ],
+      "deadline": [
+        { "id": "2weeks", "label": "2 недели (ускоренный)", "priceDelta": 65000 },
+        { "id": "3weeks", "label": "3 недели (стандарт)", "priceDelta": 0 },
+        { "id": "flexible", "label": "Гибко / под вас", "priceDelta": -18000 }
+      ]
+    },
+    "step3": {
+      "ctaPrimary": "Забронировать внедрение",
+      "ctaSecondary": "Обсудить проект"
+    }
+  },
+
+  "manual": {
+    "volumeDefault": 45000,
+    "checkboxes": ["cleaning", "formulas", "prediction", "integration"],
+    "deadlineDefault": "3weeks"
+  },
+
+  "pricing": {
+    "formula": "basePrice + (volume * pricePerUnit) + sum(checkboxDeltas) + deadlineDelta",
+    "notes": "Цены указаны с НДС. Поддержка оплачивается ежемесячно отдельно. Объём считается по активным строкам с подключёнными ИИ-функциями."
+  }
+}

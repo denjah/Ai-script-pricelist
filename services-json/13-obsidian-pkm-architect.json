@@ -1,0 +1,140 @@
+{
+  "serviceId": "13",
+  "serviceName": "Obsidian PKM Architect",
+  "serviceShort": "Obsidian Architect",
+
+  "basePrice": 310000,
+  "monthlySupportDefault": 24000,
+  "currency": "RUB",
+
+  "preSettings": [
+    {
+      "id": "minimum",
+      "name": "Минимум",
+      "price": 310000,
+      "monthlySupport": 24000,
+      "description": "Базовая настройка + YAML-схема + импорт"
+    },
+    {
+      "id": "optimal",
+      "name": "Оптимально",
+      "price": 465000,
+      "monthlySupport": 29000,
+      "description": "Полная архитектура + RAG + плагины",
+      "popular": true
+    },
+    {
+      "id": "full",
+      "name": "Полный цикл",
+      "price": 680000,
+      "monthlySupport": 0,
+      "description": "Всё под ключ + 3 мес поддержки + обучение"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "price": 950000,
+      "monthlySupport": 45000,
+      "description": "Корпоративная система + SLA + командная работа"
+    }
+  ],
+
+  "wizard": {
+    "step1": {
+      "title": "Какой тип PKM-системы вам нужен?",
+      "options": [
+        {
+          "id": "personal",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-2.04'/><path d='M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-2.04'/></svg>",
+          "label": "Личная база знаний",
+          "tooltipTitle": "Second Brain для себя",
+          "tooltipText": "Максимальная персонализация. Более 10 000 узлов. Автоматическое связывание идей."
+        },
+        {
+          "id": "team",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2'/><circle cx='9' cy='7' r='4'/><path d='M22 21v-2a4 4 0 0 0-3-3.87'/><path d='M16 3.13a4 4 0 0 1 0 7.75'/></svg>",
+          "label": "Командная база знаний",
+          "tooltipTitle": "Для небольшой команды",
+          "tooltipText": "Общий граф знаний + разграничение прав. Идеально для 3–12 человек."
+        },
+        {
+          "id": "corporate",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><rect x='2' y='7' width='20' height='14' rx='2' ry='2'/><path d='M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16'/></svg>",
+          "label": "Корпоративная система",
+          "tooltipTitle": "Для компании",
+          "tooltipText": "Полная интеграция с 1С, Confluence, Notion. RAG + LLM + безопасность 152-ФЗ."
+        },
+        {
+          "id": "migration",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='23 4 23 10 17 10'/><polyline points='1 20 1 14 7 14'/><path d='M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15'/></svg>",
+          "label": "Миграция / реорганизация",
+          "tooltipTitle": "Переезд из старой системы",
+          "tooltipText": "Перенос из Notion, Roam, Evernote, Tana, OneNote + полная переструктуризация."
+        }
+      ]
+    },
+    "step2": {
+      "volume": {
+        "label": "Примерное количество узлов / заметок",
+        "min": 500,
+        "max": 20000,
+        "step": 500,
+        "default": 5000,
+        "unit": "узлов",
+        "pricePerUnit": 28
+      },
+      "checkboxes": [
+        {
+          "id": "yaml",
+          "label": "YAML-схема 12 полей + автотэгирование",
+          "priceDelta": 95000,
+          "tooltip": "Единая структура данных. Автоматическое заполнение метаданных."
+        },
+        {
+          "id": "rag",
+          "label": "RAG + LLM через MCP (точные ответы с источниками)",
+          "priceDelta": 145000,
+          "tooltip": "ИИ отвечает по вашей базе знаний с указанием источника."
+        },
+        {
+          "id": "graph",
+          "label": "Автоматическое построение графовых связей",
+          "priceDelta": 85000,
+          "tooltip": "ИИ сам находит и связывает идеи между заметками."
+        },
+        {
+          "id": "plugins",
+          "label": "Кастомные плагины и автоматизации",
+          "priceDelta": 110000,
+          "tooltip": "Dataview, Tasks, Canvas, Excalidraw и ваши собственные."
+        },
+        {
+          "id": "team",
+          "label": "Командная работа + права доступа",
+          "priceDelta": 125000,
+          "tooltip": "Совместная работа в реальном времени с контролем доступа."
+        }
+      ],
+      "deadline": [
+        { "id": "3weeks", "label": "3 недели (ускоренный)", "priceDelta": 95000 },
+        { "id": "1month", "label": "1 месяц (стандарт)", "priceDelta": 0 },
+        { "id": "flexible", "label": "Гибко / под вас", "priceDelta": -35000 }
+      ]
+    },
+    "step3": {
+      "ctaPrimary": "Запустить свой Second Brain",
+      "ctaSecondary": "Обсудить архитектуру"
+    }
+  },
+
+  "manual": {
+    "volumeDefault": 5000,
+    "checkboxes": ["yaml", "rag", "graph", "plugins"],
+    "deadlineDefault": "1month"
+  },
+
+  "pricing": {
+    "formula": "basePrice + (volume * pricePerUnit) + sum(checkboxDeltas) + deadlineDelta",
+    "notes": "Цены указаны с НДС. Поддержка оплачивается ежемесячно отдельно."
+  }
+}

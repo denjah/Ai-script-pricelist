@@ -1,0 +1,133 @@
+{
+  "serviceId": "05",
+  "serviceName": "AI Sales Coach",
+  "serviceShort": "Sales Coach",
+
+  "basePrice": 185000,
+  "monthlySupportDefault": 12500,
+  "currency": "RUB",
+
+  "preSettings": [
+    {
+      "id": "minimum",
+      "name": "Минимум",
+      "price": 185000,
+      "monthlySupport": 12500,
+      "description": "Базовый коуч + 50 возражений"
+    },
+    {
+      "id": "optimal",
+      "name": "Оптимально",
+      "price": 295000,
+      "monthlySupport": 18500,
+      "description": "Полный цикл + интеграция + база возражений",
+      "popular": true
+    },
+    {
+      "id": "full",
+      "name": "Полный цикл",
+      "price": 425000,
+      "monthlySupport": 0,
+      "description": "Всё под ключ + обучение + 3 мес поддержки"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "price": 620000,
+      "monthlySupport": 34000,
+      "description": "Максимальная кастомизация + dedicated coach + SLA"
+    }
+  ],
+
+  "wizard": {
+    "step1": {
+      "title": "Что ближе всего к вашей задаче?",
+      "options": [
+        {
+          "id": "new",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/></svg>",
+          "label": "Новый продукт с нуля",
+          "tooltipTitle": "Разработка с нуля",
+          "tooltipText": "Полный цикл: анализ твоей воронки → создание базы возражений → интеграция с телефонией → запуск за 4 недели. Win-rate растёт на 18–25%."
+        },
+        {
+          "id": "improve",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='22 7 13.5 15.5 8.5 10.5 2 17'/><polyline points='16 7 22 7 22 13'/></svg>",
+          "label": "Доработка существующего",
+          "tooltipTitle": "Усиление текущей системы",
+          "tooltipText": "Встроим ИИ-коуча в твою текущую телефонию и чаты. Реал-тайм подсказки во время разговора + авто-разбор после. Менеджеры растут в 2 раза быстрее. Окупается за 2 месяца."
+        },
+        {
+          "id": "research",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>",
+          "label": "Исследование / концепция",
+          "tooltipTitle": "Пилот и стратегия",
+          "tooltipText": "Анализ 100–200 реальных разговоров + пилотный коуч + карта самых частых возражений + ТЗ и план внедрения."
+        }
+      ]
+    },
+    "step2": {
+      "volume": {
+        "label": "Количество менеджеров, использующих Sales Coach",
+        "min": 3,
+        "max": 80,
+        "step": 1,
+        "default": 12,
+        "unit": "менеджеров",
+        "pricePerUnit": 9500
+      },
+      "checkboxes": [
+        {
+          "id": "bitrix",
+          "label": "Интеграция с Bitrix24 + телефонией (real-time)",
+          "priceDelta": 115000,
+          "tooltip": "Подсказки появляются прямо во время звонка в CRM. Коуч слышит разговор и даёт рекомендации в реальном времени."
+        },
+        {
+          "id": "telegram",
+          "label": "Мгновенные coaching tips в Telegram",
+          "priceDelta": 72000,
+          "tooltip": "После каждого разговора менеджер получает персональный разбор + 2–3 конкретные рекомендации в Telegram."
+        },
+        {
+          "id": "objections",
+          "label": "База из 250+ возражений + готовые ответы",
+          "priceDelta": 88000,
+          "tooltip": "Полная библиотека возражений под твою нишу + ИИ подбирает лучший ответ под конкретную ситуацию клиента."
+        },
+        {
+          "id": "debrief",
+          "label": "Авто-разбор разговора + план развития",
+          "priceDelta": 78000,
+          "tooltip": "После звонка — автоматический разбор: что было хорошо, где можно улучшить + персональный план развития менеджера."
+        },
+        {
+          "id": "leaderboard",
+          "label": "Рейтинг менеджеров + геймификация",
+          "priceDelta": 65000,
+          "tooltip": "Публичный/закрытый рейтинг, бейджи, челленджи и мотивация команды через игру."
+        }
+      ],
+      "deadline": [
+        { "id": "3weeks", "label": "3 недели (ускоренный)", "priceDelta": 78000 },
+        { "id": "1month", "label": "1 месяц (стандарт)", "priceDelta": 0 },
+        { "id": "flexible", "label": "Гибко / под вас", "priceDelta": -24000 }
+      ]
+    },
+    "step3": {
+      "ctaPrimary": "Забронировать внедрение",
+      "ctaSecondary": "Обсудить проект"
+    }
+  },
+
+  "manual": {
+    "volumeDefault": 12,
+    "checkboxes": ["bitrix", "objections", "debrief", "leaderboard"],
+    "deadlineDefault": "1month"
+  },
+
+  "pricing": {
+    "formula": "basePrice + (volume * pricePerUnit) + sum(checkboxDeltas) + deadlineDelta",
+    "notes": "Цены указаны с НДС. Поддержка оплачивается ежемесячно отдельно. Цена за менеджера рассчитывается исходя из реального количества активных пользователей."
+  }
+}

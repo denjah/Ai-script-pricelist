@@ -24,6 +24,14 @@
   }
 }
 
+/* === NO ORPHANS / HANGING PREPOSITIONS === */
+p, .service-desc, .service-result, .service-utp, .service-branches,
+.title-sub, .final-sub, .final-note {
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
 /* === BG FIGURES (JS-driven) === */
 .bg-figures {
   position: absolute; top: 50%; left: 50%;
