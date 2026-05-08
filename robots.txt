@@ -1,0 +1,8 @@
+# robots.txt — AI-Pomoshniki Portal (GitHub Pages)
+# https://denjah.github.io/Ai-script-pricelist/
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://denjah.github.io/Ai-script-pricelist/sitemap.xml
