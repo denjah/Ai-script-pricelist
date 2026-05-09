@@ -744,6 +744,14 @@
   line-height: 1;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
+.cfg-vat {
+  flex-basis: 100%;
+  text-align: right;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-light);
+  margin-top: 4px;
+}
 
 /* Currency Switcher */
 .cfg-currency-switch {
@@ -1068,8 +1076,7 @@
 }
 
 /* === MODE TOGGLES === */
-.configurator[data-mode="initial"] .cfg-wizard,
-.configurator[data-mode="initial"] .cfg-manual-body { display: none; }
+.configurator[data-mode="initial"] .cfg-wizard { display: none; }
 
 .configurator[data-mode="wizard"] .cfg-initial,
 .configurator[data-mode="wizard"] .cfg-manual { display: none; }

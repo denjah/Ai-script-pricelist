@@ -145,7 +145,7 @@
 
     /* === RESPONSIVE: TABLET (769-1024px) === */
     @media (max-width: 1024px) {
-      body { @apply p-4 gap-4; }
+
       .slide { @apply min-h-0; }
       .slide-title { padding: 56px 40px; min-height: 80vh; }
       .title-main { font-size: 40px; max-width: 55%; @apply mb-6; }
@@ -169,10 +169,10 @@
 
     /* === RESPONSIVE: MOBILE (≤768px) === */
     @media (max-width: 768px) {
-      body { @apply p-3 gap-3; }
+
       .slide { @apply min-h-0; }
-      .slide-title { padding: 80px 24px 40px; min-height: 100vh; min-height: 100dvh; @apply items-stretch; }
-      .title-tag { font-size: 9px; letter-spacing: 3px; @apply mb-5; }
+      .slide-title { padding: 96px 24px 40px; min-height: 100vh; min-height: 100dvh; @apply items-stretch; }
+      .title-tag { font-size: 9px; letter-spacing: 3px; @apply mb-5; margin-top: 16px; }
       .title-main { font-size: 34px; max-width: 100%; letter-spacing: -0.5px; @apply mb-5; hyphens: manual; -webkit-hyphens: manual; }
       .title-sub { font-size: 15px; max-width: 100%; line-height: 1.45; @apply mb-8; }
       .title-footer { @apply flex-wrap gap-2 pt-5; }
@@ -200,7 +200,7 @@
       .corner { @apply w-6 h-6; }
       .corner-tl { @apply top-4 left-4; }
       .corner-br { @apply bottom-4 right-4; }
-      .nav-group { top: 32px; right: auto; left: 32px; z-index: 200; gap: 8px; }
+      .nav-group { top: 32px; right: auto; left: 52px; z-index: 200; gap: 8px; }
       .nav-contacts { font-size: 10px; padding: 10px 16px; letter-spacing: 1px; min-height: 44px; }
       .slide-final { @apply flex-col; }
       .final-left { @apply flex-none; padding: 40px 24px 32px; }
@@ -223,7 +223,7 @@
     /* === RESPONSIVE: SMALL MOBILE (≤480px) === */
     @media (max-width: 480px) {
       .slide-title { padding: 72px 16px 32px; }
-      .title-main { font-size: 28px; hyphens: manual; -webkit-hyphens: manual; }
+      .title-main { font-size: clamp(22px, 6.8vw, 28px); hyphens: manual; -webkit-hyphens: manual; }
       .title-sub { font-size: 14px; }
       .title-footer-item { font-size: 9px; @apply pr-3 mr-3; }
       .service-col { padding: 24px 16px; }
@@ -238,7 +238,7 @@
       .sog-thumb { width: 64px; height: 48px; @apply flex-shrink-0 mb-0; }
       .sog-name { @apply text-left; font-size: 10px; }
       .sog-num { top: 50%; left: auto; right: 8px; transform: translateY(-50%); }
-      .nav-group { right: auto; left: 20px; top: 36px; gap: 6px; }
+      .nav-group { right: auto; left: 40px; top: 36px; gap: 6px; }
       .nav-contacts { font-size: 9px; padding: 8px 12px; }
       .screenshot-carousel { height: 200px; min-height: 200px; }
       .solo-right .screenshot-carousel { height: 200px; min-height: 200px; }
@@ -254,7 +254,7 @@
   </script>
 </head>
 
-<body class="font-sans bg-bg-dark text-txt overflow-x-hidden flex flex-col gap-6 p-6">
+<body class="font-sans bg-bg-dark text-txt overflow-x-hidden flex flex-col lg:gap-6 lg:p-6">
 
 
 
@@ -3252,19 +3252,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td class="col-id">01</td><td class="col-name"><a href="#service-01">Deep Client Analysis AI</a></td><td class="col-desc">Глубокий автоматический анализ клиента из CRM за 3 минуты: звонки, переписки, история сделок. Готовый план разговора и отчёт.</td><td class="col-result">Рост конверсии до 35–50%</td><td class="col-stack">Bitrix24, Telegram</td></tr>
-            <tr><td class="col-id">02</td><td class="col-name"><a href="#service-02">ИИ-Квалификатор лидов</a></td><td class="col-desc">Автоматическая оценка входящих заявок, скоринг по 30+ параметрам, маршрутизация по менеджерам 24/7.</td><td class="col-result">−50–70% нагрузки на менеджеров</td><td class="col-stack">Bitrix24, телефония</td></tr>
-            <tr><td class="col-id">03</td><td class="col-name"><a href="#service-03">ИИ-Аналитик коммуникаций</a></td><td class="col-desc">Расшифровка и анализ всех диалогов менеджеров. Проверка скрипта, выявление конфликтов, ежедневный дашборд.</td><td class="col-result">Контроль 100% коммуникаций</td><td class="col-stack">Bitrix24, телефония</td></tr>
-            <tr><td class="col-id">04</td><td class="col-name"><a href="#service-04">Генератор персон. КП</a></td><td class="col-desc">Генерация уникального коммерческого предложения под конкретные боли клиента за 30 секунд из данных CRM.</td><td class="col-result">КП бьёт точно в потребности</td><td class="col-stack">Bitrix24, почта</td></tr>
-            <tr><td class="col-id">05</td><td class="col-name"><a href="#service-05">ИИ Sales Coach</a></td><td class="col-desc">Интерактивная база знаний: подсказки по возражениям в реальном времени на основе лучших практик продавцов.</td><td class="col-result">Обучение команды в процессе</td><td class="col-stack">CRM, телефония</td></tr>
-            <tr><td class="col-id">06</td><td class="col-name"><a href="#service-06">ИИ для склада и закупок</a></td><td class="col-desc">Предиктивное управление запасами: прогноз спроса, автоматическое формирование заявок поставщикам.</td><td class="col-result">Нет дефицита и затоваривания</td><td class="col-stack">1С, Bitrix24</td></tr>
-            <tr><td class="col-id">07</td><td class="col-name"><a href="#service-07">ИИ-Ассистент маркетинга</a></td><td class="col-desc">Создание контента, SEO-описаний и рекламных объявлений на основе Tone of Voice. Анализ эффективности каналов.</td><td class="col-result">Автоматизация контент-маркетинга</td><td class="col-stack">Рекламные кабинеты</td></tr>
-            <tr><td class="col-id">08</td><td class="col-name"><a href="#service-08">AI Visualization &amp; Control</a></td><td class="col-desc">Единое окно для собственника: голосовые запросы к данным, графики, прогноз выполнения плана.</td><td class="col-result">Управление бизнесом голосом</td><td class="col-stack">1С, Bitrix24</td></tr>
-            <tr><td class="col-id">09</td><td class="col-name"><a href="#service-09">ИИ-Помощник по тендерам</a></td><td class="col-desc">Автоматический поиск и скоринг тендеров за 15 секунд. Оценка вероятности победы, черновик заявки.</td><td class="col-result">Ускорение работы ×10</td><td class="col-stack">Тендерные площадки</td></tr>
-            <tr><td class="col-id">10</td><td class="col-name"><a href="#service-10">Корпоративный ИИ-Ассистент</a></td><td class="col-desc">Умная база знаний компании: регламенты, инструкции, договоры. Мгновенный поиск информации для каждого отдела.</td><td class="col-result">Мгновенные ответы сотрудникам</td><td class="col-stack">Telegram, Bitrix24</td></tr>
-            <tr><td class="col-id">11</td><td class="col-name"><a href="#service-11">Smart Google Sheets AI</a></td><td class="col-desc">Автоматизация Google Таблиц: динамические формулы, Apps Script, дашборды, парсинг данных, триггеры.</td><td class="col-result">Таблицы работают за вас</td><td class="col-stack">Google Sheets, Telegram</td></tr>
-            <tr><td class="col-id">12</td><td class="col-name"><a href="#service-12">System Organizer AI</a></td><td class="col-desc">Комплексная цифровая уборка: очистка от дублей, умная категоризация, единая логическая структура данных.</td><td class="col-result">Порядок в данных и системах</td><td class="col-stack">CRM, базы данных</td></tr>
-            <tr><td class="col-id">13</td><td class="col-name"><a href="#service-13">Obsidian PKM Architect</a></td><td class="col-desc">Построение графовой базы знаний: онтологии, YAML-схемы метаданных, автоматические MOC и дашборды.</td><td class="col-result">Экономия 15–20 ч/неделю</td><td class="col-stack">Obsidian, AI-агенты</td></tr>
+            <tr><td class="col-id">01</td><td class="col-name"><img src="IMAGES/SCREENSHOTS/01_03_DEEP-CLIENT-ANALYSIS_02_02M.png" alt="Icon" loading="lazy" decoding="async"><a href="#service-01">Deep Client Analysis AI</a></td><td class="col-desc">Глубокий автоматический анализ клиента из CRM за 3 минуты: звонки, переписки, история сделок. Готовый план разговора и отчёт.</td><td class="col-result">Рост конверсии до 35–50%</td><td class="col-stack">Bitrix24, Telegram</td></tr>
+            <tr><td class="col-id">02</td><td class="col-name"><img src="IMAGES/SCREENSHOTS/02_AI-LEAD-QUALIFIER_04M.png" alt="Icon" loading="lazy" decoding="async"><a href="#service-02">ИИ-Квалификатор лидов</a></td><td class="col-desc">Автоматическая оценка входящих заявок, скоринг по 30+ параметрам, маршрутизация по менеджерам 24/7.</td><td class="col-result">−50–70% нагрузки на менеджеров</td><td class="col-stack">Bitrix24, телефония</td></tr>
+            <tr><td class="col-id">03</td><td class="col-name"><img src="IMAGES/SCREENSHOTS/03_COMMS-ANALYST_03M.png" alt="Icon" loading="lazy" decoding="async"><a href="#service-03">ИИ-Аналитик коммуникаций</a></td><td class="col-desc">Расшифровка и анализ всех диалогов менеджеров. Проверка скрипта, выявление конфликтов, ежедневный дашборд.</td><td class="col-result">Контроль 100% коммуникаций</td><td class="col-stack">Bitrix24, телефония</td></tr>
+            <tr><td class="col-id">04</td><td class="col-name"><img src="IMAGES/SCREENSHOTS/04_PERSONA-GENERATOR_01M.png" alt="Icon" loading="lazy" decoding="async"><a href="#service-04">Генератор персон. КП</a></td><td class="col-desc">Генерация уникального коммерческого предложения под конкретные боли клиента за 30 секунд из данных CRM.</td><td class="col-result">КП бьёт точно в потребности</td><td class="col-stack">Bitrix24, почта</td></tr>
+            <tr><td class="col-id">05</td><td class="col-name"><img src="IMAGES/SCREENSHOTS/05_SALES-COACH_01M.png" alt="Icon" loading="lazy" decoding="async"><a href="#service-05">ИИ Sales Coach</a></td><td class="col-desc">Интерактивная база знаний: подсказки по возражениям в реальном времени на основе лучших практик продавцов.</td><td class="col-result">Обучение команды в процессе</td><td class="col-stack">CRM, телефония</td></tr>
+            <tr><td class="col-id">06</td><td class="col-name"><img src="IMAGES/SCREENSHOTS/06_WAREHOUSE-PROCUREMENT_01M.png" alt="Icon" loading="lazy" decoding="async"><a href="#service-06">ИИ для склада и закупок</a></td><td class="col-desc">Предиктивное управление запасами: прогноз спроса, автоматическое формирование заявок поставщикам.</td><td class="col-result">Нет дефицита и затоваривания</td><td class="col-stack">1С, Bitrix24</td></tr>
+            <tr><td class="col-id">07</td><td class="col-name"><img src="IMAGES/SCREENSHOTS/07_AI-MARKETING-ASSISTANT_01M.png" alt="Icon" loading="lazy" decoding="async"><a href="#service-07">ИИ-Ассистент маркетинга</a></td><td class="col-desc">Создание контента, SEO-описаний и рекламных объявлений на основе Tone of Voice. Анализ эффективности каналов.</td><td class="col-result">Автоматизация контент-маркетинга</td><td class="col-stack">Рекламные кабинеты</td></tr>
+            <tr><td class="col-id">08</td><td class="col-name"><img src="IMAGES/SCREENSHOTS/08_EXECUTIVE-AI-DASHBOARD_01M.png" alt="Icon" loading="lazy" decoding="async"><a href="#service-08">AI Visualization &amp; Control</a></td><td class="col-desc">Единое окно для собственника: голосовые запросы к данным, графики, прогноз выполнения плана.</td><td class="col-result">Управление бизнесом голосом</td><td class="col-stack">1С, Bitrix24</td></tr>
+            <tr><td class="col-id">09</td><td class="col-name"><img src="IMAGES/SCREENSHOTS/09_AI-TENDER-ASSISTANT_01M.png" alt="Icon" loading="lazy" decoding="async"><a href="#service-09">ИИ-Помощник по тендерам</a></td><td class="col-desc">Автоматический поиск и скоринг тендеров за 15 секунд. Оценка вероятности победы, черновик заявки.</td><td class="col-result">Ускорение работы ×10</td><td class="col-stack">Тендерные площадки</td></tr>
+            <tr><td class="col-id">10</td><td class="col-name"><img src="IMAGES/SCREENSHOTS/10_CORPORATE-AI-ASSISTANT_02M.png" alt="Icon" loading="lazy" decoding="async"><a href="#service-10">Корпоративный ИИ-Ассистент</a></td><td class="col-desc">Умная база знаний компании: регламенты, инструкции, договоры. Мгновенный поиск информации для каждого отдела.</td><td class="col-result">Мгновенные ответы сотрудникам</td><td class="col-stack">Telegram, Bitrix24</td></tr>
+            <tr><td class="col-id">11</td><td class="col-name"><img src="IMAGES/SCREENSHOTS/11_SMART-GOOGLE-SHEETS_01.png" alt="Icon" loading="lazy" decoding="async"><a href="#service-11">Smart Google Sheets AI</a></td><td class="col-desc">Автоматизация Google Таблиц: динамические формулы, Apps Script, дашборды, парсинг данных, триггеры.</td><td class="col-result">Таблицы работают за вас</td><td class="col-stack">Google Sheets, Telegram</td></tr>
+            <tr><td class="col-id">12</td><td class="col-name"><img src="IMAGES/SCREENSHOTS/12_SYSTEM-ORGANIZER_02M.png" alt="Icon" loading="lazy" decoding="async"><a href="#service-12">System Organizer AI</a></td><td class="col-desc">Комплексная цифровая уборка: очистка от дублей, умная категоризация, единая логическая структура данных.</td><td class="col-result">Порядок в данных и системах</td><td class="col-stack">CRM, базы данных</td></tr>
+            <tr><td class="col-id">13</td><td class="col-name"><img src="IMAGES/SCREENSHOTS/12_-obsidian_01M.png" alt="Icon" loading="lazy" decoding="async"><a href="#service-13">Obsidian PKM Architect</a></td><td class="col-desc">Построение графовой базы знаний: онтологии, YAML-схемы метаданных, автоматические MOC и дашборды.</td><td class="col-result">Экономия 15–20 ч/неделю</td><td class="col-stack">Obsidian, AI-агенты</td></tr>
           </tbody>
         </table>
       </div>
@@ -3277,30 +3277,32 @@
     </div>
   </section>
   <style>
-    .seo-ref{position:relative;background:#0A0908;margin:0 24px;padding:72px 64px;border-top:1px solid rgba(139,46,46,.15)}
+    .seo-ref{position:relative;background:#1A1715;margin:0 24px;padding:72px 64px;border-top:1px solid rgba(139,46,46,.15)}
     .seo-ref__inner{max-width:1400px;margin:0 auto}
     .seo-ref__header{margin-bottom:48px}
-    .seo-ref__tag{display:inline-block;font-family:'Courier New',Courier,monospace;font-size:11px;font-weight:700;letter-spacing:3px;color:rgba(139,46,46,.5);margin-bottom:16px}
-    .seo-ref__title{font-family:'Montserrat',sans-serif;font-size:28px;font-weight:900;text-transform:uppercase;color:rgba(255,255,255,.85);letter-spacing:-.5px;margin-bottom:12px}
-    .seo-ref__title span{color:rgba(139,46,46,.6);font-weight:700}
-    .seo-ref__subtitle{font-size:14px;color:rgba(255,255,255,.35);line-height:1.6;max-width:700px}
+    .seo-ref__tag{display:inline-block;font-family:'Courier New',Courier,monospace;font-size:11px;font-weight:700;letter-spacing:3px;color:rgba(139,46,46,.6);margin-bottom:16px}
+    .seo-ref__title{font-family:'Montserrat',sans-serif;font-size:28px;font-weight:900;text-transform:uppercase;color:#EAE0D5;letter-spacing:-.5px;margin-bottom:12px}
+    .seo-ref__title span{color:rgba(139,46,46,.7);font-weight:700}
+    .seo-ref__subtitle{font-size:14px;color:#A99B8E;line-height:1.6;max-width:700px}
     .seo-ref__table-wrap{overflow-x:auto;margin-bottom:48px;scrollbar-width:thin;scrollbar-color:rgba(139,46,46,.3) transparent}
     .seo-ref__table{width:100%;border-collapse:collapse;font-size:13px;line-height:1.5}
-    .seo-ref__table thead th{font-family:'Courier New',Courier,monospace;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(139,46,46,.5);text-align:left;padding:12px 16px;border-bottom:1px solid rgba(139,46,46,.15);white-space:nowrap}
-    .seo-ref__table tbody td{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:top;color:rgba(255,255,255,.5)}
-    .seo-ref__table tbody tr:hover td{background:rgba(139,46,46,.04);color:rgba(255,255,255,.7)}
-    .seo-ref__table .col-id{font-family:'Courier New',Courier,monospace;font-weight:700;color:rgba(139,46,46,.4);width:40px;text-align:center}
-    .seo-ref__table .col-name{white-space:nowrap;font-weight:700;min-width:180px}
-    .seo-ref__table .col-name a{color:rgba(255,255,255,.7);text-decoration:none;transition:color .3s ease}
-    .seo-ref__table .col-name a:hover{color:#A64B4B}
-    .seo-ref__table .col-desc{min-width:280px;max-width:420px}
-    .seo-ref__table .col-result{min-width:180px;font-weight:600;color:rgba(139,46,46,.6)}
-    .seo-ref__table tbody tr:hover .col-result{color:rgba(139,46,46,.85)}
-    .seo-ref__table .col-stack{font-family:'Courier New',Courier,monospace;font-size:11px;letter-spacing:.5px;white-space:nowrap;min-width:140px}
-    .seo-ref__meta{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding-top:32px;border-top:1px solid rgba(139,46,46,.1)}
+    .seo-ref__table thead th{font-family:'Courier New',Courier,monospace;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(139,46,46,.6);text-align:left;padding:12px 16px;border-bottom:1px solid rgba(139,46,46,.15);white-space:nowrap}
+    .seo-ref__table tbody td{padding:24px 16px;border-bottom:1px solid rgba(139,46,46,.1);vertical-align:middle;color:#C4B5A5;transition:all 0.3s ease}
+    .seo-ref__table tbody tr:hover td{background:rgba(139,46,46,.08);color:#EAE0D5}
+    .seo-ref__table .col-id{font-family:'Courier New',Courier,monospace;font-weight:700;color:rgba(139,46,46,.5);width:40px;text-align:center}
+    .seo-ref__table .col-name{white-space:nowrap;font-weight:700;min-width:240px;display:flex;align-items:center;gap:14px;}
+    .seo-ref__table .col-name img{width:40px;height:40px;object-fit:cover;border-radius:6px;opacity:0.85;transition:all 0.4s ease;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
+    .seo-ref__table tbody tr:hover .col-name img{opacity:1;transform:scale(1.05);box-shadow:0 4px 12px rgba(0,0,0,0.3)}
+    .seo-ref__table .col-name a{color:#D0C1B0;text-decoration:none;transition:color .3s ease}
+    .seo-ref__table .col-name a:hover{color:#D36B6B}
+    .seo-ref__table .col-desc{min-width:280px;max-width:420px;line-height:1.6}
+    .seo-ref__table .col-result{min-width:180px;font-weight:600;color:#C26060}
+    .seo-ref__table tbody tr:hover .col-result{color:#E07575}
+    .seo-ref__table .col-stack{font-family:'Courier New',Courier,monospace;font-size:11px;letter-spacing:.5px;white-space:nowrap;min-width:140px;color:#A99B8E}
+    .seo-ref__meta{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding-top:32px;border-top:1px solid rgba(139,46,46,.15)}
     .seo-ref__meta-item{display:flex;flex-direction:column;gap:6px}
-    .seo-ref__meta-label{font-family:'Courier New',Courier,monospace;font-size:9px;font-weight:700;letter-spacing:3px;color:rgba(139,46,46,.4)}
-    .seo-ref__meta-value{font-size:13px;font-weight:600;color:rgba(255,255,255,.5);line-height:1.4}
+    .seo-ref__meta-label{font-family:'Courier New',Courier,monospace;font-size:9px;font-weight:700;letter-spacing:3px;color:rgba(139,46,46,.6)}
+    .seo-ref__meta-value{font-size:13px;font-weight:600;color:#D0C1B0;line-height:1.4}
     @media(max-width:1024px){.seo-ref{padding:48px 32px;margin:0 16px}.seo-ref__meta{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:768px){.seo-ref{padding:40px 20px;margin:0 12px}.seo-ref__title{font-size:22px}.seo-ref__meta{grid-template-columns:1fr;gap:16px}.seo-ref__table .col-desc{min-width:220px}}
   </style>
@@ -3309,6 +3311,8 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebPage","name":"ИИ-помощники для бизнеса — Каталог решений 2026","description":"13 готовых ИИ-решений для бизнеса: анализ клиентов, квалификация лидов, автоматизация продаж и маркетинга.","url":"https://denjah.github.io/Ai-script-pricelist/","inLanguage":"ru","isPartOf":{"@type":"WebSite","name":"AI-Помощники для бизнеса","url":"https://denjah.github.io/Ai-script-pricelist/"},"mainEntity":{"@type":"OfferCatalog","name":"ИИ-решения для бизнеса","numberOfItems":13,"itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Deep Client Analysis AI","description":"Глубокий автоматический анализ клиента из CRM за 3 минуты"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"ИИ-Квалификатор и Роутер лидов","description":"Автоматическая оценка входящих заявок и скоринг по 30+ параметрам"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"ИИ-Аналитик коммуникаций","description":"Контроль качества 100% звонков и чатов"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Генератор персонализированных КП","description":"Создание КП под конкретные боли за 30 секунд"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"ИИ Sales Coach","description":"Персональный наставник менеджера по продажам"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"ИИ для склада и закупок","description":"Предиктивное управление запасами"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"ИИ-Ассистент маркетинга","description":"Автоматическая генерация контента и анализ рекламных кампаний"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"AI Visualization & Control System","description":"Голосовое управление бизнесом через дашборды"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"ИИ-Помощник по тендерам","description":"Автоматический поиск и скоринг тендеров"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Корпоративный ИИ-Ассистент","description":"Умная база знаний компании"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Smart Google Sheets AI","description":"Глубокая автоматизация Google Таблиц"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"System Organizer AI","description":"Комплексная цифровая уборка и организация данных"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Obsidian PKM Architect","description":"Построение графовой базы знаний в Obsidian"}}]},"provider":{"@type":"Person","name":"Денис Полоцк","jobTitle":"AI Automation Architect","email":"denjah@gmail.com","telephone":"+7-996-794-87-56"}}
   </script>
+
+
 
   <!-- ============================================== -->
   <!-- === FOOTER: SKILLS MARQUEE + NAVIGATION    === -->
@@ -3391,7 +3395,7 @@
     /* ========== FOOTER STYLES ========== */
     .site-footer {
       position: relative;
-      height: 500px;
+      min-height: 560px;
       background: #0E0C0A;
       overflow: hidden;
       display: flex;
@@ -3521,42 +3525,54 @@
     }
 
     .footer-prof-buttons {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
       justify-content: center;
-      gap: 10px;
     }
 
     .footer-prof-btn {
-      display: inline-flex;
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 8px;
-      padding: 10px 18px;
+      justify-content: center;
+      gap: 16px;
+      width: 170px;
+      height: 170px;
+      padding: 16px 12px;
       border: 1.5px solid rgba(139, 46, 46, 0.2);
-      background: rgba(139, 46, 46, 0.06);
-      color: rgba(255, 255, 255, 0.55);
-      font-size: 11px;
+      background: #181412; /* Не прозрачный фон */
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
+      text-align: center;
       text-decoration: none;
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      line-height: 1.4;
     }
 
     .footer-prof-btn:hover {
       color: #fff;
-      border-color: rgba(139, 46, 46, 0.6);
-      background: rgba(139, 46, 46, 0.15);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(139, 46, 46, 0.2);
+      border-color: rgba(139, 46, 46, 0.8);
+      background: #241A17; /* Чуть светлее при наведении */
+      transform: translateY(-6px);
+      box-shadow: 0 16px 32px rgba(139, 46, 46, 0.3);
     }
 
     .footer-prof-icon {
-      width: 18px;
-      height: 18px;
+      width: 36px;
+      height: 36px;
       fill: currentColor;
       flex-shrink: 0;
+      opacity: 0.8;
+      transition: all 0.3s ease;
+    }
+    .footer-prof-btn:hover .footer-prof-icon {
+      opacity: 1;
+      transform: scale(1.1);
     }
 
     .prof-btn-short {
@@ -3613,8 +3629,14 @@
     /* === RESPONSIVE === */
     @media (max-width: 768px) {
       .site-footer {
-        height: 420px;
+        min-height: 480px;
+        height: auto;
         margin: 0 12px 12px;
+      }
+
+      .footer-prof-buttons {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
       }
 
       .prof-btn-full {
@@ -3626,14 +3648,16 @@
       }
 
       .footer-prof-btn {
-        padding: 8px 14px;
-        font-size: 10px;
-        letter-spacing: 1px;
+        width: 140px;
+        height: 140px;
+        padding: 12px;
+        font-size: 11px;
+        gap: 12px;
       }
 
       .footer-prof-icon {
-        width: 15px;
-        height: 15px;
+        width: 28px;
+        height: 28px;
       }
 
       .marquee-item img {
@@ -3659,18 +3683,20 @@
 
     @media (max-width: 480px) {
       .site-footer {
-        height: 380px;
+        height: auto;
         margin: 0 8px 8px;
       }
 
       .footer-prof-buttons {
-        gap: 6px;
+        gap: 8px;
       }
 
       .footer-prof-btn {
-        padding: 7px 10px;
-        font-size: 9px;
-        gap: 5px;
+        width: 130px;
+        height: 130px;
+        padding: 10px;
+        font-size: 10px;
+        gap: 10px;
       }
 
       .marquee-item img {
@@ -3767,6 +3793,7 @@
      * Премиум Magnetic CTA эффект
      */
     document.addEventListener('DOMContentLoaded', () => {
+      // Magnetic для final CTA
       const btn = document.querySelector('.final-cta');
       if (btn) {
         btn.addEventListener('mousemove', (e) => {
@@ -3779,6 +3806,35 @@
         btn.addEventListener('mouseleave', () => {
           btn.style.transform = '';
           btn.style.transition = 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+        });
+      }
+
+      // Magnetic для nav-contacts кнопок
+      const MAGNET_RADIUS = 60;
+      const navBtns = document.querySelectorAll('.nav-contacts');
+      if (window.innerWidth > 768) {
+        document.addEventListener('mousemove', (e) => {
+          navBtns.forEach(btn => {
+            const r = btn.getBoundingClientRect();
+            const cx = r.left + r.width / 2;
+            const cy = r.top + r.height / 2;
+            const dx = e.clientX - cx;
+            const dy = e.clientY - cy;
+            const edgeX = Math.max(0, Math.abs(dx) - r.width / 2);
+            const edgeY = Math.max(0, Math.abs(dy) - r.height / 2);
+            const edgeDist = Math.sqrt(edgeX * edgeX + edgeY * edgeY);
+
+            if (edgeDist < MAGNET_RADIUS) {
+              const pull = 1 - edgeDist / MAGNET_RADIUS;
+              const tx = dx * pull * 0.15;
+              const ty = dy * pull * 0.15;
+              btn.style.transform = `translate(${tx}px, ${ty}px)`;
+              btn.style.transition = 'transform 0.1s ease-out, background 0.3s, color 0.3s, border-color 0.3s';
+            } else {
+              btn.style.transform = '';
+              btn.style.transition = 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+            }
+          });
         });
       }
     });

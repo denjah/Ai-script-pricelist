@@ -29,14 +29,18 @@ class ServiceConfigurator {
   }
 
   async init() {
+    // Bind UI events BEFORE fetch — so accordion/wizard work even if JSON fails (Chrome file:// CORS)
+    this.priceCalculated = false;
+    this.bindEvents();
+    this.switchMode('initial');
+    this.hideTogglePrice();
+
     try {
       const response = await fetch(this.jsonPath);
       this.data = await response.json();
       
       this.setDefaultState();
       this.renderAll();
-      this.bindEvents();
-      this.calculatePrice(); // Ensure initial price is shown
     } catch (error) {
       console.error(`Error loading data for ${this.container.id}:`, error);
     }
@@ -162,7 +166,11 @@ class ServiceConfigurator {
       btn.classList.toggle('expanded');
       const body = this.container.querySelector('.cfg-manual-body');
       if (body) body.classList.toggle('open');
-      this.switchMode('manual');
+      // Calculate price on first open if not yet done
+      if (!this.priceCalculated) {
+        this.priceCalculated = true;
+        this.calculatePrice();
+      }
     });
     this.container.querySelector('.cfg-close-wizard')?.addEventListener('click', () => this.switchMode('initial'));
 
@@ -262,6 +270,7 @@ class ServiceConfigurator {
       chip.classList.add('active');
       
       this.applyPreset(chip.dataset.preset);
+      this.priceCalculated = true;
     });
 
     // Booking Buttons
@@ -318,6 +327,8 @@ class ServiceConfigurator {
     if (mode === 'wizard') {
       this.currentStep = 1;
       this.updateWizardUI();
+      this.priceCalculated = true;
+      this.calculatePrice();
     }
   }
 
@@ -429,7 +440,21 @@ class ServiceConfigurator {
     
     if (totalWiz && totalWiz.textContent !== formatted) this.animateValue(totalWiz, formatted);
     if (totalMan && totalMan.textContent !== formatted) this.animateValue(totalMan, formatted);
-    if (totalTog && totalTog.textContent !== formatted) totalTog.textContent = formatted;
+    if (totalTog) {
+      if (this.priceCalculated) {
+        totalTog.textContent = formatted;
+        totalTog.style.display = '';
+      } else {
+        totalTog.textContent = '';
+        totalTog.style.display = 'none';
+      }
+    }
+
+    // НДС 20% (в т.ч.)
+    const vat = total * 20 / 120;
+    const vatFormatted = this.formatPrice(vat);
+    this.updateVatDisplay(this.container.querySelector('.cfg-total-row'), vatFormatted);
+    this.updateVatDisplay(this.container.querySelector('.cfg-manual-result'), vatFormatted);
 
     // Update Breakdown
     const breakdown = this.container.querySelector('#cfg-breakdown');
@@ -470,6 +495,27 @@ class ServiceConfigurator {
       element.style.transform = 'scale(1)'; 
       element.style.color = ''; 
     }, 200);
+  }
+
+  updateVatDisplay(parent, vatStr) {
+    if (!parent) return;
+    let vatEl = parent.querySelector('.cfg-vat');
+    if (!vatEl) {
+      vatEl = document.createElement('div');
+      vatEl.className = 'cfg-vat';
+      parent.appendChild(vatEl);
+      // Ensure the parent wraps correctly
+      parent.style.flexWrap = 'wrap';
+    }
+    vatEl.textContent = `в т.ч. НДС 20%: ${vatStr}`;
+  }
+
+  hideTogglePrice() {
+    const totalTog = this.container.querySelector('#cfg-toggle-price-value');
+    if (totalTog) {
+      totalTog.textContent = '';
+      totalTog.style.display = 'none';
+    }
   }
 }
 
