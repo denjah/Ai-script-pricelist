@@ -426,9 +426,9 @@
             <!-- STEP 2: Parameters -->
             <div class="cfg-step-panel" data-step="2">
               <div class="cfg-param-group">
-                <div class="cfg-param-label"><span id="cfg-volume-label">Количество карточек клиентов для анализа</span>
-                  <span id="cfg-volume-value">500</span></div>
-                <input type="range" id="cfg-volume-range" class="cfg-range" min="50" max="2000" step="50" value="500">
+                <div class="cfg-param-label"><span class="cfg-volume-label">Количество карточек клиентов для анализа</span>
+                  <span class="cfg-volume-value">500</span></div>
+                <input type="range" class="cfg-range cfg-volume-range" min="50" max="2000" step="50" value="500">
               </div>
               <div class="cfg-checks">
                 <!-- Dynamic checkboxes injected by JS -->
@@ -436,7 +436,7 @@
               <div class="cfg-param-group">
                 <div class="cfg-param-label">Сроки</div>
                 <div class="cfg-select-wrap">
-                  <select id="cfg-deadline" class="cfg-select">
+                  <select class="cfg-select cfg-deadline">
                     <option value="2weeks">2 недели (ускоренный)</option>
                     <option value="1month" selected>1 месяц (стандарт)</option>
                     <option value="flexible">Гибко / под вас</option>
@@ -448,12 +448,12 @@
             <!-- STEP 3: Final Calculation -->
             <div class="cfg-step-panel" data-step="3">
               <div class="cfg-final-price">
-                <div class="cfg-price-breakdown" id="cfg-breakdown">
+                <div class="cfg-price-breakdown cfg-breakdown">
                   <!-- Dynamic breakdown injected by JS -->
                 </div>
                 <div class="cfg-total-row">
                   <span class="cfg-total-label">Итого</span>
-                  <span class="cfg-total-value" id="cfg-total-value">610 000 ₽</span>
+                  <span class="cfg-total-value">610 000 ₽</span>
                 </div>
                 <div class="cfg-currency-switch">
                   <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
@@ -462,8 +462,8 @@
                   <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
                 </div>
                 <div class="cfg-actions">
-                  <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Забронировать внедрение</button>
-                  <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить проект</button>
+                  <button class="cfg-btn-primary cfg-book-wizard" type="button">Забронировать внедрение</button>
+                  <button class="cfg-btn-secondary cfg-discuss-wizard" type="button">Обсудить проект</button>
                 </div>
               </div>
             </div>
@@ -494,7 +494,7 @@
         <div class="cfg-manual">
           <button class="cfg-manual-toggle" type="button">
             <span>Настроить вручную</span>
-            <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+            <span class="cfg-toggle-price cfg-toggle-price-value"></span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
               stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9" />
@@ -503,8 +503,8 @@
           <div class="cfg-manual-body">
             <div class="cfg-manual-content">
               <div class="cfg-param-group">
-                <div class="cfg-param-label">Карточек клиентов <span id="cfg-manual-volume-value">500</span></div>
-                <input type="range" id="cfg-manual-volume" class="cfg-range" min="50" max="2000" step="50" value="500">
+                <div class="cfg-param-label">Карточек клиентов <span class="cfg-manual-volume-value">500</span></div>
+                <input type="range" class="cfg-range cfg-manual-volume" min="50" max="2000" step="50" value="500">
               </div>
               <div class="cfg-checks">
                 <!-- Динамически рендерится из JSON -->
@@ -512,7 +512,7 @@
               <div class="cfg-param-group">
                 <div class="cfg-param-label">Сроки</div>
                 <div class="cfg-select-wrap">
-                  <select id="cfg-manual-deadline" class="cfg-select">
+                  <select class="cfg-select cfg-manual-deadline">
                     <option value="2weeks">2 недели (ускоренный)</option>
                     <option value="1month" selected>1 месяц (стандарт)</option>
                     <option value="flexible">Гибко / под вас</option>
@@ -521,7 +521,7 @@
               </div>
               <div class="cfg-manual-result">
                 <span class="cfg-manual-result-label">Итого</span>
-                <span class="cfg-manual-result-value" id="cfg-manual-result-value">610 000 ₽</span>
+                <span class="cfg-manual-result-value">610 000 ₽</span>
               </div>
             </div>
           </div>
@@ -620,9 +620,9 @@
             <!-- STEP 2: Parameters -->
             <div class="cfg-step-panel" data-step="2">
               <div class="cfg-param-group">
-                <div class="cfg-param-label"><span id="cfg-volume-label">Количество лидов</span> <span
+                <div class="cfg-param-label"><span class="cfg-volume-label">Количество лидов</span> <span
                     id="cfg-volume-value">1000</span></div>
-                <input type="range" id="cfg-volume-range" class="cfg-range" min="100" max="5000" step="100"
+                <input type="range" class="cfg-range cfg-volume-range" min="100" max="5000" step="100"
                   value="1000">
               </div>
               <div class="cfg-checks">
@@ -631,7 +631,7 @@
               <div class="cfg-param-group">
                 <div class="cfg-param-label">Сроки</div>
                 <div class="cfg-select-wrap">
-                  <select id="cfg-deadline" class="cfg-select">
+                  <select class="cfg-select cfg-deadline">
                     <!-- Dynamic options -->
                   </select>
                 </div>
@@ -641,12 +641,12 @@
             <!-- STEP 3: Final Calculation -->
             <div class="cfg-step-panel" data-step="3">
               <div class="cfg-final-price">
-                <div class="cfg-price-breakdown" id="cfg-breakdown">
+                <div class="cfg-price-breakdown cfg-breakdown">
                   <!-- Dynamic breakdown injected by JS -->
                 </div>
                 <div class="cfg-total-row">
                   <span class="cfg-total-label">Итого</span>
-                  <span class="cfg-total-value" id="cfg-total-value">0 ₽</span>
+                  <span class="cfg-total-value">0 ₽</span>
                 </div>
                 <div class="cfg-currency-switch">
                   <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
@@ -655,8 +655,8 @@
                   <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
                 </div>
                 <div class="cfg-actions">
-                  <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Забронировать внедрение</button>
-                  <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить проект</button>
+                  <button class="cfg-btn-primary cfg-book-wizard" type="button">Забронировать внедрение</button>
+                  <button class="cfg-btn-secondary cfg-discuss-wizard" type="button">Обсудить проект</button>
                 </div>
               </div>
             </div>
@@ -687,7 +687,7 @@
         <div class="cfg-manual">
           <button class="cfg-manual-toggle" type="button">
             <span>Настроить вручную</span>
-            <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+            <span class="cfg-toggle-price cfg-toggle-price-value"></span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
               stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9" />
@@ -696,8 +696,8 @@
           <div class="cfg-manual-body">
             <div class="cfg-manual-content">
               <div class="cfg-param-group">
-                <div class="cfg-param-label">Объём <span id="cfg-manual-volume-value">1000</span></div>
-                <input type="range" id="cfg-manual-volume" class="cfg-range" min="100" max="5000" step="100"
+                <div class="cfg-param-label">Объём <span class="cfg-manual-volume-value">1000</span></div>
+                <input type="range" class="cfg-range cfg-manual-volume" min="100" max="5000" step="100"
                   value="1000">
               </div>
               <div class="cfg-checks">
@@ -706,14 +706,14 @@
               <div class="cfg-param-group">
                 <div class="cfg-param-label">Сроки</div>
                 <div class="cfg-select-wrap">
-                  <select id="cfg-manual-deadline" class="cfg-select">
+                  <select class="cfg-select cfg-manual-deadline">
                     <!-- Dynamic options -->
                   </select>
                 </div>
               </div>
               <div class="cfg-manual-result">
                 <span class="cfg-manual-result-label">Итого</span>
-                <span class="cfg-manual-result-value" id="cfg-manual-result-value">0 ₽</span>
+                <span class="cfg-manual-result-value">0 ₽</span>
               </div>
             </div>
           </div>
@@ -804,9 +804,9 @@
               <!-- STEP 2: Parameters -->
               <div class="cfg-step-panel" data-step="2">
                 <div class="cfg-param-group">
-                  <div class="cfg-param-label"><span id="cfg-volume-label">Количество коммуникаций</span> <span
+                  <div class="cfg-param-label"><span class="cfg-volume-label">Количество коммуникаций</span> <span
                       id="cfg-volume-value">2500</span></div>
-                  <input type="range" id="cfg-volume-range" class="cfg-range" min="200" max="15000" step="200"
+                  <input type="range" class="cfg-range cfg-volume-range" min="200" max="15000" step="200"
                     value="2500">
                 </div>
                 <div class="cfg-checks">
@@ -815,7 +815,7 @@
                 <div class="cfg-param-group">
                   <div class="cfg-param-label">Сроки</div>
                   <div class="cfg-select-wrap">
-                    <select id="cfg-deadline" class="cfg-select">
+                    <select class="cfg-select cfg-deadline">
                       <!-- Dynamic options -->
                     </select>
                   </div>
@@ -825,12 +825,12 @@
               <!-- STEP 3: Final Calculation -->
               <div class="cfg-step-panel" data-step="3">
                 <div class="cfg-final-price">
-                  <div class="cfg-price-breakdown" id="cfg-breakdown">
+                  <div class="cfg-price-breakdown cfg-breakdown">
                     <!-- Dynamic breakdown injected by JS -->
                   </div>
                   <div class="cfg-total-row">
                     <span class="cfg-total-label">Итого</span>
-                    <span class="cfg-total-value" id="cfg-total-value">0 ₽</span>
+                    <span class="cfg-total-value">0 ₽</span>
                   </div>
                   <div class="cfg-currency-switch">
                     <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
@@ -839,8 +839,8 @@
                     <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
                   </div>
                   <div class="cfg-actions">
-                    <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Забронировать внедрение</button>
-                    <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить проект</button>
+                    <button class="cfg-btn-primary cfg-book-wizard" type="button">Забронировать внедрение</button>
+                    <button class="cfg-btn-secondary cfg-discuss-wizard" type="button">Обсудить проект</button>
                   </div>
                 </div>
               </div>
@@ -871,7 +871,7 @@
           <div class="cfg-manual">
             <button class="cfg-manual-toggle" type="button">
               <span>Настроить вручную</span>
-              <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+              <span class="cfg-toggle-price cfg-toggle-price-value"></span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
                 stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9" />
@@ -880,8 +880,8 @@
             <div class="cfg-manual-body">
               <div class="cfg-manual-content">
                 <div class="cfg-param-group">
-                  <div class="cfg-param-label">Объём <span id="cfg-manual-volume-value">2500</span></div>
-                  <input type="range" id="cfg-manual-volume" class="cfg-range" min="200" max="15000" step="200"
+                  <div class="cfg-param-label">Объём <span class="cfg-manual-volume-value">2500</span></div>
+                  <input type="range" class="cfg-range cfg-manual-volume" min="200" max="15000" step="200"
                     value="2500">
                 </div>
                 <div class="cfg-checks">
@@ -890,14 +890,14 @@
                 <div class="cfg-param-group">
                   <div class="cfg-param-label">Сроки</div>
                   <div class="cfg-select-wrap">
-                    <select id="cfg-manual-deadline" class="cfg-select">
+                    <select class="cfg-select cfg-manual-deadline">
                       <!-- Dynamic options -->
                     </select>
                   </div>
                 </div>
                 <div class="cfg-manual-result">
                   <span class="cfg-manual-result-label">Итого</span>
-                  <span class="cfg-manual-result-value" id="cfg-manual-result-value">0 ₽</span>
+                  <span class="cfg-manual-result-value">0 ₽</span>
                 </div>
               </div>
             </div>
@@ -1009,9 +1009,9 @@
             <!-- STEP 2: Parameters -->
             <div class="cfg-step-panel" data-step="2">
               <div class="cfg-param-group">
-                <div class="cfg-param-label"><span id="cfg-volume-label">Количество КП</span> <span
+                <div class="cfg-param-label"><span class="cfg-volume-label">Количество КП</span> <span
                     id="cfg-volume-value">300</span></div>
-                <input type="range" id="cfg-volume-range" class="cfg-range" min="50" max="2000" step="50" value="300">
+                <input type="range" class="cfg-range cfg-volume-range" min="50" max="2000" step="50" value="300">
               </div>
               <div class="cfg-checks">
                 <!-- Dynamic checkboxes injected by JS -->
@@ -1019,7 +1019,7 @@
               <div class="cfg-param-group">
                 <div class="cfg-param-label">Сроки</div>
                 <div class="cfg-select-wrap">
-                  <select id="cfg-deadline" class="cfg-select">
+                  <select class="cfg-select cfg-deadline">
                     <!-- Dynamic options -->
                   </select>
                 </div>
@@ -1029,12 +1029,12 @@
             <!-- STEP 3: Final Calculation -->
             <div class="cfg-step-panel" data-step="3">
               <div class="cfg-final-price">
-                <div class="cfg-price-breakdown" id="cfg-breakdown">
+                <div class="cfg-price-breakdown cfg-breakdown">
                   <!-- Dynamic breakdown injected by JS -->
                 </div>
                 <div class="cfg-total-row">
                   <span class="cfg-total-label">Итого</span>
-                  <span class="cfg-total-value" id="cfg-total-value">0 ₽</span>
+                  <span class="cfg-total-value">0 ₽</span>
                 </div>
                 <div class="cfg-currency-switch">
                   <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
@@ -1043,8 +1043,8 @@
                   <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
                 </div>
                 <div class="cfg-actions">
-                  <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Забронировать внедрение</button>
-                  <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить проект</button>
+                  <button class="cfg-btn-primary cfg-book-wizard" type="button">Забронировать внедрение</button>
+                  <button class="cfg-btn-secondary cfg-discuss-wizard" type="button">Обсудить проект</button>
                 </div>
               </div>
             </div>
@@ -1075,7 +1075,7 @@
         <div class="cfg-manual">
           <button class="cfg-manual-toggle" type="button">
             <span>Настроить вручную</span>
-            <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+            <span class="cfg-toggle-price cfg-toggle-price-value"></span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
               stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9" />
@@ -1084,8 +1084,8 @@
           <div class="cfg-manual-body">
             <div class="cfg-manual-content">
               <div class="cfg-param-group">
-                <div class="cfg-param-label">Объём <span id="cfg-manual-volume-value">300</span></div>
-                <input type="range" id="cfg-manual-volume" class="cfg-range" min="50" max="2000" step="50" value="300">
+                <div class="cfg-param-label">Объём <span class="cfg-manual-volume-value">300</span></div>
+                <input type="range" class="cfg-range cfg-manual-volume" min="50" max="2000" step="50" value="300">
               </div>
               <div class="cfg-checks">
                 <!-- Динамически рендерится из JSON -->
@@ -1093,14 +1093,14 @@
               <div class="cfg-param-group">
                 <div class="cfg-param-label">Сроки</div>
                 <div class="cfg-select-wrap">
-                  <select id="cfg-manual-deadline" class="cfg-select">
+                  <select class="cfg-select cfg-manual-deadline">
                     <!-- Dynamic options -->
                   </select>
                 </div>
               </div>
               <div class="cfg-manual-result">
                 <span class="cfg-manual-result-label">Итого</span>
-                <span class="cfg-manual-result-value" id="cfg-manual-result-value">0 ₽</span>
+                <span class="cfg-manual-result-value">0 ₽</span>
               </div>
             </div>
           </div>
@@ -1225,9 +1225,9 @@
             <!-- STEP 2: Parameters -->
             <div class="cfg-step-panel" data-step="2">
               <div class="cfg-param-group">
-                <div class="cfg-param-label"><span id="cfg-volume-label">Количество менеджеров</span> <span
+                <div class="cfg-param-label"><span class="cfg-volume-label">Количество менеджеров</span> <span
                     id="cfg-volume-value">12</span></div>
-                <input type="range" id="cfg-volume-range" class="cfg-range" min="3" max="80" step="1" value="12">
+                <input type="range" class="cfg-range cfg-volume-range" min="3" max="80" step="1" value="12">
               </div>
               <div class="cfg-checks">
                 <!-- Dynamic checkboxes injected by JS -->
@@ -1235,7 +1235,7 @@
               <div class="cfg-param-group">
                 <div class="cfg-param-label">Сроки</div>
                 <div class="cfg-select-wrap">
-                  <select id="cfg-deadline" class="cfg-select">
+                  <select class="cfg-select cfg-deadline">
                     <!-- Dynamic options -->
                   </select>
                 </div>
@@ -1245,12 +1245,12 @@
             <!-- STEP 3: Final Calculation -->
             <div class="cfg-step-panel" data-step="3">
               <div class="cfg-final-price">
-                <div class="cfg-price-breakdown" id="cfg-breakdown">
+                <div class="cfg-price-breakdown cfg-breakdown">
                   <!-- Dynamic breakdown injected by JS -->
                 </div>
                 <div class="cfg-total-row">
                   <span class="cfg-total-label">Итого</span>
-                  <span class="cfg-total-value" id="cfg-total-value">0 ₽</span>
+                  <span class="cfg-total-value">0 ₽</span>
                 </div>
                 <div class="cfg-currency-switch">
                   <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
@@ -1259,8 +1259,8 @@
                   <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
                 </div>
                 <div class="cfg-actions">
-                  <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Забронировать внедрение</button>
-                  <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить проект</button>
+                  <button class="cfg-btn-primary cfg-book-wizard" type="button">Забронировать внедрение</button>
+                  <button class="cfg-btn-secondary cfg-discuss-wizard" type="button">Обсудить проект</button>
                 </div>
               </div>
             </div>
@@ -1291,7 +1291,7 @@
         <div class="cfg-manual">
           <button class="cfg-manual-toggle" type="button">
             <span>Настроить вручную</span>
-            <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+            <span class="cfg-toggle-price cfg-toggle-price-value"></span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
               stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9" />
@@ -1300,8 +1300,8 @@
           <div class="cfg-manual-body">
             <div class="cfg-manual-content">
               <div class="cfg-param-group">
-                <div class="cfg-param-label">Объём <span id="cfg-manual-volume-value">12</span></div>
-                <input type="range" id="cfg-manual-volume" class="cfg-range" min="3" max="80" step="1" value="12">
+                <div class="cfg-param-label">Объём <span class="cfg-manual-volume-value">12</span></div>
+                <input type="range" class="cfg-range cfg-manual-volume" min="3" max="80" step="1" value="12">
               </div>
               <div class="cfg-checks">
                 <!-- Динамически рендерится из JSON -->
@@ -1309,14 +1309,14 @@
               <div class="cfg-param-group">
                 <div class="cfg-param-label">Сроки</div>
                 <div class="cfg-select-wrap">
-                  <select id="cfg-manual-deadline" class="cfg-select">
+                  <select class="cfg-select cfg-manual-deadline">
                     <!-- Dynamic options -->
                   </select>
                 </div>
               </div>
               <div class="cfg-manual-result">
                 <span class="cfg-manual-result-label">Итого</span>
-                <span class="cfg-manual-result-value" id="cfg-manual-result-value">0 ₽</span>
+                <span class="cfg-manual-result-value">0 ₽</span>
               </div>
             </div>
           </div>
@@ -1413,9 +1413,9 @@
             <!-- STEP 2: Parameters -->
             <div class="cfg-step-panel" data-step="2">
               <div class="cfg-param-group">
-                <div class="cfg-param-label"><span id="cfg-volume-label">Количество SKU</span> <span
+                <div class="cfg-param-label"><span class="cfg-volume-label">Количество SKU</span> <span
                     id="cfg-volume-value">2200</span></div>
-                <input type="range" id="cfg-volume-range" class="cfg-range" min="300" max="15000" step="100"
+                <input type="range" class="cfg-range cfg-volume-range" min="300" max="15000" step="100"
                   value="2200">
               </div>
               <div class="cfg-checks">
@@ -1424,7 +1424,7 @@
               <div class="cfg-param-group">
                 <div class="cfg-param-label">Сроки</div>
                 <div class="cfg-select-wrap">
-                  <select id="cfg-deadline" class="cfg-select">
+                  <select class="cfg-select cfg-deadline">
                     <!-- Dynamic options -->
                   </select>
                 </div>
@@ -1434,12 +1434,12 @@
             <!-- STEP 3: Final Calculation -->
             <div class="cfg-step-panel" data-step="3">
               <div class="cfg-final-price">
-                <div class="cfg-price-breakdown" id="cfg-breakdown">
+                <div class="cfg-price-breakdown cfg-breakdown">
                   <!-- Dynamic breakdown injected by JS -->
                 </div>
                 <div class="cfg-total-row">
                   <span class="cfg-total-label">Итого</span>
-                  <span class="cfg-total-value" id="cfg-total-value">0 ₽</span>
+                  <span class="cfg-total-value">0 ₽</span>
                 </div>
                 <div class="cfg-currency-switch">
                   <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
@@ -1448,8 +1448,8 @@
                   <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
                 </div>
                 <div class="cfg-actions">
-                  <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Забронировать внедрение</button>
-                  <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить проект</button>
+                  <button class="cfg-btn-primary cfg-book-wizard" type="button">Забронировать внедрение</button>
+                  <button class="cfg-btn-secondary cfg-discuss-wizard" type="button">Обсудить проект</button>
                 </div>
               </div>
             </div>
@@ -1480,7 +1480,7 @@
         <div class="cfg-manual">
           <button class="cfg-manual-toggle" type="button">
             <span>Настроить вручную</span>
-            <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+            <span class="cfg-toggle-price cfg-toggle-price-value"></span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
               stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9" />
@@ -1489,8 +1489,8 @@
           <div class="cfg-manual-body">
             <div class="cfg-manual-content">
               <div class="cfg-param-group">
-                <div class="cfg-param-label">Объём <span id="cfg-manual-volume-value">2200</span></div>
-                <input type="range" id="cfg-manual-volume" class="cfg-range" min="300" max="15000" step="100"
+                <div class="cfg-param-label">Объём <span class="cfg-manual-volume-value">2200</span></div>
+                <input type="range" class="cfg-range cfg-manual-volume" min="300" max="15000" step="100"
                   value="2200">
               </div>
               <div class="cfg-checks">
@@ -1499,14 +1499,14 @@
               <div class="cfg-param-group">
                 <div class="cfg-param-label">Сроки</div>
                 <div class="cfg-select-wrap">
-                  <select id="cfg-manual-deadline" class="cfg-select">
+                  <select class="cfg-select cfg-manual-deadline">
                     <!-- Dynamic options -->
                   </select>
                 </div>
               </div>
               <div class="cfg-manual-result">
                 <span class="cfg-manual-result-label">Итого</span>
-                <span class="cfg-manual-result-value" id="cfg-manual-result-value">0 ₽</span>
+                <span class="cfg-manual-result-value">0 ₽</span>
               </div>
             </div>
           </div>
@@ -1614,9 +1614,9 @@
             <!-- STEP 2: Parameters -->
             <div class="cfg-step-panel" data-step="2">
               <div class="cfg-param-group">
-                <div class="cfg-param-label"><span id="cfg-volume-label">Количество контент-единиц</span> <span
+                <div class="cfg-param-label"><span class="cfg-volume-label">Количество контент-единиц</span> <span
                     id="cfg-volume-value">400</span></div>
-                <input type="range" id="cfg-volume-range" class="cfg-range" min="50" max="3000" step="50" value="400">
+                <input type="range" class="cfg-range cfg-volume-range" min="50" max="3000" step="50" value="400">
               </div>
               <div class="cfg-checks">
                 <!-- Dynamic checkboxes injected by JS -->
@@ -1624,7 +1624,7 @@
               <div class="cfg-param-group">
                 <div class="cfg-param-label">Сроки</div>
                 <div class="cfg-select-wrap">
-                  <select id="cfg-deadline" class="cfg-select">
+                  <select class="cfg-select cfg-deadline">
                     <!-- Dynamic options -->
                   </select>
                 </div>
@@ -1634,12 +1634,12 @@
             <!-- STEP 3: Final Calculation -->
             <div class="cfg-step-panel" data-step="3">
               <div class="cfg-final-price">
-                <div class="cfg-price-breakdown" id="cfg-breakdown">
+                <div class="cfg-price-breakdown cfg-breakdown">
                   <!-- Dynamic breakdown injected by JS -->
                 </div>
                 <div class="cfg-total-row">
                   <span class="cfg-total-label">Итого</span>
-                  <span class="cfg-total-value" id="cfg-total-value">0 ₽</span>
+                  <span class="cfg-total-value">0 ₽</span>
                 </div>
                 <div class="cfg-currency-switch">
                   <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
@@ -1648,8 +1648,8 @@
                   <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
                 </div>
                 <div class="cfg-actions">
-                  <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Забронировать внедрение</button>
-                  <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить проект</button>
+                  <button class="cfg-btn-primary cfg-book-wizard" type="button">Забронировать внедрение</button>
+                  <button class="cfg-btn-secondary cfg-discuss-wizard" type="button">Обсудить проект</button>
                 </div>
               </div>
             </div>
@@ -1680,7 +1680,7 @@
         <div class="cfg-manual">
           <button class="cfg-manual-toggle" type="button">
             <span>Настроить вручную</span>
-            <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+            <span class="cfg-toggle-price cfg-toggle-price-value"></span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
               stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9" />
@@ -1689,8 +1689,8 @@
           <div class="cfg-manual-body">
             <div class="cfg-manual-content">
               <div class="cfg-param-group">
-                <div class="cfg-param-label">Объём <span id="cfg-manual-volume-value">400</span></div>
-                <input type="range" id="cfg-manual-volume" class="cfg-range" min="50" max="3000" step="50" value="400">
+                <div class="cfg-param-label">Объём <span class="cfg-manual-volume-value">400</span></div>
+                <input type="range" class="cfg-range cfg-manual-volume" min="50" max="3000" step="50" value="400">
               </div>
               <div class="cfg-checks">
                 <!-- Динамически рендерится из JSON -->
@@ -1698,14 +1698,14 @@
               <div class="cfg-param-group">
                 <div class="cfg-param-label">Сроки</div>
                 <div class="cfg-select-wrap">
-                  <select id="cfg-manual-deadline" class="cfg-select">
+                  <select class="cfg-select cfg-manual-deadline">
                     <!-- Dynamic options -->
                   </select>
                 </div>
               </div>
               <div class="cfg-manual-result">
                 <span class="cfg-manual-result-label">Итого</span>
-                <span class="cfg-manual-result-value" id="cfg-manual-result-value">0 ₽</span>
+                <span class="cfg-manual-result-value">0 ₽</span>
               </div>
             </div>
           </div>
@@ -1800,9 +1800,9 @@
             <!-- STEP 2: Parameters -->
             <div class="cfg-step-panel" data-step="2">
               <div class="cfg-param-group">
-                <div class="cfg-param-label"><span id="cfg-volume-label">Количество экранов</span> <span
+                <div class="cfg-param-label"><span class="cfg-volume-label">Количество экранов</span> <span
                     id="cfg-volume-value">8</span></div>
-                <input type="range" id="cfg-volume-range" class="cfg-range" min="2" max="60" step="1" value="8">
+                <input type="range" class="cfg-range cfg-volume-range" min="2" max="60" step="1" value="8">
               </div>
               <div class="cfg-checks">
                 <!-- Dynamic checkboxes injected by JS -->
@@ -1810,7 +1810,7 @@
               <div class="cfg-param-group">
                 <div class="cfg-param-label">Сроки</div>
                 <div class="cfg-select-wrap">
-                  <select id="cfg-deadline" class="cfg-select">
+                  <select class="cfg-select cfg-deadline">
                     <!-- Dynamic options -->
                   </select>
                 </div>
@@ -1820,12 +1820,12 @@
             <!-- STEP 3: Final Calculation -->
             <div class="cfg-step-panel" data-step="3">
               <div class="cfg-final-price">
-                <div class="cfg-price-breakdown" id="cfg-breakdown">
+                <div class="cfg-price-breakdown cfg-breakdown">
                   <!-- Dynamic breakdown injected by JS -->
                 </div>
                 <div class="cfg-total-row">
                   <span class="cfg-total-label">Итого</span>
-                  <span class="cfg-total-value" id="cfg-total-value">0 ₽</span>
+                  <span class="cfg-total-value">0 ₽</span>
                 </div>
                 <div class="cfg-currency-switch">
                   <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
@@ -1834,8 +1834,8 @@
                   <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
                 </div>
                 <div class="cfg-actions">
-                  <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Забронировать внедрение</button>
-                  <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить проект</button>
+                  <button class="cfg-btn-primary cfg-book-wizard" type="button">Забронировать внедрение</button>
+                  <button class="cfg-btn-secondary cfg-discuss-wizard" type="button">Обсудить проект</button>
                 </div>
               </div>
             </div>
@@ -1866,7 +1866,7 @@
         <div class="cfg-manual">
           <button class="cfg-manual-toggle" type="button">
             <span>Настроить вручную</span>
-            <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+            <span class="cfg-toggle-price cfg-toggle-price-value"></span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
               stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9" />
@@ -1875,8 +1875,8 @@
           <div class="cfg-manual-body">
             <div class="cfg-manual-content">
               <div class="cfg-param-group">
-                <div class="cfg-param-label">Объём <span id="cfg-manual-volume-value">8</span></div>
-                <input type="range" id="cfg-manual-volume" class="cfg-range" min="2" max="60" step="1" value="8">
+                <div class="cfg-param-label">Объём <span class="cfg-manual-volume-value">8</span></div>
+                <input type="range" class="cfg-range cfg-manual-volume" min="2" max="60" step="1" value="8">
               </div>
               <div class="cfg-checks">
                 <!-- Динамически рендерится из JSON -->
@@ -1884,14 +1884,14 @@
               <div class="cfg-param-group">
                 <div class="cfg-param-label">Сроки</div>
                 <div class="cfg-select-wrap">
-                  <select id="cfg-manual-deadline" class="cfg-select">
+                  <select class="cfg-select cfg-manual-deadline">
                     <!-- Dynamic options -->
                   </select>
                 </div>
               </div>
               <div class="cfg-manual-result">
                 <span class="cfg-manual-result-label">Итого</span>
-                <span class="cfg-manual-result-value" id="cfg-manual-result-value">0 ₽</span>
+                <span class="cfg-manual-result-value">0 ₽</span>
               </div>
             </div>
           </div>
@@ -1997,9 +1997,9 @@
             <!-- STEP 2: Parameters -->
             <div class="cfg-step-panel" data-step="2">
               <div class="cfg-param-group">
-                <div class="cfg-param-label"><span id="cfg-volume-label">Тендеров в месяц</span> <span
+                <div class="cfg-param-label"><span class="cfg-volume-label">Тендеров в месяц</span> <span
                     id="cfg-volume-value">600</span></div>
-                <input type="range" id="cfg-volume-range" class="cfg-range" min="100" max="5000" step="50" value="600">
+                <input type="range" class="cfg-range cfg-volume-range" min="100" max="5000" step="50" value="600">
               </div>
               <div class="cfg-checks">
                 <!-- Dynamic checkboxes injected by JS -->
@@ -2007,7 +2007,7 @@
               <div class="cfg-param-group">
                 <div class="cfg-param-label">Сроки</div>
                 <div class="cfg-select-wrap">
-                  <select id="cfg-deadline" class="cfg-select">
+                  <select class="cfg-select cfg-deadline">
                     <!-- Dynamic options -->
                   </select>
                 </div>
@@ -2017,12 +2017,12 @@
             <!-- STEP 3: Final Calculation -->
             <div class="cfg-step-panel" data-step="3">
               <div class="cfg-final-price">
-                <div class="cfg-price-breakdown" id="cfg-breakdown">
+                <div class="cfg-price-breakdown cfg-breakdown">
                   <!-- Dynamic breakdown injected by JS -->
                 </div>
                 <div class="cfg-total-row">
                   <span class="cfg-total-label">Итого</span>
-                  <span class="cfg-total-value" id="cfg-total-value">0 ₽</span>
+                  <span class="cfg-total-value">0 ₽</span>
                 </div>
                 <div class="cfg-currency-switch">
                   <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
@@ -2031,8 +2031,8 @@
                   <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
                 </div>
                 <div class="cfg-actions">
-                  <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Забронировать внедрение</button>
-                  <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить проект</button>
+                  <button class="cfg-btn-primary cfg-book-wizard" type="button">Забронировать внедрение</button>
+                  <button class="cfg-btn-secondary cfg-discuss-wizard" type="button">Обсудить проект</button>
                 </div>
               </div>
             </div>
@@ -2063,7 +2063,7 @@
         <div class="cfg-manual">
           <button class="cfg-manual-toggle" type="button">
             <span>Настроить вручную</span>
-            <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+            <span class="cfg-toggle-price cfg-toggle-price-value"></span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
               stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9" />
@@ -2072,8 +2072,8 @@
           <div class="cfg-manual-body">
             <div class="cfg-manual-content">
               <div class="cfg-param-group">
-                <div class="cfg-param-label">Объём <span id="cfg-manual-volume-value">600</span></div>
-                <input type="range" id="cfg-manual-volume" class="cfg-range" min="100" max="5000" step="50" value="600">
+                <div class="cfg-param-label">Объём <span class="cfg-manual-volume-value">600</span></div>
+                <input type="range" class="cfg-range cfg-manual-volume" min="100" max="5000" step="50" value="600">
               </div>
               <div class="cfg-checks">
                 <!-- Динамически рендерится из JSON -->
@@ -2081,14 +2081,14 @@
               <div class="cfg-param-group">
                 <div class="cfg-param-label">Сроки</div>
                 <div class="cfg-select-wrap">
-                  <select id="cfg-manual-deadline" class="cfg-select">
+                  <select class="cfg-select cfg-manual-deadline">
                     <!-- Dynamic options -->
                   </select>
                 </div>
               </div>
               <div class="cfg-manual-result">
                 <span class="cfg-manual-result-label">Итого</span>
-                <span class="cfg-manual-result-value" id="cfg-manual-result-value">0 ₽</span>
+                <span class="cfg-manual-result-value">0 ₽</span>
               </div>
             </div>
           </div>
@@ -2183,9 +2183,9 @@
             <!-- STEP 2: Parameters -->
             <div class="cfg-step-panel" data-step="2">
               <div class="cfg-param-group">
-                <div class="cfg-param-label"><span id="cfg-volume-label">Активных пользователей</span> <span
+                <div class="cfg-param-label"><span class="cfg-volume-label">Активных пользователей</span> <span
                     id="cfg-volume-value">45</span></div>
-                <input type="range" id="cfg-volume-range" class="cfg-range" min="10" max="500" step="5" value="45">
+                <input type="range" class="cfg-range cfg-volume-range" min="10" max="500" step="5" value="45">
               </div>
               <div class="cfg-checks">
                 <!-- Dynamic checkboxes injected by JS -->
@@ -2193,7 +2193,7 @@
               <div class="cfg-param-group">
                 <div class="cfg-param-label">Сроки</div>
                 <div class="cfg-select-wrap">
-                  <select id="cfg-deadline" class="cfg-select">
+                  <select class="cfg-select cfg-deadline">
                     <!-- Dynamic options -->
                   </select>
                 </div>
@@ -2203,12 +2203,12 @@
             <!-- STEP 3: Final Calculation -->
             <div class="cfg-step-panel" data-step="3">
               <div class="cfg-final-price">
-                <div class="cfg-price-breakdown" id="cfg-breakdown">
+                <div class="cfg-price-breakdown cfg-breakdown">
                   <!-- Dynamic breakdown injected by JS -->
                 </div>
                 <div class="cfg-total-row">
                   <span class="cfg-total-label">Итого</span>
-                  <span class="cfg-total-value" id="cfg-total-value">0 ₽</span>
+                  <span class="cfg-total-value">0 ₽</span>
                 </div>
                 <div class="cfg-currency-switch">
                   <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
@@ -2217,8 +2217,8 @@
                   <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
                 </div>
                 <div class="cfg-actions">
-                  <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Забронировать внедрение</button>
-                  <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить проект</button>
+                  <button class="cfg-btn-primary cfg-book-wizard" type="button">Забронировать внедрение</button>
+                  <button class="cfg-btn-secondary cfg-discuss-wizard" type="button">Обсудить проект</button>
                 </div>
               </div>
             </div>
@@ -2249,7 +2249,7 @@
         <div class="cfg-manual">
           <button class="cfg-manual-toggle" type="button">
             <span>Настроить вручную</span>
-            <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+            <span class="cfg-toggle-price cfg-toggle-price-value"></span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
               stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9" />
@@ -2258,8 +2258,8 @@
           <div class="cfg-manual-body">
             <div class="cfg-manual-content">
               <div class="cfg-param-group">
-                <div class="cfg-param-label">Объём <span id="cfg-manual-volume-value">45</span></div>
-                <input type="range" id="cfg-manual-volume" class="cfg-range" min="10" max="500" step="5" value="45">
+                <div class="cfg-param-label">Объём <span class="cfg-manual-volume-value">45</span></div>
+                <input type="range" class="cfg-range cfg-manual-volume" min="10" max="500" step="5" value="45">
               </div>
               <div class="cfg-checks">
                 <!-- Динамически рендерится из JSON -->
@@ -2267,14 +2267,14 @@
               <div class="cfg-param-group">
                 <div class="cfg-param-label">Сроки</div>
                 <div class="cfg-select-wrap">
-                  <select id="cfg-manual-deadline" class="cfg-select">
+                  <select class="cfg-select cfg-manual-deadline">
                     <!-- Dynamic options -->
                   </select>
                 </div>
               </div>
               <div class="cfg-manual-result">
                 <span class="cfg-manual-result-label">Итого</span>
-                <span class="cfg-manual-result-value" id="cfg-manual-result-value">0 ₽</span>
+                <span class="cfg-manual-result-value">0 ₽</span>
               </div>
             </div>
           </div>
@@ -2365,9 +2365,9 @@
             <!-- STEP 2: Parameters -->
             <div class="cfg-step-panel" data-step="2">
               <div class="cfg-param-group">
-                <div class="cfg-param-label"><span id="cfg-volume-label">Активных строк в месяц</span> <span
+                <div class="cfg-param-label"><span class="cfg-volume-label">Активных строк в месяц</span> <span
                     id="cfg-volume-value">45000</span></div>
-                <input type="range" id="cfg-volume-range" class="cfg-range" min="5000" max="500000" step="5000"
+                <input type="range" class="cfg-range cfg-volume-range" min="5000" max="500000" step="5000"
                   value="45000">
               </div>
               <div class="cfg-checks">
@@ -2376,7 +2376,7 @@
               <div class="cfg-param-group">
                 <div class="cfg-param-label">Сроки</div>
                 <div class="cfg-select-wrap">
-                  <select id="cfg-deadline" class="cfg-select">
+                  <select class="cfg-select cfg-deadline">
                     <!-- Dynamic options -->
                   </select>
                 </div>
@@ -2386,12 +2386,12 @@
             <!-- STEP 3: Final Calculation -->
             <div class="cfg-step-panel" data-step="3">
               <div class="cfg-final-price">
-                <div class="cfg-price-breakdown" id="cfg-breakdown">
+                <div class="cfg-price-breakdown cfg-breakdown">
                   <!-- Dynamic breakdown injected by JS -->
                 </div>
                 <div class="cfg-total-row">
                   <span class="cfg-total-label">Итого</span>
-                  <span class="cfg-total-value" id="cfg-total-value">0 ₽</span>
+                  <span class="cfg-total-value">0 ₽</span>
                 </div>
                 <div class="cfg-currency-switch">
                   <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
@@ -2400,8 +2400,8 @@
                   <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
                 </div>
                 <div class="cfg-actions">
-                  <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Забронировать внедрение</button>
-                  <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить проект</button>
+                  <button class="cfg-btn-primary cfg-book-wizard" type="button">Забронировать внедрение</button>
+                  <button class="cfg-btn-secondary cfg-discuss-wizard" type="button">Обсудить проект</button>
                 </div>
               </div>
             </div>
@@ -2432,7 +2432,7 @@
         <div class="cfg-manual">
           <button class="cfg-manual-toggle" type="button">
             <span>Настроить вручную</span>
-            <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+            <span class="cfg-toggle-price cfg-toggle-price-value"></span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
               stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9" />
@@ -2441,8 +2441,8 @@
           <div class="cfg-manual-body">
             <div class="cfg-manual-content">
               <div class="cfg-param-group">
-                <div class="cfg-param-label">Объём <span id="cfg-manual-volume-value">45000</span></div>
-                <input type="range" id="cfg-manual-volume" class="cfg-range" min="5000" max="500000" step="5000"
+                <div class="cfg-param-label">Объём <span class="cfg-manual-volume-value">45000</span></div>
+                <input type="range" class="cfg-range cfg-manual-volume" min="5000" max="500000" step="5000"
                   value="45000">
               </div>
               <div class="cfg-checks">
@@ -2451,14 +2451,14 @@
               <div class="cfg-param-group">
                 <div class="cfg-param-label">Сроки</div>
                 <div class="cfg-select-wrap">
-                  <select id="cfg-manual-deadline" class="cfg-select">
+                  <select class="cfg-select cfg-manual-deadline">
                     <!-- Dynamic options -->
                   </select>
                 </div>
               </div>
               <div class="cfg-manual-result">
                 <span class="cfg-manual-result-label">Итого</span>
-                <span class="cfg-manual-result-value" id="cfg-manual-result-value">0 ₽</span>
+                <span class="cfg-manual-result-value">0 ₽</span>
               </div>
             </div>
           </div>
@@ -2570,9 +2570,9 @@
             <!-- STEP 2: Parameters -->
             <div class="cfg-step-panel" data-step="2">
               <div class="cfg-param-group">
-                <div class="cfg-param-label"><span id="cfg-volume-label">Количество объектов</span> <span
+                <div class="cfg-param-label"><span class="cfg-volume-label">Количество объектов</span> <span
                     id="cfg-volume-value">25000</span></div>
-                <input type="range" id="cfg-volume-range" class="cfg-range" min="2000" max="200000" step="2000"
+                <input type="range" class="cfg-range cfg-volume-range" min="2000" max="200000" step="2000"
                   value="25000">
               </div>
               <div class="cfg-checks">
@@ -2581,7 +2581,7 @@
               <div class="cfg-param-group">
                 <div class="cfg-param-label">Сроки</div>
                 <div class="cfg-select-wrap">
-                  <select id="cfg-deadline" class="cfg-select">
+                  <select class="cfg-select cfg-deadline">
                     <!-- Dynamic options -->
                   </select>
                 </div>
@@ -2591,12 +2591,12 @@
             <!-- STEP 3: Final Calculation -->
             <div class="cfg-step-panel" data-step="3">
               <div class="cfg-final-price">
-                <div class="cfg-price-breakdown" id="cfg-breakdown">
+                <div class="cfg-price-breakdown cfg-breakdown">
                   <!-- Dynamic breakdown injected by JS -->
                 </div>
                 <div class="cfg-total-row">
                   <span class="cfg-total-label">Итого</span>
-                  <span class="cfg-total-value" id="cfg-total-value">0 ₽</span>
+                  <span class="cfg-total-value">0 ₽</span>
                 </div>
                 <div class="cfg-currency-switch">
                   <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
@@ -2605,8 +2605,8 @@
                   <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
                 </div>
                 <div class="cfg-actions">
-                  <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Забронировать внедрение</button>
-                  <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить проект</button>
+                  <button class="cfg-btn-primary cfg-book-wizard" type="button">Забронировать внедрение</button>
+                  <button class="cfg-btn-secondary cfg-discuss-wizard" type="button">Обсудить проект</button>
                 </div>
               </div>
             </div>
@@ -2637,7 +2637,7 @@
         <div class="cfg-manual">
           <button class="cfg-manual-toggle" type="button">
             <span>Настроить вручную</span>
-            <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+            <span class="cfg-toggle-price cfg-toggle-price-value"></span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
               stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9" />
@@ -2646,8 +2646,8 @@
           <div class="cfg-manual-body">
             <div class="cfg-manual-content">
               <div class="cfg-param-group">
-                <div class="cfg-param-label">Объём <span id="cfg-manual-volume-value">25000</span></div>
-                <input type="range" id="cfg-manual-volume" class="cfg-range" min="2000" max="200000" step="2000"
+                <div class="cfg-param-label">Объём <span class="cfg-manual-volume-value">25000</span></div>
+                <input type="range" class="cfg-range cfg-manual-volume" min="2000" max="200000" step="2000"
                   value="25000">
               </div>
               <div class="cfg-checks">
@@ -2656,14 +2656,14 @@
               <div class="cfg-param-group">
                 <div class="cfg-param-label">Сроки</div>
                 <div class="cfg-select-wrap">
-                  <select id="cfg-manual-deadline" class="cfg-select">
+                  <select class="cfg-select cfg-manual-deadline">
                     <!-- Dynamic options -->
                   </select>
                 </div>
               </div>
               <div class="cfg-manual-result">
                 <span class="cfg-manual-result-label">Итого</span>
-                <span class="cfg-manual-result-value" id="cfg-manual-result-value">0 ₽</span>
+                <span class="cfg-manual-result-value">0 ₽</span>
               </div>
             </div>
           </div>
@@ -2779,9 +2779,9 @@
             <!-- STEP 2: Parameters -->
             <div class="cfg-step-panel" data-step="2">
               <div class="cfg-param-group">
-                <div class="cfg-param-label"><span id="cfg-volume-label">Количество узлов / заметок</span> <span
+                <div class="cfg-param-label"><span class="cfg-volume-label">Количество узлов / заметок</span> <span
                     id="cfg-volume-value">5000</span></div>
-                <input type="range" id="cfg-volume-range" class="cfg-range" min="500" max="20000" step="500"
+                <input type="range" class="cfg-range cfg-volume-range" min="500" max="20000" step="500"
                   value="5000">
               </div>
               <div class="cfg-checks">
@@ -2790,7 +2790,7 @@
               <div class="cfg-param-group">
                 <div class="cfg-param-label">Сроки</div>
                 <div class="cfg-select-wrap">
-                  <select id="cfg-deadline" class="cfg-select">
+                  <select class="cfg-select cfg-deadline">
                     <!-- Dynamic options -->
                   </select>
                 </div>
@@ -2800,12 +2800,12 @@
             <!-- STEP 3: Final Calculation -->
             <div class="cfg-step-panel" data-step="3">
               <div class="cfg-final-price">
-                <div class="cfg-price-breakdown" id="cfg-breakdown">
+                <div class="cfg-price-breakdown cfg-breakdown">
                   <!-- Dynamic breakdown injected by JS -->
                 </div>
                 <div class="cfg-total-row">
                   <span class="cfg-total-label">Итого</span>
-                  <span class="cfg-total-value" id="cfg-total-value">0 ₽</span>
+                  <span class="cfg-total-value">0 ₽</span>
                 </div>
                 <div class="cfg-currency-switch">
                   <button class="cfg-curr-btn active" data-currency="RUB" type="button">₽</button>
@@ -2814,9 +2814,9 @@
                   <button class="cfg-curr-btn" data-currency="BTC" type="button">₿</button>
                 </div>
                 <div class="cfg-actions">
-                  <button class="cfg-btn-primary" type="button" id="cfg-book-wizard">Запустить свой Second
+                  <button class="cfg-btn-primary cfg-book-wizard" type="button">Запустить свой Second
                     Brain</button>
-                  <button class="cfg-btn-secondary" type="button" id="cfg-discuss-wizard">Обсудить архитектуру</button>
+                  <button class="cfg-btn-secondary cfg-discuss-wizard" type="button">Обсудить архитектуру</button>
                 </div>
               </div>
             </div>
@@ -2847,7 +2847,7 @@
         <div class="cfg-manual">
           <button class="cfg-manual-toggle" type="button">
             <span>Настроить вручную</span>
-            <span class="cfg-toggle-price" id="cfg-toggle-price-value"></span>
+            <span class="cfg-toggle-price cfg-toggle-price-value"></span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
               stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9" />
@@ -2856,8 +2856,8 @@
           <div class="cfg-manual-body">
             <div class="cfg-manual-content">
               <div class="cfg-param-group">
-                <div class="cfg-param-label">Объём <span id="cfg-manual-volume-value">5000</span></div>
-                <input type="range" id="cfg-manual-volume" class="cfg-range" min="500" max="20000" step="500"
+                <div class="cfg-param-label">Объём <span class="cfg-manual-volume-value">5000</span></div>
+                <input type="range" class="cfg-range cfg-manual-volume" min="500" max="20000" step="500"
                   value="5000">
               </div>
               <div class="cfg-checks">
@@ -2866,14 +2866,14 @@
               <div class="cfg-param-group">
                 <div class="cfg-param-label">Сроки</div>
                 <div class="cfg-select-wrap">
-                  <select id="cfg-manual-deadline" class="cfg-select">
+                  <select class="cfg-select cfg-manual-deadline">
                     <!-- Dynamic options -->
                   </select>
                 </div>
               </div>
               <div class="cfg-manual-result">
                 <span class="cfg-manual-result-label">Итого</span>
-                <span class="cfg-manual-result-value" id="cfg-manual-result-value">0 ₽</span>
+                <span class="cfg-manual-result-value">0 ₽</span>
               </div>
             </div>
           </div>
@@ -4010,6 +4010,1783 @@
     });
   </script>
 
+<!-- INJECTED JSON DATA -->
+<script id="data-01-deep-client-analysis" type="application/json">
+{
+  "serviceId": "01",
+  "serviceName": "Deep Client Analysis AI",
+  "serviceShort": "Deep Analysis",
+
+  "basePrice": 170000,
+  "monthlySupportDefault": 12000,
+  "currency": "RUB",
+
+  "preSettings": [
+    {
+      "id": "minimum",
+      "name": "Минимум",
+      "price": 170000,
+      "monthlySupport": 12000,
+      "description": "Базовый анализ + отчёт"
+    },
+    {
+      "id": "optimal",
+      "name": "Оптимально",
+      "price": 285000,
+      "monthlySupport": 18500,
+      "description": "Полный цикл + интеграция",
+      "popular": true
+    },
+    {
+      "id": "full",
+      "name": "Полный цикл",
+      "price": 410000,
+      "monthlySupport": 0,
+      "description": "Всё под ключ + 3 мес поддержки"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "price": 620000,
+      "monthlySupport": 32000,
+      "description": "Максимальная кастомизация + SLA"
+    }
+  ],
+
+  "wizard": {
+    "step1": {
+      "title": "Что ближе всего к вашей задаче?",
+      "options": [
+        {
+          "id": "new",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/></svg>",
+          "label": "Новый продукт с нуля",
+          "tooltipTitle": "Разработка с нуля",
+          "tooltipText": "Полный цикл: проектирование ИИ-модели → интеграция с CRM → обучение на ваших данных → запуск за 3–4 недели. Средний рост конверсии: +38%."
+        },
+        {
+          "id": "improve",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='22 7 13.5 15.5 8.5 10.5 2 17'/><polyline points='16 7 22 7 22 13'/></svg>",
+          "label": "Доработка существующего",
+          "tooltipTitle": "Усиление текущей системы",
+          "tooltipText": "Встроим ИИ-аналитику в вашу CRM без остановки работы. Автоматизация скоринга, подсказки менеджерам, авто-отчёты. Окупается за 2–3 месяца."
+        },
+        {
+          "id": "research",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>",
+          "label": "Исследование / концепция",
+          "tooltipTitle": "Пилот и стратегия",
+          "tooltipText": "Аудит процессов + пилотный анализ на реальных данных + детальная ROI-модель. Получите ТЗ и дорожную карту внедрения."
+        }
+      ]
+    },
+    "step2": {
+      "volume": {
+        "label": "Количество карточек клиентов для анализа",
+        "min": 50,
+        "max": 2000,
+        "step": 50,
+        "default": 500,
+        "unit": "карточек",
+        "pricePerUnit": 450
+      },
+      "checkboxes": [
+        {
+          "id": "bitrix",
+          "label": "Интеграция с телефонией / Bitrix24",
+          "priceDelta": 145000,
+          "tooltip": "Автоматический запуск анализа при входящем звонке и сохранение результата в карточку клиента."
+        },
+        {
+          "id": "telegram",
+          "label": "Telegram-уведомления",
+          "priceDelta": 95000,
+          "tooltip": "Менеджер получает мгновенное уведомление в Telegram с ключевыми выводами и ссылкой на полный отчёт."
+        },
+        {
+          "id": "pdf",
+          "label": "PDF-экспорт + дашборд",
+          "priceDelta": 110000,
+          "tooltip": "Автоматическая генерация красивого PDF-отчёта и еженедельный дашборд для руководителя отдела продаж."
+        },
+        {
+          "id": "mobile",
+          "label": "Мобильная версия",
+          "priceDelta": 165000,
+          "tooltip": "Полностью адаптивный интерфейс + красивые анимации переходов между состояниями."
+        }
+      ],
+      "deadline": [
+        { "id": "2weeks", "label": "2 недели (ускоренный)", "priceDelta": 85000 },
+        { "id": "1month", "label": "1 месяц (стандарт)", "priceDelta": 0 },
+        { "id": "flexible", "label": "Гибко / под вас", "priceDelta": -25000 }
+      ]
+    },
+    "step3": {
+      "ctaPrimary": "Забронировать внедрение",
+      "ctaSecondary": "Обсудить проект"
+    }
+  },
+
+  "manual": {
+    "volumeDefault": 500,
+    "checkboxes": ["bitrix", "telegram", "pdf", "mobile"],
+    "deadlineDefault": "1month"
+  },
+
+  "pricing": {
+    "formula": "basePrice + (volume * pricePerUnit) + sum(checkboxDeltas) + deadlineDelta",
+    "notes": "Цены указаны с НДС. Поддержка оплачивается ежемесячно отдельно."
+  }
+}
+
+</script>
+<script id="data-02-ai-lead-qualifier" type="application/json">
+{
+  "serviceId": "02",
+  "serviceName": "AI Lead Qualifier",
+  "serviceShort": "Lead Qualifier",
+
+  "basePrice": 150000,
+  "monthlySupportDefault": 10000,
+  "currency": "RUB",
+
+  "preSettings": [
+    {
+      "id": "minimum",
+      "name": "Минимум",
+      "price": 150000,
+      "monthlySupport": 10000,
+      "description": "Базовый квалификатор + отчёт"
+    },
+    {
+      "id": "optimal",
+      "name": "Оптимально",
+      "price": 245000,
+      "monthlySupport": 15000,
+      "description": "Полный цикл + интеграция",
+      "popular": true
+    },
+    {
+      "id": "full",
+      "name": "Полный цикл",
+      "price": 360000,
+      "monthlySupport": 0,
+      "description": "Всё под ключ + 3 мес поддержки"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "price": 550000,
+      "monthlySupport": 28000,
+      "description": "Максимальная кастомизация + SLA"
+    }
+  ],
+
+  "wizard": {
+    "step1": {
+      "title": "Что ближе всего к вашей задаче?",
+      "options": [
+        {
+          "id": "new",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/></svg>",
+          "label": "Новый продукт с нуля",
+          "tooltipTitle": "Разработка с нуля",
+          "tooltipText": "Полный цикл: проектирование ИИ-квалификатора → интеграция с CRM → обучение на ваших лидах → запуск за 3–4 недели. Средний рост качества лидов: +45%."
+        },
+        {
+          "id": "improve",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='22 7 13.5 15.5 8.5 10.5 2 17'/><polyline points='16 7 22 7 22 13'/></svg>",
+          "label": "Доработка существующего",
+          "tooltipTitle": "Усиление текущей системы",
+          "tooltipText": "Встроим ИИ-скоринг в вашу CRM без остановки работы. Автоматическая квалификация, роутинг менеджерам, авто-уведомления. Окупается за 1–2 месяца."
+        },
+        {
+          "id": "research",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>",
+          "label": "Исследование / концепция",
+          "tooltipTitle": "Пилот и стратегия",
+          "tooltipText": "Аудит процессов квалификации + пилотный скоринг на реальных лидах + детальная ROI-модель. Получите ТЗ и дорожную карту внедрения."
+        }
+      ]
+    },
+    "step2": {
+      "volume": {
+        "label": "Количество лидов для квалификации в месяц",
+        "min": 100,
+        "max": 5000,
+        "step": 100,
+        "default": 1000,
+        "unit": "лидов",
+        "pricePerUnit": 120
+      },
+      "checkboxes": [
+        {
+          "id": "bitrix",
+          "label": "Интеграция с Bitrix24 / CRM",
+          "priceDelta": 95000,
+          "tooltip": "Автоматический скоринг при создании лида и сохранение результата в карточку с рекомендацией менеджера."
+        },
+        {
+          "id": "telegram",
+          "label": "Telegram-уведомления менеджерам",
+          "priceDelta": 65000,
+          "tooltip": "Менеджер получает мгновенное уведомление в Telegram с оценкой лида (A/B/C) и готовым планом разговора."
+        },
+        {
+          "id": "email",
+          "label": "Email-рассылка по квалифицированным лидам",
+          "priceDelta": 75000,
+          "tooltip": "Автоматическая отправка персонализированных писем лидам с оценкой A/B и ссылкой на встречу."
+        },
+        {
+          "id": "dashboard",
+          "label": "Дашборд для РОПа + еженедельные отчёты",
+          "priceDelta": 85000,
+          "tooltip": "Реал-тайм дашборд с конверсией по источникам, топ-менеджерами и рекомендациями по улучшению."
+        }
+      ],
+      "deadline": [
+        { "id": "2weeks", "label": "2 недели (ускоренный)", "priceDelta": 65000 },
+        { "id": "1month", "label": "1 месяц (стандарт)", "priceDelta": 0 },
+        { "id": "flexible", "label": "Гибко / под вас", "priceDelta": -20000 }
+      ]
+    },
+    "step3": {
+      "ctaPrimary": "Забронировать внедрение",
+      "ctaSecondary": "Обсудить проект"
+    }
+  },
+
+  "manual": {
+    "volumeDefault": 1000,
+    "checkboxes": ["bitrix", "telegram", "dashboard"],
+    "deadlineDefault": "1month"
+  },
+
+  "pricing": {
+    "formula": "basePrice + (volume * pricePerUnit) + sum(checkboxDeltas) + deadlineDelta",
+    "notes": "Цены указаны с НДС. Поддержка оплачивается ежемесячно отдельно."
+  }
+}
+
+</script>
+<script id="data-03-ai-communications-analyst" type="application/json">
+{
+  "serviceId": "03",
+  "serviceName": "AI Communications Analyst",
+  "serviceShort": "Comms Analyst",
+
+  "basePrice": 195000,
+  "monthlySupportDefault": 13500,
+  "currency": "RUB",
+
+  "preSettings": [
+    {
+      "id": "minimum",
+      "name": "Минимум",
+      "price": 195000,
+      "monthlySupport": 13500,
+      "description": "Базовый анализ коммуникаций + отчёт"
+    },
+    {
+      "id": "optimal",
+      "name": "Оптимально",
+      "price": 310000,
+      "monthlySupport": 19500,
+      "description": "Полный цикл + интеграция + coaching",
+      "popular": true
+    },
+    {
+      "id": "full",
+      "name": "Полный цикл",
+      "price": 445000,
+      "monthlySupport": 0,
+      "description": "Всё под ключ + 3 мес поддержки + обучение команды"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "price": 680000,
+      "monthlySupport": 35000,
+      "description": "Максимальная кастомизация + SLA + dedicated support"
+    }
+  ],
+
+  "wizard": {
+    "step1": {
+      "title": "Что ближе всего к вашей задаче?",
+      "options": [
+        {
+          "id": "new",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/></svg>",
+          "label": "Новый продукт с нуля",
+          "tooltipTitle": "Разработка с нуля",
+          "tooltipText": "Полный цикл: проектирование ИИ-аналитика → интеграция с телефонией/чатами → обучение на ваших данных → запуск за 4–5 недель. Результат: контроль 100% коммуникаций + рост конверсии на 25–32%."
+        },
+        {
+          "id": "improve",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='22 7 13.5 15.5 8.5 10.5 2 17'/><polyline points='16 7 22 7 22 13'/></svg>",
+          "label": "Доработка существующего",
+          "tooltipTitle": "Усиление текущей системы",
+          "tooltipText": "Встроим ИИ-аналитику в вашу текущую телефонию и чаты без остановки работы. Автоматическая транскрипция, анализ тональности, выявление возражений. РОП экономит 15–20 часов в неделю. Окупается за 2–3 месяца."
+        },
+        {
+          "id": "research",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>",
+          "label": "Исследование / концепция",
+          "tooltipTitle": "Пилот и стратегия",
+          "tooltipText": "Аудит 200–500 реальных коммуникаций + пилотный анализ + детальная модель влияния на продажи + ТЗ и дорожная карта. Получите точное понимание, где теряете деньги."
+        }
+      ]
+    },
+    "step2": {
+      "volume": {
+        "label": "Количество коммуникаций (звонки + чаты) в месяц",
+        "min": 200,
+        "max": 15000,
+        "step": 200,
+        "default": 2500,
+        "unit": "коммуникаций",
+        "pricePerUnit": 95
+      },
+      "checkboxes": [
+        {
+          "id": "bitrix",
+          "label": "Интеграция с Bitrix24 + телефонией",
+          "priceDelta": 125000,
+          "tooltip": "Автоматическая загрузка всех звонков и чатов, скоринг в реальном времени и сохранение выводов в карточку клиента."
+        },
+        {
+          "id": "telegram",
+          "label": "Telegram-уведомления + coaching tips",
+          "priceDelta": 78000,
+          "tooltip": "Менеджер получает в Telegram разбор разговора + 2–3 конкретные рекомендации, как улучшить следующий контакт."
+        },
+        {
+          "id": "transcription",
+          "label": "Полная транскрипция + поиск по ключам",
+          "priceDelta": 95000,
+          "tooltip": "Точная транскрипция звонков + возможность искать по ключевым словам, возражениям и упоминаниям конкурентов."
+        },
+        {
+          "id": "sentiment",
+          "label": "Анализ тональности + выявление возражений",
+          "priceDelta": 85000,
+          "tooltip": "Автоматическое определение эмоций клиента и ключевых возражений с привязкой к конкретным фразам менеджера."
+        },
+        {
+          "id": "dashboard",
+          "label": "Дашборд РОПа + еженедельные insights",
+          "priceDelta": 110000,
+          "tooltip": "Реал-тайм дашборд с рейтингом менеджеров, топ-возражениями, трендами и персональными рекомендациями для РОПа."
+        }
+      ],
+      "deadline": [
+        { "id": "3weeks", "label": "3 недели (ускоренный)", "priceDelta": 85000 },
+        { "id": "1month", "label": "1 месяц (стандарт)", "priceDelta": 0 },
+        { "id": "flexible", "label": "Гибко / под вас", "priceDelta": -25000 }
+      ]
+    },
+    "step3": {
+      "ctaPrimary": "Забронировать внедрение",
+      "ctaSecondary": "Обсудить проект"
+    }
+  },
+
+  "manual": {
+    "volumeDefault": 2500,
+    "checkboxes": ["bitrix", "telegram", "sentiment", "dashboard"],
+    "deadlineDefault": "1month"
+  },
+
+  "pricing": {
+    "formula": "basePrice + (volume * pricePerUnit) + sum(checkboxDeltas) + deadlineDelta",
+    "notes": "Цены указаны с НДС. Поддержка оплачивается ежемесячно отдельно. Объём коммуникаций считается суммарно (звонки + чаты)."
+  }
+}
+
+</script>
+<script id="data-04-ai-persona-generator" type="application/json">
+{
+  "serviceId": "04",
+  "serviceName": "AI Persona Generator",
+  "serviceShort": "Persona Generator",
+
+  "basePrice": 165000,
+  "monthlySupportDefault": 11500,
+  "currency": "RUB",
+
+  "preSettings": [
+    {
+      "id": "minimum",
+      "name": "Минимум",
+      "price": 165000,
+      "monthlySupport": 11500,
+      "description": "Базовый генератор + 10 шаблонов"
+    },
+    {
+      "id": "optimal",
+      "name": "Оптимально",
+      "price": 275000,
+      "monthlySupport": 17500,
+      "description": "Полный цикл + интеграция + библиотека шаблонов",
+      "popular": true
+    },
+    {
+      "id": "full",
+      "name": "Полный цикл",
+      "price": 395000,
+      "monthlySupport": 0,
+      "description": "Всё под ключ + обучение команды + 3 мес поддержки"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "price": 590000,
+      "monthlySupport": 32000,
+      "description": "Максимальная кастомизация + брендированные шаблоны + SLA"
+    }
+  ],
+
+  "wizard": {
+    "step1": {
+      "title": "Что ближе всего к вашей задаче?",
+      "options": [
+        {
+          "id": "new",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/></svg>",
+          "label": "Новый продукт с нуля",
+          "tooltipTitle": "Разработка с нуля",
+          "tooltipText": "Полный цикл: анализ вашей целевой аудитории → создание персонализированных шаблонов → интеграция с CRM → запуск за 3–4 недели. Конверсия КП вырастает в 2–3 раза."
+        },
+        {
+          "id": "improve",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='22 7 13.5 15.5 8.5 10.5 2 17'/><polyline points='16 7 22 7 22 13'/></svg>",
+          "label": "Доработка существующего",
+          "tooltipTitle": "Усиление текущей системы",
+          "tooltipText": "Встроим ИИ-генератор в вашу CRM. Менеджер тратит 5–7 минут вместо 40–60 на подготовку КП. Автоматическая персонализация под боли клиента. Окупается за 1,5–2 месяца."
+        },
+        {
+          "id": "research",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>",
+          "label": "Исследование / концепция",
+          "tooltipTitle": "Пилот и стратегия",
+          "tooltipText": "Анализ 50–100 реальных КП + пилотный генератор + сравнение конверсии + ТЗ и библиотека из 30+ шаблонов под ваши ниши."
+        }
+      ]
+    },
+    "step2": {
+      "volume": {
+        "label": "Количество коммерческих предложений в месяц",
+        "min": 50,
+        "max": 2000,
+        "step": 50,
+        "default": 300,
+        "unit": "КП",
+        "pricePerUnit": 450
+      },
+      "checkboxes": [
+        {
+          "id": "bitrix",
+          "label": "Интеграция с Bitrix24 / amoCRM",
+          "priceDelta": 98000,
+          "tooltip": "Автоматическое заполнение КП данными из карточки клиента (имя, компания, предыдущие взаимодействия, боли)."
+        },
+        {
+          "id": "templates",
+          "label": "Библиотека из 80+ отраслевых шаблонов",
+          "priceDelta": 85000,
+          "tooltip": "Готовые шаблоны под 12 отраслей + возможность создавать свои брендированные шаблоны."
+        },
+        {
+          "id": "pdf",
+          "label": "Авто-экспорт в PDF + Word + красивый дизайн",
+          "priceDelta": 72000,
+          "tooltip": "Профессиональное оформление КП с вашим логотипом, цветами и шрифтами. Готово к отправке клиенту за 1 клик."
+        },
+        {
+          "id": "ab",
+          "label": "A/B-тестирование вариантов КП",
+          "priceDelta": 65000,
+          "tooltip": "Генерация 2–3 вариантов КП под одного клиента + аналитика, какой вариант конвертится лучше."
+        },
+        {
+          "id": "analytics",
+          "label": "Аналитика конверсии по каждому КП",
+          "priceDelta": 88000,
+          "tooltip": "Отслеживание открытия, скачивания и статуса каждого КП + автоматические напоминания менеджеру."
+        }
+      ],
+      "deadline": [
+        { "id": "2weeks", "label": "2 недели (ускоренный)", "priceDelta": 72000 },
+        { "id": "1month", "label": "1 месяц (стандарт)", "priceDelta": 0 },
+        { "id": "flexible", "label": "Гибко / под вас", "priceDelta": -22000 }
+      ]
+    },
+    "step3": {
+      "ctaPrimary": "Забронировать внедрение",
+      "ctaSecondary": "Обсудить проект"
+    }
+  },
+
+  "manual": {
+    "volumeDefault": 300,
+    "checkboxes": ["bitrix", "templates", "pdf", "analytics"],
+    "deadlineDefault": "1month"
+  },
+
+  "pricing": {
+    "formula": "basePrice + (volume * pricePerUnit) + sum(checkboxDeltas) + deadlineDelta",
+    "notes": "Цены указаны с НДС. Поддержка оплачивается ежемесячно отдельно. Цена за КП рассчитывается исходя из реального объёма отправленных предложений."
+  }
+}
+
+</script>
+<script id="data-05-ai-sales-coach" type="application/json">
+{
+  "serviceId": "05",
+  "serviceName": "AI Sales Coach",
+  "serviceShort": "Sales Coach",
+
+  "basePrice": 185000,
+  "monthlySupportDefault": 12500,
+  "currency": "RUB",
+
+  "preSettings": [
+    {
+      "id": "minimum",
+      "name": "Минимум",
+      "price": 185000,
+      "monthlySupport": 12500,
+      "description": "Базовый коуч + 50 возражений"
+    },
+    {
+      "id": "optimal",
+      "name": "Оптимально",
+      "price": 295000,
+      "monthlySupport": 18500,
+      "description": "Полный цикл + интеграция + база возражений",
+      "popular": true
+    },
+    {
+      "id": "full",
+      "name": "Полный цикл",
+      "price": 425000,
+      "monthlySupport": 0,
+      "description": "Всё под ключ + обучение + 3 мес поддержки"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "price": 620000,
+      "monthlySupport": 34000,
+      "description": "Максимальная кастомизация + dedicated coach + SLA"
+    }
+  ],
+
+  "wizard": {
+    "step1": {
+      "title": "Что ближе всего к вашей задаче?",
+      "options": [
+        {
+          "id": "new",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/></svg>",
+          "label": "Новый продукт с нуля",
+          "tooltipTitle": "Разработка с нуля",
+          "tooltipText": "Полный цикл: анализ твоей воронки → создание базы возражений → интеграция с телефонией → запуск за 4 недели. Win-rate растёт на 18–25%."
+        },
+        {
+          "id": "improve",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='22 7 13.5 15.5 8.5 10.5 2 17'/><polyline points='16 7 22 7 22 13'/></svg>",
+          "label": "Доработка существующего",
+          "tooltipTitle": "Усиление текущей системы",
+          "tooltipText": "Встроим ИИ-коуча в твою текущую телефонию и чаты. Реал-тайм подсказки во время разговора + авто-разбор после. Менеджеры растут в 2 раза быстрее. Окупается за 2 месяца."
+        },
+        {
+          "id": "research",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>",
+          "label": "Исследование / концепция",
+          "tooltipTitle": "Пилот и стратегия",
+          "tooltipText": "Анализ 100–200 реальных разговоров + пилотный коуч + карта самых частых возражений + ТЗ и план внедрения."
+        }
+      ]
+    },
+    "step2": {
+      "volume": {
+        "label": "Количество менеджеров, использующих Sales Coach",
+        "min": 3,
+        "max": 80,
+        "step": 1,
+        "default": 12,
+        "unit": "менеджеров",
+        "pricePerUnit": 9500
+      },
+      "checkboxes": [
+        {
+          "id": "bitrix",
+          "label": "Интеграция с Bitrix24 + телефонией (real-time)",
+          "priceDelta": 115000,
+          "tooltip": "Подсказки появляются прямо во время звонка в CRM. Коуч слышит разговор и даёт рекомендации в реальном времени."
+        },
+        {
+          "id": "telegram",
+          "label": "Мгновенные coaching tips в Telegram",
+          "priceDelta": 72000,
+          "tooltip": "После каждого разговора менеджер получает персональный разбор + 2–3 конкретные рекомендации в Telegram."
+        },
+        {
+          "id": "objections",
+          "label": "База из 250+ возражений + готовые ответы",
+          "priceDelta": 88000,
+          "tooltip": "Полная библиотека возражений под твою нишу + ИИ подбирает лучший ответ под конкретную ситуацию клиента."
+        },
+        {
+          "id": "debrief",
+          "label": "Авто-разбор разговора + план развития",
+          "priceDelta": 78000,
+          "tooltip": "После звонка — автоматический разбор: что было хорошо, где можно улучшить + персональный план развития менеджера."
+        },
+        {
+          "id": "leaderboard",
+          "label": "Рейтинг менеджеров + геймификация",
+          "priceDelta": 65000,
+          "tooltip": "Публичный/закрытый рейтинг, бейджи, челленджи и мотивация команды через игру."
+        }
+      ],
+      "deadline": [
+        { "id": "3weeks", "label": "3 недели (ускоренный)", "priceDelta": 78000 },
+        { "id": "1month", "label": "1 месяц (стандарт)", "priceDelta": 0 },
+        { "id": "flexible", "label": "Гибко / под вас", "priceDelta": -24000 }
+      ]
+    },
+    "step3": {
+      "ctaPrimary": "Забронировать внедрение",
+      "ctaSecondary": "Обсудить проект"
+    }
+  },
+
+  "manual": {
+    "volumeDefault": 12,
+    "checkboxes": ["bitrix", "objections", "debrief", "leaderboard"],
+    "deadlineDefault": "1month"
+  },
+
+  "pricing": {
+    "formula": "basePrice + (volume * pricePerUnit) + sum(checkboxDeltas) + deadlineDelta",
+    "notes": "Цены указаны с НДС. Поддержка оплачивается ежемесячно отдельно. Цена за менеджера рассчитывается исходя из реального количества активных пользователей."
+  }
+}
+
+</script>
+<script id="data-06-ai-warehouse-procurement" type="application/json">
+{
+  "serviceId": "06",
+  "serviceName": "AI Warehouse & Procurement",
+  "serviceShort": "Warehouse AI",
+
+  "basePrice": 215000,
+  "monthlySupportDefault": 14500,
+  "currency": "RUB",
+
+  "preSettings": [
+    {
+      "id": "minimum",
+      "name": "Минимум",
+      "price": 215000,
+      "monthlySupport": 14500,
+      "description": "Базовый прогноз + отчёт по запасам"
+    },
+    {
+      "id": "optimal",
+      "name": "Оптимально",
+      "price": 345000,
+      "monthlySupport": 21500,
+      "description": "Полный цикл + интеграция с 1С + авто-закупки",
+      "popular": true
+    },
+    {
+      "id": "full",
+      "name": "Полный цикл",
+      "price": 495000,
+      "monthlySupport": 0,
+      "description": "Всё под ключ + обучение + 3 мес поддержки + SLA"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "price": 750000,
+      "monthlySupport": 42000,
+      "description": "Максимальная кастомизация + dedicated аналитик + SLA"
+    }
+  ],
+
+  "wizard": {
+    "step1": {
+      "title": "Что ближе всего к вашей задаче?",
+      "options": [
+        {
+          "id": "new",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/></svg>",
+          "label": "Новый продукт с нуля",
+          "tooltipTitle": "Разработка с нуля",
+          "tooltipText": "Полный цикл: анализ твоей номенклатуры → обучение модели прогноза → интеграция с 1С/складом → запуск за 5–6 недель. Снижение издержек на 18–28% + 0 дефицита."
+        },
+        {
+          "id": "improve",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='22 7 13.5 15.5 8.5 10.5 2 17'/><polyline points='16 7 22 7 22 13'/></svg>",
+          "label": "Доработка существующего",
+          "tooltipTitle": "Усиление текущей системы",
+          "tooltipText": "Встроим ИИ-прогноз и авто-закупки в твою текущую систему (1С, МойСклад и др.). Автоматически снижаем dead stock на 25–40% и убираем дефицит популярных позиций. Окупается за 3–5 месяцев."
+        },
+        {
+          "id": "research",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>",
+          "label": "Исследование / концепция",
+          "tooltipTitle": "Пилот и стратегия",
+          "tooltipText": "Анализ 6–12 месяцев истории продаж + пилотный прогноз на 500–1000 SKU + точный расчёт экономии + ТЗ и дорожная карта внедрения."
+        }
+      ]
+    },
+    "step2": {
+      "volume": {
+        "label": "Количество активных SKU под управлением ИИ",
+        "min": 300,
+        "max": 15000,
+        "step": 100,
+        "default": 2200,
+        "unit": "SKU",
+        "pricePerUnit": 125
+      },
+      "checkboxes": [
+        {
+          "id": "1c",
+          "label": "Интеграция с 1С / МойСклад / складской системой",
+          "priceDelta": 135000,
+          "tooltip": "Полная двусторонняя интеграция: ИИ видит остатки, движения и автоматически создаёт заказы поставщикам в твоей системе."
+        },
+        {
+          "id": "forecast",
+          "label": "ML-прогноз спроса с учётом сезонности и трендов",
+          "priceDelta": 98000,
+          "tooltip": "Точная модель, которая учитывает сезонность, праздники, акции, погоду и даже внешние факторы (курс валюты, инфляцию)."
+        },
+        {
+          "id": "autopurchase",
+          "label": "Авто-закупки с учётом lead time и MOQ",
+          "priceDelta": 115000,
+          "tooltip": "ИИ сам рассчитывает, когда и сколько заказывать, учитывая срок поставки и минимальную партию. Без участия закупщика."
+        },
+        {
+          "id": "optimization",
+          "label": "Оптимизация складских запасов (минимизация dead stock)",
+          "priceDelta": 92000,
+          "tooltip": "Автоматически выявляет позиции с излишком и предлагает стратегию распродажи или возврата поставщику."
+        },
+        {
+          "id": "alerts",
+          "label": "Умные уведомления о рисках (дефицит / излишки)",
+          "priceDelta": 68000,
+          "tooltip": "Заранее предупреждает о грядущем дефиците или избытке за 2–6 недель. С конкретными рекомендациями."
+        }
+      ],
+      "deadline": [
+        { "id": "4weeks", "label": "4 недели (ускоренный)", "priceDelta": 95000 },
+        { "id": "6weeks", "label": "6 недель (стандарт)", "priceDelta": 0 },
+        { "id": "flexible", "label": "Гибко / под вас", "priceDelta": -28000 }
+      ]
+    },
+    "step3": {
+      "ctaPrimary": "Забронировать внедрение",
+      "ctaSecondary": "Обсудить проект"
+    }
+  },
+
+  "manual": {
+    "volumeDefault": 2200,
+    "checkboxes": ["1c", "forecast", "autopurchase", "optimization"],
+    "deadlineDefault": "6weeks"
+  },
+
+  "pricing": {
+    "formula": "basePrice + (volume * pricePerUnit) + sum(checkboxDeltas) + deadlineDelta",
+    "notes": "Цены указаны с НДС. Поддержка оплачивается ежемесячно отдельно. Объём SKU считается по активным позициям, которые находятся под управлением ИИ."
+  }
+}
+
+</script>
+<script id="data-07-ai-marketing-assistant" type="application/json">
+{
+  "serviceId": "07",
+  "serviceName": "AI Marketing Assistant",
+  "serviceShort": "Marketing AI",
+
+  "basePrice": 175000,
+  "monthlySupportDefault": 12000,
+  "currency": "RUB",
+
+  "preSettings": [
+    {
+      "id": "minimum",
+      "name": "Минимум",
+      "price": 175000,
+      "monthlySupport": 12000,
+      "description": "Базовый ассистент + 30 шаблонов"
+    },
+    {
+      "id": "optimal",
+      "name": "Оптимально",
+      "price": 285000,
+      "monthlySupport": 18000,
+      "description": "Полный цикл + визуалы + аналитика",
+      "popular": true
+    },
+    {
+      "id": "full",
+      "name": "Полный цикл",
+      "price": 410000,
+      "monthlySupport": 0,
+      "description": "Всё под ключ + бренд-кит + обучение + 3 мес поддержки"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "price": 620000,
+      "monthlySupport": 35000,
+      "description": "Максимальная кастомизация + dedicated маркетолог + SLA"
+    }
+  ],
+
+  "wizard": {
+    "step1": {
+      "title": "Что ближе всего к вашей задаче?",
+      "options": [
+        {
+          "id": "new",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/></svg>",
+          "label": "Новый продукт с нуля",
+          "tooltipTitle": "Разработка с нуля",
+          "tooltipText": "Полный цикл: анализ твоей целевой аудитории → создание бренд-voice + визуального стиля → интеграция → запуск за 4–5 недель. Контент генерируется в 5–7 раз быстрее."
+        },
+        {
+          "id": "improve",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='22 7 13.5 15.5 8.5 10.5 2 17'/><polyline points='16 7 22 7 22 13'/></svg>",
+          "label": "Доработка существующего",
+          "tooltipTitle": "Усиление текущей системы",
+          "tooltipText": "Встроим ИИ-ассистента в твои процессы. Автоматическая генерация постов, баннеров и текстов с сохранением фирменного стиля. Маркетолог тратит в 3–4 раза меньше времени. Окупается за 2 месяца."
+        },
+        {
+          "id": "research",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>",
+          "label": "Исследование / концепция",
+          "tooltipTitle": "Пилот и стратегия",
+          "tooltipText": "Анализ 3–6 месяцев твоей рекламы + пилотный генератор + сравнение конверсии + ТЗ и готовый бренд-кит под твою нишу."
+        }
+      ]
+    },
+    "step2": {
+      "volume": {
+        "label": "Количество контент-единиц в месяц",
+        "min": 50,
+        "max": 3000,
+        "step": 50,
+        "default": 400,
+        "unit": "единиц",
+        "pricePerUnit": 380
+      },
+      "checkboxes": [
+        {
+          "id": "visual",
+          "label": "Генерация визуалов и баннеров (Midjourney + Flux)",
+          "priceDelta": 125000,
+          "tooltip": "Автоматическая генерация баннеров, постов для соцсетей, email-шапок и рекламных креативов в твоём фирменном стиле."
+        },
+        {
+          "id": "content",
+          "label": "Полная генерация текстов + постов + email",
+          "priceDelta": 95000,
+          "tooltip": "Тексты для постов, продающих описаний, email-рассылок и рекламных объявлений с учётом твоего бренд-voice."
+        },
+        {
+          "id": "analysis",
+          "label": "Анализ эффективности рекламы + рекомендации",
+          "priceDelta": 88000,
+          "tooltip": "Подключается к рекламным кабинетам (VK, MyTarget, Facebook) и даёт точные рекомендации: что работает, что нужно поменять."
+        },
+        {
+          "id": "ab",
+          "label": "A/B-тестирование креативов + автоподбор",
+          "priceDelta": 72000,
+          "tooltip": "Генерирует 3–5 вариантов одного креатива и автоматически определяет, какой конвертится лучше."
+        },
+        {
+          "id": "brandkit",
+          "label": "Сохранение фирменного стиля (Brand Kit)",
+          "priceDelta": 78000,
+          "tooltip": "ИИ запоминает твои цвета, шрифты, стиль фотографий и никогда не нарушает бренд-айдентичность."
+        },
+        {
+          "id": "calendar",
+          "label": "Автоматический контент-план на месяц",
+          "priceDelta": 65000,
+          "tooltip": "Генерирует готовый контент-план на 30 дней с учётом праздников, акций и твоей воронки продаж."
+        }
+      ],
+      "deadline": [
+        { "id": "3weeks", "label": "3 недели (ускоренный)", "priceDelta": 82000 },
+        { "id": "1month", "label": "1 месяц (стандарт)", "priceDelta": 0 },
+        { "id": "flexible", "label": "Гибко / под вас", "priceDelta": -25000 }
+      ]
+    },
+    "step3": {
+      "ctaPrimary": "Забронировать внедрение",
+      "ctaSecondary": "Обсудить проект"
+    }
+  },
+
+  "manual": {
+    "volumeDefault": 400,
+    "checkboxes": ["visual", "content", "brandkit", "analysis"],
+    "deadlineDefault": "1month"
+  },
+
+  "pricing": {
+    "formula": "basePrice + (volume * pricePerUnit) + sum(checkboxDeltas) + deadlineDelta",
+    "notes": "Цены указаны с НДС. Поддержка оплачивается ежемесячно отдельно. Объём считается по реально сгенерированным контент-единицам (пост + баннер = 2 единицы)."
+  }
+}
+
+</script>
+<script id="data-08-ai-visualization-control" type="application/json">
+{
+  "serviceId": "08",
+  "serviceName": "AI Visualization & Control System",
+  "serviceShort": "Viz & Control",
+
+  "basePrice": 235000,
+  "monthlySupportDefault": 15500,
+  "currency": "RUB",
+
+  "preSettings": [
+    {
+      "id": "minimum",
+      "name": "Минимум",
+      "price": 235000,
+      "monthlySupport": 15500,
+      "description": "Базовая визуализация + 1 экран"
+    },
+    {
+      "id": "optimal",
+      "name": "Оптимально",
+      "price": 375000,
+      "monthlySupport": 23500,
+      "description": "Полный цикл + интерактив + калибровка",
+      "popular": true
+    },
+    {
+      "id": "full",
+      "name": "Полный цикл",
+      "price": 540000,
+      "monthlySupport": 0,
+      "description": "Всё под ключ + обучение + 3 мес поддержки + SLA"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "price": 820000,
+      "monthlySupport": 48000,
+      "description": "Максимальная кастомизация + dedicated инженер + SLA"
+    }
+  ],
+
+  "wizard": {
+    "step1": {
+      "title": "Что ближе всего к вашей задаче?",
+      "options": [
+        {
+          "id": "new",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/></svg>",
+          "label": "Новый продукт с нуля",
+          "tooltipTitle": "Разработка с нуля",
+          "tooltipText": "Полный цикл: анализ пространства → разработка визуального языка → создание интерактивной карты → интеграция оборудования → запуск за 6–8 недель. Готовое решение для командных центров и шоурумов."
+        },
+        {
+          "id": "improve",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='22 7 13.5 15.5 8.5 10.5 2 17'/><polyline points='16 7 22 7 22 13'/></svg>",
+          "label": "Доработка существующего",
+          "tooltipTitle": "Усиление текущей системы",
+          "tooltipText": "Модернизируем твою видеостену или интерактивный экран. Добавляем AI-визуализации, точную цветовую калибровку и интеллектуальное управление коммутацией. Окупается за 4–6 месяцев."
+        },
+        {
+          "id": "research",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>",
+          "label": "Исследование / концепция",
+          "tooltipTitle": "Пилот и стратегия",
+          "tooltipText": "Анализ текущего оборудования + пилотная визуализация на 2–4 экранах + техническое ТЗ + расчёт бюджета и сроков реализации."
+        }
+      ]
+    },
+    "step2": {
+      "volume": {
+        "label": "Количество экранов / видеостен в системе",
+        "min": 2,
+        "max": 60,
+        "step": 1,
+        "default": 8,
+        "unit": "экранов",
+        "pricePerUnit": 18500
+      },
+      "checkboxes": [
+        {
+          "id": "visual",
+          "label": "Разработка визуализаций и анимаций для больших экранов",
+          "priceDelta": 145000,
+          "tooltip": "Создание динамических визуализаций, 3D-анимаций, инфографики и дашбордов, оптимизированных для больших разрешений и видеостен."
+        },
+        {
+          "id": "interactive",
+          "label": "Интерактивные карты и touch/gesture управление",
+          "priceDelta": 125000,
+          "tooltip": "Разработка интерактивных карт помещений, процессов или данных с поддержкой тач, жестов и multi-touch."
+        },
+        {
+          "id": "calibration",
+          "label": "Профессиональная калибровка цветов и синхронизация",
+          "priceDelta": 98000,
+          "tooltip": "Точная цветовая калибровка всех экранов в единую цветовую температуру и яркость. Идеально для видеостен и шоурумов."
+        },
+        {
+          "id": "commutation",
+          "label": "Коммутация и управление оборудованием (Crestron/Extron)",
+          "priceDelta": 115000,
+          "tooltip": "Интеллектуальная коммутация источников, автоматическое переключение сценариев, интеграция с системами управления (Crestron, Extron, AMX)."
+        },
+        {
+          "id": "ai",
+          "label": "AI real-time оверлеи и интеллектуальные подсказки",
+          "priceDelta": 88000,
+          "tooltip": "Наложение AI-аналитики в реальном времени (данные, прогнозы, предупреждения) прямо на визуализацию."
+        },
+        {
+          "id": "remote",
+          "label": "Удалённое управление и мониторинг 24/7",
+          "priceDelta": 72000,
+          "tooltip": "Полный удалённый контроль системы с любого устройства + автоматические отчёты и алерты."
+        }
+      ],
+      "deadline": [
+        { "id": "5weeks", "label": "5 недель (ускоренный)", "priceDelta": 105000 },
+        { "id": "7weeks", "label": "7 недель (стандарт)", "priceDelta": 0 },
+        { "id": "flexible", "label": "Гибко / под вас", "priceDelta": -32000 }
+      ]
+    },
+    "step3": {
+      "ctaPrimary": "Забронировать внедрение",
+      "ctaSecondary": "Обсудить проект"
+    }
+  },
+
+  "manual": {
+    "volumeDefault": 8,
+    "checkboxes": ["visual", "interactive", "calibration", "commutation"],
+    "deadlineDefault": "7weeks"
+  },
+
+  "pricing": {
+    "formula": "basePrice + (volume * pricePerUnit) + sum(checkboxDeltas) + deadlineDelta",
+    "notes": "Цены указаны с НДС. Поддержка оплачивается ежемесячно отдельно. Объём считается по количеству физических экранов/видеостен в единой системе."
+  }
+}
+
+</script>
+<script id="data-09-ai-tender-assistant" type="application/json">
+{
+  "serviceId": "09",
+  "serviceName": "AI Tender Assistant",
+  "serviceShort": "Tender AI",
+
+  "basePrice": 195000,
+  "monthlySupportDefault": 13500,
+  "currency": "RUB",
+
+  "preSettings": [
+    {
+      "id": "minimum",
+      "name": "Минимум",
+      "price": 195000,
+      "monthlySupport": 13500,
+      "description": "Базовый поиск + скоринг 50 тендеров"
+    },
+    {
+      "id": "optimal",
+      "name": "Оптимально",
+      "price": 315000,
+      "monthlySupport": 20500,
+      "description": "Полный цикл + авто-документы + уведомления",
+      "popular": true
+    },
+    {
+      "id": "full",
+      "name": "Полный цикл",
+      "price": 455000,
+      "monthlySupport": 0,
+      "description": "Всё под ключ + обучение + 3 мес поддержки"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "price": 690000,
+      "monthlySupport": 38000,
+      "description": "Максимальная кастомизация + dedicated тендерный аналитик + SLA"
+    }
+  ],
+
+  "wizard": {
+    "step1": {
+      "title": "Что ближе всего к вашей задаче?",
+      "options": [
+        {
+          "id": "new",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/></svg>",
+          "label": "Новый продукт с нуля",
+          "tooltipTitle": "Разработка с нуля",
+          "tooltipText": "Полный цикл: настройка поиска по 44-ФЗ/223-ФЗ/коммерческим → обучение на твоей нише → интеграция → запуск за 4 недели. Экономия 15–25 часов в неделю на поиск и анализ."
+        },
+        {
+          "id": "improve",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='22 7 13.5 15.5 8.5 10.5 2 17'/><polyline points='16 7 22 7 22 13'/></svg>",
+          "label": "Доработка существующего",
+          "tooltipTitle": "Усиление текущей системы",
+          "tooltipText": "Встроим ИИ-ассистента в твои процессы. Автоматический поиск, скоринг релевантности и подготовка документов. Увеличивает количество подаваемых заявок в 2–3 раза. Окупается за 2–3 месяца."
+        },
+        {
+          "id": "research",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>",
+          "label": "Исследование / концепция",
+          "tooltipTitle": "Пилот и стратегия",
+          "tooltipText": "Анализ 100–200 реальных тендеров + пилотный скоринг + карта твоих конкурентных преимуществ + ТЗ и план внедрения."
+        }
+      ]
+    },
+    "step2": {
+      "volume": {
+        "label": "Количество анализируемых тендеров в месяц",
+        "min": 100,
+        "max": 5000,
+        "step": 50,
+        "default": 600,
+        "unit": "тендеров",
+        "pricePerUnit": 145
+      },
+      "checkboxes": [
+        {
+          "id": "search",
+          "label": "Автоматический поиск по 44-ФЗ, 223-ФЗ и коммерческим площадкам",
+          "priceDelta": 125000,
+          "tooltip": "ИИ ежедневно мониторит все площадки и присылает только релевантные тендеры под твою нишу и географию."
+        },
+        {
+          "id": "scoring",
+          "label": "Скоринг релевантности и вероятности победы",
+          "priceDelta": 98000,
+          "tooltip": "Автоматическая оценка тендера по 12 параметрам (конкуренция, цена, сроки, твои сильные стороны) с рекомендацией: подавать / не подавать."
+        },
+        {
+          "id": "documents",
+          "label": "Авто-подготовка документов и форм",
+          "priceDelta": 115000,
+          "tooltip": "Генерация заявки, коммерческого предложения, формы 2 и других документов на основе данных тендера и твоих шаблонов."
+        },
+        {
+          "id": "competitors",
+          "label": "Анализ конкурентов и их цен",
+          "priceDelta": 82000,
+          "tooltip": "ИИ анализирует, кто обычно побеждает в похожих тендерах, и даёт рекомендации по цене и сильным сторонам."
+        },
+        {
+          "id": "notifications",
+          "label": "Мгновенные уведомления + Telegram-бот",
+          "priceDelta": 68000,
+          "tooltip": "Мгновенные push и Telegram-уведомления о новых подходящих тендерах с прямой ссылкой и кратким анализом."
+        }
+      ],
+      "deadline": [
+        { "id": "3weeks", "label": "3 недели (ускоренный)", "priceDelta": 88000 },
+        { "id": "1month", "label": "1 месяц (стандарт)", "priceDelta": 0 },
+        { "id": "flexible", "label": "Гибко / под вас", "priceDelta": -26000 }
+      ]
+    },
+    "step3": {
+      "ctaPrimary": "Забронировать внедрение",
+      "ctaSecondary": "Обсудить проект"
+    }
+  },
+
+  "manual": {
+    "volumeDefault": 600,
+    "checkboxes": ["search", "scoring", "documents", "notifications"],
+    "deadlineDefault": "1month"
+  },
+
+  "pricing": {
+    "formula": "basePrice + (volume * pricePerUnit) + sum(checkboxDeltas) + deadlineDelta",
+    "notes": "Цены указаны с НДС. Поддержка оплачивается ежемесячно отдельно. Объём считается по реально проанализированным тендерам."
+  }
+}
+
+</script>
+<script id="data-10-ai-corporate-assistant" type="application/json">
+{
+  "serviceId": "10",
+  "serviceName": "AI Corporate Assistant",
+  "serviceShort": "Corporate AI",
+
+  "basePrice": 205000,
+  "monthlySupportDefault": 14000,
+  "currency": "RUB",
+
+  "preSettings": [
+    {
+      "id": "minimum",
+      "name": "Минимум",
+      "price": 205000,
+      "monthlySupport": 14000,
+      "description": "Базовый ассистент + подключение 3 источников"
+    },
+    {
+      "id": "optimal",
+      "name": "Оптимально",
+      "price": 335000,
+      "monthlySupport": 21500,
+      "description": "Полный цикл + RAG + безопасность",
+      "popular": true
+    },
+    {
+      "id": "full",
+      "name": "Полный цикл",
+      "price": 485000,
+      "monthlySupport": 0,
+      "description": "Всё под ключ + обучение команды + 3 мес поддержки"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "price": 730000,
+      "monthlySupport": 42000,
+      "description": "Максимальная кастомизация + dedicated инженер + SLA + on-premise"
+    }
+  ],
+
+  "wizard": {
+    "step1": {
+      "title": "Что ближе всего к вашей задаче?",
+      "options": [
+        {
+          "id": "new",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/></svg>",
+          "label": "Новый продукт с нуля",
+          "tooltipTitle": "Разработка с нуля",
+          "tooltipText": "Полный цикл: аудит знаний компании → создание корпоративной базы → настройка RAG → интеграция с Telegram/почтой → запуск за 5 недель. Сотрудники получают точные ответы за 3–5 секунд."
+        },
+        {
+          "id": "improve",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='22 7 13.5 15.5 8.5 10.5 2 17'/><polyline points='16 7 22 7 22 13'/></svg>",
+          "label": "Доработка существующего",
+          "tooltipTitle": "Усиление текущей системы",
+          "tooltipText": "Подключаем ИИ-ассистента к твоим существующим базам (1С, SharePoint, Confluence, Google Drive, CRM). Сотрудники перестают тратить часы на поиск информации. Окупается за 2–3 месяца."
+        },
+        {
+          "id": "research",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>",
+          "label": "Исследование / концепция",
+          "tooltipTitle": "Пилот и стратегия",
+          "tooltipText": "Анализ текущих источников знаний + пилотный ассистент на 50–100 запросах + оценка точности + ТЗ и план внедрения."
+        }
+      ]
+    },
+    "step2": {
+      "volume": {
+        "label": "Количество активных пользователей ассистента",
+        "min": 10,
+        "max": 500,
+        "step": 5,
+        "default": 45,
+        "unit": "пользователей",
+        "pricePerUnit": 4200
+      },
+      "checkboxes": [
+        {
+          "id": "knowledge",
+          "label": "Подключение к корпоративным базам знаний (RAG)",
+          "priceDelta": 135000,
+          "tooltip": "ИИ подключается к 1С, SharePoint, Confluence, Google Drive, Notion, внутренним порталами и отвечает только на основе твоих данных с указанием источника."
+        },
+        {
+          "id": "security",
+          "label": "Корпоративная безопасность и разграничение доступа",
+          "priceDelta": 98000,
+          "tooltip": "Полный контроль доступа по ролям, логирование всех запросов, on-premise установка при необходимости, соответствие 152-ФЗ."
+        },
+        {
+          "id": "integration",
+          "label": "Интеграция с Telegram, почтой и внутренними чатами",
+          "priceDelta": 85000,
+          "tooltip": "Ассистент доступен в Telegram, Outlook, Teams, корпоративном портале. Можно задавать вопросы прямо из рабочего чата."
+        },
+        {
+          "id": "reports",
+          "label": "Генерация отчётов и аналитики по запросам",
+          "priceDelta": 72000,
+          "tooltip": "Автоматическая генерация отчётов, сводок, сравнений на основе внутренних данных (продажи, финансы, HR и т.д.)."
+        },
+        {
+          "id": "training",
+          "label": "Обучение на внутренних документах и процессах",
+          "priceDelta": 88000,
+          "tooltip": "ИИ обучается на твоих регламентах, инструкциях, договорах и отвечает в стиле и терминологии компании."
+        }
+      ],
+      "deadline": [
+        { "id": "4weeks", "label": "4 недели (ускоренный)", "priceDelta": 92000 },
+        { "id": "6weeks", "label": "6 недель (стандарт)", "priceDelta": 0 },
+        { "id": "flexible", "label": "Гибко / под вас", "priceDelta": -28000 }
+      ]
+    },
+    "step3": {
+      "ctaPrimary": "Забронировать внедрение",
+      "ctaSecondary": "Обсудить проект"
+    }
+  },
+
+  "manual": {
+    "volumeDefault": 45,
+    "checkboxes": ["knowledge", "security", "integration", "training"],
+    "deadlineDefault": "6weeks"
+  },
+
+  "pricing": {
+    "formula": "basePrice + (volume * pricePerUnit) + sum(checkboxDeltas) + deadlineDelta",
+    "notes": "Цены указаны с НДС. Поддержка оплачивается ежемесячно отдельно. Объём считается по количеству активных пользователей с доступом к ассистенту."
+  }
+}
+
+</script>
+<script id="data-11-ai-smart-google-sheets" type="application/json">
+{
+  "serviceId": "11",
+  "serviceName": "AI Smart Google Sheets",
+  "serviceShort": "Smart Sheets",
+
+  "basePrice": 145000,
+  "monthlySupportDefault": 9500,
+  "currency": "RUB",
+
+  "preSettings": [
+    {
+      "id": "minimum",
+      "name": "Минимум",
+      "price": 145000,
+      "monthlySupport": 9500,
+      "description": "Базовый ИИ + 5 умных функций"
+    },
+    {
+      "id": "optimal",
+      "name": "Оптимально",
+      "price": 235000,
+      "monthlySupport": 14500,
+      "description": "Полный цикл + интеграции + обучение",
+      "popular": true
+    },
+    {
+      "id": "full",
+      "name": "Полный цикл",
+      "price": 340000,
+      "monthlySupport": 0,
+      "description": "Всё под ключ + шаблоны + 3 мес поддержки"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "price": 510000,
+      "monthlySupport": 28000,
+      "description": "Максимальная кастомизация + dedicated поддержка + SLA"
+    }
+  ],
+
+  "wizard": {
+    "step1": {
+      "title": "Что ближе всего к вашей задаче?",
+      "options": [
+        {
+          "id": "new",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 17 22 12'/></svg>",
+          "label": "Новый продукт с нуля",
+          "tooltipTitle": "Разработка с нуля",
+          "tooltipText": "Полный цикл: анализ твоих процессов → создание умных таблиц → интеграция с CRM/1С → запуск за 3 недели. Экономия 10–18 часов в неделю на рутине."
+        },
+        {
+          "id": "improve",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='22 7 13.5 15.5 8.5 10.5 2 17'/><polyline points='16 7 22 7 22 13'/></svg>",
+          "label": "Доработка существующего",
+          "tooltipTitle": "Усиление текущей системы",
+          "tooltipText": "Добавляем ИИ в твои существующие Google Sheets. Автоочистка данных, умные формулы, прогнозы и визуализации. Окупается за 1,5–2 месяца."
+        },
+        {
+          "id": "research",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>",
+          "label": "Исследование / концепция",
+          "tooltipTitle": "Пилот и стратегия",
+          "tooltipText": "Анализ 3–5 твоих таблиц + пилотные умные функции + оценка экономии времени + ТЗ и готовые шаблоны."
+        }
+      ]
+    },
+    "step2": {
+      "volume": {
+        "label": "Количество активных строк / записей в месяц",
+        "min": 5000,
+        "max": 500000,
+        "step": 5000,
+        "default": 45000,
+        "unit": "строк",
+        "pricePerUnit": 3.2
+      },
+      "checkboxes": [
+        {
+          "id": "cleaning",
+          "label": "Автоочистка и нормализация данных",
+          "priceDelta": 78000,
+          "tooltip": "ИИ автоматически находит и исправляет ошибки, дубли, пустые ячейки, приводит данные к единому формату."
+        },
+        {
+          "id": "formulas",
+          "label": "Умные формулы и авто-анализ",
+          "priceDelta": 92000,
+          "tooltip": "Генерация сложных формул по текстовому описанию + автоматический анализ данных и поиск аномалий."
+        },
+        {
+          "id": "prediction",
+          "label": "Прогнозы и предсказания на основе данных",
+          "priceDelta": 85000,
+          "tooltip": "ИИ строит прогнозы продаж, остатков, спроса прямо внутри таблицы с визуализацией."
+        },
+        {
+          "id": "visualization",
+          "label": "Автоматические дашборды и визуализации",
+          "priceDelta": 68000,
+          "tooltip": "Мгновенное создание красивых дашбордов, графиков и отчётов на основе данных таблицы."
+        },
+        {
+          "id": "integration",
+          "label": "Интеграция с CRM, 1С, Google Analytics",
+          "priceDelta": 75000,
+          "tooltip": "Автоматическая подтяжка данных из внешних источников и синхронизация в реальном времени."
+        }
+      ],
+      "deadline": [
+        { "id": "2weeks", "label": "2 недели (ускоренный)", "priceDelta": 65000 },
+        { "id": "3weeks", "label": "3 недели (стандарт)", "priceDelta": 0 },
+        { "id": "flexible", "label": "Гибко / под вас", "priceDelta": -18000 }
+      ]
+    },
+    "step3": {
+      "ctaPrimary": "Забронировать внедрение",
+      "ctaSecondary": "Обсудить проект"
+    }
+  },
+
+  "manual": {
+    "volumeDefault": 45000,
+    "checkboxes": ["cleaning", "formulas", "prediction", "integration"],
+    "deadlineDefault": "3weeks"
+  },
+
+  "pricing": {
+    "formula": "basePrice + (volume * pricePerUnit) + sum(checkboxDeltas) + deadlineDelta",
+    "notes": "Цены указаны с НДС. Поддержка оплачивается ежемесячно отдельно. Объём считается по активным строкам с подключёнными ИИ-функциями."
+  }
+}
+
+</script>
+<script id="data-12-ai-system-organizer" type="application/json">
+{
+  "serviceId": "12",
+  "serviceName": "AI System Organizer",
+  "serviceShort": "System Organizer",
+
+  "basePrice": 155000,
+  "monthlySupportDefault": 10500,
+  "currency": "RUB",
+
+  "preSettings": [
+    {
+      "id": "minimum",
+      "name": "Минимум",
+      "price": 155000,
+      "monthlySupport": 10500,
+      "description": "Базовая организация + очистка 1 системы"
+    },
+    {
+      "id": "optimal",
+      "name": "Оптимально",
+      "price": 255000,
+      "monthlySupport": 15500,
+      "description": "Полный цикл + 3 системы + автоматизация",
+      "popular": true
+    },
+    {
+      "id": "full",
+      "name": "Полный цикл",
+      "price": 365000,
+      "monthlySupport": 0,
+      "description": "Всё под ключ + обучение + 3 мес поддержки"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "price": 540000,
+      "monthlySupport": 30000,
+      "description": "Максимальная кастомизация + dedicated поддержка + SLA"
+    }
+  ],
+
+  "wizard": {
+    "step1": {
+      "title": "Что ближе всего к вашей задаче?",
+      "options": [
+        {
+          "id": "new",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/></svg>",
+          "label": "Новый продукт с нуля",
+          "tooltipTitle": "Разработка с нуля",
+          "tooltipText": "Полный цикл: аудит всех систем → создание единой структуры → автоматизация рутины → запуск за 4 недели. Наводим порядок в хаосе данных и процессов."
+        },
+        {
+          "id": "improve",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='22 7 13.5 15.5 8.5 10.5 2 17'/><polyline points='16 7 22 7 22 13'/></svg>",
+          "label": "Доработка существующего",
+          "tooltipTitle": "Усиление текущей системы",
+          "tooltipText": "Приводим в порядок твои текущие системы (CRM, файлы, почту, 1С). Убираем дубли, наводим структуру, автоматизируем рутинные задачи. Окупается за 2 месяца."
+        },
+        {
+          "id": "research",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>",
+          "label": "Исследование / концепция",
+          "tooltipTitle": "Пилот и стратегия",
+          "tooltipText": "Аудит 2–3 твоих систем + пилотная организация + карта улучшений + ТЗ и план наведения порядка."
+        }
+      ]
+    },
+    "step2": {
+      "volume": {
+        "label": "Количество объектов / записей под организацией",
+        "min": 2000,
+        "max": 200000,
+        "step": 2000,
+        "default": 25000,
+        "unit": "объектов",
+        "pricePerUnit": 5.8
+      },
+      "checkboxes": [
+        {
+          "id": "files",
+          "label": "Организация файлов и папок (Google Drive / OneDrive / локально)",
+          "priceDelta": 85000,
+          "tooltip": "ИИ наводит порядок в файлах: убирает дубли, создаёт логичную структуру папок, переименовывает по правилам."
+        },
+        {
+          "id": "crm",
+          "label": "Очистка и структурирование CRM (Bitrix24, amoCRM, HubSpot)",
+          "priceDelta": 98000,
+          "tooltip": "Автоматически находит и исправляет дубли клиентов, приводит данные к единому формату, заполняет пропуски."
+        },
+        {
+          "id": "automation",
+          "label": "Автоматизация рутинных процессов и задач",
+          "priceDelta": 92000,
+          "tooltip": "Создаёт автоматические правила: перемещение файлов, уведомления, обновление статусов, генерация отчётов."
+        },
+        {
+          "id": "duplicates",
+          "label": "Поиск и удаление дублей во всех системах",
+          "priceDelta": 68000,
+          "tooltip": "Глубокий поиск дублей по 8+ параметрам с безопасным слиянием и сохранением истории."
+        },
+        {
+          "id": "knowledge",
+          "label": "Структурирование базы знаний и регламентов",
+          "priceDelta": 75000,
+          "tooltip": "Приводит в порядок внутренние документы, инструкции и регламенты в единую удобную структуру."
+        }
+      ],
+      "deadline": [
+        { "id": "3weeks", "label": "3 недели (ускоренный)", "priceDelta": 72000 },
+        { "id": "4weeks", "label": "4 недели (стандарт)", "priceDelta": 0 },
+        { "id": "flexible", "label": "Гибко / под вас", "priceDelta": -20000 }
+      ]
+    },
+    "step3": {
+      "ctaPrimary": "Забронировать внедрение",
+      "ctaSecondary": "Обсудить проект"
+    }
+  },
+
+  "manual": {
+    "volumeDefault": 25000,
+    "checkboxes": ["files", "crm", "automation", "duplicates"],
+    "deadlineDefault": "4weeks"
+  },
+
+  "pricing": {
+    "formula": "basePrice + (volume * pricePerUnit) + sum(checkboxDeltas) + deadlineDelta",
+    "notes": "Цены указаны с НДС. Поддержка оплачивается ежемесячно отдельно. Объём считается по количеству объектов (файлы, контакты, записи), которые находятся под управлением ИИ."
+  }
+}
+
+</script>
+<script id="data-13-obsidian-pkm-architect" type="application/json">
+{
+  "serviceId": "13",
+  "serviceName": "Obsidian PKM Architect",
+  "serviceShort": "Obsidian Architect",
+
+  "basePrice": 310000,
+  "monthlySupportDefault": 24000,
+  "currency": "RUB",
+
+  "preSettings": [
+    {
+      "id": "minimum",
+      "name": "Минимум",
+      "price": 310000,
+      "monthlySupport": 24000,
+      "description": "Базовая настройка + YAML-схема + импорт"
+    },
+    {
+      "id": "optimal",
+      "name": "Оптимально",
+      "price": 465000,
+      "monthlySupport": 29000,
+      "description": "Полная архитектура + RAG + плагины",
+      "popular": true
+    },
+    {
+      "id": "full",
+      "name": "Полный цикл",
+      "price": 680000,
+      "monthlySupport": 0,
+      "description": "Всё под ключ + 3 мес поддержки + обучение"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "price": 950000,
+      "monthlySupport": 45000,
+      "description": "Корпоративная система + SLA + командная работа"
+    }
+  ],
+
+  "wizard": {
+    "step1": {
+      "title": "Какой тип PKM-системы вам нужен?",
+      "options": [
+        {
+          "id": "personal",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-2.04'/><path d='M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-2.04'/></svg>",
+          "label": "Личная база знаний",
+          "tooltipTitle": "Second Brain для себя",
+          "tooltipText": "Максимальная персонализация. Более 10 000 узлов. Автоматическое связывание идей."
+        },
+        {
+          "id": "team",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2'/><circle cx='9' cy='7' r='4'/><path d='M22 21v-2a4 4 0 0 0-3-3.87'/><path d='M16 3.13a4 4 0 0 1 0 7.75'/></svg>",
+          "label": "Командная база знаний",
+          "tooltipTitle": "Для небольшой команды",
+          "tooltipText": "Общий граф знаний + разграничение прав. Идеально для 3–12 человек."
+        },
+        {
+          "id": "corporate",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><rect x='2' y='7' width='20' height='14' rx='2' ry='2'/><path d='M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16'/></svg>",
+          "label": "Корпоративная система",
+          "tooltipTitle": "Для компании",
+          "tooltipText": "Полная интеграция с 1С, Confluence, Notion. RAG + LLM + безопасность 152-ФЗ."
+        },
+        {
+          "id": "migration",
+          "icon": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='23 4 23 10 17 10'/><polyline points='1 20 1 14 7 14'/><path d='M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15'/></svg>",
+          "label": "Миграция / реорганизация",
+          "tooltipTitle": "Переезд из старой системы",
+          "tooltipText": "Перенос из Notion, Roam, Evernote, Tana, OneNote + полная переструктуризация."
+        }
+      ]
+    },
+    "step2": {
+      "volume": {
+        "label": "Примерное количество узлов / заметок",
+        "min": 500,
+        "max": 20000,
+        "step": 500,
+        "default": 5000,
+        "unit": "узлов",
+        "pricePerUnit": 28
+      },
+      "checkboxes": [
+        {
+          "id": "yaml",
+          "label": "YAML-схема 12 полей + автотэгирование",
+          "priceDelta": 95000,
+          "tooltip": "Единая структура данных. Автоматическое заполнение метаданных."
+        },
+        {
+          "id": "rag",
+          "label": "RAG + LLM через MCP (точные ответы с источниками)",
+          "priceDelta": 145000,
+          "tooltip": "ИИ отвечает по вашей базе знаний с указанием источника."
+        },
+        {
+          "id": "graph",
+          "label": "Автоматическое построение графовых связей",
+          "priceDelta": 85000,
+          "tooltip": "ИИ сам находит и связывает идеи между заметками."
+        },
+        {
+          "id": "plugins",
+          "label": "Кастомные плагины и автоматизации",
+          "priceDelta": 110000,
+          "tooltip": "Dataview, Tasks, Canvas, Excalidraw и ваши собственные."
+        },
+        {
+          "id": "team",
+          "label": "Командная работа + права доступа",
+          "priceDelta": 125000,
+          "tooltip": "Совместная работа в реальном времени с контролем доступа."
+        }
+      ],
+      "deadline": [
+        { "id": "3weeks", "label": "3 недели (ускоренный)", "priceDelta": 95000 },
+        { "id": "1month", "label": "1 месяц (стандарт)", "priceDelta": 0 },
+        { "id": "flexible", "label": "Гибко / под вас", "priceDelta": -35000 }
+      ]
+    },
+    "step3": {
+      "ctaPrimary": "Запустить свой Second Brain",
+      "ctaSecondary": "Обсудить архитектуру"
+    }
+  },
+
+  "manual": {
+    "volumeDefault": 5000,
+    "checkboxes": ["yaml", "rag", "graph", "plugins"],
+    "deadlineDefault": "1month"
+  },
+
+  "pricing": {
+    "formula": "basePrice + (volume * pricePerUnit) + sum(checkboxDeltas) + deadlineDelta",
+    "notes": "Цены указаны с НДС. Поддержка оплачивается ежемесячно отдельно."
+  }
+}
+
+</script>
+<!-- END INJECTED JSON DATA -->
 </body>
 
 </html>

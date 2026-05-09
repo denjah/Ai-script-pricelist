@@ -36,8 +36,16 @@ class ServiceConfigurator {
     this.hideTogglePrice();
 
     try {
-      const response = await fetch(this.jsonPath);
-      this.data = await response.json();
+      // Avoid file:// CORS by checking for inline JSON first
+      const inlineDataId = 'data-' + this.jsonPath.split('/').pop().replace('.json', '');
+      const inlineTag = document.getElementById(inlineDataId);
+      
+      if (inlineTag) {
+        this.data = JSON.parse(inlineTag.textContent);
+      } else {
+        const response = await fetch(this.jsonPath);
+        this.data = await response.json();
+      }
       
       this.setDefaultState();
       this.renderAll();
@@ -95,8 +103,8 @@ class ServiceConfigurator {
     const s3 = this.data.wizard.step3;
     if (!s3) return;
     
-    const primary = this.container.querySelector('#cfg-book-wizard');
-    const secondary = this.container.querySelector('#cfg-discuss-wizard');
+    const primary = this.container.querySelector('.cfg-book-wizard');
+    const secondary = this.container.querySelector('.cfg-discuss-wizard');
     
     if (primary) primary.textContent = s3.ctaPrimary;
     if (secondary) secondary.textContent = s3.ctaSecondary;
@@ -107,8 +115,8 @@ class ServiceConfigurator {
     
     // Render range sliders
     const renderVolume = (prefix) => {
-      const label = this.container.querySelector(`#${prefix}volume-label`);
-      const range = this.container.querySelector(`#${prefix}volume-range`) || this.container.querySelector(`#${prefix}volume`);
+      const label = this.container.querySelector(`.${prefix}volume-label`);
+      const range = this.container.querySelector(`.${prefix}volume-range`) || this.container.querySelector(`.${prefix}volume`);
       
       if (label) label.textContent = s2.volume.label;
       if (range) {
@@ -137,8 +145,8 @@ class ServiceConfigurator {
 
     // Render deadline selects
     const selects = [
-      this.container.querySelector('#cfg-deadline'),
-      this.container.querySelector('#cfg-manual-deadline')
+      this.container.querySelector('.cfg-deadline'),
+      this.container.querySelector('.cfg-manual-deadline')
     ];
     selects.forEach(sel => {
       if (!sel) return;
@@ -151,8 +159,8 @@ class ServiceConfigurator {
   }
 
   updateVolumeDisplays() {
-    const valWiz = this.container.querySelector('#cfg-volume-value');
-    const valMan = this.container.querySelector('#cfg-manual-volume-value');
+    const valWiz = this.container.querySelector('.cfg-volume-value');
+    const valMan = this.container.querySelector('.cfg-manual-volume-value');
     if (valWiz) valWiz.textContent = this.state.volume;
     if (valMan) valMan.textContent = this.state.volume;
   }
@@ -209,8 +217,8 @@ class ServiceConfigurator {
 
     // Step 2 & Manual: Range Sliders
     const ranges = [
-      this.container.querySelector('#cfg-volume-range'),
-      this.container.querySelector('#cfg-manual-volume')
+      this.container.querySelector('.cfg-volume-range'),
+      this.container.querySelector('.cfg-manual-volume')
     ];
     ranges.forEach(r => r?.addEventListener('input', (e) => {
       this.state.volume = parseInt(e.target.value, 10);
@@ -237,8 +245,8 @@ class ServiceConfigurator {
 
     // Step 2 & Manual: Selects
     const selects = [
-      this.container.querySelector('#cfg-deadline'),
-      this.container.querySelector('#cfg-manual-deadline')
+      this.container.querySelector('.cfg-deadline'),
+      this.container.querySelector('.cfg-manual-deadline')
     ];
     selects.forEach(s => s?.addEventListener('change', (e) => {
       this.state.deadline = e.target.value;
@@ -274,7 +282,7 @@ class ServiceConfigurator {
     });
 
     // Booking Buttons
-    const bookBtn = this.container.querySelector('#cfg-book-wizard');
+    const bookBtn = this.container.querySelector('.cfg-book-wizard');
     if (bookBtn) {
       bookBtn.addEventListener('click', () => {
         const formSection = document.querySelector('.slide-final');
@@ -301,7 +309,7 @@ class ServiceConfigurator {
       });
     }
 
-    const discussBtn = this.container.querySelector('#cfg-discuss-wizard');
+    const discussBtn = this.container.querySelector('.cfg-discuss-wizard');
     if (discussBtn) {
       discussBtn.addEventListener('click', () => {
         document.querySelector('.slide-final')?.scrollIntoView({ behavior: 'smooth' });
@@ -434,9 +442,9 @@ class ServiceConfigurator {
 
     // Update Totals
     const formatted = this.formatPrice(total);
-    const totalWiz = this.container.querySelector('#cfg-total-value');
-    const totalMan = this.container.querySelector('#cfg-manual-result-value');
-    const totalTog = this.container.querySelector('#cfg-toggle-price-value');
+    const totalWiz = this.container.querySelector('.cfg-total-value');
+    const totalMan = this.container.querySelector('.cfg-manual-result-value');
+    const totalTog = this.container.querySelector('.cfg-toggle-price-value');
     
     if (totalWiz && totalWiz.textContent !== formatted) this.animateValue(totalWiz, formatted);
     if (totalMan && totalMan.textContent !== formatted) this.animateValue(totalMan, formatted);
@@ -457,7 +465,7 @@ class ServiceConfigurator {
     this.updateVatDisplay(this.container.querySelector('.cfg-manual-result'), vatFormatted);
 
     // Update Breakdown
-    const breakdown = this.container.querySelector('#cfg-breakdown');
+    const breakdown = this.container.querySelector('.cfg-breakdown');
     if (breakdown) {
       let html = `<div class="cfg-price-row"><span class="row-label">Базовая часть:</span> <span class="row-value">${this.formatPrice(this.data.basePrice)}</span></div>`;
       html += `<div class="cfg-price-row"><span class="row-label">Объём (${this.state.volume}):</span> <span class="row-value">${this.formatPrice(volumeDelta)}</span></div>`;
@@ -511,7 +519,7 @@ class ServiceConfigurator {
   }
 
   hideTogglePrice() {
-    const totalTog = this.container.querySelector('#cfg-toggle-price-value');
+    const totalTog = this.container.querySelector('.cfg-toggle-price-value');
     if (totalTog) {
       totalTog.textContent = '';
       totalTog.style.display = 'none';
